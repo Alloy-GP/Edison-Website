@@ -8,9 +8,6 @@ import { BulletsWithImage } from '../components/template-sections';
 
 /* Responsive styles injected once at the top of the page */
 const HOME_STYLES = `
-  /* ---- Global: justify all paragraph text on this page ---- */
-  [data-screen-label="Home"] p { text-align: justify; }
-
   /* ---- Hero ---- */
   .hp-hero { padding: 112px 48px 0 !important; }
   .hp-hero-title { font-size: 60px !important; }
