@@ -55,8 +55,8 @@ function ServicePage({ content }) {
               </div>
             )}
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <InteriorButton variant="primary" size="lg" href="/request-a-proposal/">Request a Proposal</InteriorButton>
-              <InteriorButton variant="ghost" size="lg" href="/contact/">Schedule a Consultation</InteriorButton>
+              <InteriorButton variant="primary" size="lg" href="/request-a-proposal">Request a Proposal</InteriorButton>
+              <InteriorButton variant="ghost" size="lg" href="/contact">Schedule a Consultation</InteriorButton>
             </div>
           </div>
           <div className="svc-page-hero-img" style={{
@@ -152,7 +152,7 @@ function ServicePage({ content }) {
         variant="navy"
         title={content.midCta.title}
         lede={content.midCta.lede}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
         secondary={{ label: `Call ${content.phone}`, href: `tel:${content.phone.replace(/\D/g,"")}` }}
       />
 
@@ -184,7 +184,7 @@ function ServicePage({ content }) {
         eyebrow="Get started"
         title={content.cta.title}
         body={content.cta.body}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
         secondary={{ label: `Call ${content.phone}`, href: `tel:${content.phone.replace(/\D/g,"")}` }}
       />
     </main>
@@ -198,7 +198,7 @@ const HOA_ACCOUNTING_CONTENT = {
   serviceLabel: "HOA Accounting",
   crumb: [
     { label: "Home", href: "/" },
-    { label: "Services", href: "/services/" },
+    { label: "Services", href: "/services" },
     { label: "HOA Accounting" }
   ],
   eyebrow: "HOA Accounting & Financial Management",

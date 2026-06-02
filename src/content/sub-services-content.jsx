@@ -9,11 +9,11 @@ const SUB_SERVICES_CONTENT = {
     serviceLabel: "Single-Family HOA Management",
     crumb: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/services/" },
-      { label: "HOA Management", href: "/services/hoa-management/" },
+      { label: "Services", href: "/services" },
+      { label: "HOA Management", href: "/services/hoa-management" },
       { label: "Single-Family" }
     ],
-    parent: { label: "HOA Management", href: "/services/hoa-management/" },
+    parent: { label: "HOA Management", href: "/services/hoa-management" },
     eyebrow: "COMMUNITY TYPE · SINGLE-FAMILY",
     phone: "(407) 317-5252",
     hero: {
@@ -68,9 +68,9 @@ const SUB_SERVICES_CONTENT = {
       { q: "Do you handle townhome HOAs too?", a: "Yes, but townhome management is different enough that Edison runs it as a separate sub-service practice, different vendor mix (building envelope, party walls), different insurance treatment, different reserve scope. See the Townhome page for detail." }
     ],
     related: [
-      { kind: "Parent Pillar", title: "HOA Management", body: "Full-service management for single-family and townhome HOAs.", href: "/services/hoa-management/" },
-      { kind: "Sibling Sub-Service", title: "Townhome Association Management", body: "Townhome-specific management, shared roofs, party walls, common insurance.", href: "/services/hoa-management/townhome/" },
-      { kind: "Sibling Service", title: "HOA Accounting", body: "Dedicated accounting specialist, audit-ready books, reserve discipline.", href: "/services/hoa-accounting/" }
+      { kind: "Parent Pillar", title: "HOA Management", body: "Full-service management for single-family and townhome HOAs.", href: "/services/hoa-management" },
+      { kind: "Sibling Sub-Service", title: "Townhome Association Management", body: "Townhome-specific management, shared roofs, party walls, common insurance.", href: "/services/hoa-management/townhome" },
+      { kind: "Sibling Service", title: "HOA Accounting", body: "Dedicated accounting specialist, audit-ready books, reserve discipline.", href: "/services/hoa-accounting" }
     ],
     cta: {
       title: "Single-family HOA management calibrated to your community type.",
@@ -82,11 +82,11 @@ const SUB_SERVICES_CONTENT = {
     serviceLabel: "Townhome Association Management",
     crumb: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/services/" },
-      { label: "HOA Management", href: "/services/hoa-management/" },
+      { label: "Services", href: "/services" },
+      { label: "HOA Management", href: "/services/hoa-management" },
       { label: "Townhome" }
     ],
-    parent: { label: "HOA Management", href: "/services/hoa-management/" },
+    parent: { label: "HOA Management", href: "/services/hoa-management" },
     eyebrow: "COMMUNITY TYPE · TOWNHOME",
     phone: "(407) 317-5252",
     hero: {
@@ -141,9 +141,9 @@ const SUB_SERVICES_CONTENT = {
       { q: "Do you handle smaller townhome communities?", a: "Yes. Edison manages townhome associations from roughly 40 units up through 300+. Smaller communities benefit most from the boutique-portfolio model because there's less margin for operational drag." }
     ],
     related: [
-      { kind: "Parent Pillar", title: "HOA Management", body: "Full-service management for single-family and townhome HOAs.", href: "/services/hoa-management/" },
-      { kind: "Sibling Sub-Service", title: "Single-Family HOA Management", body: "Detached-home HOAs with shared amenities.", href: "/services/hoa-management/single-family/" },
-      { kind: "Sibling Service", title: "HOA Accounting", body: "Dedicated accounting specialist with reserve discipline.", href: "/services/hoa-accounting/" }
+      { kind: "Parent Pillar", title: "HOA Management", body: "Full-service management for single-family and townhome HOAs.", href: "/services/hoa-management" },
+      { kind: "Sibling Sub-Service", title: "Single-Family HOA Management", body: "Detached-home HOAs with shared amenities.", href: "/services/hoa-management/single-family" },
+      { kind: "Sibling Service", title: "HOA Accounting", body: "Dedicated accounting specialist with reserve discipline.", href: "/services/hoa-accounting" }
     ],
     cta: {
       title: "Townhome management with the right vendor mix and reserve scope.",
@@ -155,11 +155,11 @@ const SUB_SERVICES_CONTENT = {
     serviceLabel: "Budget Preparation",
     crumb: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/services/" },
-      { label: "HOA Accounting", href: "/services/hoa-accounting/" },
+      { label: "Services", href: "/services" },
+      { label: "HOA Accounting", href: "/services/hoa-accounting" },
       { label: "Budget Preparation" }
     ],
-    parent: { label: "HOA Accounting", href: "/services/hoa-accounting/" },
+    parent: { label: "HOA Accounting", href: "/services/hoa-accounting" },
     eyebrow: "Sub-Service · HOA Accounting",
     phone: "(407) 317-5252",
     hero: {
@@ -214,9 +214,9 @@ const SUB_SERVICES_CONTENT = {
       { q: "Can the board still customize the budget?", a: "Always. Edison drafts scenarios; the board approves the version it wants. We'll document the board's modifications and reflect them in the final package. The board's decisions are the binding ones." }
     ],
     related: [
-      { kind: "Full service", title: "HOA Accounting", body: "Full financial management, monthly reporting, reserve banking, audit prep, tax filing.", href: "/services/hoa-accounting/" },
-      { kind: "Also included", title: "Reserve Study Support", body: "Coordination with reserve study engineers and funding plan integration.", href: "/services/hoa-accounting/reserve-study-support/" },
-      { kind: "Guide", title: "HOA Audit Guide", body: "When audits are required and how to prepare, written for FL boards.", href: "/blog/hoa-audit/" }
+      { kind: "Full service", title: "HOA Accounting", body: "Full financial management, monthly reporting, reserve banking, audit prep, tax filing.", href: "/services/hoa-accounting" },
+      { kind: "Also included", title: "Reserve Study Support", body: "Coordination with reserve study engineers and funding plan integration.", href: "/services/hoa-accounting/reserve-study-support" },
+      { kind: "Guide", title: "HOA Audit Guide", body: "When audits are required and how to prepare, written for FL boards.", href: "/blog/hoa-audit" }
     ],
     cta: {
       title: "A budget your board can defend, with the work that builds it.",
@@ -228,11 +228,11 @@ const SUB_SERVICES_CONTENT = {
     serviceLabel: "Reserve Study Support",
     crumb: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/services/" },
-      { label: "HOA Accounting", href: "/services/hoa-accounting/" },
+      { label: "Services", href: "/services" },
+      { label: "HOA Accounting", href: "/services/hoa-accounting" },
       { label: "Reserve Study Support" }
     ],
-    parent: { label: "HOA Accounting", href: "/services/hoa-accounting/" },
+    parent: { label: "HOA Accounting", href: "/services/hoa-accounting" },
     eyebrow: "Sub-Service · HOA Accounting",
     phone: "(407) 317-5252",
     hero: {
@@ -287,9 +287,9 @@ const SUB_SERVICES_CONTENT = {
       { q: "What does a reserve study cost?", a: "Typical full studies for HOAs run $4,000–$9,000 depending on community size and capital inventory complexity. SIRS engagements for condos run $8,000–$25,000+ given the structural engineering involved. Edison sources 3 competing bids and the board selects." }
     ],
     related: [
-      { kind: "Full Service", title: "HOA Accounting", body: "Monthly financial management with reserve banking strategy.", href: "/services/hoa-accounting/" },
-      { kind: "Also Included", title: "Budget Preparation", body: "Annual budget cycle that integrates the reserve study findings.", href: "/services/hoa-accounting/budget-preparation/" },
-      { kind: "Also Included", title: "SIRS (for condos 3+ stories)", body: "Structural Integrity Reserve Study coordination under FL SB-4D.", href: "/services/condo-management/structural-integrity-reserve-study/" }
+      { kind: "Full Service", title: "HOA Accounting", body: "Monthly financial management with reserve banking strategy.", href: "/services/hoa-accounting" },
+      { kind: "Also Included", title: "Budget Preparation", body: "Annual budget cycle that integrates the reserve study findings.", href: "/services/hoa-accounting/budget-preparation" },
+      { kind: "Also Included", title: "SIRS (for condos 3+ stories)", body: "Structural Integrity Reserve Study coordination under FL SB-4D.", href: "/services/condo-management/structural-integrity-reserve-study" }
     ],
     cta: {
       title: "A reserve study that actually produces a funding plan.",
@@ -301,11 +301,11 @@ const SUB_SERVICES_CONTENT = {
     serviceLabel: "Milestone Inspection Coordination",
     crumb: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/services/" },
-      { label: "Condo Management", href: "/services/condo-management/" },
+      { label: "Services", href: "/services" },
+      { label: "Condo Management", href: "/services/condo-management" },
       { label: "Milestone Inspections" }
     ],
-    parent: { label: "Condo Management", href: "/services/condo-management/" },
+    parent: { label: "Condo Management", href: "/services/condo-management" },
     eyebrow: "compliance · Condo Management",
     phone: "(407) 317-5252",
     hero: {
@@ -361,9 +361,9 @@ const SUB_SERVICES_CONTENT = {
       { q: "Who files the report?", a: "The engineer files with the local building department per statute; Edison coordinates the filing and tracks acknowledgment. The board receives a copy of the filed report and the building department's response." }
     ],
     related: [
-      { kind: "Full service", title: "Condo Management", body: "Full-service management for FL condominium associations under Ch. 718.", href: "/services/condo-management/" },
-      { kind: "also required", title: "Structural Integrity Reserve Study (SIRS)", body: "The reserve study that pairs with the milestone inspection under SB-4D.", href: "/services/condo-management/structural-integrity-reserve-study/" },
-      { kind: "guide", title: "HOA Reserve Study Florida: What Boards Need to Know", body: "How reserve studies work, what they cost, and how Edison coordinates the process.", href: "/blog/hoa-reserve-study-guide/" }
+      { kind: "Full service", title: "Condo Management", body: "Full-service management for FL condominium associations under Ch. 718.", href: "/services/condo-management" },
+      { kind: "also required", title: "Structural Integrity Reserve Study (SIRS)", body: "The reserve study that pairs with the milestone inspection under SB-4D.", href: "/services/condo-management/structural-integrity-reserve-study" },
+      { kind: "guide", title: "HOA Reserve Study Florida: What Boards Need to Know", body: "How reserve studies work, what they cost, and how Edison coordinates the process.", href: "/blog/hoa-reserve-study-guide" }
     ],
     cta: {
       title: "Milestone compliance, run by people who do this every month.",
@@ -375,11 +375,11 @@ const SUB_SERVICES_CONTENT = {
     serviceLabel: "Structural Integrity Reserve Study (SIRS)",
     crumb: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/services/" },
-      { label: "Condo Management", href: "/services/condo-management/" },
+      { label: "Services", href: "/services" },
+      { label: "Condo Management", href: "/services/condo-management" },
       { label: "Structural Integrity Reserve Study" }
     ],
-    parent: { label: "Condo Management", href: "/services/condo-management/" },
+    parent: { label: "Condo Management", href: "/services/condo-management" },
     eyebrow: "compliance · Condo Management",
     phone: "(407) 317-5252",
     hero: {
@@ -439,9 +439,9 @@ const SUB_SERVICES_CONTENT = {
       { q: "How does Edison handle this differently?", a: "We treat the SIRS as a multi-year capital planning exercise, not a one-time filing. Engineer selection, document prep, board education, funding plan integration, and ongoing reserve banking strategy are all coordinated by the same accounting team responsible for your monthly financials." }
     ],
     related: [
-      { kind: "also required", title: "Milestone Inspection Coordination", body: "The structural condition assessment that often precedes the SIRS.", href: "/services/condo-management/milestone-inspections/" },
-      { kind: "full service", title: "Condo Management", body: "Full-service management for Florida condominium associations under Ch. 718.", href: "/services/condo-management/" },
-      { kind: "guide", title: "HOA Reserve Study Florida: What Boards Need to Know", body: "How reserve studies work, what they cost, and how Edison coordinates the process.", href: "/blog/hoa-reserve-study-guide/" }
+      { kind: "also required", title: "Milestone Inspection Coordination", body: "The structural condition assessment that often precedes the SIRS.", href: "/services/condo-management/milestone-inspections" },
+      { kind: "full service", title: "Condo Management", body: "Full-service management for Florida condominium associations under Ch. 718.", href: "/services/condo-management" },
+      { kind: "guide", title: "HOA Reserve Study Florida: What Boards Need to Know", body: "How reserve studies work, what they cost, and how Edison coordinates the process.", href: "/blog/hoa-reserve-study-guide" }
     ],
     cta: {
       title: "SIRS compliance is a project, not a panic.",

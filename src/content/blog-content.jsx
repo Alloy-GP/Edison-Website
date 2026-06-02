@@ -130,8 +130,8 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "For Boards", title: "HOA Bylaws vs CC&Rs: Key Differences Explained", image: "/assets/blog/bylaws-vs-ccrs.jpg", href: "/blog/hoa-bylaws-vs-ccrs/" },
-      { category: "Financial Management", title: "HOA Reserve Study Florida: What Boards Need to Know", image: "/assets/blog/reserve-study-specialist.jpg", href: "/blog/hoa-reserve-study-guide/" }
+      { category: "For Boards", title: "HOA Bylaws vs CC&Rs: Key Differences Explained", image: "/assets/blog/bylaws-vs-ccrs.jpg", href: "/blog/hoa-bylaws-vs-ccrs" },
+      { category: "Financial Management", title: "HOA Reserve Study Florida: What Boards Need to Know", image: "/assets/blog/reserve-study-specialist.jpg", href: "/blog/hoa-reserve-study-guide" }
     ]
   },
 
@@ -174,9 +174,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Florida Compliance", title: "Florida Milestone Inspection Guide", image: "/assets/img-22.jpg", href: "/blog/florida-milestone-inspection-guide/" },
-      { category: "For Boards", title: "HOA Board Member Responsibilities", image: "/assets/img-11.jpg", href: "/blog/hoa-board-member-responsibilities/" },
-      { category: "For Boards", title: "Condo Association vs HOA: Which Are You?", image: "/assets/img-21.jpg", href: "/blog/condo-association-vs-hoa/" }
+      { category: "Florida Compliance", title: "Florida Milestone Inspection Guide", image: "/assets/img-22.jpg", href: "/blog/florida-milestone-inspection-guide" },
+      { category: "For Boards", title: "HOA Board Member Responsibilities", image: "/assets/img-11.jpg", href: "/blog/hoa-board-member-responsibilities" },
+      { category: "For Boards", title: "Condo Association vs HOA: Which Are You?", image: "/assets/img-21.jpg", href: "/blog/condo-association-vs-hoa" }
     ]
   },
 
@@ -212,9 +212,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide/" },
-      { category: "Financial Management", title: "HOA Reserve Study Guide (Florida)", image: "/assets/img-21.jpg", href: "/blog/hoa-reserve-study-guide-florida/" },
-      { category: "For Boards", title: "Condo Association vs HOA", image: "/assets/img-22.jpg", href: "/blog/condo-association-vs-hoa/" }
+      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide" },
+      { category: "Financial Management", title: "HOA Reserve Study Guide (Florida)", image: "/assets/img-21.jpg", href: "/blog/hoa-reserve-study-guide-florida" },
+      { category: "For Boards", title: "Condo Association vs HOA", image: "/assets/img-22.jpg", href: "/blog/condo-association-vs-hoa" }
     ]
   },
 
@@ -252,9 +252,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Financial Management", title: "HOA Audit Guide", image: "/assets/img-accounting.jpg", href: "/blog/hoa-audit/" },
-      { category: "Florida Compliance", title: "Florida Milestone Inspection Guide", image: "/assets/img-22.jpg", href: "/blog/florida-milestone-inspection-guide/" },
-      { category: "Financial Management", title: "HOA Special Assessment Guide", image: "/assets/img-13.jpg", href: "/blog/hoa-special-assessment/" }
+      { category: "Financial Management", title: "HOA Audit Guide", image: "/assets/img-accounting.jpg", href: "/blog/hoa-audit" },
+      { category: "Florida Compliance", title: "Florida Milestone Inspection Guide", image: "/assets/img-22.jpg", href: "/blog/florida-milestone-inspection-guide" },
+      { category: "Financial Management", title: "HOA Special Assessment Guide", image: "/assets/img-13.jpg", href: "/blog/hoa-special-assessment" }
     ]
   },
 
@@ -290,9 +290,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide/" },
-      { category: "For Boards", title: "HOA Bylaws vs CC&Rs Explained", image: "/assets/img-17.jpg", href: "/blog/hoa-bylaws-vs-ccrs/" },
-      { category: "For Boards", title: "Unenforceable HOA Rules in Florida", image: "/assets/img-inspector.jpg", href: "/blog/unenforceable-hoa-rules-florida/" }
+      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide" },
+      { category: "For Boards", title: "HOA Bylaws vs CC&Rs Explained", image: "/assets/img-17.jpg", href: "/blog/hoa-bylaws-vs-ccrs" },
+      { category: "For Boards", title: "Unenforceable HOA Rules in Florida", image: "/assets/img-inspector.jpg", href: "/blog/unenforceable-hoa-rules-florida" }
     ]
   },
 
@@ -420,8 +420,8 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Financial Management", title: "HOA Audit: What It Is, When It's Required, and How to Prepare", image: "/assets/blog/hoa-board-members-reviewing-audit.jpg", href: "/blog/hoa-audit/" },
-      { category: "Financial Management", title: "HOA Reserve Study Florida: What Boards Need to Know", image: "/assets/blog/reserve-study-specialist.jpg", href: "/blog/hoa-reserve-study-guide/" }
+      { category: "Financial Management", title: "HOA Audit: What It Is, When It's Required, and How to Prepare", image: "/assets/blog/hoa-board-members-reviewing-audit.jpg", href: "/blog/hoa-audit" },
+      { category: "Financial Management", title: "HOA Reserve Study Florida: What Boards Need to Know", image: "/assets/blog/reserve-study-specialist.jpg", href: "/blog/hoa-reserve-study-guide" }
     ]
   },
 
@@ -458,9 +458,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "For Boards", title: "HOA Bylaws vs CC&Rs Explained", image: "/assets/img-17.jpg", href: "/blog/hoa-bylaws-vs-ccrs/" },
-      { category: "For Boards", title: "HOA Board Member Responsibilities", image: "/assets/img-11.jpg", href: "/blog/hoa-board-member-responsibilities/" },
-      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide/" }
+      { category: "For Boards", title: "HOA Bylaws vs CC&Rs Explained", image: "/assets/img-17.jpg", href: "/blog/hoa-bylaws-vs-ccrs" },
+      { category: "For Boards", title: "HOA Board Member Responsibilities", image: "/assets/img-11.jpg", href: "/blog/hoa-board-member-responsibilities" },
+      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide" }
     ]
   },
 
@@ -492,9 +492,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide/" },
-      { category: "Florida Compliance", title: "Florida Milestone Inspection Guide", image: "/assets/img-22.jpg", href: "/blog/florida-milestone-inspection-guide/" },
-      { category: "For Boards", title: "HOA Bylaws vs CC&Rs Explained", image: "/assets/img-17.jpg", href: "/blog/hoa-bylaws-vs-ccrs/" }
+      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide" },
+      { category: "Florida Compliance", title: "Florida Milestone Inspection Guide", image: "/assets/img-22.jpg", href: "/blog/florida-milestone-inspection-guide" },
+      { category: "For Boards", title: "HOA Bylaws vs CC&Rs Explained", image: "/assets/img-17.jpg", href: "/blog/hoa-bylaws-vs-ccrs" }
     ]
   },
 
@@ -538,9 +538,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Financial Management", title: "HOA Audit Guide", image: "/assets/img-accounting.jpg", href: "/blog/hoa-audit/" },
-      { category: "Financial Management", title: "HOA Special Assessment Guide", image: "/assets/img-13.jpg", href: "/blog/hoa-special-assessment/" },
-      { category: "Local Authority", title: "Best HOA Management Companies in Orlando", image: "/assets/img-community-aerial.jpg", href: "/blog/best-hoa-management-companies-orlando/" }
+      { category: "Financial Management", title: "HOA Audit Guide", image: "/assets/img-accounting.jpg", href: "/blog/hoa-audit" },
+      { category: "Financial Management", title: "HOA Special Assessment Guide", image: "/assets/img-13.jpg", href: "/blog/hoa-special-assessment" },
+      { category: "Local Authority", title: "Best HOA Management Companies in Orlando", image: "/assets/img-community-aerial.jpg", href: "/blog/best-hoa-management-companies-orlando" }
     ]
   },
 
@@ -576,9 +576,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Financial Management", title: "HOA Reserve Study Guide (Florida)", image: "/assets/img-21.jpg", href: "/blog/hoa-reserve-study-guide-florida/" },
-      { category: "Financial Management", title: "HOA Audit Guide", image: "/assets/img-accounting.jpg", href: "/blog/hoa-audit/" },
-      { category: "Financial Management", title: "HOA Management Fees", image: "/assets/img-13.jpg", href: "/blog/hoa-management-fees/" }
+      { category: "Financial Management", title: "HOA Reserve Study Guide (Florida)", image: "/assets/img-21.jpg", href: "/blog/hoa-reserve-study-guide-florida" },
+      { category: "Financial Management", title: "HOA Audit Guide", image: "/assets/img-accounting.jpg", href: "/blog/hoa-audit" },
+      { category: "Financial Management", title: "HOA Management Fees", image: "/assets/img-13.jpg", href: "/blog/hoa-management-fees" }
     ]
   },
 
@@ -691,8 +691,8 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Financial Management", title: "HOA Audit: What It Is, When It's Required, and How to Prepare", image: "/assets/blog/hoa-board-members-reviewing-audit.jpg", href: "/blog/hoa-audit/" },
-      { category: "For Boards", title: "HOA Bylaws vs CC&Rs: Key Differences Explained", image: "/assets/blog/bylaws-vs-ccrs.jpg", href: "/blog/hoa-bylaws-vs-ccrs/" }
+      { category: "Financial Management", title: "HOA Audit: What It Is, When It's Required, and How to Prepare", image: "/assets/blog/hoa-board-members-reviewing-audit.jpg", href: "/blog/hoa-audit" },
+      { category: "For Boards", title: "HOA Bylaws vs CC&Rs: Key Differences Explained", image: "/assets/blog/bylaws-vs-ccrs.jpg", href: "/blog/hoa-bylaws-vs-ccrs" }
     ]
   },
 
@@ -738,9 +738,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Financial Management", title: "HOA Management Fees: What Boards Actually Pay", image: "/assets/img-13.jpg", href: "/blog/hoa-management-fees/" },
-      { category: "For Boards", title: "HOA Board Member Responsibilities", image: "/assets/img-11.jpg", href: "/blog/hoa-board-member-responsibilities/" },
-      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide/" }
+      { category: "Financial Management", title: "HOA Management Fees: What Boards Actually Pay", image: "/assets/img-13.jpg", href: "/blog/hoa-management-fees" },
+      { category: "For Boards", title: "HOA Board Member Responsibilities", image: "/assets/img-11.jpg", href: "/blog/hoa-board-member-responsibilities" },
+      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide" }
     ]
   }
 };

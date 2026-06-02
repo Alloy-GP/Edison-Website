@@ -67,7 +67,7 @@ function EducationHubA({ content }) {
                 color: "var(--edison-navy)", margin: 0
               }}>Articles for Florida HOA & condo boards</h2>
             </div>
-            <a href="/blog/" style={{
+            <a href="/blog" style={{
               fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14,
               color: "var(--edison-teal-dark)",
               textDecoration: "none",
@@ -185,7 +185,7 @@ function EducationHubA({ content }) {
         title="Get Edison Education updates straight to your inbox"
         body="One monthly email with new articles, Florida compliance updates, and board education. No sales pitches."
         primary={{ label: "Subscribe", href: "#subscribe" }}
-        secondary={{ label: "Browse the blog", href: "/blog/" }}
+        secondary={{ label: "Browse the blog", href: "/blog" }}
       />
     </main>
   );
@@ -370,7 +370,7 @@ const EDUCATION_CONTENT = {
       body: "Governance fundamentals, document hierarchy, enforcement boundaries, and decision-making frameworks for boards who didn't sign up to be lawyers.",
       color: "#FAF4ED",
       articles: [
-        { title: "HOA Bylaws vs CC&Rs: Key Differences Explained", readTime: "8 min", href: "/blog/hoa-bylaws-vs-ccrs/" }
+        { title: "HOA Bylaws vs CC&Rs: Key Differences Explained", readTime: "8 min", href: "/blog/hoa-bylaws-vs-ccrs" }
       ]
     },
     {
@@ -379,8 +379,8 @@ const EDUCATION_CONTENT = {
       body: "Reserve funding, audit prep, and how to read financial statements your board can actually defend.",
       color: "#EEF4FF",
       articles: [
-        { title: "HOA Audit: What It Is, When It's Required, and How to Prepare", readTime: "9 min", href: "/blog/hoa-audit/" },
-        { title: "HOA Reserve Study Florida: What Boards Need to Know", readTime: "10 min", href: "/blog/hoa-reserve-study-guide/" }
+        { title: "HOA Audit: What It Is, When It's Required, and How to Prepare", readTime: "9 min", href: "/blog/hoa-audit" },
+        { title: "HOA Reserve Study Florida: What Boards Need to Know", readTime: "10 min", href: "/blog/hoa-reserve-study-guide" }
       ]
     }
   ],
@@ -389,7 +389,7 @@ const EDUCATION_CONTENT = {
     title: "HOA Audit: What It Is, When It's Required, and How to Prepare",
     excerpt: "An HOA audit confirms your community's finances are accurate, transparent, and compliant with Florida law. Learn what's required based on your association's revenue, and how strong year-round financial management makes the process faster and less expensive.",
     image: "/assets/blog/hoa-board-members-reviewing-audit.jpg",
-    href: "/blog/hoa-audit/"
+    href: "/blog/hoa-audit"
   }
 };
 

@@ -412,7 +412,7 @@ function EducationBand({ title, sub, posts }) {
               fontFamily: "var(--font-body)", fontSize: 16, lineHeight: 1.65,
               color: "var(--edison-text-body)", margin: "0 0 28px"
             }}>{sub}</p>
-            <a href="/edison-education/" style={{
+            <a href="/edison-education" style={{
               display: "inline-flex", alignItems: "center", gap: 8,
               fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14,
               color: "var(--edison-teal-dark)",
@@ -452,14 +452,14 @@ function HomePage() {
         eyebrow="Orlando, Florida · Since 2021"
         title="HOA & Condominium Management Services"
         lede="Edison Association Management provides professional HOA and condominium management services designed to support boards, protect property values, and simplify day-to-day operations."
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
         audienceCards={[
           {
             eyebrow: "For HOA & Condo Boards",
             title: "See why Central Florida boards switch to Edison.",
             cta: "Learn more",
             image: "/assets/img-inspector.jpg",
-            href: "/about/"
+            href: "/about"
           },
           {
             eyebrow: "For Residents & Homeowners",
@@ -479,19 +479,19 @@ function HomePage() {
             title: "HOA Management Services",
             body: "Dedicated managers. Transparent reporting. One point of contact.",
             image: "/assets/img-13.jpg",
-            href: "/services/hoa-management/"
+            href: "/services/hoa-management"
           },
           {
             title: "Accounting & Bookkeeping",
             body: "Monthly financials, accurate budgets, and on-time collections.",
             image: "/assets/img-accounting.jpg",
-            href: "/services/hoa-accounting/"
+            href: "/services/hoa-accounting"
           },
           {
             title: "Covenant Enforcement",
             body: "Consistent inspections, fair enforcement, full compliance tracking.",
             image: "/assets/img-inspector.jpg",
-            href: "/services/covenant-enforcement/"
+            href: "/services/covenant-enforcement"
           }
         ]}
       />
@@ -504,12 +504,12 @@ function HomePage() {
           {
             title: "Single-Family HOA Management",
             image: "/assets/img-22.jpg",
-            href: "/services/hoa-management/single-family/"
+            href: "/services/hoa-management/single-family"
           },
           {
             title: "Condominium Management",
             image: "/assets/img-21.jpg",
-            href: "/services/condo-management/"
+            href: "/services/condo-management"
           }
         ]}
       />
@@ -548,14 +548,14 @@ function HomePage() {
             title: "HOA Audit: What It Is, When It's Required, and How to Prepare",
             excerpt: "An HOA audit confirms your community's finances are accurate, transparent, and compliant with Florida law.",
             image: "/assets/blog/hoa-board-members-reviewing-audit.jpg",
-            href: "/blog/hoa-audit/"
+            href: "/blog/hoa-audit"
           },
           {
             category: "Governance",
             title: "HOA Bylaws vs CC&Rs: Key Differences Explained",
             excerpt: "Understanding the difference between HOA bylaws and CC&Rs helps boards make confident, defensible decisions.",
             image: "/assets/blog/bylaws-vs-ccrs.jpg",
-            href: "/blog/hoa-bylaws-vs-ccrs/"
+            href: "/blog/hoa-bylaws-vs-ccrs"
           }
         ]}
       />
@@ -577,8 +577,8 @@ function HomePage() {
         eyebrow="Let's Talk"
         title="Ready for a Better Association Management Experience?"
         body="Tell us about your community and receive a customized management proposal tailored to your association's needs."
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Contact Us", href: "/contact/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Contact Us", href: "/contact" }}
       />
 
     </main>

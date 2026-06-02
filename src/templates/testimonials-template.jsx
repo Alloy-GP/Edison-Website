@@ -32,7 +32,7 @@ function TestimonialsPageA({ content }) {
     <main data-screen-label="Testimonials, Variant A">
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "About", href: "/about/" },
+        { label: "About", href: "/about" },
         { label: "Testimonials" }
       ]}/>
 
@@ -133,8 +133,8 @@ function TestimonialsPageA({ content }) {
         eyebrow="Ready when you are"
         title="See if Edison is the right fit for your community."
         body="Boards switch to Edison because the difference is measurable. Request a proposal and see what working together looks like for your association."
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Read Case Studies", href: "/case-studies/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Read Case Studies", href: "/case-studies" }}
       />
     </main>
   );
@@ -152,7 +152,7 @@ function TestimonialsPageB({ content }) {
     <main data-screen-label="Testimonials, Variant B">
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "About", href: "/about/" },
+        { label: "About", href: "/about" },
         { label: "Testimonials" }
       ]}/>
 
@@ -265,8 +265,8 @@ function TestimonialsPageB({ content }) {
         eyebrow="Read deeper"
         title="See the full story behind these results."
         body="Our case studies document specific transitions, capital project rescues, and financial turnarounds we've led, with the numbers and the timelines."
-        primary={{ label: "Read Case Studies", href: "/case-studies/" }}
-        secondary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
+        primary={{ label: "Read Case Studies", href: "/case-studies" }}
+        secondary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
       />
     </main>
   );

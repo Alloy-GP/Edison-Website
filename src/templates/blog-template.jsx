@@ -38,8 +38,8 @@ function BlogSpokeA({ content }) {
       <ReadingProgress/>
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "Edison Education", href: "/edison-education/" },
-        { label: "Blog", href: "/blog/" },
+        { label: "Edison Education", href: "/edison-education" },
+        { label: "Blog", href: "/blog" },
         { label: content.title }
       ]}/>
 
@@ -332,8 +332,8 @@ function BlogSpokeA({ content }) {
         variant="teal"
         title="Need help applying this to your community?"
         lede="Edison's team works with Florida boards every day. If you've got questions, we'll talk you through it."
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Contact Edison", href: "/contact/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Contact Edison", href: "/contact" }}
       />
 
       {/* Related articles */}
@@ -398,8 +398,8 @@ function BlogSpokeB({ content }) {
       <ReadingProgress/>
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "Edison Education", href: "/edison-education/" },
-        { label: "Blog", href: "/blog/" },
+        { label: "Edison Education", href: "/edison-education" },
+        { label: "Blog", href: "/blog" },
         { label: content.title }
       ]}/>
 
@@ -571,7 +571,7 @@ function BlogSpokeB({ content }) {
                 fontFamily: "var(--font-body)", fontSize: 13.5, lineHeight: 1.55,
                 color: "var(--edison-text-body)", margin: "0 0 14px"
               }}>Edison works with Florida boards every day. We'll talk you through it.</p>
-              <InteriorButton variant="primary" size="sm" href="/contact/">Talk to Edison</InteriorButton>
+              <InteriorButton variant="primary" size="sm" href="/contact">Talk to Edison</InteriorButton>
             </div>
           </aside>
         </div>
@@ -702,13 +702,13 @@ const AUDIT_CONTENT = {
       category: "Financial Management",
       title: "HOA Reserve Study Florida: What Boards Need to Know",
       image: "/assets/blog/reserve-study-specialist.jpg",
-      href: "/blog/hoa-reserve-study-guide/"
+      href: "/blog/hoa-reserve-study-guide"
     },
     {
       category: "For Boards",
       title: "HOA Bylaws vs CC&Rs: Key Differences Explained",
       image: "/assets/blog/bylaws-vs-ccrs.jpg",
-      href: "/blog/hoa-bylaws-vs-ccrs/"
+      href: "/blog/hoa-bylaws-vs-ccrs"
     }
   ]
 };

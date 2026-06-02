@@ -59,7 +59,7 @@ function SubServicePage({ content }) {
               </div>
             )}
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <InteriorButton variant="primary" size="lg" href="/request-a-proposal/">Request a Proposal</InteriorButton>
+              <InteriorButton variant="primary" size="lg" href="/request-a-proposal">Request a Proposal</InteriorButton>
               <InteriorButton variant="ghost" size="lg" href={content.parent.href}>← Back to {content.parent.label}</InteriorButton>
             </div>
           </div>
@@ -163,7 +163,7 @@ function SubServicePage({ content }) {
         variant="navy"
         title={content.midCta.title}
         lede={content.midCta.lede}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
         secondary={{ label: `Call ${content.phone}`, href: `tel:${content.phone.replace(/\D/g,"")}` }}
       />
 
@@ -237,7 +237,7 @@ function SubServicePage({ content }) {
         eyebrow="Get started"
         title={content.cta.title}
         body={content.cta.body}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
         secondary={{ label: `Call ${content.phone}`, href: `tel:${content.phone.replace(/\D/g,"")}` }}
       />
     </main>
@@ -252,11 +252,11 @@ const SIRS_CONTENT = {
   serviceLabel: "Structural Integrity Reserve Study (SIRS)",
   crumb: [
     { label: "Home", href: "/" },
-    { label: "Services", href: "/services/" },
-    { label: "Condo Management", href: "/services/condo-management/" },
+    { label: "Services", href: "/services" },
+    { label: "Condo Management", href: "/services/condo-management" },
     { label: "Structural Integrity Reserve Study" }
   ],
-  parent: { label: "Condo Management", href: "/services/condo-management/" },
+  parent: { label: "Condo Management", href: "/services/condo-management" },
   eyebrow: "Sub-Service · Condo Management",
   phone: "(407) 317-5252",
   hero: {
@@ -316,9 +316,9 @@ const SIRS_CONTENT = {
     { q: "How does Edison handle this differently?", a: "We treat the SIRS as a multi-year capital planning exercise, not a one-time filing. Engineer selection, document prep, board education, funding plan integration, and ongoing reserve banking strategy, all coordinated by the same accounting team responsible for your monthly financials. Statutory compliance is the floor; capital readiness is the goal." }
   ],
   related: [
-    { kind: "Sibling Sub-Service", title: "Milestone Inspection Coordination", body: "The structural condition assessment that often precedes the SIRS. Required for condos 30+ years old (25+ in coastal counties).", href: "/services/condo-management/milestone-inspections/" },
-    { kind: "Parent Pillar", title: "Condo Management", body: "Full-service management for Florida condominium associations under Ch. 718.", href: "/services/condo-management/" },
-    { kind: "Educational", title: "HOA Reserve Study Florida: What Boards Need to Know", body: "How reserve studies work, what they cost, and how Edison coordinates the process.", href: "/blog/hoa-reserve-study-guide/" }
+    { kind: "Sibling Sub-Service", title: "Milestone Inspection Coordination", body: "The structural condition assessment that often precedes the SIRS. Required for condos 30+ years old (25+ in coastal counties).", href: "/services/condo-management/milestone-inspections" },
+    { kind: "Parent Pillar", title: "Condo Management", body: "Full-service management for Florida condominium associations under Ch. 718.", href: "/services/condo-management" },
+    { kind: "Educational", title: "HOA Reserve Study Florida: What Boards Need to Know", body: "How reserve studies work, what they cost, and how Edison coordinates the process.", href: "/blog/hoa-reserve-study-guide" }
   ],
   cta: {
     title: "SIRS compliance is a project, not a panic.",

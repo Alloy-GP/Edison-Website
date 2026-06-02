@@ -12,8 +12,8 @@ function GeoPageA({ content }) {
     <main data-screen-label="Geo, Variant A">
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "Services", href: "/services/" },
-        { label: "HOA Management", href: "/services/hoa-management/" },
+        { label: "Services", href: "/services" },
+        { label: "HOA Management", href: "/services/hoa-management" },
         { label: content.city }
       ]}/>
 
@@ -21,8 +21,8 @@ function GeoPageA({ content }) {
         eyebrow={`HOA Management · ${content.region}`}
         city={content.city}
         lede={content.hero.lede}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "See Our Services", href: "/services/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "See Our Services", href: "/services" }}
         image={content.hero.image}
       />
 
@@ -67,7 +67,7 @@ function GeoPageA({ content }) {
         eyebrow={`${content.city} · Central Florida`}
         title={`Local HOA management. Sized for the community, not the portfolio.`}
         body={`Tell us about your ${content.city} association and we'll deliver a written proposal within one business day, sized for your governing documents, capital plan, and homeowner count.`}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
         secondary={{ label: `Call ${content.phone}`, href: `tel:${content.phone.replace(/\D/g,"")}` }}
       />
     </main>
@@ -84,8 +84,8 @@ function GeoPageB({ content }) {
     <main data-screen-label="Geo, Variant B">
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "Services", href: "/services/" },
-        { label: "HOA Management", href: "/services/hoa-management/" },
+        { label: "Services", href: "/services" },
+        { label: "HOA Management", href: "/services/hoa-management" },
         { label: content.city }
       ]}/>
 
@@ -94,8 +94,8 @@ function GeoPageB({ content }) {
         title={`Professional HOA management for ${content.city} boards.`}
         lede={content.hero.lede}
         city={content.city}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "See Our Services", href: "/services/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "See Our Services", href: "/services" }}
         locationStrip={[
           { label: "Based in", value: "Orlando, FL" },
           { label: "Serving", value: `${content.city} & nearby` },
@@ -147,8 +147,8 @@ function GeoPageB({ content }) {
         eyebrow="Get started"
         title={`Ready to talk about your ${content.city} association?`}
         body="Send us the basics and we'll respond within one business day with next steps. Same-day for board members, 24-hour for homeowners, non-negotiable."
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Contact Us", href: "/contact/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Contact Us", href: "/contact" }}
       />
     </main>
   );
@@ -188,12 +188,12 @@ const ORLANDO_CONTENT = {
     { title: "The Transition Experience", body: "60–90 day onboarding with COO oversight, for boards switching from another company." }
   ],
   serviceLinks: [
-    { title: "HOA Management", body: "Day-to-day management, monthly inspections, vendor coordination, and the Action Item List, live project tracking that replaces stale manager reports.", href: "/services/hoa-management/" },
-    { title: "HOA Accounting", body: "Monthly statements, reserve study guidance, reserve banking, tax filing, handled by a dedicated accounting specialist.", href: "/services/hoa-accounting/" },
-    { title: "Covenant Enforcement", body: "Dedicated enforcement department. Fair, consistent, and address-not-name based, protecting property values and homeowner relationships.", href: "/services/covenant-enforcement/" },
-    { title: "Single-Family HOA", body: "Tailored management for single-family neighborhood HOAs across Orlando, Ch. 720 compliance, ARC support, common-area planning.", href: "/services/hoa-management/single-family/" },
-    { title: "Townhome Associations", body: "Townhome-specific challenges handled, shared roofs, common insurance, party-wall maintenance, and homeowner expectations.", href: "/services/hoa-management/townhome/" },
-    { title: "Management Transition", body: "The Edison Transition Experience handles records, vendors, and homeowner communication, 60–90 days, end to end.", href: "/solutions/switch-hoa-management-company/" }
+    { title: "HOA Management", body: "Day-to-day management, monthly inspections, vendor coordination, and the Action Item List, live project tracking that replaces stale manager reports.", href: "/services/hoa-management" },
+    { title: "HOA Accounting", body: "Monthly statements, reserve study guidance, reserve banking, tax filing, handled by a dedicated accounting specialist.", href: "/services/hoa-accounting" },
+    { title: "Covenant Enforcement", body: "Dedicated enforcement department. Fair, consistent, and address-not-name based, protecting property values and homeowner relationships.", href: "/services/covenant-enforcement" },
+    { title: "Single-Family HOA", body: "Tailored management for single-family neighborhood HOAs across Orlando, Ch. 720 compliance, ARC support, common-area planning.", href: "/services/hoa-management/single-family" },
+    { title: "Townhome Associations", body: "Townhome-specific challenges handled, shared roofs, common insurance, party-wall maintenance, and homeowner expectations.", href: "/services/hoa-management/townhome" },
+    { title: "Management Transition", body: "The Edison Transition Experience handles records, vendors, and homeowner communication, 60–90 days, end to end.", href: "/solutions/switch-hoa-management-company" }
   ],
   differentiators: [
     { title: "Industry-Low Manager Turnover", body: "Most firms see 30–40% annual turnover. Edison's is a fraction of that. The manager who learns your community in year one is still there in year three." },

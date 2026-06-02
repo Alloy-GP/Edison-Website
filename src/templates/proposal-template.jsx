@@ -92,7 +92,7 @@ function ProposalPageA() {
             }}>We've received your information. The Edison team will be in touch within one business day. Same-day for board members, 24-hour for homeowners, non-negotiable.</p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
               <InteriorButton variant="ghost" href="/">Back to home</InteriorButton>
-              <InteriorButton variant="primary" href="/about/">Read more about Edison</InteriorButton>
+              <InteriorButton variant="primary" href="/about">Read more about Edison</InteriorButton>
             </div>
           </div>
         </section>

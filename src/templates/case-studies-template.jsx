@@ -14,7 +14,7 @@ function CaseStudiesPageA({ content }) {
     <main data-screen-label="Case Studies, Variant A">
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "About", href: "/about/" },
+        { label: "About", href: "/about" },
         { label: "Case Studies" }
       ]}/>
 
@@ -195,8 +195,8 @@ function CaseStudiesPageA({ content }) {
         eyebrow="Your community next?"
         title="Want results like these for your association?"
         body="Every case study started with a board that picked up the phone. Request a proposal and we'll put together the path for your community."
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Read Testimonials", href: "/testimonials/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Read Testimonials", href: "/testimonials" }}
       />
     </main>
   );
@@ -217,7 +217,7 @@ function CaseStudiesPageB({ content }) {
     <main data-screen-label="Case Studies, Variant B">
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "About", href: "/about/" },
+        { label: "About", href: "/about" },
         { label: "Case Studies" }
       ]}/>
 
@@ -336,8 +336,8 @@ function CaseStudiesPageB({ content }) {
         eyebrow="Your community next?"
         title="Want results like these for your association?"
         body="Every case study started with a board that picked up the phone. Request a proposal and we'll put together the path for your community."
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Read Testimonials", href: "/testimonials/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Read Testimonials", href: "/testimonials" }}
       />
     </main>
   );

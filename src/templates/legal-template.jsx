@@ -79,7 +79,7 @@ function LegalShell({ eyebrow, title, lastUpdated, sections, children }) {
               color: "var(--edison-text-body)", margin: "0 0 14px"
             }}>If you have questions about this policy or how Edison handles your information, reach out directly.</p>
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-              <InteriorButton variant="primary" size="sm" href="/contact/">Contact Edison</InteriorButton>
+              <InteriorButton variant="primary" size="sm" href="/contact">Contact Edison</InteriorButton>
               <InteriorButton variant="ghost" size="sm" href="tel:4073175252">(407) 317-5252</InteriorButton>
             </div>
           </div>

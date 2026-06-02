@@ -51,8 +51,8 @@ function FAQPage({ content }) {
         eyebrow="Still have questions?"
         title="When you call Edison, a real person answers."
         body="If your question isn't here, ask us directly. Same-day reply for board members; 24-hour for homeowners."
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Contact Edison", href: "/contact/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Contact Edison", href: "/contact" }}
       />
     </main>
   );

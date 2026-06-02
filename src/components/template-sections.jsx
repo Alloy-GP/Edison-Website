@@ -679,7 +679,7 @@ function AuthorBylineBlock({
   credentials = ["PCAM", "2025 CAI Central Florida Chapter President"],
   bio = "Tracy founded Edison with a deliberate alternative to volume-driven HOA management. PCAM-credentialed, 2025 Central Florida CAI Chapter President, and Orlando Business Journal 40 Under 40, she personally onboards every new association.",
   image,
-  cta = { label: "Read more about Edison", href: "/about/" }
+  cta = { label: "Read more about Edison", href: "/about" }
 }) {
   return (
     <section className="ts-author-byline" style={{ background: "var(--bg-3, #F5F7FA)", padding: "56px 48px" }}>

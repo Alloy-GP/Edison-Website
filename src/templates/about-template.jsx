@@ -77,7 +77,7 @@ function AboutPageA({ content }) {
       <section className="about-a-btn-wrap" style={{ background: "#fff", padding: "0 48px 88px" }}>
         <div style={{ maxWidth: 1080, margin: "0 auto",
                       display: "flex", justifyContent: "center" }}>
-          <InteriorButton variant="ghost" size="lg" href="/about/meet-our-team/">
+          <InteriorButton variant="ghost" size="lg" href="/about/meet-our-team">
             Meet the Edison team →
           </InteriorButton>
         </div>
@@ -87,8 +87,8 @@ function AboutPageA({ content }) {
         eyebrow="Let's talk"
         title="Curious what working with Edison feels like?"
         body="Boards we serve don't switch companies on impulse, they switch because the difference is measurable. Request a proposal and see what that looks like for your community."
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Schedule a Consultation", href: "/contact/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Schedule a Consultation", href: "/contact" }}
       />
     </main>
   );
@@ -128,10 +128,10 @@ function AboutPageB({ content }) {
               color: "var(--edison-text-body)", margin: "0 0 28px", maxWidth: 560
             }}>{content.hero.lede}</p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <InteriorButton variant="primary" size="lg" href="/request-a-proposal/">
+              <InteriorButton variant="primary" size="lg" href="/request-a-proposal">
                 Request a Proposal
               </InteriorButton>
-              <InteriorButton variant="ghost" size="lg" href="/about/meet-our-team/">
+              <InteriorButton variant="ghost" size="lg" href="/about/meet-our-team">
                 Meet Our Team
               </InteriorButton>
             </div>
@@ -211,8 +211,8 @@ function AboutPageB({ content }) {
         eyebrow="Let's talk"
         title="Curious what working with Edison feels like?"
         body="Boards we serve don't switch companies on impulse, they switch because the difference is measurable. Request a proposal and see what that looks like for your community."
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Schedule a Consultation", href: "/contact/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Schedule a Consultation", href: "/contact" }}
       />
     </main>
   );
@@ -271,11 +271,11 @@ const ABOUT_CONTENT = {
     { value: "PCAM", caption: "Leadership credential plus 2025 CAI Chapter President" }
   ],
   subPages: [
-    { title: "Meet Our Team", body: "Edison's managers, specialists, and leadership, the people who actually do the work for your board.", href: "/about/meet-our-team/" },
-    { title: "Testimonials", body: "What current Edison boards say about working with us, quoted, attributed, and verifiable.", href: "/testimonials/" },
-    { title: "Case Studies", body: "Specific transitions and turnarounds we've led for Central Florida communities, sized, dated, and outcome-tracked.", href: "/case-studies/" },
-    { title: "Meet Your Management", body: "The community-wide event Edison runs before every new contract starts. Why it matters and how it works.", href: "/about/meet-your-management/" },
-    { title: "Contact", body: "Office address, phone, email, and the people who answer when you call. Same-day for board members, 24-hour for homeowners.", href: "/contact/" }
+    { title: "Meet Our Team", body: "Edison's managers, specialists, and leadership, the people who actually do the work for your board.", href: "/about/meet-our-team" },
+    { title: "Testimonials", body: "What current Edison boards say about working with us, quoted, attributed, and verifiable.", href: "/testimonials" },
+    { title: "Case Studies", body: "Specific transitions and turnarounds we've led for Central Florida communities, sized, dated, and outcome-tracked.", href: "/case-studies" },
+    { title: "Meet Your Management", body: "The community-wide event Edison runs before every new contract starts. Why it matters and how it works.", href: "/about/meet-your-management" },
+    { title: "Contact", body: "Office address, phone, email, and the people who answer when you call. Same-day for board members, 24-hour for homeowners.", href: "/contact" }
   ],
   quote: {
     quote: "We chose Edison because Tracy was the only person we interviewed who didn't talk about ourselves and the community in the same sentence as 'one of many.' Two years in, that's still how it feels.",

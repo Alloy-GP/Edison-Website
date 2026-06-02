@@ -20,7 +20,7 @@ function EdisonTransitionPage() {
     <main data-screen-label="The Edison Transition Experience">
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "About", href: "/about/" },
+        { label: "About", href: "/about" },
         { label: "The Edison Transition" }
       ]}/>
 
@@ -44,8 +44,8 @@ function EdisonTransitionPage() {
               color: "var(--edison-text-body)", margin: "0 0 28px"
             }}>Most management companies treat onboarding as a checkbox. Edison built a defined program with a dedicated COO touch-point, records digitization, vendor recredentialing, and a community-wide Meet Your Management event. 60–90 days, end-to-end. Run by us, not your board.</p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <InteriorButton variant="primary" size="lg" href="/request-a-proposal/">Request a Proposal</InteriorButton>
-              <InteriorButton variant="ghost" size="lg" href="/contact/">Schedule a Consultation</InteriorButton>
+              <InteriorButton variant="primary" size="lg" href="/request-a-proposal">Request a Proposal</InteriorButton>
+              <InteriorButton variant="ghost" size="lg" href="/contact">Schedule a Consultation</InteriorButton>
             </div>
           </div>
           <div className="transition-hero-img" style={{
@@ -118,8 +118,8 @@ function EdisonTransitionPage() {
         eyebrow="Ready when you are"
         title="Onboarding shouldn't be an act of faith."
         body="The Edison Transition Experience is the defined, COO-supervised program your community deserves. Request a proposal and we'll walk you through exactly what 60–90 days look like for your association."
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Read About Edison", href: "/about/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Read About Edison", href: "/about" }}
       />
     </main>
   );
@@ -137,7 +137,7 @@ function MeetYourManagementPage() {
     <main data-screen-label="Meet Your Management Event">
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "About", href: "/about/" },
+        { label: "About", href: "/about" },
         { label: "Meet Your Management" }
       ]}/>
 
@@ -218,8 +218,8 @@ function MeetYourManagementPage() {
         eyebrow="Part of every Edison transition"
         title="Switching to Edison? The event comes standard."
         body="The Meet Your Management event is included in every Edison transition. No upcharge, no fine print. It's how we set the tone for the partnership ahead."
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "How switching works", href: "/solutions/switch-hoa-management-company/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "How switching works", href: "/solutions/switch-hoa-management-company" }}
       />
     </main>
   );

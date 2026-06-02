@@ -34,8 +34,8 @@ function PillarPageA({ content }) {
               color: "var(--edison-text-body)", margin: "0 0 28px"
             }}>{content.hero.lede}</p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <InteriorButton variant="primary" size="lg" href="/request-a-proposal/">Request a Proposal</InteriorButton>
-              <InteriorButton variant="ghost" size="lg" href="/contact/">Schedule a Consultation</InteriorButton>
+              <InteriorButton variant="primary" size="lg" href="/request-a-proposal">Request a Proposal</InteriorButton>
+              <InteriorButton variant="ghost" size="lg" href="/contact">Schedule a Consultation</InteriorButton>
             </div>
           </div>
           <div className="svc-a-hero-img" style={{
@@ -122,7 +122,7 @@ function PillarPageA({ content }) {
         variant="navy"
         title={content.midCta.title}
         lede={content.midCta.lede}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
         secondary={{ label: `Call ${content.phone}`, href: `tel:${content.phone.replace(/\D/g,"")}` }}
       />
 
@@ -170,7 +170,7 @@ function PillarPageA({ content }) {
         eyebrow="Get started"
         title={content.cta.title}
         body={content.cta.body}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
         secondary={{ label: `Call ${content.phone}`, href: `tel:${content.phone.replace(/\D/g,"")}` }}
       />
     </main>
@@ -208,8 +208,8 @@ function PillarPageB({ content }) {
               color: "var(--edison-text-body)", margin: "0 0 28px"
             }}>{content.hero.lede}</p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <InteriorButton variant="primary" size="lg" href="/request-a-proposal/">Request a Proposal</InteriorButton>
-              <InteriorButton variant="ghost" size="lg" href="/contact/">Schedule a Consultation</InteriorButton>
+              <InteriorButton variant="primary" size="lg" href="/request-a-proposal">Request a Proposal</InteriorButton>
+              <InteriorButton variant="ghost" size="lg" href="/contact">Schedule a Consultation</InteriorButton>
             </div>
           </div>
           <div className="svc-b-hero-img" style={{
@@ -352,7 +352,7 @@ function PillarPageB({ content }) {
         eyebrow="Get started"
         title={content.cta.title}
         body={content.cta.body}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
         secondary={{ label: `Call ${content.phone}`, href: `tel:${content.phone.replace(/\D/g,"")}` }}
       />
     </main>
@@ -365,7 +365,7 @@ function PillarPageB({ content }) {
 const HOA_MGMT_CONTENT = {
   crumb: [
     { label: "Home", href: "/" },
-    { label: "Services", href: "/services/" },
+    { label: "Services", href: "/services" },
     { label: "HOA Management" }
   ],
   eyebrow: "HOA Management Services",
@@ -462,12 +462,12 @@ HOA_MGMT_CONTENT.subServices = {
     {
       title: "Single-Family HOA Management",
       body: "Tailored management for single-family neighborhood HOAs across Central Florida, Ch. 720 compliance, ARC support, common-area planning.",
-      href: "/services/hoa-management/single-family/"
+      href: "/services/hoa-management/single-family"
     },
     {
       title: "Townhome Association Management",
       body: "Townhome-specific challenges handled, shared roofs, common insurance, party-wall maintenance, and the homeowner expectations that come with attached housing.",
-      href: "/services/hoa-management/townhome/"
+      href: "/services/hoa-management/townhome"
     }
   ]
 };
@@ -484,14 +484,14 @@ HOA_MGMT_CONTENT.antiPatterns = [
 HOA_MGMT_CONTENT.serviceArea = {
   body: "Edison manages HOAs and condominium associations across Orange, Seminole, Osceola, Lake, and Brevard counties. Each city below has a dedicated HOA Management page with local context, neighborhoods, and case studies.",
   cityLinks: [
-    { label: "Orlando",            href: "/services/hoa-management/orlando/" },
-    { label: "Winter Garden",      href: "/services/hoa-management/winter-garden/" },
-    { label: "Kissimmee",          href: "/services/hoa-management/kissimmee/" },
-    { label: "Clermont",           href: "/services/hoa-management/clermont/" },
-    { label: "Lake Mary",          href: "/services/hoa-management/lake-mary/" },
-    { label: "Altamonte Springs",  href: "/services/hoa-management/altamonte-springs/" },
-    { label: "Oviedo",             href: "/services/hoa-management/oviedo/" },
-    { label: "Brevard County",     href: "/services/hoa-management/brevard-county/" }
+    { label: "Orlando",            href: "/services/hoa-management/orlando" },
+    { label: "Winter Garden",      href: "/services/hoa-management/winter-garden" },
+    { label: "Kissimmee",          href: "/services/hoa-management/kissimmee" },
+    { label: "Clermont",           href: "/services/hoa-management/clermont" },
+    { label: "Lake Mary",          href: "/services/hoa-management/lake-mary" },
+    { label: "Altamonte Springs",  href: "/services/hoa-management/altamonte-springs" },
+    { label: "Oviedo",             href: "/services/hoa-management/oviedo" },
+    { label: "Brevard County",     href: "/services/hoa-management/brevard-county" }
   ]
 };
 
@@ -500,7 +500,7 @@ HOA_MGMT_CONTENT.crossPillar = {
   title: "Manage a condominium association?",
   body: "Florida governs condos under Ch. 718, different statutes, different reserve study requirements, milestone inspection compliance under SB-4D. Edison's Condo Management pillar covers that side of the practice.",
   ctaLabel: "See Condo Management",
-  href: "/services/condo-management/"
+  href: "/services/condo-management"
 };
 
 export { PillarPageA, PillarPageB, HOA_MGMT_CONTENT };

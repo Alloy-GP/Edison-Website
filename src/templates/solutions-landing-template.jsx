@@ -33,8 +33,8 @@ function SolutionsLandingPage({ content = SOLUTIONS_LANDING_CONTENT }) {
               maxWidth: 620
             }}>{content.hero.lede}</p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <InteriorButton variant="primary" size="lg" href="/request-a-proposal/">Request a Proposal</InteriorButton>
-              <InteriorButton variant="ghost" size="lg" href="/contact/">Schedule a Consultation</InteriorButton>
+              <InteriorButton variant="primary" size="lg" href="/request-a-proposal">Request a Proposal</InteriorButton>
+              <InteriorButton variant="ghost" size="lg" href="/contact">Schedule a Consultation</InteriorButton>
             </div>
           </div>
 
@@ -117,7 +117,7 @@ function SolutionsLandingPage({ content = SOLUTIONS_LANDING_CONTENT }) {
         variant="navy"
         title={content.midCta.title}
         lede={content.midCta.lede}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
         secondary={{ label: `Call ${content.phone}`, href: `tel:${content.phone.replace(/\D/g,"")}` }}
       />
 
@@ -132,7 +132,7 @@ function SolutionsLandingPage({ content = SOLUTIONS_LANDING_CONTENT }) {
         eyebrow="Lighting the way"
         title={content.cta.title}
         body={content.cta.body}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
         secondary={{ label: `Call ${content.phone}`, href: `tel:${content.phone.replace(/\D/g,"")}` }}
       />
     </main>
@@ -387,7 +387,7 @@ const SOLUTIONS_LANDING_CONTENT = {
           caption: "Annual manager turnover at most large firms. Edison's is a fraction of that."
         },
         image: "/assets/img-inspector.jpg",
-        href: "/solutions/switch-hoa-management-company/",
+        href: "/solutions/switch-hoa-management-company",
         ctaLabel: "See the switch playbook"
       },
       {
@@ -407,7 +407,7 @@ const SOLUTIONS_LANDING_CONTENT = {
           caption: "Most self-managed associations rely on one volunteer. When they step back, the gaps get expensive fast."
         },
         image: "/assets/img-resident-portal.jpg",
-        href: "/solutions/self-managed-hoa/",
+        href: "/solutions/self-managed-hoa",
         ctaLabel: "See the self-managed transition"
       },
       {
@@ -427,7 +427,7 @@ const SOLUTIONS_LANDING_CONTENT = {
           caption: "Homeowner questions don't keep business hours. Your manager shouldn't have to either."
         },
         image: "/assets/img-11.jpg",
-        href: "/solutions/modern-hoa-management/",
+        href: "/solutions/modern-hoa-management",
         ctaLabel: "See the modern stack"
       }
     ]

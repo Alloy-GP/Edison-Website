@@ -42,7 +42,7 @@ function TeamPageA({ content }) {
     <main data-screen-label="Team, Variant A">
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "About", href: "/about/" },
+        { label: "About", href: "/about" },
         { label: "Meet Our Team" }
       ]}/>
 
@@ -204,8 +204,8 @@ function TeamPageA({ content }) {
         eyebrow="Let's talk"
         title="Want to know who you'd actually be working with?"
         body="Request a proposal and we'll introduce you to the specific manager who'd run your community, not just a sales rep."
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Read About Edison", href: "/about/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Read About Edison", href: "/about" }}
       />
     </main>
   );
@@ -229,7 +229,7 @@ function TeamPageB({ content }) {
     <main data-screen-label="Team, Variant B">
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "About", href: "/about/" },
+        { label: "About", href: "/about" },
         { label: "Meet Our Team" }
       ]}/>
 
@@ -340,8 +340,8 @@ function TeamPageB({ content }) {
         eyebrow="Let's talk"
         title="Want to know who you'd actually be working with?"
         body="Request a proposal and we'll introduce you to the specific manager who'd run your community, not just a sales rep."
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Read About Edison", href: "/about/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Read About Edison", href: "/about" }}
       />
     </main>
   );

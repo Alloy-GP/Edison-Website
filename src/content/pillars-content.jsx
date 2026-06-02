@@ -8,7 +8,7 @@ const PILLAR_CONTENT = {
   "hoa-management": {
     crumb: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/services/" },
+      { label: "Services", href: "/services" },
       { label: "HOA Management" }
     ],
     eyebrow: "HOA Management Services",
@@ -57,8 +57,8 @@ const PILLAR_CONTENT = {
       sub: "Every community type has its own operational needs. Edison tailors its approach based on your association's structure, governing documents, and common-area responsibilities.",
       itemLabel: "By Community Type",
       items: [
-        { title: "Single-Family HOA Management", body: "Tailored management for single-family neighborhood HOAs across Central Florida, Ch. 720 compliance, ARC support, common-area planning.", href: "/services/hoa-management/single-family/" },
-        { title: "Townhome Association Management", body: "Townhome-specific challenges handled, shared roofs, common insurance, party-wall maintenance.", href: "/services/hoa-management/townhome/" }
+        { title: "Single-Family HOA Management", body: "Tailored management for single-family neighborhood HOAs across Central Florida, Ch. 720 compliance, ARC support, common-area planning.", href: "/services/hoa-management/single-family" },
+        { title: "Townhome Association Management", body: "Townhome-specific challenges handled, shared roofs, common insurance, party-wall maintenance.", href: "/services/hoa-management/townhome" }
       ]
     },
     whyEdison: {
@@ -107,7 +107,7 @@ const PILLAR_CONTENT = {
       title: "Serve on a condominium board?",
       body: "Florida governs condos under Ch. 718 with different statutes, reserve study requirements, and milestone inspection compliance under SB-4D. Edison's Condo Management team handles all of it.",
       ctaLabel: "See Condo Management",
-      href: "/services/condo-management/"
+      href: "/services/condo-management"
     },
     quote: {
       quote: "We interviewed four companies. Edison was the only one whose principal showed up to the interview personally. A year in, that wasn't just sales, that's how they actually run.",
@@ -131,7 +131,7 @@ const PILLAR_CONTENT = {
   "condo-management": {
     crumb: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/services/" },
+      { label: "Services", href: "/services" },
       { label: "Condo Management" }
     ],
     eyebrow: "Condo Management Services",
@@ -180,8 +180,8 @@ const PILLAR_CONTENT = {
       sub: "Florida law requires specific inspections and reserve studies for condos 3+ stories. Edison coordinates both so your board stays compliant without managing the process alone.",
       itemLabel: "Florida Statute",
       items: [
-        { title: "Milestone Inspection Coordination", body: "FL SB-4D compliance for condos 30+ years old (25+ coastal). Engineer sourcing, scope review, board reporting.", href: "/services/condo-management/milestone-inspections/" },
-        { title: "Structural Integrity Reserve Study (SIRS)", body: "SIRS coordination for condos 3+ stories. Engineer engagement, draft review, funding plan integration.", href: "/services/condo-management/structural-integrity-reserve-study/" }
+        { title: "Milestone Inspection Coordination", body: "FL SB-4D compliance for condos 30+ years old (25+ coastal). Engineer sourcing, scope review, board reporting.", href: "/services/condo-management/milestone-inspections" },
+        { title: "Structural Integrity Reserve Study (SIRS)", body: "SIRS coordination for condos 3+ stories. Engineer engagement, draft review, funding plan integration.", href: "/services/condo-management/structural-integrity-reserve-study" }
       ]
     },
     whyEdison: {
@@ -208,7 +208,7 @@ const PILLAR_CONTENT = {
       sub: "From first conversation to a multi-year operating partnership, with statutory compliance front and center.",
       steps: [
         { title: "Discovery & Compliance Audit", body: "Edison reviews governing documents, current reserve study, SIRS status, milestone inspection history, and capital pipeline before we quote." },
-        { title: "Transition Experience", body: "60–90 day onboarding with COO supervision. Records, vendors, engineering relationships, and the Meet Your Management event for homeowners.", href: "/solutions/switch-hoa-management-company/" },
+        { title: "Transition Experience", body: "60–90 day onboarding with COO supervision. Records, vendors, engineering relationships, and the Meet Your Management event for homeowners.", href: "/solutions/switch-hoa-management-company" },
         { title: "Day 1 & First 90 Days", body: "Your dedicated manager assigned and engaged. SB-4D calendar populated. Reserve banking reviewed. Action Item List live." },
         { title: "Ongoing Partnership", body: "Monthly financials, board meetings, statutory deadline tracking, capital project sequencing." }
       ]
@@ -229,7 +229,7 @@ const PILLAR_CONTENT = {
       title: "Manage a single-family or townhome HOA?",
       body: "HOAs are governed under FL Ch. 720, different from condominium Ch. 718. Edison's HOA Management pillar covers single-family neighborhoods and townhome associations.",
       ctaLabel: "See HOA Management",
-      href: "/services/hoa-management/"
+      href: "/services/hoa-management"
     },
     quote: {
       quote: "The milestone inspection was looming over our board for months. Edison coordinated the engineer, scheduled the inspection, prepared the SIRS, and walked us through the report. It became a project, not a crisis.",

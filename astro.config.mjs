@@ -10,7 +10,7 @@ export default defineConfig({
 
   output: 'server',
   adapter: vercel(),
-  trailingSlash: 'never',
+  trailingSlash: 'always',
 
   integrations: [
     react(),

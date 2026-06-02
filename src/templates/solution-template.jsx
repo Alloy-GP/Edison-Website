@@ -11,7 +11,7 @@ function SolutionPageA({ content }) {
     <main data-screen-label="Solution, Variant A">
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "Solutions", href: "/solutions/" },
+        { label: "Solutions", href: "/solutions" },
         { label: content.crumb }
       ]}/>
 
@@ -19,8 +19,8 @@ function SolutionPageA({ content }) {
         eyebrow={content.eyebrow}
         title={content.hero.title}
         lede={content.hero.lede}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Schedule a Consultation", href: "/contact/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Schedule a Consultation", href: "/contact" }}
         image={content.hero.image}
       />
 
@@ -58,8 +58,8 @@ function SolutionPageA({ content }) {
         eyebrow="Ready when you are"
         title={content.cta.title}
         body={content.cta.body}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Schedule a Consultation", href: "/contact/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Schedule a Consultation", href: "/contact" }}
       />
     </main>
   );
@@ -73,7 +73,7 @@ function SolutionPageB({ content }) {
     <main data-screen-label="Solution, Variant B">
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "Solutions", href: "/solutions/" },
+        { label: "Solutions", href: "/solutions" },
         { label: content.crumb }
       ]}/>
 
@@ -82,8 +82,8 @@ function SolutionPageB({ content }) {
         title={content.hero.title}
         lede={content.hero.lede}
         stat={content.heroStat}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Schedule a Consultation", href: "/contact/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Schedule a Consultation", href: "/contact" }}
         bg={content.hero.image}
       />
 
@@ -133,8 +133,8 @@ function SolutionPageB({ content }) {
         eyebrow="Start the conversation"
         title={content.cta.title}
         body={content.cta.body}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal/" }}
-        secondary={{ label: "Schedule a Consultation", href: "/contact/" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Schedule a Consultation", href: "/contact" }}
       />
     </main>
   );

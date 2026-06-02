@@ -8,31 +8,31 @@ import { createPortal } from 'react-dom';
 const DEFAULT_NAV = [
   {
     label: "Management",
-    href: "/services/",
+    href: "/services",
     mega: true,
     columns: [
       {
         title: "HOA Management",
         items: [
-          { label: "HOA Management", href: "/services/hoa-management/", desc: "Single-family + townhome HOAs", parent: true },
-          { label: "Single-Family HOA", href: "/services/hoa-management/single-family/", desc: "Single-family communities" },
-          { label: "Townhome Associations", href: "/services/hoa-management/townhome/", desc: "Townhome HOA management" }
+          { label: "HOA Management", href: "/services/hoa-management", desc: "Single-family + townhome HOAs", parent: true },
+          { label: "Single-Family HOA", href: "/services/hoa-management/single-family", desc: "Single-family communities" },
+          { label: "Townhome Associations", href: "/services/hoa-management/townhome", desc: "Townhome HOA management" }
         ]
       },
       {
         title: "Condo Management",
         items: [
-          { label: "Condo Management", href: "/services/condo-management/", desc: "Florida condo associations", parent: true },
-          { label: "Milestone Inspections", href: "/services/condo-management/milestone-inspections/", desc: "FL SB-4D compliance" },
-          { label: "Structural Integrity Reserve Study", href: "/services/condo-management/structural-integrity-reserve-study/", desc: "SIRS support & engineer coordination" }
+          { label: "Condo Management", href: "/services/condo-management", desc: "Florida condo associations", parent: true },
+          { label: "Milestone Inspections", href: "/services/condo-management/milestone-inspections", desc: "FL SB-4D compliance" },
+          { label: "Structural Integrity Reserve Study", href: "/services/condo-management/structural-integrity-reserve-study", desc: "SIRS support & engineer coordination" }
         ]
       },
       {
         title: "Across All Communities",
         items: [
-          { label: "HOA Accounting", href: "/services/hoa-accounting/", desc: "Budgets, reserves, banking" },
-          { label: "Covenant Enforcement", href: "/services/covenant-enforcement/", desc: "Dedicated enforcement department" },
-          { label: "HOA Collections", href: "/services/hoa-collections/", desc: "In-house delinquency & lien workflow" }
+          { label: "HOA Accounting", href: "/services/hoa-accounting", desc: "Budgets, reserves, banking" },
+          { label: "Covenant Enforcement", href: "/services/covenant-enforcement", desc: "Dedicated enforcement department" },
+          { label: "HOA Collections", href: "/services/hoa-collections", desc: "In-house delinquency & lien workflow" }
         ]
       },
       {
@@ -40,36 +40,36 @@ const DEFAULT_NAV = [
           eyebrow: "Featured",
           title: "Switching companies?",
           body: "The Edison Transition Experience handles onboarding, vendor review, and records digitization in 60-90 days.",
-          cta: { label: "Learn more", href: "/solutions/switch-hoa-management-company/" }
+          cta: { label: "Learn more", href: "/solutions/switch-hoa-management-company" }
         }
       }
     ]
   },
   {
     label: "Solutions",
-    href: "/solutions/",
+    href: "/solutions",
     children: [
-      { label: "Switch HOA Management Company", href: "/solutions/switch-hoa-management-company/" },
-      { label: "Self-Managed to Professional", href: "/solutions/self-managed-hoa/" },
-      { label: "Modern HOA Management", href: "/solutions/modern-hoa-management/" }
+      { label: "Switch HOA Management Company", href: "/solutions/switch-hoa-management-company" },
+      { label: "Self-Managed to Professional", href: "/solutions/self-managed-hoa" },
+      { label: "Modern HOA Management", href: "/solutions/modern-hoa-management" }
     ]
   },
   {
     label: "Edison Education",
-    href: "/edison-education/",
+    href: "/edison-education",
     mega: true,
     columns: [
       {
         title: "Board governance",
         items: [
-          { label: "HOA Bylaws vs CC&Rs", href: "/blog/hoa-bylaws-vs-ccrs/", desc: "Governing document hierarchy" }
+          { label: "HOA Bylaws vs CC&Rs", href: "/blog/hoa-bylaws-vs-ccrs", desc: "Governing document hierarchy" }
         ]
       },
       {
         title: "Financial Management",
         items: [
-          { label: "HOA Audit Guide", href: "/blog/hoa-audit/", desc: "Audit requirements + checklist" },
-          { label: "HOA Reserve Study Guide", href: "/blog/hoa-reserve-study-guide/", desc: "What boards need to know" }
+          { label: "HOA Audit Guide", href: "/blog/hoa-audit", desc: "Audit requirements + checklist" },
+          { label: "HOA Reserve Study Guide", href: "/blog/hoa-reserve-study-guide", desc: "What boards need to know" }
         ]
       },
       {
@@ -78,7 +78,7 @@ const DEFAULT_NAV = [
             eyebrow: "Free for Boards",
             title: "Edison Education",
             body: "Certification-track courses and governance guides built for Florida HOA and condo boards.",
-            cta: { label: "Explore program", href: "/edison-education/" },
+            cta: { label: "Explore program", href: "/edison-education" },
             mark: "/assets/Edison-Education-White.svg"
           },
           {
@@ -86,7 +86,7 @@ const DEFAULT_NAV = [
             eyebrow: "Resource Library",
             title: "All Articles",
             body: "Practical guides on Florida HOA law, finance, and governance, free for any board.",
-            cta: { label: "Browse articles", href: "/blog/" }
+            cta: { label: "Browse articles", href: "/blog" }
           }
         ]
       }
@@ -94,16 +94,16 @@ const DEFAULT_NAV = [
   },
   {
     label: "About",
-    href: "/about/",
+    href: "/about",
     children: [
-      { label: "About Edison", href: "/about/" },
-      { label: "Meet Our Team", href: "/about/meet-our-team/" },
-      { label: "Meet Your Management", href: "/about/meet-your-management/" },
-      { label: "Testimonials", href: "/testimonials/" },
-      { label: "Case Studies", href: "/case-studies/" }
+      { label: "About Edison", href: "/about" },
+      { label: "Meet Our Team", href: "/about/meet-our-team" },
+      { label: "Meet Your Management", href: "/about/meet-your-management" },
+      { label: "Testimonials", href: "/testimonials" },
+      { label: "Case Studies", href: "/case-studies" }
     ]
   },
-  { label: "Contact", href: "/contact/" }
+  { label: "Contact", href: "/contact" }
 ];
 
 const DEFAULT_UTILITY = {
@@ -422,7 +422,7 @@ function SiteHeader({
   homeHref = "/",
   nav = DEFAULT_NAV,
   utility = DEFAULT_UTILITY,
-  cta = { label: "Request a Proposal", href: "/request-a-proposal/" }
+  cta = { label: "Request a Proposal", href: "/request-a-proposal" }
 }) {
   const [openIdx, setOpenIdx]       = useState(-1);
   const [hoveredIdx, setHoveredIdx] = useState(-1);

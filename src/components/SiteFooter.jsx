@@ -13,48 +13,48 @@ import React from 'react';
 const DEFAULT_FOOTER_COLUMNS = [
   {
     title: "Services",
-    href: "/services/",
+    href: "/services",
     links: [
-      { label: "HOA Management", href: "/services/hoa-management/" },
-      { label: "Condo Management", href: "/services/condo-management/" },
-      { label: "Single-Family HOA", href: "/services/hoa-management/single-family/" },
-      { label: "Townhome Associations", href: "/services/hoa-management/townhome/" },
-      { label: "HOA Accounting", href: "/services/hoa-accounting/" },
-      { label: "Covenant Enforcement", href: "/services/covenant-enforcement/" },
-      { label: "HOA Collections", href: "/services/hoa-collections/" }
+      { label: "HOA Management", href: "/services/hoa-management" },
+      { label: "Condo Management", href: "/services/condo-management" },
+      { label: "Single-Family HOA", href: "/services/hoa-management/single-family" },
+      { label: "Townhome Associations", href: "/services/hoa-management/townhome" },
+      { label: "HOA Accounting", href: "/services/hoa-accounting" },
+      { label: "Covenant Enforcement", href: "/services/covenant-enforcement" },
+      { label: "HOA Collections", href: "/services/hoa-collections" }
     ]
   },
   {
     title: "Service Areas",
-    href: "/services/hoa-management/",
+    href: "/services/hoa-management",
     links: [
-      { label: "Orlando", href: "/services/hoa-management/orlando/" },
-      { label: "Winter Garden", href: "/services/hoa-management/winter-garden/" },
-      { label: "Kissimmee", href: "/services/hoa-management/kissimmee/" },
-      { label: "Clermont", href: "/services/hoa-management/clermont/" },
-      { label: "Lake Mary", href: "/services/hoa-management/lake-mary/" },
-      { label: "Altamonte Springs", href: "/services/hoa-management/altamonte-springs/" },
-      { label: "Oviedo", href: "/services/hoa-management/oviedo/" },
-      { label: "Brevard County", href: "/services/hoa-management/brevard-county/" }
+      { label: "Orlando", href: "/services/hoa-management/orlando" },
+      { label: "Winter Garden", href: "/services/hoa-management/winter-garden" },
+      { label: "Kissimmee", href: "/services/hoa-management/kissimmee" },
+      { label: "Clermont", href: "/services/hoa-management/clermont" },
+      { label: "Lake Mary", href: "/services/hoa-management/lake-mary" },
+      { label: "Altamonte Springs", href: "/services/hoa-management/altamonte-springs" },
+      { label: "Oviedo", href: "/services/hoa-management/oviedo" },
+      { label: "Brevard County", href: "/services/hoa-management/brevard-county" }
     ]
   },
   {
     title: "Resources",
-    href: "/edison-education/",
+    href: "/edison-education",
     links: [
-      { label: "Edison Education", href: "/edison-education/" },
-      { label: "Blog", href: "/blog/" },
-      { label: "Testimonials", href: "/testimonials/" },
-      { label: "Case Studies", href: "/case-studies/" },
-      { label: "FAQ", href: "/faq/" }
+      { label: "Edison Education", href: "/edison-education" },
+      { label: "Blog", href: "/blog" },
+      { label: "Testimonials", href: "/testimonials" },
+      { label: "Case Studies", href: "/case-studies" },
+      { label: "FAQ", href: "/faq" }
     ]
   },
   {
     title: "Legal",
     href: "#",
     links: [
-      { label: "Privacy Policy", href: "/privacy-policy/" },
-      { label: "Terms of Service", href: "/terms-of-service/" }
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms of Service", href: "/terms-of-service" }
     ]
   }
 ];
@@ -117,7 +117,7 @@ function SiteFooter({
   contact = {
     phone: { label: "(407) 317-5252", href: "tel:4073175252" },
     address: "Orlando, Florida",
-    cta: { label: "Contact Us", href: "/contact/" }
+    cta: { label: "Contact Us", href: "/contact" }
   },
   social = [
     { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61588615083028", Icon: IconFacebook },

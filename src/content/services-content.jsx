@@ -9,7 +9,7 @@ const SERVICES_CONTENT = {
     serviceLabel: "HOA Accounting",
     crumb: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/services/" },
+      { label: "Services", href: "/services" },
       { label: "HOA Accounting" }
     ],
     eyebrow: "HOA Accounting & Financial Management",
@@ -30,10 +30,10 @@ const SERVICES_CONTENT = {
       sub: "Every Edison management agreement includes the full financial operations workstream, handled by a dedicated accounting specialist with oversight from Edison's leadership team.",
       items: [
         { title: "Monthly Financial Reporting", body: "Balance sheet, income statement, and budget-to-actual comparisons by the 15th of every month. Invoice backup attached, audit-ready format." },
-        { title: "Budget Preparation & Planning", href: "/services/hoa-accounting/budget-preparation/", body: "Annual budgets built from real operating data, reserve study recommendations, and capital pipeline." },
-        { title: "Reserve Banking & Strategy", href: "/services/hoa-accounting/reserve-study-support/", body: "Reserve funds tracked against the most recent study. Banking optimized for yield without sacrificing FDIC coverage limits." },
+        { title: "Budget Preparation & Planning", href: "/services/hoa-accounting/budget-preparation", body: "Annual budgets built from real operating data, reserve study recommendations, and capital pipeline." },
+        { title: "Reserve Banking & Strategy", href: "/services/hoa-accounting/reserve-study-support", body: "Reserve funds tracked against the most recent study. Banking optimized for yield without sacrificing FDIC coverage limits." },
         { title: "Accounts Payable & Vendor Pay", body: "W-9s on file, invoice documentation required, rapid vendor pay. Year-end 1099 prep handled in-house." },
-        { title: "Collections & Delinquency", href: "/services/hoa-collections/", body: "Coordinated with Edison's in-house collections department. Clean ledger. Cash flow protected." },
+        { title: "Collections & Delinquency", href: "/services/hoa-collections", body: "Coordinated with Edison's in-house collections department. Clean ledger. Cash flow protected." },
         { title: "Compliance & Filing", body: "Board certification tracking, statutory deadline monitoring, and documentation support to keep your association in good standing." }
       ]
     },
@@ -86,7 +86,7 @@ const SERVICES_CONTENT = {
     serviceLabel: "Covenant Enforcement",
     crumb: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/services/" },
+      { label: "Services", href: "/services" },
       { label: "Covenant Enforcement" }
     ],
     eyebrow: "Covenant Enforcement & Compliance",
@@ -162,7 +162,7 @@ const SERVICES_CONTENT = {
     serviceLabel: "HOA Collections",
     crumb: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/services/" },
+      { label: "Services", href: "/services" },
       { label: "HOA Collections" }
     ],
     eyebrow: "HOA Collections & Delinquency Management",

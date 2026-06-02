@@ -11,7 +11,7 @@ function BlogIndexPage({ content }) {
     <main data-screen-label="Blog Index">
       <Breadcrumb trail={[
         { label: "Home", href: "/" },
-        { label: "Edison Education", href: "/edison-education/" },
+        { label: "Edison Education", href: "/edison-education" },
         { label: "Blog" }
       ]}/>
 
@@ -95,7 +95,7 @@ function BlogIndexPage({ content }) {
                            display: "flex", flexDirection: "column", gap: 4 }}>
                 {content.topics.map((t, i) => (
                   <li key={i}>
-                    <a href="/edison-education/" style={{
+                    <a href="/edison-education" style={{
                       display: "flex", justifyContent: "space-between", alignItems: "center",
                       padding: "10px 12px", borderRadius: 6,
                       fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14,
@@ -129,7 +129,7 @@ function BlogIndexPage({ content }) {
                 fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.55,
                 color: "var(--edison-text-body)", margin: "0 0 12px"
               }}>Edison Education organizes articles into Florida Compliance, Board Governance, and Financial Management.</p>
-              <InteriorButton variant="primary" size="sm" href="/edison-education/">Visit Edison Education →</InteriorButton>
+              <InteriorButton variant="primary" size="sm" href="/edison-education">Visit Edison Education →</InteriorButton>
             </div>
           </aside>
         </div>
@@ -146,9 +146,9 @@ const BLOG_INDEX_CONTENT = {
     { label: "For Boards", count: 1 }
   ],
   articles: [
-    { category: "Financial Management", title: "HOA Reserve Study Florida: What Boards Need to Know", dek: "What a reserve study covers, how Florida law treats HOAs vs condos, what it costs, and how Edison supports the process from start to finish.", readTime: "10 min", date: "May 20, 2026", image: "/assets/blog/reserve-study-specialist.jpg", href: "/blog/hoa-reserve-study-guide/" },
-    { category: "Financial Management", title: "HOA Audit: What It Is, When It's Required, and How to Prepare", dek: "Florida audit thresholds, prep checklist, and how strong year-round bookkeeping cuts cost and time.", readTime: "9 min", date: "March 16, 2026", image: "/assets/blog/hoa-board-members-reviewing-audit.jpg", href: "/blog/hoa-audit/" },
-    { category: "For Boards", title: "HOA Bylaws vs CC&Rs: Key Differences Explained", dek: "Which document governs your situation, and how to find out without calling a lawyer.", readTime: "8 min", date: "February 4, 2026", image: "/assets/blog/bylaws-vs-ccrs.jpg", href: "/blog/hoa-bylaws-vs-ccrs/" }
+    { category: "Financial Management", title: "HOA Reserve Study Florida: What Boards Need to Know", dek: "What a reserve study covers, how Florida law treats HOAs vs condos, what it costs, and how Edison supports the process from start to finish.", readTime: "10 min", date: "May 20, 2026", image: "/assets/blog/reserve-study-specialist.jpg", href: "/blog/hoa-reserve-study-guide" },
+    { category: "Financial Management", title: "HOA Audit: What It Is, When It's Required, and How to Prepare", dek: "Florida audit thresholds, prep checklist, and how strong year-round bookkeeping cuts cost and time.", readTime: "9 min", date: "March 16, 2026", image: "/assets/blog/hoa-board-members-reviewing-audit.jpg", href: "/blog/hoa-audit" },
+    { category: "For Boards", title: "HOA Bylaws vs CC&Rs: Key Differences Explained", dek: "Which document governs your situation, and how to find out without calling a lawyer.", readTime: "8 min", date: "February 4, 2026", image: "/assets/blog/bylaws-vs-ccrs.jpg", href: "/blog/hoa-bylaws-vs-ccrs" }
   ]
 };
 
