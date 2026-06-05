@@ -70,6 +70,9 @@ const orgLd = {
 };
 
 const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
+
+// Alloy Preview Review widget renders on stg only — never on production.
+const isProduction    = import.meta.env.PUBLIC_ENV === 'production';
 ---
 
 <!DOCTYPE html>
@@ -151,7 +154,7 @@ const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
          Vanilla JS — no framework deps, works inside Pastel proxy.
          Config comes from src/config/review.ts via define:vars.
     ──────────────────────────────────────────────────────────────────────── -->
-    <script is:inline define:vars={{ reviewItems: REVIEW_ITEMS, pastelBase: PASTEL_BASE, ticketIdFromConfig: TICKET_ID }}>
+    {!isProduction && <script is:inline define:vars={{ reviewItems: REVIEW_ITEMS, pastelBase: PASTEL_BASE, ticketIdFromConfig: TICKET_ID }}>
     (function() {
       var items = (reviewItems || []).filter(function(i) { return i.review; });
       if (!items.length) return;
@@ -500,6 +503,6 @@ const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
       pastelObs.observe(document.body, { childList: true, subtree: true });
 
     })();
-    </script>
+    </script>}
 </body>
 </html>
