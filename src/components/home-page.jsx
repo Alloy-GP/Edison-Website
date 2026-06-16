@@ -164,7 +164,7 @@ function HomeHero({ eyebrow, title, lede, primary, audienceCards }) {
              }}
              onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-3px)"; }}
              onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}>
-            <div className="hp-hero-card-img" style={{
+            <div className="hp-hero-card-img" role="img" aria-label={c.alt} style={{
               backgroundImage: i === 0
                 ? `linear-gradient(180deg, rgba(15,29,51,.15) 0%, rgba(15,29,51,.55) 100%), url(${c.image})`
                 : `url(${c.image})`,
@@ -458,7 +458,8 @@ function HomePage() {
             eyebrow: "For HOA & Condo Boards",
             title: "See why Central Florida boards switch to Edison.",
             cta: "Learn more",
-            image: "/assets/img-inspector.jpg",
+            image: "/assets/central-florida-hoa-management-board-walkthrough.jpg",
+            alt: "Edison community manager walking an HOA board member past the community pool and amenities in Central Florida",
             href: "/about"
           },
           {
@@ -466,6 +467,7 @@ function HomePage() {
             title: "Pay dues, submit requests, and access your documents.",
             cta: "Resident portal",
             image: "/assets/img-resident-portal.jpg",
+            alt: "Homeowner using the Edison resident portal to pay dues and submit requests",
             href: "https://edison.cincwebaxis.com"
           }
         ]}
