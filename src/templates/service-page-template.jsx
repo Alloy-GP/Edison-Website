@@ -248,7 +248,7 @@ const HOA_ACCOUNTING_CONTENT = {
     steps: [
       { title: "Day 1, Onboarding", body: "Your accounting specialist inherits records, reconciles opening balances, builds the audit-ready ledger, and identifies any clean-up work needed from prior management." },
       { title: "Month 1–12, Monthly Reporting", body: "By the 15th of every month: balance sheet, income statement, budget-to-actual, AR aging, and a brief narrative. Invoice documentation attached. Always." },
-      { title: "Q4, Budget Season", body: "August–October: draft budget built from operating data and reserve study recommendations, presented to the board with scenarios, not a single take-it-or-leave-it number." },
+      { title: "Jul–Nov, Budget Season", body: "July–November: draft budget built from operating data and reserve study recommendations, presented to the board with scenarios, not a single take-it-or-leave-it number." },
       { title: "Year-End, Audit & Tax", body: "Year-end binder delivered to the auditor by mid-January. Tax filings coordinated. Audit closed out in weeks, not quarters." }
     ]
   },

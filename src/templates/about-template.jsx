@@ -231,7 +231,7 @@ const ABOUT_CONTENT = {
     title: "Why Edison exists",
     paragraphs: [
       "Edison was founded in 2021 because the Central Florida HOA management market had a pattern: large firms growing larger, manager portfolios stretching past 15 communities, and boards quietly accepting that their phone calls would be returned eventually, if at all. Tracy Durham, PCAM and the 2025 CAI Central Florida Chapter President, started Edison with the opposite premise: build a firm small enough to know every community by name, with the back-office depth to handle real complexity. She brought 15+ years of association-industry experience into the launch.",
-      "Four years later that premise still drives the day-to-day. Edison's portfolios are sized for stability, not volume. Managers carry 8–10 communities, half the industry standard. There are no non-competes, no per-violation enforcement quotas, and no managers covering coverage as an afterthought. The boards who switch to Edison tend to stay. And the managers who join tend to stay even longer.",
+      "Four years later that premise still drives the day-to-day. Edison's portfolios are sized for stability, not volume. Managers carry limited portfolios, well below the industry standard. There are no non-competes, no per-violation enforcement quotas, and no managers covering coverage as an afterthought. The boards who switch to Edison tend to stay. And the managers who join tend to stay even longer.",
       "What boards get is straightforward: a manager who actually knows the community, accounting handled by a dedicated specialist, enforcement run by a separate department, and a leadership team that personally onboards every new association. What homeowners get is responsiveness, transparency, and a portal that works. What the board's lawyer doesn't get is a panicked phone call at 9pm. That's the whole pitch."
     ]
   },
@@ -252,12 +252,12 @@ const ABOUT_CONTENT = {
     { title: "Modern, Human Service", body: "Technology should make life easier without replacing the human connection that builds trust." }
   ],
   antiPatterns: [
-    "Coupon books, replaced by free, modern courtesy email reminders",
+    "Coupon books, optional and offered only on request; free courtesy email reminders are the default",
     "Non-competes, we earn loyalty through investment, not fear",
     "Volume-chasing, portfolio growth is opt-in, never forced",
     "Manager reports, replaced by the live Action Item List",
     "Punitive fine culture, correction first, fines as a last resort",
-    "Overloaded managers. Edison's sweet spot is 8–10 communities per manager, not the 15+ industry standard."
+    "Overloaded managers. Edison's sweet spot is a limited portfolio per manager, well below the industry standard."
   ],
   valuesImage: "/assets/img-11.jpg",
   teamIntro: [
@@ -265,8 +265,8 @@ const ABOUT_CONTENT = {
     "Leadership stays close. Tracy Durham personally onboards every new association and remains accessible to every board, not just the largest. The COO supervises transitions. The CAI Chapter Presidency role keeps Edison plugged into Florida legislative changes the day they happen."
   ],
   stats: [
-    { value: "2021", caption: "Founded in Orlando · 15+ years industry experience" },
-    { value: "8–10", caption: "Communities per manager (half the industry average)" },
+    { value: "2021", caption: "Founded in Orlando · 60+ years combined leadership experience" },
+    { value: "Limited", caption: "Portfolios sized to your community, well below the industry average" },
     { value: "4.9★", caption: "Google rating, highest in the Central Florida market" },
     { value: "PCAM", caption: "Leadership credential plus 2025 CAI Chapter President" }
   ],

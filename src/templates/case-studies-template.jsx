@@ -426,7 +426,7 @@ const CASES_CONTENT = {
       community: "Heritage Oaks HOA",
       units: 228,
       location: "Oviedo",
-      summary: "Took over a community where enforcement had become punitive and homeowner trust was eroding. Edison's enforcement department reset the program around correction-first protocols, address-not-name inspections, and quarterly board reporting.",
+      summary: "Took over a community where enforcement had become punitive and homeowner trust was eroding. Edison's enforcement department reset the program around correction-first protocols, address-not-name inspections, and monthly board reporting.",
       metrics: [
         { value: "62%", label: "Drop in formal hearings, year 1" },
         { value: "0", label: "Lawsuits initiated" }

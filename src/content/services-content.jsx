@@ -59,7 +59,7 @@ const SERVICES_CONTENT = {
       steps: [
         { title: "Day 1, Onboarding", body: "Your accounting specialist inherits records, reconciles opening balances, builds the audit-ready ledger." },
         { title: "Month 1–12, Monthly Reporting", body: "By the 15th of every month: balance sheet, income statement, budget-to-actual, AR aging, narrative. Invoice docs attached." },
-        { title: "Q4, Budget Season", body: "August–October: draft budget built from operating data and reserve study, presented with scenarios, not a take-it-or-leave-it number." },
+        { title: "Jul–Nov, Budget Season", body: "July–November: draft budget built from operating data and reserve study, presented with scenarios, not a take-it-or-leave-it number." },
         { title: "Year-End, Audit & Review", body: "Clean books and documented invoices all year mean your audit prep is already done. No scramble, no surprises at year-end." }
       ]
     },
@@ -93,7 +93,7 @@ const SERVICES_CONTENT = {
     phone: "(407) 317-5252",
     hero: {
       title: "Covenant enforcement run by a dedicated department, not your manager wearing another hat.",
-      lede: "Fair, consistent, address-not-name enforcement that protects property values without eroding homeowner relationships. Edison runs covenant work as a separate workstream with documented protocols, quarterly board reporting, and a correction-first protocol.",
+      lede: "Fair, consistent, address-not-name enforcement that protects property values without eroding homeowner relationships. Edison runs covenant work as a separate workstream with documented protocols, monthly board reporting, and a correction-first protocol.",
       image: "/assets/img-inspector.jpg",
       applies: "HOA + Condo Associations"
     },
@@ -110,7 +110,7 @@ const SERVICES_CONTENT = {
         { title: "Address-Not-Name Inspections", body: "Inspectors record addresses, not homeowner names. Protocols designed to remove bias and protect the board from selective-enforcement claims." },
         { title: "Notice & Hearing Workflow", body: "Courtesy notices, formal notices, hearing scheduling, and minutes, all documented and tracked through the Action Item List." },
         { title: "ARC Coordination", body: "Architectural Review Committee submissions reviewed, sequenced, and decisioned within board-set timelines." },
-        { title: "Quarterly Board Reporting", body: "A clear summary of enforcement activity, trends, and recommendations, not buried in the monthly meeting packet." },
+        { title: "Monthly Board Reporting", body: "A clear summary of enforcement activity, trends, and recommendations, delivered monthly so nothing gets buried in the meeting packet." },
         { title: "Legal Coordination", body: "When enforcement requires legal escalation, Edison coordinates with the association's attorney, full case file in hand." }
       ]
     },
@@ -121,7 +121,7 @@ const SERVICES_CONTENT = {
         { title: "Address-Not-Name Inspections", body: "Inspectors document addresses. Bias and 'selective enforcement' claims have a structural defense built into the workflow." },
         { title: "Documented Workflow", body: "Every notice, every hearing, every decision, tracked through the Action Item List with timestamps and attachments." },
         { title: "Separate from Management", body: "Your manager isn't the enforcer. That preserves the working relationship boards rely on for everything else." },
-        { title: "Quarterly Board Reporting", body: "Enforcement summary delivered quarterly with trends, outliers, and recommendations. No surprises at the annual meeting." },
+        { title: "Monthly Board Reporting", body: "Enforcement summary delivered monthly with trends, outliers, and recommendations. No surprises at the annual meeting." },
         { title: "Florida Compliance Built In", body: "Notice timing, hearing rights, and statutory due-process steps are baked into the workflow, not added after a complaint." }
       ]
     },
@@ -134,7 +134,7 @@ const SERVICES_CONTENT = {
       sub: "Defined steps, documented at every stage.",
       steps: [
         { title: "Inspection", body: "Routine drive-through or report-based inspection. Address recorded, photographed, logged." },
-        { title: "Courtesy Notice", body: "First touch is a courtesy reminder, friendly, specific, with a clear cure window. Most violations resolve here." },
+        { title: "Courtesy Notice", body: "First touch is a courtesy reminder, friendly, specific, with a clear cure window. Notices are mailed and emailed, and owners can respond right in the Resident Portal. Most violations resolve here." },
         { title: "Formal Notice", body: "If unresolved, a formal notice follows per FL statute. Edison handles the documentation, timeline, and board communication." },
         { title: "Resolution or Escalation", body: "Most cases close at the hearing stage. Cases that don't are escalated to the association's attorney with the full file." }
       ]

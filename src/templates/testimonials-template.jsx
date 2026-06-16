@@ -221,7 +221,7 @@ function TestimonialsPageB({ content }) {
       {/* 6 highlights */}
       <section style={{ background: "#fff", padding: "88px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHeading eyebrow="More from Edison boards" title="Six reasons boards stay"/>
+          <SectionHeading eyebrow="More from Edison boards" title="What boards say in their reviews"/>
           <div className="testi-all-grid" style={{
             marginTop: 40,
             display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18

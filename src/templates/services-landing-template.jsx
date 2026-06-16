@@ -370,12 +370,12 @@ const SERVICES_LANDING_CONTENT = {
 
   hero: {
     title: "Full-service community association management — built around your board.",
-    lede: "HOA, condo, and townhome management for Central Florida communities. Dedicated managers carrying 8–10 communities — half the industry average. Dedicated back-office departments handling accounting, enforcement, and collections. Boards stop starting over.",
+    lede: "HOA, condo, and townhome management for Central Florida communities. Dedicated managers carrying limited portfolios — well below the industry average. Dedicated back-office departments handling accounting, enforcement, and collections. Boards can focus on making decisions.",
     image: "/assets/img-community-aerial.jpg"
   },
 
   stats: [
-    { value: "8–10", caption: "Communities per Edison manager (industry average is 15+)" },
+    { value: "Limited", caption: "Portfolios sized to your community, well below the industry standard" },
     { value: "1 day", caption: "Reply guarantee for board members. 24-hour for homeowners." },
     { value: "4.9★", caption: "Highest-rated management firm in Central Florida" },
     { value: "PCAM", caption: "Leadership credential + 2025 CAI Chapter President" }
@@ -393,7 +393,7 @@ const SERVICES_LANDING_CONTENT = {
         image: "/assets/img-community-aerial.jpg",
         body: "Day-to-day management for single-family and townhome HOAs across Central Florida. Dedicated managers, monthly property inspections, vendor coordination, and the live Action Item List that replaces stale manager reports.",
         bullets: [
-          "Dedicated manager carrying 8–10 communities maximum",
+          "Dedicated manager carrying a deliberately limited portfolio",
           "Monthly inspections with photo documentation",
           "ARC support, Ch. 720 compliance, governing-doc interpretation",
           "Vendor sourcing with 3+ competing bids above board thresholds"
@@ -438,11 +438,11 @@ const SERVICES_LANDING_CONTENT = {
       {
         title: "Covenant Enforcement",
         applies: "HOA + Condo",
-        body: "Fair, consistent, address-not-name enforcement that protects property values without eroding homeowner relationships. Documented protocols, quarterly board reporting, and a correction-first workflow that keeps hearings rare.",
+        body: "Fair, consistent, address-not-name enforcement that protects property values without eroding homeowner relationships. Documented protocols, monthly board reporting, and a correction-first workflow that keeps hearings rare.",
         points: [
           "Address-not-name inspections — bias-resistant by design",
           "Correction-first protocol; fines are a last resort",
-          "Quarterly board reporting, not a buried line in monthly minutes"
+          "Monthly board reporting, not a buried line in the meeting minutes"
         ],
         href: "/services/covenant-enforcement"
       },
@@ -465,14 +465,14 @@ const SERVICES_LANDING_CONTENT = {
     sub: "Most management companies sell a list of services. Edison sells a way of running them — sized for the manager, structured for the board, supervised by leadership that stays involved past the sales call.",
     items: [
       {
-        figure: "8–10",
-        title: "Right-sized portfolios",
-        body: "Managers carry 8–10 communities, not 15–20. Yours actually gets attention — including the proactive work that prevents fires."
+        figure: "Limited",
+        title: "Limited-sized portfolios",
+        body: "Managers carry limited portfolios, not the oversized loads most firms pile on. Yours actually gets attention — including the proactive work that prevents fires."
       },
       {
-        figure: "4",
+        figure: "5",
         title: "Specialist departments",
-        body: "Accounting, enforcement, collections, and ARC are separate departments. Specialists do specialist work; your manager does the work that requires being on-property."
+        body: "Accounting, enforcement, collections, ARC, and homeowner specialists are separate departments. Specialists do specialist work; your manager does the work that requires being on-property."
       },
       {
         figure: "1",

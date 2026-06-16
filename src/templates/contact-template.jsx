@@ -201,10 +201,10 @@ function ContactPageA() {
                   619 E Colonial Dr<br/>
                   Orlando, Florida 32803<br/>
                   M–F 9am–5pm ET<br/>
-                  <a href="/services/hoa-management/orlando" style={{
+                  <a href="/services/hoa-management" style={{
                     color: "var(--edison-teal-dark)", textDecoration: "none", borderBottom: 0,
                     fontWeight: 600
-                  }}>Serving Orlando & Central Florida ↗</a>
+                  }}>Serving cities across Central Florida ↗</a>
                 </div>
               </div>
 

@@ -706,7 +706,7 @@ const BLOG_CONTENT = {
     sections: [
       { id: "what-to-look-for", heading: "What to look for in any HOA management company",
         list: [
-          "Portfolio size per manager, 8–10 is boutique; 15+ is industry-standard but stretched",
+          "Portfolio size per manager, boutique firms keep portfolios limited so managers stay proactive; large operators stretch managers across far more communities",
           "Dedicated departments, is accounting separate from management, or is the manager the bookkeeper?",
           "Manager turnover, ask explicitly; most firms see 30–40% annually",
           "Leadership credentials, PCAM, CMCA, CAI involvement signal real industry standing",
@@ -728,13 +728,13 @@ const BLOG_CONTENT = {
           "How do you handle covenant enforcement? Are inspections address-only or name-based?",
           "Will your principal personally meet with our board?"
         ],
-        callout: { label: "Edison's answers, in case you're wondering", text: "8–10 communities per manager. Manager turnover a fraction of industry average. Dedicated accounting specialist with CPA-led oversight. 60–90 day transition with defined COO supervision. 12-month terms with transparent renewal. Address-not-name enforcement. Tracy onboards every association personally." }
+        callout: { label: "Edison's answers, in case you're wondering", text: "A limited number of communities per manager. Manager turnover a fraction of industry average. Dedicated accounting specialist with CPA-led oversight. 60–90 day transition with defined COO supervision. 12-month terms with transparent renewal. Address-not-name enforcement. Tracy onboards every association personally." }
       },
       { id: "the-pricing-trap", heading: "The pricing trap most boards fall into",
         body: ["The cheapest proposal almost always becomes the most expensive one in 18 months. Cheap usually means overloaded managers, thin back-office, high turnover, and a renewal mechanism that resets the economics in year two. The real cost of a management company shows up as legal exposure, special assessments, homeowner attrition, and the time the board spends doing the management company's job."]
       },
       { id: "how-edison-shows-up", heading: "How Edison shows up in the market",
-        body: ["Edison is deliberately a boutique. Manager portfolios are 8–10 communities. Tracy Durham (PCAM, 2025 CAI Central Florida Chapter President) personally onboards every new association. Back-office departments, accounting, enforcement, collections, are separate from management. Same-day response for board members; 24-hour for homeowners; non-negotiable. We don't try to be the cheapest. We try to be the firm boards stay with."]
+        body: ["Edison is deliberately a boutique. Manager portfolios are deliberately limited. Tracy Durham (PCAM, 2025 CAI Central Florida Chapter President) personally onboards every new association. Back-office departments, accounting, enforcement, collections, are separate from management. Same-day response for board members; 24-hour for homeowners; non-negotiable. We don't try to be the cheapest. We try to be the firm boards stay with."]
       }
     ],
     related: [

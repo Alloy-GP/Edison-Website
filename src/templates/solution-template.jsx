@@ -195,7 +195,7 @@ const SWITCH_CONTENT = {
     {
       label: "Manager portfolio size",
       left: "15+ communities per manager, yours is one of many.",
-      right: "8–10 communities per manager. Yours actually gets attention."
+      right: "A limited portfolio per manager. Yours actually gets attention."
     },
     {
       label: "Homeowner communication",
@@ -210,7 +210,7 @@ const SWITCH_CONTENT = {
   ],
   stats: [
     { value: "60–90", caption: "Days from contract signing to full cutover, end-to-end" },
-    { value: "8–10", caption: "Communities per Edison manager (industry average is 15+)" },
+    { value: "Limited", caption: "Portfolios sized to your community, well below the industry standard" },
     { value: "4.9★", caption: "Google Business rating, highest in the Central Florida market" },
     { value: "PCAM", caption: "Leadership credential held by Edison's principal, plus 2025 CAI Chapter President" }
   ],

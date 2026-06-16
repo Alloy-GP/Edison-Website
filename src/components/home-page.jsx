@@ -563,9 +563,8 @@ function HomePage() {
       <ServiceArea
         eyebrow="Service Area"
         title="Serving Associations Throughout Central Florida"
-        body="Based in Orlando, Edison proudly manages homeowner and condominium associations across Central Florida, from Orange and Seminole counties to Osceola, Lake, and beyond."
+        body="Based in Orlando, Edison proudly manages homeowner and condominium associations in communities throughout Central Florida and the surrounding region."
         cities={[
-          "Orange County", "Seminole County", "Osceola County", "Lake County",
           "Orlando", "Winter Garden", "Clermont", "Kissimmee", "Lake Mary",
           "Altamonte Springs", "Oviedo", "Apopka"
         ]}
