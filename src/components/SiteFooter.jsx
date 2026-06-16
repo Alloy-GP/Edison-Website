@@ -44,7 +44,6 @@ const DEFAULT_FOOTER_COLUMNS = [
       { label: "Edison Education", href: "/edison-education" },
       { label: "Blog", href: "/blog" },
       { label: "Testimonials", href: "/testimonials" },
-      { label: "Case Studies", href: "/case-studies" },
       { label: "FAQ", href: "/faq" }
     ]
   },

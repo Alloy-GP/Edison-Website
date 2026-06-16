@@ -16,7 +16,6 @@ export const REVIEW_ITEMS: ReviewItem[] = [
   { label: 'Request A Proposal', path: '/request-a-proposal/', review: false },
   { label: 'FAQ', path: '/faq/', review: true },
   { label: 'Testimonials', path: '/testimonials/', review: true },
-  { label: 'Case Studies', path: '/case-studies/', review: true },
   { label: 'HOA Management', path: '/services/hoa-management/', review: true },
   { label: 'Single Family', path: '/services/hoa-management/single-family/', review: true },
   { label: 'Townhome', path: '/services/hoa-management/townhome/', review: true },

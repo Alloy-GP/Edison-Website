@@ -99,8 +99,7 @@ const DEFAULT_NAV = [
       { label: "About Edison", href: "/about" },
       { label: "Meet Our Team", href: "/about/meet-our-team" },
       { label: "Meet Your Management", href: "/about/meet-your-management" },
-      { label: "Testimonials", href: "/testimonials" },
-      { label: "Case Studies", href: "/case-studies" }
+      { label: "Testimonials", href: "/testimonials" }
     ]
   },
   { label: "Contact", href: "/contact" }
