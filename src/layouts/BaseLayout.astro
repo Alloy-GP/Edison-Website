@@ -504,5 +504,24 @@ const isProduction    = import.meta.env.PUBLIC_ENV === 'production';
 
     })();
     </script>}
+
+    <!-- ── Live Google reviews: refresh rating/count from /api/reviews ──── -->
+    <script is:inline>
+      (function () {
+        fetch('/api/reviews').then(function (r) { return r.json(); }).then(function (d) {
+          if (!d) return;
+          if (typeof d.count === 'number') {
+            document.querySelectorAll('[data-edison-review-count]').forEach(function (el) {
+              el.textContent = String(d.count);
+            });
+          }
+          if (typeof d.rating === 'number') {
+            document.querySelectorAll('[data-edison-review-rating]').forEach(function (el) {
+              el.textContent = d.rating.toFixed(1);
+            });
+          }
+        }).catch(function () {});
+      })();
+    </script>
 </body>
 </html>
