@@ -30,9 +30,19 @@ function json(body: unknown, cacheable: boolean) {
   });
 }
 
+// Google "see all reviews" deep link for a given Place ID.
+const reviewsLink = (placeId: string) =>
+  `https://search.google.com/local/reviews?placeid=${placeId}`;
+// Used when no Place ID is available (opens the listing rather than a blank map).
+const SEARCH_FALLBACK = 'https://www.google.com/maps/search/?api=1&query=Edison%20Association%20Management%20Orlando%20FL';
+
 export const GET: APIRoute = async () => {
   const key = import.meta.env.GOOGLE_PLACES_API_KEY;
-  const fallback = { rating: REVIEWS.rating, count: REVIEWS.count, source: 'fallback', updatedAt: REVIEWS.updatedAt };
+  const fallback = {
+    rating: REVIEWS.rating, count: REVIEWS.count,
+    placeId: null as string | null, reviewsUrl: SEARCH_FALLBACK,
+    source: 'fallback', updatedAt: REVIEWS.updatedAt,
+  };
 
   if (!key) return json(fallback, false); // not configured yet — serve committed values
 
@@ -52,9 +62,10 @@ export const GET: APIRoute = async () => {
     const count = det?.result?.user_ratings_total;
 
     if (typeof rating === 'number' && typeof count === 'number') {
-      return json({ rating, count, source: 'live', updatedAt: new Date().toISOString() }, true);
+      return json({ rating, count, placeId, reviewsUrl: reviewsLink(placeId), source: 'live', updatedAt: new Date().toISOString() }, true);
     }
-    return json(fallback, false);
+    // Details missing numbers but we have a Place ID — still return a working reviews link.
+    return json({ ...fallback, placeId, reviewsUrl: reviewsLink(placeId) }, false);
   } catch {
     return json(fallback, false);
   }

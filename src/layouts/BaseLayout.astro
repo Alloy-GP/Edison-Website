@@ -520,6 +520,11 @@ const isProduction    = import.meta.env.PUBLIC_ENV === 'production';
               el.textContent = d.rating.toFixed(1);
             });
           }
+          if (d.reviewsUrl) {
+            document.querySelectorAll('[data-edison-reviews-link]').forEach(function (el) {
+              el.setAttribute('href', d.reviewsUrl);
+            });
+          }
         }).catch(function () {});
       })();
     </script>
