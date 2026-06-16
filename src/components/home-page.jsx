@@ -490,7 +490,7 @@ function HomePage() {
           {
             title: "Covenant Enforcement",
             body: "Consistent inspections, fair enforcement, full compliance tracking.",
-            image: "/assets/img-inspector.jpg",
+            image: "/assets/hoa-covenant-enforcement-inspection.jpg",
             href: "/services/covenant-enforcement"
           }
         ]}
