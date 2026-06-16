@@ -1,5 +1,6 @@
 import React, { useState as useTstState } from 'react';
 import { Breadcrumb, FinalCTA, InteriorButton, SectionHeading, TrustBadges } from '../components/interior-components';
+import { REVIEWS } from '../data/reviews';
 
 /* ---------- Star row ---------- */
 function Stars({ n = 5, size = 16 }) {
@@ -61,11 +62,11 @@ function TestimonialsPageA({ content }) {
             <div style={{
               fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18,
               color: "var(--edison-navy)"
-            }}>4.9 / 5.0</div>
+            }}><span data-edison-review-rating>{REVIEWS.rating.toFixed(1)}</span> / 5.0</div>
             <div style={{
               fontFamily: "var(--font-body)", fontSize: 14,
               color: "var(--edison-gray-mid)"
-            }}>{content.reviewCount} Google reviews</div>
+            }}><span data-edison-review-count>{content.reviewCount}</span> Google reviews</div>
           </div>
         </div>
       </section>
@@ -173,12 +174,12 @@ function TestimonialsPageB({ content }) {
             <div style={{
               fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 22,
               color: "var(--edison-navy)"
-            }}>4.9 / 5.0</div>
+            }}><span data-edison-review-rating>{REVIEWS.rating.toFixed(1)}</span> / 5.0</div>
             <div style={{ width: 1, height: 18, background: "var(--border-strong)" }}/>
             <div style={{
               fontFamily: "var(--font-body)", fontSize: 14.5,
               color: "var(--edison-gray-mid)"
-            }}>{content.reviewCount} Google reviews · Highest in Central Florida</div>
+            }}><span data-edison-review-count>{content.reviewCount}</span> Google reviews · Highest in Central Florida</div>
           </div>
         </div>
       </section>

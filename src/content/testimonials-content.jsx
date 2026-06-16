@@ -4,9 +4,11 @@
    Quotes lightly edited for clarity and length.
    ============================================================ */
 
+import { REVIEWS } from '../data/reviews';
+
 const TESTIMONIALS_CONTENT = {
   intro: "Real Google reviews from Edison community members and board partners across Central Florida. We anonymize last names but keep the substance of what reviewers said.",
-  reviewCount: 100,
+  reviewCount: REVIEWS.count,
   testimonials: [
     {
       category: "Switching",

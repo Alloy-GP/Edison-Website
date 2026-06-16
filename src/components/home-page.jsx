@@ -1,6 +1,7 @@
 import React from 'react';
 import { BulbMark, FinalCTA, InteriorButton, InteriorEyebrow, SectionHeading, ServiceArea, TrustBadges } from '../components/interior-components';
 import { BulletsWithImage } from '../components/template-sections';
+import { REVIEWS } from '../data/reviews';
 
 /* ============================================================
    HOMEPAGE-SPECIFIC SECTIONS
@@ -126,14 +127,14 @@ function HomeHero({ eyebrow, title, lede, primary, audienceCards }) {
                 ))}
               </div>
               <div>
-                <span style={{
+                <span data-edison-review-rating style={{
                   fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14.5,
                   color: "#fff", letterSpacing: "-0.01em"
-                }}>4.9</span>
+                }}>{REVIEWS.rating}</span>
                 <span style={{
                   fontFamily: "var(--font-body)", fontSize: 13,
                   color: "rgba(255,255,255,.72)", marginLeft: 6
-                }}>· 120 Google Reviews</span>
+                }}>· <span data-edison-review-count>{REVIEWS.count}</span> Google Reviews</span>
               </div>
             </a>
           </div>
