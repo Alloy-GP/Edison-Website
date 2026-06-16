@@ -98,8 +98,9 @@ function HomeHero({ eyebrow, title, lede, primary, audienceCards }) {
           <div className="hp-hero-cta-row" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             <InteriorButton variant="onDark" size="lg" href={primary.href}>{primary.label}</InteriorButton>
 
-            {/* Google review badge */}
-            <a href="https://www.google.com/maps/place/Edison+Association+Management/@28.5489,-81.3583,17z"
+            {/* Google review badge — href upgraded to the GBP reviews deep link by the client script in BaseLayout */}
+            <a data-edison-reviews-link
+               href="https://www.google.com/maps/search/?api=1&query=Edison%20Association%20Management%20Orlando%20FL"
                target="_blank" rel="noopener noreferrer"
                style={{
                  display: "inline-flex", alignItems: "center", gap: 12,
