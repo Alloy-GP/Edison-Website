@@ -50,7 +50,6 @@ const PHASE_1_PAGES = [
 
   /* TRUST & BRANDED */
   { url: "/testimonials",                  label: "Testimonials",            template: "TestimonialsPageB", group: "Trust & Branded" },
-  { url: "/case-studies",                  label: "Case Studies",            template: "CaseStudiesPageA",  group: "Trust & Branded" },
   { url: "/edison-education",              label: "Edison Education",        template: "EducationHubA",     group: "Trust & Branded" },
   { url: "/about/meet-our-team",           label: "Meet Our Team",           template: "TeamPageA",         group: "Trust & Branded" },
   { url: "/about/meet-your-management",    label: "Meet Your Management",    template: "MeetYourManagementPage", group: "Trust & Branded" },
