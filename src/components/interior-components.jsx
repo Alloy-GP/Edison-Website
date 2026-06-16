@@ -428,55 +428,36 @@ function TrustBadges({ eyebrow, title, sub, badges }) {
 /* ============================================================
    FAQ ACCORDION
    ============================================================ */
+/* Native <details>/<summary> accordion — works without JS (and therefore inside
+   Pastel's proxy, which breaks React's synthetic events). All answers stay in
+   the DOM (crawlable); CSS handles the open state + the +/− toggle. */
+const FAQ_STYLES = `
+  .ic-faq details { background:#fff; border:1px solid var(--border-hairline); border-radius:10px; overflow:hidden; transition:box-shadow 220ms; }
+  .ic-faq details[open] { box-shadow: var(--shadow-sm); }
+  .ic-faq summary { list-style:none; cursor:pointer; padding:20px 24px; display:flex; justify-content:space-between; align-items:center; gap:24px; text-align:left; font-family:var(--font-display); font-weight:700; font-size:16px; color:var(--edison-navy); }
+  .ic-faq summary::-webkit-details-marker { display:none; }
+  .ic-faq .ic-faq-icon { flex-shrink:0; width:28px; height:28px; border-radius:999px; background:var(--edison-teal-pale); color:var(--edison-navy); display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700; transition:background 200ms; }
+  .ic-faq .ic-faq-icon::after { content:'+'; }
+  .ic-faq details[open] .ic-faq-icon { background:var(--edison-teal); }
+  .ic-faq details[open] .ic-faq-icon::after { content:'\\2013'; }
+  .ic-faq .ic-faq-answer { padding:0 24px 22px; font-family:var(--font-body); font-size:15px; line-height:1.65; color:var(--edison-text-body); }
+`;
 function FAQ({ eyebrow, title, sub, items, background = "#fff" }) {
-  const [open, setOpen] = useState(0);
   return (
     <section className="ic-faq" style={{ background, padding: "88px 48px" }}>
+      <style dangerouslySetInnerHTML={{ __html: FAQ_STYLES }} />
       <div style={{ maxWidth: 980, margin: "0 auto" }}>
         <SectionHeading eyebrow={eyebrow} title={title} sub={sub} align="center"/>
         <div style={{ marginTop: 40, display: "flex", flexDirection: "column", gap: 10 }}>
-          {items.map((it, i) => {
-            const isOpen = open === i;
-            return (
-              <div key={i} style={{
-                background: "#fff",
-                border: "1px solid var(--border-hairline)",
-                borderRadius: 10,
-                overflow: "hidden",
-                boxShadow: isOpen ? "var(--shadow-sm)" : "none",
-                transition: "box-shadow 220ms"
-              }}>
-                <button onClick={() => setOpen(isOpen ? -1 : i)}
-                        aria-expanded={isOpen}
-                        style={{
-                          width: "100%", background: "transparent", border: 0,
-                          padding: "20px 24px", cursor: "pointer",
-                          display: "flex", justifyContent: "space-between", alignItems: "center", gap: 24,
-                          textAlign: "left",
-                          fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 16,
-                          color: "var(--edison-navy)"
-                        }}>
-                  <span>{it.q}</span>
-                  <span aria-hidden="true" style={{
-                    flexShrink: 0,
-                    width: 28, height: 28, borderRadius: 999,
-                    background: isOpen ? "var(--edison-teal)" : "var(--edison-teal-pale)",
-                    color: "var(--edison-navy)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: 18, fontWeight: 700,
-                    transition: "background 200ms"
-                  }}>{isOpen ? "–" : "+"}</span>
-                </button>
-                {isOpen && (
-                  <div style={{
-                    padding: "0 24px 22px",
-                    fontFamily: "var(--font-body)", fontSize: 15, lineHeight: 1.65,
-                    color: "var(--edison-text-body)"
-                  }}>{it.a}</div>
-                )}
-              </div>
-            );
-          })}
+          {items.map((it, i) => (
+            <details key={i} open={i === 0}>
+              <summary>
+                <span>{it.q}</span>
+                <span className="ic-faq-icon" aria-hidden="true"/>
+              </summary>
+              <div className="ic-faq-answer">{it.a}</div>
+            </details>
+          ))}
         </div>
       </div>
     </section>
