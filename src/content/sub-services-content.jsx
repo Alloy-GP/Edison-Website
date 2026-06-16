@@ -53,7 +53,7 @@ const SUB_SERVICES_CONTENT = {
         { title: "Monthly Inspection", body: "Full property walk-through with photo documentation. Findings routed into the Action Item List for tracking." },
         { title: "ARC & Enforcement Cycle", body: "ARC submissions processed weekly. Enforcement on a documented monthly cycle." },
         { title: "Board Reporting", body: "Monthly financial package + Action Item List update. Monthly enforcement report in the board portal." },
-        { title: "Annual Cycle", body: "Budget cycle Aug–Oct. Annual meeting support. Reserve study coordination on the schedule the study itself sets." }
+        { title: "Annual Cycle", body: "Budget cycle Jul–Nov. Annual meeting support. Reserve study coordination on the schedule the study itself sets." }
       ]
     },
     midCta: {
@@ -126,7 +126,7 @@ const SUB_SERVICES_CONTENT = {
         { title: "Onboarding & Audit", body: "Edison audits the master policy, current vendor contracts, and reserve study against the actual building inventory." },
         { title: "Monthly Operations", body: "Property inspection, ARC processing, enforcement cycle, financial reporting. Consistent and predictable." },
         { title: "Capital Project Cycle", body: "Edison sources, sequences, and coordinates building-envelope projects, typically roof, paint, gutters, soffit, on rolling schedules." },
-        { title: "Annual Cycle", body: "Budget season Aug–Oct, with building-component capital pacing built in. Reserve study refreshed on the study's schedule." }
+        { title: "Annual Cycle", body: "Budget season Jul–Nov, with building-component capital pacing built in. Reserve study refreshed on the study's schedule." }
       ]
     },
     midCta: {
@@ -169,7 +169,7 @@ const SUB_SERVICES_CONTENT = {
       statute: "FL Ch. 720 / Ch. 718"
     },
     spec: [
-      { label: "Cycle", value: "Aug–Oct annually" },
+      { label: "Cycle", value: "Jul–Nov annually" },
       { label: "Format", value: "Scenarios, not a single number" },
       { label: "Delivered", value: "Board-meeting-ready" }
     ],
@@ -182,7 +182,7 @@ const SUB_SERVICES_CONTENT = {
     },
     included: {
       title: "What Edison's budget preparation actually delivers",
-      sub: "Not a spreadsheet handed off the week before the meeting, a process that starts in August.",
+      sub: "Not a spreadsheet handed off the week before the meeting, a process that starts in July.",
       items: [
         { title: "Operating Data Review", body: "Twelve months of actual expense by category. Variances analyzed. Anomalies flagged. The base is real spend, not last year's plan." },
         { title: "Reserve Study Integration", body: "Current reserve study recommendations sequenced into the next 12 months. Funding pace reviewed against statutory expectations." },
@@ -194,12 +194,12 @@ const SUB_SERVICES_CONTENT = {
     },
     process: {
       title: "Edison's annual budget cycle",
-      sub: "Aug–Oct, with a defined cadence and clear deliverables.",
+      sub: "July–November, with a defined cadence and clear deliverables.",
       steps: [
-        { title: "August, Data Pull & Review", body: "Operating data, reserve study, vendor contracts, and capital pipeline assembled and reviewed by Edison's accounting team." },
-        { title: "September, Draft Scenarios", body: "Three scenarios drafted with funding implications. Treasurer review session scheduled." },
-        { title: "October, Board Review", body: "Budget presented at a regular board meeting with the scenarios comparison. Board votes on the version it wants to approve." },
-        { title: "November, Adoption & Notice", body: "Approved budget formalized, homeowner notice issued per FL statute, and integrated into the next fiscal year's reporting cadence." }
+        { title: "July, Data Pull & Review", body: "Operating data, reserve study, vendor contracts, and capital pipeline assembled and reviewed by Edison's accounting team." },
+        { title: "Aug/Sept, Draft Scenarios", body: "Three scenarios drafted with funding implications. Treasurer review session scheduled." },
+        { title: "Sept/Oct, Review & Adoption", body: "Budget presented at a regular board meeting with the scenarios comparison. Board reviews the options and votes to adopt the version it wants to approve." },
+        { title: "November, Notice", body: "Adopted budget formalized, homeowner notice mailed per FL statute, and integrated into the next fiscal year's reporting cadence." }
       ]
     },
     midCta: {
@@ -207,7 +207,7 @@ const SUB_SERVICES_CONTENT = {
       lede: "Edison's first conversation is free. We'll review your current budget against operating data and the reserve study, and flag what we'd do differently."
     },
     faqs: [
-      { q: "When does Edison's budget cycle start?", a: "Mid-August. Twelve months of operating data are needed for a clean variance review, and most associations close their fiscal year on a calendar basis, so August gives us the runway to deliver a board-ready package by mid-October." },
+      { q: "When does Edison's budget cycle start?", a: "July. Twelve months of operating data are needed for a clean variance review, and most associations close their fiscal year on a calendar basis, so starting in July gives us the runway to deliver a board-ready package in the fall and send the statutory homeowner notice in November." },
       { q: "Are we required to present multiple scenarios?", a: "Not by statute, but it's how Edison runs the process. Single-number budgets force boards to vote yes or vote no without seeing alternatives. Scenarios show the funding implications of each choice, and document the board's reasoning if questions come up later." },
       { q: "What if our reserve study is out of date?", a: "Edison flags it. If the study is more than 3–5 years old (varies by community type), we recommend a refresh and sequence the project. The budget reflects the best information available; the gap gets named, not hidden." },
       { q: "How does Edison handle reserve disclosure?", a: "FL statute requires reserve disclosure language in the budget package each year. Edison's standard package includes the disclosure language, the reserve funding pace, and the board's reserve decision (fully funded, partial waiver if statutorily permitted, etc.), formatted for the FL-required homeowner notice." },

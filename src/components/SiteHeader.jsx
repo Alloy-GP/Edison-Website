@@ -49,7 +49,7 @@ const DEFAULT_NAV = [
     label: "Solutions",
     href: "/solutions",
     children: [
-      { label: "Switch HOA Management Company", href: "/solutions/switch-hoa-management-company" },
+      { label: "Considering a Management Change", href: "/solutions/switch-hoa-management-company" },
       { label: "Self-Managed to Professional", href: "/solutions/self-managed-hoa" },
       { label: "Modern HOA Management", href: "/solutions/modern-hoa-management" }
     ]

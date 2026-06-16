@@ -32,7 +32,7 @@ const GEO_CONTENT = {
     differentiators: [
       { title: "Industry-Low Manager Turnover", body: "Most firms see 30–40% annual turnover. Edison's is a fraction of that." },
       { title: "Dedicated Back-Office Departments", body: "Enforcement, ARC, accounting, and collections are separate departments, not your manager's overtime work." },
-      { title: "Boutique Portfolio Sizes", body: "8–10 communities per manager, half the industry average." },
+      { title: "Boutique Portfolio Sizes", body: "a limited number of communities per manager, well below the industry average." },
       { title: "Leadership Credibility", body: "Edison's principal is a PCAM and the 2025 CAI Central Florida Chapter President." },
       { title: "Modern Technology, Human Touch", body: "WATTSON AI for 24/7 resident questions. CINC for portals and financials. A human still answers when you call the office." },
       { title: "The Edison Transition Experience", body: "Switching is the burden Edison absorbs, records, vendors, banking, homeowner communication." }

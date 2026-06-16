@@ -15,11 +15,11 @@ const PILLAR_CONTENT = {
     phone: "(407) 317-5252",
     hero: {
       title: "HOA management built around the board, not the company growth chart.",
-      lede: "Full-service management for single-family and townhome HOAs across Central Florida. Dedicated managers carrying 8–10 communities, half the industry average. Back-office departments handling what isn't community-facing. Boards stop starting over.",
+      lede: "Full-service management for single-family and townhome HOAs across Central Florida. Dedicated managers carrying limited portfolios, well below the industry average. Back-office departments handling what isn't community-facing. Boards stop starting over.",
       image: "/assets/img-community-aerial.jpg"
     },
     stats: [
-      { value: "8–10", caption: "Communities per manager (industry average is 15+)" },
+      { value: "Limited", caption: "Portfolios sized to your community, well below the industry standard" },
       { value: "1 day", caption: "Same-day board response. 24-hour homeowner. Non-negotiable." },
       { value: "PCAM", caption: "Leadership credential plus 2025 CAI Chapter President" },
       { value: "4.9★", caption: "Google rating, highest in Central Florida" }
@@ -36,7 +36,7 @@ const PILLAR_CONTENT = {
       sub: "Every Edison HOA management agreement includes the operational, financial, and advisory work that keeps Florida HOAs compliant, well-funded, and well-led.",
       image: "/assets/img-inspector.jpg",
       items: [
-        { title: "Dedicated Association Manager", body: "Carries 8–10 communities maximum. Visits the property monthly. Attends every board meeting. Knows your governing documents and your homeowners by name." },
+        { title: "Dedicated Association Manager", body: "Carries a deliberately limited portfolio. Visits the property monthly. Attends every board meeting. Knows your governing documents and your homeowners by name." },
         { title: "Monthly Property Inspections", body: "Documented walks of common areas, capital assets, and vendor work. Reported back to the board with photos and recommendations." },
         { title: "Vendor Sourcing & Management", body: "Three competing bids on capital projects above board-set thresholds. Insurance certificates on file. Updated contracts." },
         { title: "Action Item List", body: "Edison's live project tracker. Every active community item, its owner, status, target date, visible to the board in real time." },
@@ -44,7 +44,7 @@ const PILLAR_CONTENT = {
         { title: "Reserve Study Guidance", body: "Coordination with reserve study engineers, funding plan support, and capital project sequencing." }
       ],
       bullets: [
-        "Dedicated manager carrying only 8–10 communities, half the industry average",
+        "Dedicated manager carrying only a limited portfolio, well below the industry average",
         "Monthly property inspections with photo documentation",
         "Vendor sourcing requiring 3+ competing bids on capital projects",
         "Live Action Item List replaces stale manager reports",
@@ -67,19 +67,18 @@ const PILLAR_CONTENT = {
       items: [
         { title: "Industry-Low Manager Turnover", body: "Most firms see 30–40% annual manager turnover. Edison's is a fraction of that. The manager who learns your community in year one is still there in year three." },
         { title: "Dedicated Back-Office Departments", body: "Enforcement, accounting, collections, and ARC are separate departments, not your manager's overtime work." },
-        { title: "Manageable Portfolio Sizes", body: "8–10 communities per manager, half the industry average. Yours isn't lost in a portfolio of hundreds." },
+        { title: "Manageable Portfolio Sizes", body: "a limited number of communities per manager, well below the industry average. Yours isn't lost in a portfolio of hundreds." },
         { title: "Leadership That Stays Involved", body: "Edison's senior leadership personally onboards every new association and remains accessible to every board." },
         { title: "Modern Tools, Human Touch", body: "CINC Systems for portals and financials. WATTSON AI for 24/7 resident questions. The Action Item List for live project tracking. A real person still answers the phone." },
         { title: "Education-First Philosophy", body: "Informed boards make better decisions. Edison invests in teaching board members the statutes, the financial fundamentals, and the governance frameworks." }
       ]
     },
     antiPatterns: [
-      { title: "No coupon books", body: "Replaced by free, modern courtesy email reminders. Respectful of homeowner money." },
-      { title: "No non-competes", body: "We earn loyalty through investment, not fear. Managers stay because they want to." },
+      { title: "Optional coupon books", body: "Offered only if your board wants them — free, modern courtesy email reminders are the default. Respectful of homeowner money." },
       { title: "No volume-chasing", body: "Portfolio growth is opt-in for managers. Quality over headcount, every time." },
       { title: "No manager reports", body: "Replaced by the live Action Item List. Boards see project status in real time." },
       { title: "No punitive fine culture", body: "Correction first. We talk boards out of fine-first enforcement." },
-      { title: "No overloaded managers", body: "Sweet spot is 8–10 communities. Industry standard is 15+. No exceptions for revenue." }
+      { title: "No overloaded managers", body: "Sweet spot is a limited portfolio. Well below the industry standard. No exceptions for revenue." }
     ],
     process: {
       title: "How working with Edison actually works",
@@ -116,7 +115,7 @@ const PILLAR_CONTENT = {
       community: "HOA · 228 units · Dr. Phillips, Orlando"
     },
     faqs: [
-      { q: "How many communities will our manager have?", a: "Edison managers carry 8–10 communities, half the industry average. We've structured portfolios this way deliberately: managers can actually know your community, not just file your community away." },
+      { q: "How many communities will our manager have?", a: "Edison managers carry a limited number of communities, well below the industry average. We've structured portfolios this way deliberately: managers can actually know your community, not just file your community away." },
       { q: "How quickly will calls get returned?", a: "Same-day for board members. 24-hour for homeowners. Non-negotiable, and a real person answers when you call Edison's office between 9am and 5pm Monday through Friday." },
       { q: "Do you handle our financials and accounting too?", a: "Yes. Edison's accounting department is dedicated and CPA-supported. Monthly statements with invoice backup, reserve banking strategy, audit prep, and tax filing. See our HOA Accounting page for detail." },
       { q: "What technology do you use?", a: "CINC Systems for financials and homeowner portals. The Action Item List for live project tracking. WATTSON AI for 24/7 resident questions. Plaud for meeting minute automation. All included." },
@@ -144,7 +143,7 @@ const PILLAR_CONTENT = {
     stats: [
       { value: "Ch. 718", caption: "Florida condominium statute, distinct from HOA Ch. 720" },
       { value: "SB-4D", caption: "Milestone inspection and SIRS compliance coordinated end-to-end" },
-      { value: "8–10", caption: "Communities per manager. Half the industry average." },
+      { value: "Limited", caption: "Portfolios sized to your community, well below the industry average." },
       { value: "PCAM", caption: "Leadership credential plus 2025 CAI Chapter President" }
     ],
     context: {
@@ -159,7 +158,7 @@ const PILLAR_CONTENT = {
       sub: "Every Edison condo management agreement covers the day-to-day operations, the statutory compliance, and the engineering coordination that condo boards need to actually meet their obligations.",
       image: "/assets/img-22.jpg",
       items: [
-        { title: "Dedicated Association Manager", body: "8–10 communities maximum. Walks the property monthly. Attends every board meeting. Knows your governing documents and homeowners by name." },
+        { title: "Dedicated Association Manager", body: "A deliberately limited portfolio. Walks the property monthly. Attends every board meeting. Knows your governing documents and homeowners by name." },
         { title: "SB-4D Compliance Tracking", body: "Milestone inspection deadlines, SIRS triggers, and reserve funding obligations tracked centrally. No statutory deadline misses on Edison's watch." },
         { title: "Engineering Coordination", body: "Edison sources licensed engineers, coordinates site access, reviews draft reports, and integrates findings into the funding plan." },
         { title: "Common-Element Maintenance", body: "Roof, structure, elevator, pool, garage, Edison coordinates vendors with the documentation and bidding discipline condo boards need." },
@@ -167,7 +166,7 @@ const PILLAR_CONTENT = {
         { title: "Insurance & Risk", body: "Master policy coordination, COI tracking on every vendor, claims advocacy when needed. Insurance is a workstream, not an afterthought." }
       ],
       bullets: [
-        "Dedicated manager carrying only 8–10 communities, half the industry average",
+        "Dedicated manager carrying only a limited portfolio, well below the industry average",
         "SB-4D milestone inspection and SIRS compliance coordinated end-to-end",
         "Licensed engineer sourcing and engagement management",
         "Master insurance policy coordination and vendor COI tracking",
@@ -190,18 +189,17 @@ const PILLAR_CONTENT = {
         { title: "SB-4D Fluent", body: "Edison's team knows the statute cold. Milestone inspection triggers, SIRS components, reserve funding requirements, we won't be learning on your dime." },
         { title: "Engineer Network", body: "Working relationships with FL-licensed structural engineers across Central Florida. Faster sourcing, vetted scope, competitive pricing." },
         { title: "Dedicated Accounting Specialist", body: "Condo reserves have a different funding cadence than HOAs. Your accounting specialist understands the difference." },
-        { title: "Manageable Portfolio Sizes", body: "8–10 communities per manager. Your condo isn't lost in a 20-property portfolio." },
+        { title: "Manageable Portfolio Sizes", body: "A limited portfolio per manager. Your condo isn't lost in a portfolio of dozens." },
         { title: "Modern Communication", body: "Resident portal, CINC dashboards, WATTSON AI. Owners get answers; boards get visibility." },
         { title: "Crisis-Ready Operations", body: "When something fails, and in older buildings, something will, Edison's team has the contacts, the contracts, and the experience to act fast." }
       ]
     },
     antiPatterns: [
-      { title: "No coupon books", body: "Replaced by free, modern courtesy email reminders." },
-      { title: "No non-competes", body: "We earn loyalty through investment, not fear." },
+      { title: "Optional coupon books", body: "Offered only if your board wants them — free, modern courtesy email reminders are the default." },
       { title: "No volume-chasing", body: "Portfolio growth is opt-in for managers. Quality over headcount." },
       { title: "No manager reports", body: "Replaced by the live Action Item List." },
       { title: "No punitive fine culture", body: "Correction first. Fines as a last resort." },
-      { title: "No overloaded managers", body: "Sweet spot is 8–10 communities. No exceptions for revenue." }
+      { title: "No overloaded managers", body: "Sweet spot is a limited portfolio. No exceptions for revenue." }
     ],
     process: {
       title: "How Edison's condo practice works",

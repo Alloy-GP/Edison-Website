@@ -167,7 +167,7 @@ const ORLANDO_CONTENT = {
   },
   localStats: [
     { value: "Orlando", caption: "Headquartered here. Tracy and the team live and work in the metro." },
-    { value: "8–10", caption: "Communities per manager, half the industry average of 15+." },
+    { value: "Limited", caption: "Portfolios sized to your community, well below the industry average." },
     { value: "4.9★", caption: "Google rating, the highest of any named competitor in the Orlando market." },
     { value: "M–F", caption: "9am–5pm office hours. Same-day response for board members." }
   ],
@@ -198,7 +198,7 @@ const ORLANDO_CONTENT = {
   differentiators: [
     { title: "Industry-Low Manager Turnover", body: "Most firms see 30–40% annual turnover. Edison's is a fraction of that. The manager who learns your community in year one is still there in year three." },
     { title: "Dedicated Back-Office Departments", body: "Enforcement, ARC, accounting, and collections are separate departments, not your manager's overtime work. Boards get specialist quality on every workstream." },
-    { title: "Boutique Portfolio Sizes", body: "8–10 communities per manager, half the industry average. Yours isn't lost in a portfolio of hundreds. The manager actually knows your community by name." },
+    { title: "Boutique Portfolio Sizes", body: "a limited number of communities per manager, well below the industry average. Yours isn't lost in a portfolio of hundreds. The manager actually knows your community by name." },
     { title: "Leadership Credibility", body: "Edison's principal is a PCAM and the 2025 CAI Central Florida Chapter President, credentials boards can verify and trust." },
     { title: "Modern Technology, Human Touch", body: "WATTSON AI for 24/7 resident questions. CINC for portals and financials. A human still answers when you call the office." },
     { title: "The Edison Transition Experience", body: "Switching is the burden Edison absorbs, records, vendors, banking, homeowner communication. 60–90 days, COO-supervised." }
