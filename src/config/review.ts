@@ -45,6 +45,7 @@ export const REVIEW_ITEMS: ReviewItem[] = [
   { label: 'HOA Reserve Study Guide Florida', path: '/blog/hoa-reserve-study-guide-florida/', review: false },
   { label: 'HOA Audit', path: '/blog/hoa-audit/', review: false },
   { label: 'HOA Bylaws vs CCRs', path: '/blog/hoa-bylaws-vs-ccrs/', review: false },
+  { label: 'Best HOA Management Companies Orlando', path: '/blog/best-hoa-management-companies-orlando/', review: false },
   { label: 'Edison Education', path: '/edison-education/', review: false },
   { label: 'Privacy Policy', path: '/privacy-policy/', review: false },
   { label: 'Terms of Service', path: '/terms-of-service/', review: false },
