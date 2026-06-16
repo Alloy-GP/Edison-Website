@@ -94,7 +94,7 @@ const SERVICES_CONTENT = {
     hero: {
       title: "Covenant enforcement run by a dedicated department, not your manager wearing another hat.",
       lede: "Fair, consistent, address-not-name enforcement that protects property values without eroding homeowner relationships. Edison runs covenant work as a separate workstream with documented protocols, monthly board reporting, and a correction-first protocol.",
-      image: "/assets/img-inspector.jpg",
+      image: "/assets/hoa-covenant-enforcement-inspection.jpg",
       applies: "HOA + Condo Associations"
     },
     stats: [
