@@ -18,29 +18,31 @@ import '../../styles/intake-form.css';
         <p class="rap-eyebrow">Request a Proposal</p>
         <h1 class="rap-h1">Tell us about your community — we'll get back within one business day.</h1>
         <p class="rap-lede">It takes about three minutes. We use it to deliver a written, fixed-scope proposal sized for your governing documents, capital plan, and homeowner count — not a generic template.</p>
-
-        <div class="rap-expect">
-          <p class="rap-block-h">What to expect</p>
-          <ul>
-            <li>One-business-day reply</li>
-            <li>Brief discovery call (15–30 min)</li>
-            <li>Written, fixed-scope proposal in 5–7 days</li>
-            <li>No high-pressure follow-ups</li>
-          </ul>
-        </div>
-
-        <div class="rap-call">
-          <p class="rap-call-eyebrow">Prefer to talk?</p>
-          <a href="tel:4073175252" class="rap-call-num">(407) 317-5252</a>
-          <p class="rap-call-hours">M–F 9am–5pm ET. A real person answers.</p>
-        </div>
-
         <blockquote class="rap-quote">"We expected a sales pitch. Tracy spent the call asking about our governing docs and the last manager's exit. We knew before the proposal that this was different."</blockquote>
       </div>
 
       <!-- RIGHT: the intake form (kit component) -->
       <div class="rap-form-col">
         <IntakeForm client:load />
+      </div>
+    </div>
+
+    <!-- BOTTOM: what to expect + prefer to talk -->
+    <div class="rap-bottom">
+      <div class="rap-expect">
+        <p class="rap-block-h">What to expect</p>
+        <ul>
+          <li>One-business-day reply</li>
+          <li>Brief discovery call (15–30 min)</li>
+          <li>Written, fixed-scope proposal in 5–7 days</li>
+          <li>No high-pressure follow-ups</li>
+        </ul>
+      </div>
+
+      <div class="rap-call">
+        <p class="rap-call-eyebrow">Prefer to talk?</p>
+        <a href="tel:4073175252" class="rap-call-num">(407) 317-5252</a>
+        <p class="rap-call-hours">M–F 9am–5pm ET. A real person answers.</p>
       </div>
     </div>
   </section>
@@ -52,21 +54,26 @@ import '../../styles/intake-form.css';
   .rap-context { padding-top: 6px; }
   .rap-eyebrow { font-family: var(--font-display); font-weight: 700; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--edison-teal-dark); margin: 0 0 18px; }
   .rap-h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.07; letter-spacing: -0.02em; color: var(--edison-navy); margin: 0 0 20px; }
-  .rap-lede { font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: var(--edison-text-body); margin: 0 0 34px; max-width: 520px; }
-  .rap-block-h { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--edison-teal-dark); margin: 0 0 14px; }
-  .rap-expect ul { list-style: none; padding: 0; margin: 0 0 34px; display: flex; flex-direction: column; gap: 11px; }
-  .rap-expect li { font-family: var(--font-body); font-size: 15px; line-height: 1.5; color: var(--edison-text-body); padding-left: 26px; position: relative; }
-  .rap-expect li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--edison-teal-dark); font-weight: 800; }
-  .rap-call { background: var(--edison-navy); color: #fff; border-radius: 14px; padding: 22px 26px; margin-bottom: 26px; }
-  .rap-call-eyebrow { font-family: var(--font-display); font-weight: 700; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--edison-teal); margin: 0 0 10px; }
-  .rap-call-num { display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 26px; color: #fff; text-decoration: none; border-bottom: 0; }
-  .rap-call-hours { font-family: var(--font-body); font-size: 13.5px; color: rgba(255,255,255,.72); margin: 6px 0 0; }
-  .rap-quote { font-family: var(--font-body); font-style: italic; font-weight: 600; font-size: 16px; line-height: 1.55; color: var(--edison-navy); border-left: 3px solid var(--edison-teal); padding-left: 18px; margin: 0; }
+  .rap-lede { font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: var(--edison-text-body); margin: 0 0 30px; max-width: 520px; }
+  .rap-quote { font-family: var(--font-body); font-style: italic; font-weight: 600; font-size: 16px; line-height: 1.55; color: var(--edison-navy); border-left: 3px solid var(--edison-teal); padding-left: 18px; margin: 0; max-width: 520px; }
   .rap-form-col { display: flex; justify-content: flex-end; }
   .rap-form-col :global(.if-widget) { width: 100%; }
+
+  /* Bottom band — full-width under the form + title */
+  .rap-bottom { max-width: 1200px; margin: clamp(48px, 6vw, 72px) auto 0; padding-top: clamp(36px, 5vw, 52px); border-top: 1px solid var(--border-hairline, #E3E5EC); display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .rap-block-h { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--edison-teal-dark); margin: 0 0 16px; }
+  .rap-expect ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .rap-expect li { font-family: var(--font-body); font-size: 15.5px; line-height: 1.5; color: var(--edison-text-body); padding-left: 26px; position: relative; }
+  .rap-expect li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--edison-teal-dark); font-weight: 800; }
+  .rap-call { background: var(--edison-navy); color: #fff; border-radius: 14px; padding: 26px 28px; }
+  .rap-call-eyebrow { font-family: var(--font-display); font-weight: 700; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--edison-teal); margin: 0 0 12px; }
+  .rap-call-num { display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 28px; color: #fff; text-decoration: none; border-bottom: 0; }
+  .rap-call-hours { font-family: var(--font-body); font-size: 13.5px; color: rgba(255,255,255,.72); margin: 6px 0 0; }
+
   @media (max-width: 900px) {
     .rap-section { padding-left: 20px; padding-right: 20px; }
     .rap-grid { grid-template-columns: 1fr; gap: 36px; }
     .rap-form-col { justify-content: stretch; }
+    .rap-bottom { grid-template-columns: 1fr; gap: 28px; }
   }
 </style>
