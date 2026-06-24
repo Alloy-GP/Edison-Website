@@ -47,7 +47,7 @@
 .if-intent-arrow .if-ic { width: 18px; height: 18px; }
 .if-intent-card:hover .if-intent-arrow { color: var(--it); transform: translateX(3px); }
 .if-widget .tone-teal { --it: var(--edison-teal-dark); --it-tint: var(--edison-teal-pale); }
-.if-widget .tone-navy { --it: var(--edison-navy); --it-tint: #E3E5EC; }
+.if-widget .tone-sage { --it: #5E7E62; --it-tint: #E8EFE7; }
 .if-widget .tone-gold { --it: #B07D2B; --it-tint: #FBF1DC; }
 .if-back { display: inline-flex; align-items: center; gap: 6px; border: 0; background: transparent; cursor: pointer; font-family: var(--if-font-heading); font-weight: 600; font-size: 12.5px; color: var(--if-muted); padding: 0; margin-bottom: 14px; }
 .if-back:hover { color: var(--if-accent); }
