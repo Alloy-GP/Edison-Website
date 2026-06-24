@@ -8,7 +8,7 @@ const PHASE_1_PAGES = [
   { url: "/",                              label: "Home",                       template: "Home",          group: "Core" },
   { url: "/about",                        label: "About",                      template: "AboutPageB",    group: "Core" },
   { url: "/contact",                      label: "Contact",                    template: "ContactPageA",  group: "Core" },
-  { url: "/request-a-proposal",           label: "Request a Proposal",         template: "ProposalPageA", group: "Core" },
+  { url: "/request-a-proposal",           label: "Request a Proposal",         template: "IntakeForm", group: "Core" },
 
   /* LANDING HUBS */
   { url: "/services",   label: "Services Landing",   template: "ServicesLandingPage",  group: "Core" },
