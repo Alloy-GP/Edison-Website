@@ -115,7 +115,7 @@ function SiteFooter({
   contact = {
     phone: { label: "(407) 317-5252", href: "tel:4073175252" },
     address: "Orlando, Florida",
-    cta: { label: "Contact Us", href: "/contact" }
+    cta: { label: "Contact Us", href: "/request-a-proposal" }
   },
   social = [
     { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61588615083028", Icon: IconFacebook },

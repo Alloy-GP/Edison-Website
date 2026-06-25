@@ -20,7 +20,7 @@ function SolutionPageA({ content }) {
         title={content.hero.title}
         lede={content.hero.lede}
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
-        secondary={{ label: "Schedule a Consultation", href: "/contact" }}
+        secondary={{ label: "Schedule a Consultation", href: "/request-a-proposal" }}
         image={content.hero.image}
       />
 
@@ -59,7 +59,7 @@ function SolutionPageA({ content }) {
         title={content.cta.title}
         body={content.cta.body}
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
-        secondary={{ label: "Schedule a Consultation", href: "/contact" }}
+        secondary={{ label: "Schedule a Consultation", href: "/request-a-proposal" }}
       />
     </main>
   );
@@ -83,7 +83,7 @@ function SolutionPageB({ content }) {
         lede={content.hero.lede}
         stat={content.heroStat}
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
-        secondary={{ label: "Schedule a Consultation", href: "/contact" }}
+        secondary={{ label: "Schedule a Consultation", href: "/request-a-proposal" }}
         bg={content.hero.image}
       />
 
@@ -134,7 +134,7 @@ function SolutionPageB({ content }) {
         title={content.cta.title}
         body={content.cta.body}
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
-        secondary={{ label: "Schedule a Consultation", href: "/contact" }}
+        secondary={{ label: "Schedule a Consultation", href: "/request-a-proposal" }}
       />
     </main>
   );
