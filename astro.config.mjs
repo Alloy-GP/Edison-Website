@@ -39,6 +39,7 @@ export default defineConfig({
     '/locations/florida': '/services/hoa-management',
     '/locations/florida/orlando': '/services/hoa-management/orlando',
     '/blog/hoa-bylwas-vs-ccrs': '/blog/hoa-bylaws-vs-ccrs',
+    '/blog/hoa-reserve-study-guide-florida': '/blog/hoa-reserve-study-guide',
     '/blog/hoa-budget-preparation': '/services/hoa-accounting/budget-preparation',
     '/blog/tag/[...slug]': '/blog',
     '/blog/category/[...slug]': '/blog',
