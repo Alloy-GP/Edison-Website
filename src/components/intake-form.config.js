@@ -25,8 +25,8 @@ export const INTENTS = [
   {
     id: 'vendor', label: 'I’m a vendor', icon: 'hardhat', tone: 'sage',
     blurb: 'I want to work with Edison’s communities.', forWho: 'Contractors & service vendors',
-    // TODO: replace with the real vendor software / registration URL
-    redirect: 'https://edisonassociationmanagement.com/vendors',
+    // INTERIM: emails the office until a real vendor software/registration URL exists.
+    redirect: 'mailto:contact@edisonassociationmanagement.com?subject=Vendor%20inquiry',
   },
   {
     id: 'homeowner', label: 'I’m a homeowner', icon: 'home', tone: 'ocean',
