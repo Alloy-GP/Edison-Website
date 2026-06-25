@@ -18,8 +18,8 @@ const ASSETS = join(ROOT, 'public', 'assets');
 // Hero/aerial shots get a wider cap; logos are tiny.
 const DEFAULT_MAX = 1600;
 const MAX_WIDTH = {
-  'logo.png': 480,
-  'logo-white.png': 480,
+  'logo.png': 280, // header displays at 40px tall — 280w covers 2x DPR
+  'logo-white.png': 280,
   'edison-logo-horizontal.png': 600,
   'edison-logo-white.png': 600,
   'alloy-icon.png': 96,

@@ -91,6 +91,21 @@ const isProduction    = import.meta.env.PUBLIC_ENV === 'production';
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
 
+    {/* Webfonts — non-blocking: preconnect warms the connection, then the
+        stylesheet loads via media="print" swap so it never blocks first paint.
+        display=swap renders fallback text immediately, then swaps in the webfont. */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" />
+    </noscript>
+
     {/* LCP hero preload — fetched at high priority before CSS-discovered backgrounds */}
     {preloadImages?.map((img) => (
       <link rel="preload" as="image" href={img.href} media={img.media} fetchpriority="high" />
@@ -149,7 +164,7 @@ const isProduction    = import.meta.env.PUBLIC_ENV === 'production';
     {import.meta.env.PUBLIC_ENV === 'production' && (
       <>
         <script is:inline>{`var $wc_load=function(a){return JSON.parse(JSON.stringify(a))},$wc_leads=$wc_leads||{doc:{url:$wc_load(document.URL),ref:$wc_load(document.referrer),search:$wc_load(location.search),hash:$wc_load(location.hash)}};`}</script>
-        <script is:inline src="//s.ksrndkehqnwntyxlhgto.com/160125.js"></script>
+        <script is:inline async src="//s.ksrndkehqnwntyxlhgto.com/160125.js"></script>
       </>
     )}
   </head>

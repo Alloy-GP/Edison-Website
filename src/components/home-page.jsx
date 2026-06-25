@@ -180,12 +180,12 @@ function HomeHero({ eyebrow, title, lede, primary, audienceCards }) {
               <InteriorEyebrow color={i === 0 ? "var(--edison-teal)" : "var(--edison-teal-dark)"}>
                 {c.eyebrow}
               </InteriorEyebrow>
-              <h3 style={{
+              <h2 style={{
                 fontFamily: "var(--font-display)", fontWeight: 700,
                 fontSize: 20, lineHeight: 1.25,
                 color: i === 0 ? "#fff" : "var(--edison-navy)",
                 margin: 0
-              }}>{c.title}</h3>
+              }}>{c.title}</h2>
               <span style={{
                 fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13.5,
                 color: i === 0 ? "var(--edison-teal)" : "var(--edison-teal-dark)",

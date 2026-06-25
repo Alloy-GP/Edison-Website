@@ -213,7 +213,7 @@ function FeatureCard({ feature, compact = false }) {
 /* ---------- Mega menu (desktop) ---------- */
 function MegaMenu({ columns }) {
   return (
-    <div role="menu" data-mega-menu className="edison-mega-menu" style={{
+    <div data-mega-menu className="edison-mega-menu" style={{
       position: "absolute", top: "calc(100% + 1px)", left: "50%",
       width: "min(1200px, calc(100vw - 32px))",
       background: "#fff",
@@ -278,7 +278,7 @@ function MegaItem({ item }) {
 /* ---------- Simple dropdown (desktop) ---------- */
 function SimpleDropdown({ items }) {
   return (
-    <ul role="menu" className="edison-simple-dropdown" style={{
+    <ul className="edison-simple-dropdown" style={{
       listStyle: "none", margin: 0, padding: "6px", minWidth: 260,
       background: "#fff", border: "1px solid var(--border-hairline)",
       borderTop: "2px solid var(--edison-teal)", borderRadius: "0 0 10px 10px",
