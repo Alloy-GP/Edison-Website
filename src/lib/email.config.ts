@@ -31,6 +31,10 @@ export const EMAIL_CONFIG = {
     'admin@edison-mgmt.com',
   ],
 
+  // ── TEMPORARY: CC'd on every lead notification (Alloy monitoring).
+  // Remove this when no longer needed. ──
+  ccAll: ['admin@alloygp.co'],
+
   // ── Per-intent routing. The intake form sends an `intent`; /api/lead routes
   // the staff notification to the matching list (falls back to `notify`).
   // Proposals → Tracy; everything else → the admin inbox. ──

@@ -75,6 +75,7 @@ export const POST: APIRoute = async ({ request }) => {
         from:    EMAIL_CONFIG.from.notifications,
         replyTo: EMAIL_CONFIG.replyTo,
         to:      notifyTo,
+        cc:      EMAIL_CONFIG.ccAll,
         subject: intentCfg.notifySubject(company || name),
         html: `
           <h2>${esc(intentCfg.label)}</h2>
