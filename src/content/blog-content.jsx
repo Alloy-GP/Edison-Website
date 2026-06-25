@@ -213,7 +213,7 @@ const BLOG_CONTENT = {
     ],
     related: [
       { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide" },
-      { category: "Financial Management", title: "HOA Reserve Study Guide (Florida)", image: "/assets/img-21.jpg", href: "/blog/hoa-reserve-study-guide-florida" },
+      { category: "Financial Management", title: "HOA Reserve Study Guide (Florida)", image: "/assets/img-21.jpg", href: "/blog/hoa-reserve-study-guide" },
       { category: "For Boards", title: "Condo Association vs HOA", image: "/assets/img-22.jpg", href: "/blog/condo-association-vs-hoa" }
     ]
   },
@@ -576,7 +576,7 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Financial Management", title: "HOA Reserve Study Guide (Florida)", image: "/assets/img-21.jpg", href: "/blog/hoa-reserve-study-guide-florida" },
+      { category: "Financial Management", title: "HOA Reserve Study Guide (Florida)", image: "/assets/img-21.jpg", href: "/blog/hoa-reserve-study-guide" },
       { category: "Financial Management", title: "HOA Audit Guide", image: "/assets/img-accounting.jpg", href: "/blog/hoa-audit" },
       { category: "Financial Management", title: "HOA Management Fees", image: "/assets/img-13.jpg", href: "/blog/hoa-management-fees" }
     ]
