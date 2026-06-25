@@ -18,25 +18,26 @@ export const EMAIL_CONFIG = {
   },
 
   // ── Replies to our emails route to this monitored inbox. ──
-  replyTo: 'contact@edisonassociationmanagement.com',
+  replyTo: 'admin@edison-mgmt.com',
 
   // ── Default inbox — used by unknown/unrouted intents (fallback). ──
   notify: [
-    'contact@edisonassociationmanagement.com',
+    'admin@edison-mgmt.com',
   ],
 
   // ── Failure-alert inbox. Handlers send the email-fallback alert here
   // when a notification send fails (see form-alert.ts). ──
   alertsTo: [
-    'contact@edisonassociationmanagement.com',
+    'admin@edison-mgmt.com',
   ],
 
   // ── Per-intent routing. The intake form sends an `intent`; /api/lead routes
-  // the staff notification to the matching list (falls back to `notify`). ──
+  // the staff notification to the matching list (falls back to `notify`).
+  // Proposals → Tracy; everything else → the admin inbox. ──
   routes: {
-    proposal:  ['contact@edisonassociationmanagement.com'],
-    homeowner: ['contact@edisonassociationmanagement.com'],
-    general:   ['contact@edisonassociationmanagement.com'],
+    proposal:  ['tdurham@edison-mgmt.com'],
+    homeowner: ['admin@edison-mgmt.com'],
+    general:   ['admin@edison-mgmt.com'],
   } as Record<string, string[]>,
 
   mailchimp: {
