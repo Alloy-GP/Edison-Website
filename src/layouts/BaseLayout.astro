@@ -114,9 +114,6 @@ const isProduction    = import.meta.env.PUBLIC_ENV === 'production';
     {twitterReadTime && <meta name="twitter:label2" content="Time to read" />}
     {twitterReadTime && <meta name="twitter:data2"  content={twitterReadTime} />}
 
-    <!-- Font preloads — update hrefs to match client's actual font files -->
-    <!-- <link rel="preload" href="/fonts/ClientFont-Regular.woff2" as="font" type="font/woff2" crossorigin /> -->
-    <!-- <link rel="preload" href="/fonts/ClientFont-Bold.woff2" as="font" type="font/woff2" crossorigin /> -->
 
     <!-- JSON-LD: Organization (every page) -->
     <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
