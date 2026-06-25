@@ -15,7 +15,7 @@ import { REVIEWS } from '../../data/reviews';
    ============================================================ */
 export const prerender = false;
 
-const PLACES = 'https://maps.googleapis.com/maps/api/place';
+const PLACES_NEW = 'https://places.googleapis.com/v1';
 
 function json(body: unknown, cacheable: boolean) {
   return new Response(JSON.stringify(body), {
@@ -52,27 +52,32 @@ export const GET: APIRoute = async ({ url }) => {
     let placeId = import.meta.env.GOOGLE_PLACE_ID as string | undefined;
     const placeIdFromEnv = !!placeId;
     if (!placeId) {
-      const findUrl = `${PLACES}/findplacefromtext/json?input=${encodeURIComponent('Edison Association Management Orlando FL')}&inputtype=textquery&fields=place_id&key=${key}`;
-      const found = await fetch(findUrl).then((r) => r.json());
-      placeId = found?.candidates?.[0]?.place_id;
+      const found = await fetch(`${PLACES_NEW}/places:searchText`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Goog-Api-Key': key, 'X-Goog-FieldMask': 'places.id' },
+        body: JSON.stringify({ textQuery: 'Edison Association Management Orlando FL' }),
+      }).then((r) => r.json());
+      placeId = found?.places?.[0]?.id;
     }
     if (!placeId) return json(fallback, false);
 
-    const detUrl = `${PLACES}/details/json?place_id=${placeId}&fields=rating,user_ratings_total&key=${key}`;
-    const det = await fetch(detUrl).then((r) => r.json());
-    const rating = det?.result?.rating;
-    const count = det?.result?.user_ratings_total;
+    // Place Details (Places API New): rating + userRatingCount at the top level.
+    const det = await fetch(`${PLACES_NEW}/places/${placeId}`, {
+      headers: { 'X-Goog-Api-Key': key, 'X-Goog-FieldMask': 'rating,userRatingCount' },
+    }).then((r) => r.json());
+    const rating = det?.rating;
+    const count = det?.userRatingCount;
 
     if (typeof rating === 'number' && typeof count === 'number') {
       return json({ rating, count, placeId, reviewsUrl: reviewsLink(placeId), source: 'live', updatedAt: new Date().toISOString() }, true);
     }
     if (debug) {
       return json({ ...fallback, placeId, reviewsUrl: reviewsLink(placeId),
-        _debug: { keyPresent: true, placeIdFromEnv, detailsStatus: det?.status, detailsError: det?.error_message, hasResult: !!det?.result } }, false);
+        _debug: { keyPresent: true, placeIdFromEnv, status: det?.error?.status, error: det?.error?.message, rating, count } }, false);
     }
     // Details missing numbers but we have a Place ID — still return a working reviews link.
     return json({ ...fallback, placeId, reviewsUrl: reviewsLink(placeId) }, false);
-  } catch {
-    return json(fallback, false);
+  } catch (e) {
+    return json(debug ? { ...fallback, _debug: { exception: String(e) } } : fallback, false);
   }
 };
