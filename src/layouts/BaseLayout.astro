@@ -73,8 +73,6 @@ const orgLd = {
   priceRange: SITE.org.priceRange,
 };
 
-const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
-
 // Alloy Preview Review widget renders on stg only — never on production.
 const isProduction    = import.meta.env.PUBLIC_ENV === 'production';
 ---
@@ -143,21 +141,6 @@ const isProduction    = import.meta.env.PUBLIC_ENV === 'production';
     <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
     {pageSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
-    )}
-
-    <!-- Google Analytics: deferred until after page paint to avoid forced reflow -->
-    {gaMeasurementId && import.meta.env.PUBLIC_ENV === 'production' && (
-      <script is:inline define:vars={{ gaMeasurementId }}>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', gaMeasurementId);
-        window.addEventListener('load', function() {
-          var s = document.createElement('script');
-          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaMeasurementId;
-          document.head.appendChild(s);
-        });
-      </script>
     )}
 
     <!-- WhatConverts: production only -->
