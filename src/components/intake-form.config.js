@@ -18,8 +18,11 @@ export const INTENTS = [
     blurb: 'We’re exploring new management and want a proposal.', forWho: 'Boards & directors',
     routeTo: 'Edison’s leadership team', fields: [
       { key: 'company', label: 'Community / association name', type: 'text', required: true, placeholder: 'e.g. Heathrow Master Association', col: 2 },
-      { key: 'communityType', label: 'Community type', type: 'select', required: true, options: ['HOA (single-family)', 'Townhome', 'Condominium', 'Master / mixed'] },
-      { key: 'timeline', label: 'Timeline', type: 'radio', required: true, options: ['ASAP', '1–3 months', 'Just exploring'], col: 2 },
+      { key: 'propertyType', label: 'Property type', type: 'select', required: true, options: ['HOA', 'Condominium', 'Townhome', 'Master-planned', 'Commercial / mixed-use', 'Rental property'] },
+      { key: 'unitCount', label: 'Number of units / homes', type: 'select', required: true, options: ['Under 50', '50–150', '150–300', '300–500', '500+'] },
+      { key: 'currentManagement', label: 'Current management', type: 'select', required: true, options: ['Self-managed', 'With another management company', 'Developer / new-construction turnover', 'Not sure yet'] },
+      { key: 'location', label: 'Community location (city)', type: 'text', required: false, placeholder: 'e.g. Lake Mary, FL', col: 2 },
+      { key: 'timeline', label: 'Timeline', type: 'radio', required: true, options: ['ASAP', '1–3 months', 'Just researching'], col: 2 },
     ],
   },
   {
