@@ -34,9 +34,10 @@ export const EMAIL_CONFIG = {
   // ── Per-intent routing. The intake form sends an `intent`; /api/lead routes
   // the staff notification to the matching list (falls back to `notify`). ──
   routes: {
-    proposal: ['contact@edisonassociationmanagement.com'],
-    bid:      ['contact@edisonassociationmanagement.com'],
-    general:  ['contact@edisonassociationmanagement.com'],
+    proposal:  ['contact@edisonassociationmanagement.com'],
+    developer: ['contact@edisonassociationmanagement.com'],
+    homeowner: ['contact@edisonassociationmanagement.com'],
+    general:   ['contact@edisonassociationmanagement.com'],
   } as Record<string, string[]>,
 
   mailchimp: {
@@ -60,13 +61,23 @@ export const EMAIL_CONFIG = {
         <p>If it's urgent, call us anytime at (407) 317-5252.</p>
         <p>— The Edison team</p>`,
     },
-    bid: {
-      label: 'Vendor Bid',
-      notifySubject: (who: string) => `New vendor bid — ${who}`,
-      confirmSubject: 'We received your bid — Edison Association Management',
+    developer: {
+      label: 'Developer Inquiry',
+      notifySubject: (who: string) => `New developer inquiry — ${who}`,
+      confirmSubject: 'We received your message — Edison Association Management',
       confirmBody: () =>
-        `<p>Thanks for your interest in working with Edison Association Management.</p>
-        <p>We've received your information and our operations team will review it. If your services are a fit for the communities we manage, we'll be in touch.</p>
+        `<p>Thanks for reaching out to Edison Association Management.</p>
+        <p>We've received your information and a member of our leadership team will follow up within one business day to talk through your project and how Edison can help at and beyond turnover.</p>
+        <p>— The Edison team</p>`,
+    },
+    homeowner: {
+      label: 'Homeowner Question',
+      notifySubject: (who: string) => `New homeowner question — ${who}`,
+      confirmSubject: 'We received your question — Edison Association Management',
+      confirmBody: () =>
+        `<p>Thanks for reaching out.</p>
+        <p>Your question has been logged and routed to your community team. A real person will follow up within one business day.</p>
+        <p>Need something urgently? Call us at (407) 317-5252.</p>
         <p>— The Edison team</p>`,
     },
     general: {
