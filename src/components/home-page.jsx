@@ -581,7 +581,7 @@ function HomePage() {
         title="Ready for a Better Association Management Experience?"
         body="Tell us about your community and receive a customized management proposal tailored to your association's needs."
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
-        secondary={{ label: "Contact Us", href: "/contact" }}
+        secondary={{ label: "Contact Us", href: "/request-a-proposal" }}
       />
 
     </main>

@@ -34,7 +34,7 @@ function SolutionsLandingPage({ content = SOLUTIONS_LANDING_CONTENT }) {
             }}>{content.hero.lede}</p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <InteriorButton variant="primary" size="lg" href="/request-a-proposal">Request a Proposal</InteriorButton>
-              <InteriorButton variant="ghost" size="lg" href="/contact">Schedule a Consultation</InteriorButton>
+              <InteriorButton variant="ghost" size="lg" href="/request-a-proposal">Schedule a Consultation</InteriorButton>
             </div>
           </div>
 

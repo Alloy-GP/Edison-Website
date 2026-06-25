@@ -45,7 +45,7 @@ function EdisonTransitionPage() {
             }}>Most management companies treat onboarding as a checkbox. Edison built a defined program with a dedicated COO touch-point, records digitization, vendor recredentialing, and a community-wide Meet Your Management event. 60–90 days, end-to-end. Run by us, not your board.</p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <InteriorButton variant="primary" size="lg" href="/request-a-proposal">Request a Proposal</InteriorButton>
-              <InteriorButton variant="ghost" size="lg" href="/contact">Schedule a Consultation</InteriorButton>
+              <InteriorButton variant="ghost" size="lg" href="/request-a-proposal">Schedule a Consultation</InteriorButton>
             </div>
           </div>
           <div className="transition-hero-img" style={{

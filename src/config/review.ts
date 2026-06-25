@@ -12,7 +12,6 @@ export const REVIEW_ITEMS: ReviewItem[] = [
   { label: 'Services', path: '/services/', review: false },
   { label: 'Solutions', path: '/solutions/', review: false },
   { label: 'About', path: '/about/', review: false },
-  { label: 'Contact', path: '/contact/', review: false },
   { label: 'Request A Proposal', path: '/request-a-proposal/', review: false },
   { label: 'FAQ', path: '/faq/', review: false },
   { label: 'Testimonials', path: '/testimonials/', review: false },

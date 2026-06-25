@@ -101,8 +101,7 @@ const DEFAULT_NAV = [
       { label: "Meet Your Management", href: "/about/meet-your-management" },
       { label: "Testimonials", href: "/testimonials" }
     ]
-  },
-  { label: "Contact", href: "/contact" }
+  }
 ];
 
 const DEFAULT_UTILITY = {
@@ -421,7 +420,7 @@ function SiteHeader({
   homeHref = "/",
   nav = DEFAULT_NAV,
   utility = DEFAULT_UTILITY,
-  cta = { label: "Request a Proposal", href: "/request-a-proposal" }
+  cta = { label: "Request Proposal / Contact", href: "/request-a-proposal" }
 }) {
   const [openIdx, setOpenIdx]       = useState(-1);
   const [hoveredIdx, setHoveredIdx] = useState(-1);
