@@ -25,8 +25,11 @@ export const INTENTS = [
   {
     id: 'vendor', label: 'I’m a vendor', icon: 'hardhat', tone: 'sage',
     blurb: 'I want to work with Edison’s communities.', forWho: 'Contractors & service vendors',
-    // INTERIM: emails the office until a real vendor software/registration URL exists.
-    redirect: 'mailto:contact@edisonassociationmanagement.com?subject=Vendor%20inquiry',
+    routeTo: 'Edison’s operations team', fields: [
+      { key: 'company', label: 'Company', type: 'text', required: true, placeholder: 'Company name', col: 2 },
+      { key: 'trade', label: 'Trade / service', type: 'text', required: true, placeholder: 'e.g. landscaping, roofing' },
+      { key: 'serviceArea', label: 'Service area', type: 'text', required: false, placeholder: 'Counties / cities served' },
+    ],
   },
   {
     id: 'homeowner', label: 'I’m a homeowner', icon: 'home', tone: 'ocean',
