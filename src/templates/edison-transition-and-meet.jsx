@@ -1,5 +1,5 @@
 import React from 'react';
-import { Breadcrumb, BodyProse, FAQ, FinalCTA, InteriorButton } from '../components/interior-components';
+import { Breadcrumb, BodyProse, BulbMark, FAQ, FinalCTA, InteriorButton } from '../components/interior-components';
 import { NumberedSteps, ComparisonTable, StatsBand, PullQuote } from '../components/template-sections';
 
 /* ============================================================
@@ -150,8 +150,8 @@ function MeetYourManagementPage() {
             display: "inline-flex", alignItems: "center", justifyContent: "center",
             width: 72, height: 72, borderRadius: 18,
             background: "var(--edison-teal)", color: "var(--edison-navy)",
-            fontSize: 36, marginBottom: 22
-          }} aria-hidden="true">🍦</div>
+            marginBottom: 22
+          }} aria-hidden="true"><BulbMark size={40}/></div>
           <div style={{
             fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12.5,
             letterSpacing: "0.16em", textTransform: "uppercase",
