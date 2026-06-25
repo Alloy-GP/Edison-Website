@@ -17,12 +17,11 @@ export const INTENTS = [
     id: 'proposal', label: 'I’m on a board', icon: 'users', tone: 'teal', hot: true,
     blurb: 'We’re exploring new management and want a proposal.', forWho: 'Boards & directors',
     routeTo: 'Edison’s leadership team', fields: [
-      { key: 'company', label: 'Community / association name', type: 'text', required: true, placeholder: 'e.g. Heathrow Master Association', col: 2 },
+      { key: 'company', label: 'Association / community name', type: 'text', required: true, placeholder: 'e.g. Wynbrook HOA', col: 2 },
+      { key: 'units', label: 'Number of units', type: 'select', required: true, options: ['1–50', '51–150', '151–400', '400+'] },
       { key: 'propertyType', label: 'Property type', type: 'select', required: true, options: ['HOA', 'Condominium', 'Townhome', 'Master-planned', 'Commercial / mixed-use', 'Rental property'] },
-      { key: 'unitCount', label: 'Number of units / homes', type: 'select', required: true, options: ['Under 50', '50–150', '150–300', '300–500', '500+'] },
-      { key: 'currentManagement', label: 'Current management', type: 'select', required: true, options: ['Self-managed', 'With another management company', 'Developer / new-construction turnover', 'Not sure yet'] },
-      { key: 'location', label: 'Community location (city)', type: 'text', required: false, placeholder: 'e.g. Lake Mary, FL', col: 2 },
-      { key: 'timeline', label: 'Timeline', type: 'radio', required: true, options: ['ASAP', '1–3 months', 'Just researching'], col: 2 },
+      { key: 'situation', label: 'Current situation', type: 'select', required: true, options: ['Self-managed today', 'Unhappy with current manager', 'Contract ending soon', 'Just exploring'], col: 2 },
+      { key: 'timeline', label: 'Decision timeline', type: 'radio', required: true, options: ['ASAP', '1–3 months', 'Just researching'], col: 2 },
     ],
   },
   {
