@@ -40,6 +40,7 @@ export const EMAIL_CONFIG = {
   // Proposals → Tracy; everything else → the admin inbox. ──
   routes: {
     proposal:  ['tdurham@edison-mgmt.com'],
+    vendor:    ['admin@edison-mgmt.com'],
     homeowner: ['admin@edison-mgmt.com'],
     general:   ['admin@edison-mgmt.com'],
   } as Record<string, string[]>,
@@ -63,6 +64,15 @@ export const EMAIL_CONFIG = {
         `<p>Thank you for reaching out to Edison Association Management.</p>
         <p>We've received your request and a PCAM-led member of our team will review your community's details and follow up within one business day to talk through what management with Edison would look like.</p>
         <p>If it's urgent, call us anytime at (407) 317-5252.</p>
+        <p>— The Edison team</p>`,
+    },
+    vendor: {
+      label: 'Vendor Bid',
+      notifySubject: (who: string) => `New vendor bid — ${who}`,
+      confirmSubject: 'We received your information — Edison Association Management',
+      confirmBody: () =>
+        `<p>Thanks for your interest in working with Edison Association Management.</p>
+        <p>We've received your information and our operations team will review it. If your services are a fit for the communities we manage, we'll be in touch.</p>
         <p>— The Edison team</p>`,
     },
     homeowner: {

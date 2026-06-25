@@ -232,9 +232,9 @@ export default function IntakeForm() {
                 <Field key={f.key} def={f} value={fields[f.key]} error={errors[f.key]} onChange={setField} />
               ))}
               <div className="if-field" style={{ gridColumn: '1 / -1' }}>
-                <label className="if-label">{intent.id === 'service' ? 'How can we help?' : 'Anything else?'}{intent.id === 'service' && <span className="if-req">*</span>}</label>
-                <textarea className={'if-control if-textarea' + (errors.message ? ' is-err' : '')} rows={intent.id === 'general' ? 5 : 3}
-                  placeholder={intent.id === 'general' ? 'Tell us what’s on your mind…' : intent.id === 'service' ? 'Tell us what you need handled — the more detail, the faster we can help.' : 'A sentence or two helps us route this faster.'}
+                <label className="if-label">{intent.id === 'vendor' ? 'Tell us about your services' : 'Anything else?'}</label>
+                <textarea className={'if-control if-textarea' + (errors.message ? ' is-err' : '')} rows={intent.id === 'general' || intent.id === 'vendor' ? 5 : 3}
+                  placeholder={intent.id === 'general' ? 'Tell us what’s on your mind…' : intent.id === 'vendor' ? 'What you do, where you work, and anything that sets your company apart.' : 'A sentence or two helps us route this faster.'}
                   value={message} onChange={(e) => { setMessage(e.target.value); setErrors((x) => ({ ...x, message: null })); }} />
                 {errors.message && <div className="if-err-msg">{errors.message}</div>}
               </div>
@@ -243,7 +243,7 @@ export default function IntakeForm() {
             <div className="if-actions">
               <div className="if-trust"><Ic name="lock" /> Your details stay private. No spam, ever.</div>
               <button type="submit" className="if-submit" disabled={sending}>
-                {sending ? 'Sending…' : intent.id === 'proposal' ? 'Request my proposal' : 'Send message'}
+                {sending ? 'Sending…' : intent.id === 'proposal' ? 'Request my proposal' : intent.id === 'vendor' ? 'Submit bid info' : 'Send message'}
                 {!sending && <Ic name="arrowRight" />}
               </button>
             </div>
