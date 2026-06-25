@@ -14,6 +14,6 @@ export interface ReviewStats {
 
 export const REVIEWS: ReviewStats = {
   rating: 4.9,
-  count: 127,
-  updatedAt: '2026-06-16',
+  count: 130,
+  updatedAt: '2026-06-25',
 };
