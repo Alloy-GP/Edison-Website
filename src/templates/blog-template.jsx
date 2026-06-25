@@ -77,7 +77,7 @@ function BlogSpokeA({ content }) {
 
       <section className="blog-a-body" style={{ background: "#fff", padding: "32px 48px 0" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <img src={content.heroImage} alt=""
+          <img src={content.heroImage} alt={content.imageAlt || content.title} fetchpriority="high" decoding="async"
                style={{
                  width: "100%", height: 460, objectFit: "cover",
                  borderRadius: 16, display: "block",

@@ -27,7 +27,9 @@ if (!content) {
 }
 
 const pageTitle       = `${content.title} | Edison`;
-const pageDescription = content.dek ?? content.title;
+// dek is the on-page subtitle (often >160 chars). Prefer an explicit, SEO-length
+// metaDescription when provided, falling back to dek then title.
+const pageDescription = content.metaDescription ?? content.dek ?? content.title;
 ---
 
 <SiteLayout

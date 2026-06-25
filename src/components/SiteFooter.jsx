@@ -34,7 +34,8 @@ const DEFAULT_FOOTER_COLUMNS = [
       { label: "Clermont", href: "/services/hoa-management/clermont" },
       { label: "Lake Mary", href: "/services/hoa-management/lake-mary" },
       { label: "Altamonte Springs", href: "/services/hoa-management/altamonte-springs" },
-      { label: "Oviedo", href: "/services/hoa-management/oviedo" }
+      { label: "Oviedo", href: "/services/hoa-management/oviedo" },
+      { label: "Brevard County", href: "/services/hoa-management/brevard-county" }
     ]
   },
   {
