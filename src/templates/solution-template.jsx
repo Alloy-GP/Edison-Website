@@ -149,7 +149,7 @@ const SWITCH_CONTENT = {
   hero: {
     title: "Thinking about switching HOA management companies?",
     lede: "If your manager doesn't return calls, your financials feel opaque, or your board is tired of doing the management company's job, you're not alone. Most boards know they need a change long before they make one. Here's how to make it the easier decision.",
-    image: "/assets/img-inspector.jpg"
+    image: "/assets/img-inspector.webp"
   },
   heroStat: {
     eyebrow: "Industry Reality",

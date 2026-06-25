@@ -206,7 +206,7 @@ const HOA_ACCOUNTING_CONTENT = {
   hero: {
     title: "HOA accounting handled by a dedicated specialist, not your manager's spare time.",
     lede: "Florida community associations carry compliance obligations, transparency requirements, and reserve funding responsibilities that a generalist bookkeeper isn't built to handle. Edison's accounting department keeps your books audit-ready year-round.",
-    image: "/assets/img-accounting.jpg",
+    image: "/assets/img-accounting.webp",
     applies: "HOA + Condo Associations"
   },
   stats: [

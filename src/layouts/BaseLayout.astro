@@ -34,6 +34,9 @@ interface Props {
   twitterAuthor?: string;
   /** Twitter card label 2 — e.g. "9 min". Renders twitter:label2 + twitter:data2. */
   twitterReadTime?: string;
+  /** LCP-critical images to preload (e.g. the hero background). Each renders a
+   *  high-priority <link rel="preload" as="image">. Add `media` for responsive heroes. */
+  preloadImages?: { href: string; media?: string }[];
 }
 
 const {
@@ -45,6 +48,7 @@ const {
   pageSchema,
   twitterAuthor,
   twitterReadTime,
+  preloadImages,
 } = Astro.props;
 
 const canonicalUrl    = new URL(Astro.url.pathname, Astro.site ?? SITE.url).toString();
@@ -86,6 +90,11 @@ const isProduction    = import.meta.env.PUBLIC_ENV === 'production';
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+    {/* LCP hero preload — fetched at high priority before CSS-discovered backgrounds */}
+    {preloadImages?.map((img) => (
+      <link rel="preload" as="image" href={img.href} media={img.media} fetchpriority="high" />
+    ))}
 
     {robots && <meta name="robots" content={robots} />}
 

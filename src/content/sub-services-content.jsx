@@ -19,7 +19,7 @@ const SUB_SERVICES_CONTENT = {
     hero: {
       title: "HOA management built for single-family neighborhoods.",
       lede: "Single-family HOAs in Central Florida share a profile, detached homes, individual lots, shared common areas, ARC review on exteriors. Edison's HOA management practice was built around exactly this community type.",
-      image: "/assets/img-13.jpg",
+      image: "/assets/img-13.webp",
       statute: "Florida Statute Ch. 720"
     },
     spec: [
@@ -92,7 +92,7 @@ const SUB_SERVICES_CONTENT = {
     hero: {
       title: "Townhome association management, attached housing, shared building elements.",
       lede: "Townhome HOAs sit between single-family and condominium in their governing pattern, Ch. 720 statutory frame, but with shared roofs, party walls, and common building elements that demand a different vendor mix and reserve scope.",
-      image: "/assets/img-22.jpg",
+      image: "/assets/img-22.webp",
       statute: "Florida Statute Ch. 720"
     },
     spec: [
@@ -165,7 +165,7 @@ const SUB_SERVICES_CONTENT = {
     hero: {
       title: "Annual budget preparation that boards can actually defend.",
       lede: "Most community association budgets are last year's plus inflation. Edison's budget preparation is built from operating data, reserve study recommendations, and an honest read of the community's capital pipeline, so boards approve a number they can stand behind.",
-      image: "/assets/img-accounting.jpg",
+      image: "/assets/img-accounting.webp",
       statute: "FL Ch. 720 / Ch. 718"
     },
     spec: [
@@ -238,7 +238,7 @@ const SUB_SERVICES_CONTENT = {
     hero: {
       title: "Reserve study support, from engineer engagement through funding plan adoption.",
       lede: "A reserve study is only as useful as the funding plan it produces. Edison coordinates the engineer engagement, reviews the deliverable against the community's actual capital history, and integrates findings into the next budget cycle.",
-      image: "/assets/img-21.jpg",
+      image: "/assets/img-21.webp",
       statute: "FL Ch. 720 / Ch. 718"
     },
     spec: [
@@ -311,7 +311,7 @@ const SUB_SERVICES_CONTENT = {
     hero: {
       title: "Milestone inspection coordination under Florida SB-4D.",
       lede: "Florida condominium associations 30+ years old (25+ in coastal counties) and three stories or more must commission phased milestone inspections by a licensed structural engineer. Edison handles the engineer engagement, the access logistics, and the board reporting.",
-      image: "/assets/img-22.jpg",
+      image: "/assets/img-22.webp",
       statute: "Florida Statute § 553.899 · SB-4D"
     },
     spec: [
@@ -385,7 +385,7 @@ const SUB_SERVICES_CONTENT = {
     hero: {
       title: "Structural Integrity Reserve Study (SIRS) coordination.",
       lede: "Florida condominium associations three stories or more must commission a Structural Integrity Reserve Study by their statutory deadline. Edison coordinates the engineer, manages the deliverable, and helps your board build a funding plan that meets the mandate.",
-      image: "/assets/img-21.jpg",
+      image: "/assets/img-21.webp",
       statute: "Florida Statute § 718.112(2)(g) · SB-4D"
     },
     spec: [

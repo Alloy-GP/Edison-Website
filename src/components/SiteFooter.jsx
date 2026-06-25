@@ -107,7 +107,7 @@ function FooterCol({ title, href, links }) {
 }
 
 function SiteFooter({
-  logoSrc = "/assets/logo-white.png",
+  logoSrc = "/assets/logo-white.webp",
   logoAlt = "Edison Association Management",
   homeHref = "/",
   blurb = "Professional HOA and condominium management services in Orlando, Florida. Lighting the way for community associations since 2021.",
@@ -142,7 +142,7 @@ function SiteFooter({
         {/* Brand column */}
         <div>
           <a href={homeHref} aria-label={logoAlt} style={{ display: "inline-block", borderBottom: 0 }}>
-            <img src={logoSrc} alt={logoAlt}
+            <img src={logoSrc} alt={logoAlt} width={166} height={50} loading="lazy" decoding="async"
                  style={{ height: 50, width: "auto", display: "block", marginBottom: 20 }}/>
           </a>
           <p style={{

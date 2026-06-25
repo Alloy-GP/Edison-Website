@@ -17,7 +17,7 @@ const SERVICES_CONTENT = {
     hero: {
       title: "HOA accounting handled by a dedicated specialist, not your manager's spare time.",
       lede: "Florida community associations carry compliance obligations, transparency requirements, and reserve funding responsibilities that a generalist bookkeeper isn't built to handle. Edison's accounting department keeps your books audit-ready year-round.",
-      image: "/assets/img-accounting.jpg",
+      image: "/assets/img-accounting.webp",
       applies: "HOA + Condo Associations"
     },
     stats: [
@@ -94,7 +94,7 @@ const SERVICES_CONTENT = {
     hero: {
       title: "Covenant enforcement run by a dedicated department, not your manager wearing another hat.",
       lede: "Fair, consistent, address-not-name enforcement that protects property values without eroding homeowner relationships. Edison runs covenant work as a separate workstream with documented protocols, monthly board reporting, and a correction-first protocol.",
-      image: "/assets/hoa-covenant-enforcement-inspection.jpg",
+      image: "/assets/hoa-covenant-enforcement-inspection.webp",
       applies: "HOA + Condo Associations"
     },
     stats: [
@@ -170,7 +170,7 @@ const SERVICES_CONTENT = {
     hero: {
       title: "In-house collections that protect cash flow without sending every delinquency to a lawyer.",
       lede: "Edison's collections department runs the delinquency process end-to-end, courtesy reminders, formal notices, intent-to-lien, payment plans, and attorney coordination when legally required. Most cases resolve before legal escalation. Your association's cash position stays healthy.",
-      image: "/assets/img-resident-portal.jpg",
+      image: "/assets/img-resident-portal.webp",
       applies: "HOA + Condo Associations"
     },
     stats: [

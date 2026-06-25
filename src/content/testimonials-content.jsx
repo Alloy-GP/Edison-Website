@@ -17,7 +17,7 @@ const TESTIMONIALS_CONTENT = {
       attribution: "Ross H.",
       role: "Board Member",
       community: "Edison-managed HOA",
-      image: "/assets/img-11.jpg"
+      image: "/assets/img-11.webp"
     },
     {
       category: "Switching",

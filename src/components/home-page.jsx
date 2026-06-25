@@ -44,7 +44,10 @@ const HOME_STYLES = `
 
   /* ---- Mobile: ≤640px ---- */
   @media (max-width: 640px) {
-    .hp-hero { padding: 72px 20px 0 !important; min-height: 480px !important; }
+    .hp-hero {
+      padding: 72px 20px 0 !important; min-height: 480px !important;
+      background-image: linear-gradient(180deg, rgba(15,29,51,.72) 0%, rgba(15,29,51,.55) 60%, rgba(15,29,51,.78) 100%), url(/assets/img-community-aerial-mobile.webp) !important;
+    }
     .hp-hero-title { font-size: 34px !important; line-height: 1.12 !important; letter-spacing: -0.01em !important; }
     .hp-hero-lede { font-size: 16px !important; margin-bottom: 24px !important; }
     .hp-hero-cta-row { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
@@ -76,7 +79,7 @@ function HomeHero({ eyebrow, title, lede, primary, audienceCards }) {
       position: "relative",
       minHeight: 640,
       backgroundImage:
-        "linear-gradient(180deg, rgba(15,29,51,.72) 0%, rgba(15,29,51,.55) 60%, rgba(15,29,51,.78) 100%), url(assets/img-community-aerial.jpg)",
+        "linear-gradient(180deg, rgba(15,29,51,.72) 0%, rgba(15,29,51,.55) 60%, rgba(15,29,51,.78) 100%), url(/assets/img-community-aerial.webp)",
       backgroundSize: "cover", backgroundPosition: "center",
       color: "#fff",
       display: "flex", flexDirection: "column"
@@ -460,7 +463,7 @@ function HomePage() {
             eyebrow: "For HOA & Condo Boards",
             title: "See why Central Florida boards switch to Edison.",
             cta: "Learn more",
-            image: "/assets/central-florida-hoa-management-board-walkthrough.jpg",
+            image: "/assets/central-florida-hoa-management-board-walkthrough.webp",
             alt: "Edison community manager walking an HOA board member past the community pool and amenities in Central Florida",
             href: "/about"
           },
@@ -468,7 +471,7 @@ function HomePage() {
             eyebrow: "For Residents & Homeowners",
             title: "Pay dues, submit requests, and access your documents.",
             cta: "Resident portal",
-            image: "/assets/img-resident-portal.jpg",
+            image: "/assets/img-resident-portal.webp",
             alt: "Homeowner using the Edison resident portal to pay dues and submit requests",
             href: "https://edison.cincwebaxis.com"
           }
@@ -482,19 +485,19 @@ function HomePage() {
           {
             title: "HOA Management Services",
             body: "Dedicated managers. Transparent reporting. One point of contact.",
-            image: "/assets/img-13.jpg",
+            image: "/assets/img-13.webp",
             href: "/services/hoa-management"
           },
           {
             title: "Accounting & Bookkeeping",
             body: "Monthly financials, accurate budgets, and on-time collections.",
-            image: "/assets/img-accounting.jpg",
+            image: "/assets/img-accounting.webp",
             href: "/services/hoa-accounting"
           },
           {
             title: "Covenant Enforcement",
             body: "Consistent inspections, fair enforcement, full compliance tracking.",
-            image: "/assets/hoa-covenant-enforcement-inspection.jpg",
+            image: "/assets/hoa-covenant-enforcement-inspection.webp",
             href: "/services/covenant-enforcement"
           }
         ]}
@@ -507,12 +510,12 @@ function HomePage() {
         options={[
           {
             title: "Single-Family HOA Management",
-            image: "/assets/img-22.jpg",
+            image: "/assets/img-22.webp",
             href: "/services/hoa-management/single-family"
           },
           {
             title: "Condominium Management",
-            image: "/assets/img-21.jpg",
+            image: "/assets/img-21.webp",
             href: "/services/condo-management"
           }
         ]}
@@ -521,7 +524,7 @@ function HomePage() {
       <BulletsWithImage
         eyebrow="Why Boards Choose Edison"
         title="A Management Partner Boards Can Rely On"
-        image="/assets/img-11.jpg"
+        image="/assets/img-11.webp"
         bullets={[
           "Clear financial reporting and accountability",
           "Consistent communication with boards and residents",
@@ -535,11 +538,11 @@ function HomePage() {
         title="Credentials You Can Verify"
         sub="Edison's leadership and team are recognized by the Orlando Business Journal, the Community Associations Institute, the Florida Community Association Journal, and the Better Business Bureau."
         badges={[
-          { label: "CAI Member Company",            img: "/assets/badge-cai.png" },
-          { label: "Best Place to Work",             img: "/assets/badge-bptw.png" },
-          { label: "BBB Accredited Business",        img: "/assets/badge-bbb.png" },
-          { label: "FLCAJ Readers Choice Diamond",   img: "/assets/badge-flcaj.png" },
-          { label: "PCAM Designation",               img: "/assets/badge-pcam.png" }
+          { label: "CAI Member Company",            img: "/assets/badge-cai.webp" },
+          { label: "Best Place to Work",             img: "/assets/badge-bptw.webp" },
+          { label: "BBB Accredited Business",        img: "/assets/badge-bbb.webp" },
+          { label: "FLCAJ Readers Choice Diamond",   img: "/assets/badge-flcaj.webp" },
+          { label: "PCAM Designation",               img: "/assets/badge-pcam.webp" }
         ]}
       />
 
@@ -551,14 +554,14 @@ function HomePage() {
             category: "Finance & Audit",
             title: "HOA Audit: What It Is, When It's Required, and How to Prepare",
             excerpt: "An HOA audit confirms your community's finances are accurate, transparent, and compliant with Florida law.",
-            image: "/assets/blog/hoa-board-members-reviewing-audit.jpg",
+            image: "/assets/blog/hoa-board-members-reviewing-audit.webp",
             href: "/blog/hoa-audit"
           },
           {
             category: "Governance",
             title: "HOA Bylaws vs CC&Rs: Key Differences Explained",
             excerpt: "Understanding the difference between HOA bylaws and CC&Rs helps boards make confident, defensible decisions.",
-            image: "/assets/blog/bylaws-vs-ccrs.jpg",
+            image: "/assets/blog/bylaws-vs-ccrs.webp",
             href: "/blog/hoa-bylaws-vs-ccrs"
           }
         ]}
@@ -572,7 +575,7 @@ function HomePage() {
           "Orlando", "Winter Garden", "Clermont", "Kissimmee", "Lake Mary",
           "Altamonte Springs", "Oviedo", "Apopka"
         ]}
-        mapImg="/assets/img-neighborhood-aerial.jpg"
+        mapImg="/assets/img-neighborhood-aerial.webp"
         mapEmbed={true}
       />
 

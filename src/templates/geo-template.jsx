@@ -140,7 +140,7 @@ function GeoPageB({ content }) {
         title={`${content.city} is one of several cities we cover`}
         body={`Edison manages HOA, condo, and townhome associations across Central Florida. The full service area covers Orange, Seminole, Osceola, Lake, and Brevard counties.`}
         cities={content.nearbyCities}
-        mapImg="/assets/img-neighborhood-aerial.jpg"
+        mapImg="/assets/img-neighborhood-aerial.webp"
       />
 
       <FinalCTA
@@ -163,7 +163,7 @@ const ORLANDO_CONTENT = {
   phone: "(407) 317-5252",
   hero: {
     lede: "Orlando boards have more management choices than any other city in Central Florida, and more competing pressures than most. Edison is the boutique alternative: a dedicated manager who knows your community, a PCAM-credentialed leader at the top, and back-office departments that close the loop on what most companies leave open.",
-    image: "/assets/img-community-aerial.jpg"
+    image: "/assets/img-community-aerial.webp"
   },
   localStats: [
     { value: "Orlando", caption: "Headquartered here. Tracy and the team live and work in the metro." },
@@ -177,7 +177,7 @@ const ORLANDO_CONTENT = {
       "Orlando is one of the fastest-growing HOA markets in the country. The metro adds roughly 1,500 residents a week, sees rapid new-community development, and houses a mix of established neighborhoods, transplant-heavy newer subdivisions, and growing 55+ communities. That growth has produced a strong management-company industry, but also a familiar pattern: large firms get larger, managers get spread thinner, and boards end up wondering why their phone calls aren't being returned.",
       "Edison was founded in Orlando in 2021 with a deliberately different model. Smaller portfolios. Dedicated back-office departments. A PCAM-credentialed principal, Tracy Durham, with 15+ years in the industry, who personally onboards every new association. The result is a management partner that scales with the community's needs, not the company's growth chart."
     ],
-    image: "/assets/img-community-aerial.jpg"
+    image: "/assets/img-community-aerial.webp"
   },
   services: [
     { title: "HOA Management", body: "Dedicated managers, transparent reporting, and proactive communication, built for Orlando's mix of established and newer communities." },

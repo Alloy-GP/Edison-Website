@@ -386,7 +386,7 @@ const SOLUTIONS_LANDING_CONTENT = {
           value: "30–40%",
           caption: "Annual manager turnover at most large firms. Edison's is a fraction of that."
         },
-        image: "/assets/img-inspector.jpg",
+        image: "/assets/img-inspector.webp",
         href: "/solutions/switch-hoa-management-company",
         ctaLabel: "See the switch playbook"
       },
@@ -406,7 +406,7 @@ const SOLUTIONS_LANDING_CONTENT = {
           value: "1 person",
           caption: "Most self-managed associations rely on one volunteer. When they step back, the gaps get expensive fast."
         },
-        image: "/assets/img-resident-portal.jpg",
+        image: "/assets/img-resident-portal.webp",
         href: "/solutions/self-managed-hoa",
         ctaLabel: "See the self-managed transition"
       },
@@ -426,7 +426,7 @@ const SOLUTIONS_LANDING_CONTENT = {
           value: "24/7",
           caption: "Homeowner questions don't keep business hours. Your manager shouldn't have to either."
         },
-        image: "/assets/img-11.jpg",
+        image: "/assets/img-11.webp",
         href: "/solutions/modern-hoa-management",
         ctaLabel: "See the modern stack"
       }

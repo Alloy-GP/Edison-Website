@@ -415,7 +415,7 @@ function NavCtaButton({ href, label }) {
    SiteHeader
    ============================================================ */
 function SiteHeader({
-  logoSrc = "/assets/logo.png",
+  logoSrc = "/assets/logo.webp",
   logoAlt = "Edison Association Management",
   homeHref = "/",
   nav = DEFAULT_NAV,
@@ -686,7 +686,7 @@ function SiteHeader({
           }}>
             {/* Logo */}
             <a href={homeHref} aria-label={logoAlt} style={{ display: "block", borderBottom: 0, flexShrink: 0 }}>
-              <img src={logoSrc} alt={logoAlt} style={{ height: 40, width: "auto", display: "block" }}/>
+              <img src={logoSrc} alt={logoAlt} width={133} height={40} fetchpriority="high" decoding="async" style={{ height: 40, width: "auto", display: "block" }}/>
             </a>
 
             {/* Desktop nav */}

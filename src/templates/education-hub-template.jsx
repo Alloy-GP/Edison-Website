@@ -270,7 +270,7 @@ function EducationHubB({ content }) {
                 }}>
                   <div style={{
                     width: 200, height: 130, borderRadius: 8, overflow: "hidden",
-                    backgroundImage: `url(${a.image || "assets/img-13.jpg"})`,
+                    backgroundImage: `url(${a.image || "assets/img-13.webp"})`,
                     backgroundSize: "cover", backgroundPosition: "center"
                   }}/>
                   <div>
@@ -388,7 +388,7 @@ const EDUCATION_CONTENT = {
     category: "Financial Management",
     title: "HOA Audit: What It Is, When It's Required, and How to Prepare",
     excerpt: "An HOA audit confirms your community's finances are accurate, transparent, and compliant with Florida law. Learn what's required based on your association's revenue, and how strong year-round financial management makes the process faster and less expensive.",
-    image: "/assets/blog/hoa-board-members-reviewing-audit.jpg",
+    image: "/assets/blog/hoa-board-members-reviewing-audit.webp",
     href: "/blog/hoa-audit"
   }
 };
