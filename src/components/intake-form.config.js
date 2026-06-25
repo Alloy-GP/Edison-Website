@@ -14,7 +14,7 @@ export const TRACKING = { formId: 'lead-form', intents: ['proposal'] };
 // (e.g. a vendor portal / software) when picked.
 export const INTENTS = [
   {
-    id: 'proposal', label: 'I’m on an HOA or condo board', icon: 'users', tone: 'teal', hot: true,
+    id: 'proposal', label: 'I’m on a board', icon: 'users', tone: 'teal', hot: true,
     blurb: 'We’re exploring new management and want a proposal.', forWho: 'Boards & directors',
     routeTo: 'Edison’s leadership team', fields: [
       { key: 'company', label: 'Community / association name', type: 'text', required: true, placeholder: 'e.g. Heathrow Master Association', col: 2 },
