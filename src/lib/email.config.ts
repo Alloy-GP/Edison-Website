@@ -35,7 +35,7 @@ export const EMAIL_CONFIG = {
   // the staff notification to the matching list (falls back to `notify`). ──
   routes: {
     proposal: ['contact@edisonassociationmanagement.com'],
-    service:  ['contact@edisonassociationmanagement.com'],
+    bid:      ['contact@edisonassociationmanagement.com'],
     general:  ['contact@edisonassociationmanagement.com'],
   } as Record<string, string[]>,
 
@@ -60,14 +60,13 @@ export const EMAIL_CONFIG = {
         <p>If it's urgent, call us anytime at (407) 317-5252.</p>
         <p>— The Edison team</p>`,
     },
-    service: {
-      label: 'Resident / Board Request',
-      notifySubject: (who: string) => `New community request — ${who}`,
-      confirmSubject: 'We received your request — Edison Association Management',
+    bid: {
+      label: 'Vendor Bid',
+      notifySubject: (who: string) => `New vendor bid — ${who}`,
+      confirmSubject: 'We received your bid — Edison Association Management',
       confirmBody: () =>
-        `<p>Thanks for reaching out.</p>
-        <p>Your request has been logged and routed to your community team. A real person will follow up — same-day for board members, within 24 hours for homeowners.</p>
-        <p>Need something urgently? Call us at (407) 317-5252.</p>
+        `<p>Thanks for your interest in working with Edison Association Management.</p>
+        <p>We've received your information and our operations team will review it. If your services are a fit for the communities we manage, we'll be in touch.</p>
         <p>— The Edison team</p>`,
     },
     general: {
