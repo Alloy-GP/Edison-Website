@@ -20,12 +20,12 @@ export const INTENTS = [
     ],
   },
   {
-    id: 'service', label: 'Service request', icon: 'wrench', tone: 'sage',
-    blurb: 'I’m a current client and need something handled.', forWho: 'Current clients',
-    routeTo: 'your account manager', fields: [
-      { key: 'reference', label: 'Account / reference', type: 'text', required: true, placeholder: 'e.g. account # or name', col: 2 },
-      { key: 'category', label: 'Category', type: 'select', required: true, options: ['Billing', 'Technical', 'General', 'Other'] },
-      { key: 'urgency', label: 'Urgency', type: 'radio', required: true, options: ['Routine', 'Urgent'], col: 2 },
+    id: 'bid', label: 'Submit a bid', icon: 'hardhat', tone: 'sage',
+    blurb: 'I’m a vendor who wants to work with you.', forWho: 'Contractors & service vendors',
+    routeTo: 'Edison’s operations team', fields: [
+      { key: 'company', label: 'Company', type: 'text', required: true, placeholder: 'Your company name', col: 2 },
+      { key: 'trade', label: 'Trade / service', type: 'text', required: true, placeholder: 'e.g. landscaping, roofing' },
+      { key: 'serviceArea', label: 'Service area', type: 'text', required: false, placeholder: 'Counties / cities served' },
     ],
   },
   {

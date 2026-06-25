@@ -234,7 +234,7 @@ export default function IntakeForm() {
             <div className="if-actions">
               <div className="if-trust"><Ic name="lock" /> Your details stay private. No spam, ever.</div>
               <button type="submit" className="if-submit" disabled={sending}>
-                {sending ? 'Sending…' : intent.id === 'proposal' ? 'Request my proposal' : intent.id === 'service' ? 'Send request' : 'Send message'}
+                {sending ? 'Sending…' : intent.id === 'proposal' ? 'Request my proposal' : intent.id === 'bid' ? 'Submit bid' : 'Send message'}
                 {!sending && <Ic name="arrowRight" />}
               </button>
             </div>
