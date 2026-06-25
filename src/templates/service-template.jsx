@@ -35,7 +35,7 @@ function PillarPageA({ content }) {
             }}>{content.hero.lede}</p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <InteriorButton variant="primary" size="lg" href="/request-a-proposal">Request a Proposal</InteriorButton>
-              <InteriorButton variant="ghost" size="lg" href="/contact">Schedule a Consultation</InteriorButton>
+              <InteriorButton variant="ghost" size="lg" href="/request-a-proposal">Schedule a Consultation</InteriorButton>
             </div>
           </div>
           <div className="svc-a-hero-img" style={{
@@ -209,7 +209,7 @@ function PillarPageB({ content }) {
             }}>{content.hero.lede}</p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <InteriorButton variant="primary" size="lg" href="/request-a-proposal">Request a Proposal</InteriorButton>
-              <InteriorButton variant="ghost" size="lg" href="/contact">Schedule a Consultation</InteriorButton>
+              <InteriorButton variant="ghost" size="lg" href="/request-a-proposal">Schedule a Consultation</InteriorButton>
             </div>
           </div>
           <div className="svc-b-hero-img" style={{
@@ -372,11 +372,11 @@ const HOA_MGMT_CONTENT = {
   phone: "(407) 317-5252",
   hero: {
     title: "HOA management built around the board, not the company growth chart.",
-    lede: "Full-service management for single-family and townhome HOAs across Central Florida. Dedicated managers carrying 8–10 communities, half the industry average. Back-office departments handling what isn't community-facing. Boards stop starting over.",
+    lede: "Full-service management for single-family and townhome HOAs across Central Florida. Dedicated managers carrying limited portfolios, well below the industry average. Back-office departments handling what isn't community-facing. Boards stop starting over.",
     image: "/assets/img-community-aerial.jpg"
   },
   stats: [
-    { value: "8–10", caption: "Communities per manager (industry average is 15+)" },
+    { value: "Limited", caption: "Portfolios sized to your community, well below the industry standard" },
     { value: "1 day", caption: "Same-day board response. 24-hour homeowner. Non-negotiable." },
     { value: "PCAM", caption: "Leadership credential plus 2025 CAI Chapter President" },
     { value: "4.9★", caption: "Google rating, highest in the Central Florida market" }
@@ -393,7 +393,7 @@ const HOA_MGMT_CONTENT = {
     sub: "Every Edison HOA management agreement includes the operational, financial, and advisory work that keeps Florida HOAs compliant, well-funded, and well-led. No surprise upcharges, no \"a la carte\" workarounds for what should be standard.",
     image: "/assets/img-inspector.jpg",
     items: [
-      { title: "Dedicated Association Manager", body: "Carries 8–10 communities maximum. Visits the property monthly. Attends every board meeting. Knows your governing documents and your homeowners by name." },
+      { title: "Dedicated Association Manager", body: "Carries a deliberately limited portfolio. Visits the property monthly. Attends every board meeting. Knows your governing documents and your homeowners by name." },
       { title: "Monthly Property Inspections", body: "Documented walks of common areas, capital assets, and vendor work. Reported back to the board with photos and recommendations, not stale generic checklists." },
       { title: "Vendor Sourcing & Management", body: "Three competing bids on capital projects above board-set thresholds. Insurance certificates on file. Updated contracts. No vendor relationships boards inherit blind." },
       { title: "Action Item List", body: "Edison's live project tracker. Every active community item, its owner, status, target date, visible to the board in real time. Replaces stale monthly manager reports." },
@@ -401,7 +401,7 @@ const HOA_MGMT_CONTENT = {
       { title: "Reserve Study Guidance", body: "Coordination with reserve study engineers, funding plan support, and capital project sequencing. Not just an annual snapshot, an active capital management partner." }
     ],
     bullets: [
-      "Dedicated manager carrying only 8–10 communities, half the industry average",
+      "Dedicated manager carrying only a limited portfolio, well below the industry average",
       "Monthly property inspections with photo documentation",
       "Vendor sourcing requiring 3+ competing bids on capital projects",
       "The Action Item List, live project tracking that replaces stale manager reports",
@@ -415,7 +415,7 @@ const HOA_MGMT_CONTENT = {
     items: [
       { title: "Industry-Low Manager Turnover", body: "Most firms see 30–40% annual manager turnover. Edison's is a fraction of that. The manager who learns your community in year one is still there in year three." },
       { title: "Dedicated Back-Office Departments", body: "Enforcement, accounting, collections, and ARC are separate departments, not your manager's overtime work. Boards get specialist quality on every workstream." },
-      { title: "Manageable Portfolio Sizes", body: "8–10 communities per manager, half the industry average. Yours isn't lost in a portfolio of hundreds." },
+      { title: "Manageable Portfolio Sizes", body: "a limited number of communities per manager, well below the industry average. Yours isn't lost in a portfolio of hundreds." },
       { title: "Leadership That Stays Involved", body: "Tracy Durham, PCAM, personally onboards every new association and remains accessible to every board, not just the largest." },
       { title: "Modern Tools, Human Touch", body: "CINC Systems for portals and financials. WATTSON AI for 24/7 resident questions. The Action Item List for live project tracking. A real person still answers the phone." },
       { title: "Education-First Philosophy", body: "Informed boards make better decisions. Edison invests in teaching board members the statutes, the financial fundamentals, and the governance frameworks, not just executing tasks." }
@@ -442,7 +442,7 @@ const HOA_MGMT_CONTENT = {
     community: "HOA · 228 units · Dr. Phillips, Orlando"
   },
   faqs: [
-    { q: "How many communities will our manager have?", a: "Edison managers carry 8–10 communities, half the industry average. Some managers carry fewer when they're early in their tenure or onboarding a particularly complex community. We've structured portfolios this way deliberately: managers can actually know your community, not just file your community away." },
+    { q: "How many communities will our manager have?", a: "Edison managers carry a limited number of communities, well below the industry average. Some managers carry fewer when they're early in their tenure or onboarding a particularly complex community. We've structured portfolios this way deliberately: managers can actually know your community, not just file your community away." },
     { q: "How quickly will calls get returned?", a: "Same-day for board members. 24-hour for homeowners. Non-negotiable, and a real person answers when you call Edison's office between 9am and 5pm Monday through Friday. The standard isn't \"we'll get back to you\", it's that we already did." },
     { q: "Do you handle our financials and accounting too?", a: "Yes. Edison's accounting department is dedicated and CPA-supported. Monthly statements with invoice backup, reserve banking strategy, audit prep, and tax filing, handled by an accounting specialist, not your manager's spare time. See our HOA Accounting page for detail." },
     { q: "What technology do you use?", a: "CINC Systems for financials and homeowner portals. The Action Item List for live project tracking. WATTSON AI for 24/7 resident questions. Plaud for meeting minute automation. All included, no per-resident technology fees." },
@@ -473,12 +473,11 @@ HOA_MGMT_CONTENT.subServices = {
 };
 
 HOA_MGMT_CONTENT.antiPatterns = [
-  { title: "No coupon books", body: "Replaced by free, modern courtesy email reminders. Respectful of homeowner money." },
-  { title: "No non-competes", body: "We earn loyalty through investment, not fear. Managers stay because they want to." },
+  { title: "Optional coupon books", body: "Offered only if your board wants them — free, modern courtesy email reminders are the default. Respectful of homeowner money." },
   { title: "No volume-chasing", body: "Portfolio growth is opt-in for managers. Quality over headcount, every time." },
   { title: "No manager reports", body: "Replaced by the live Action Item List. Boards see project status in real time." },
   { title: "No punitive fine culture", body: "Correction first. We talk boards out of fine-first enforcement, it costs trust, not just dollars." },
-  { title: "No overloaded managers", body: "Sweet spot is 8–10 communities. Industry standard is 15+. No exceptions for revenue." }
+  { title: "No overloaded managers", body: "Sweet spot is a limited portfolio. Well below the industry standard. No exceptions for revenue." }
 ];
 
 HOA_MGMT_CONTENT.serviceArea = {

@@ -114,9 +114,6 @@ const isProduction    = import.meta.env.PUBLIC_ENV === 'production';
     {twitterReadTime && <meta name="twitter:label2" content="Time to read" />}
     {twitterReadTime && <meta name="twitter:data2"  content={twitterReadTime} />}
 
-    <!-- Font preloads — update hrefs to match client's actual font files -->
-    <!-- <link rel="preload" href="/fonts/ClientFont-Regular.woff2" as="font" type="font/woff2" crossorigin /> -->
-    <!-- <link rel="preload" href="/fonts/ClientFont-Bold.woff2" as="font" type="font/woff2" crossorigin /> -->
 
     <!-- JSON-LD: Organization (every page) -->
     <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
@@ -143,7 +140,7 @@ const isProduction    = import.meta.env.PUBLIC_ENV === 'production';
     {import.meta.env.PUBLIC_ENV === 'production' && (
       <>
         <script is:inline>{`var $wc_load=function(a){return JSON.parse(JSON.stringify(a))},$wc_leads=$wc_leads||{doc:{url:$wc_load(document.URL),ref:$wc_load(document.referrer),search:$wc_load(location.search),hash:$wc_load(location.hash)}};`}</script>
-        <script is:inline src="//s.ksrndkehqnwntyxlhgto.com/160125.js"></script>
+        <script is:inline src="//s.ksrndkehqnwntyxlhgto.com/108629.js"></script>
       </>
     )}
   </head>
@@ -504,5 +501,29 @@ const isProduction    = import.meta.env.PUBLIC_ENV === 'production';
 
     })();
     </script>}
+
+    <!-- ── Live Google reviews: refresh rating/count from /api/reviews ──── -->
+    <script is:inline>
+      (function () {
+        fetch('/api/reviews').then(function (r) { return r.json(); }).then(function (d) {
+          if (!d) return;
+          if (typeof d.count === 'number') {
+            document.querySelectorAll('[data-edison-review-count]').forEach(function (el) {
+              el.textContent = String(d.count);
+            });
+          }
+          if (typeof d.rating === 'number') {
+            document.querySelectorAll('[data-edison-review-rating]').forEach(function (el) {
+              el.textContent = d.rating.toFixed(1);
+            });
+          }
+          if (d.reviewsUrl) {
+            document.querySelectorAll('[data-edison-reviews-link]').forEach(function (el) {
+              el.setAttribute('href', d.reviewsUrl);
+            });
+          }
+        }).catch(function () {});
+      })();
+    </script>
 </body>
 </html>

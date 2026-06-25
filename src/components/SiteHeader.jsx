@@ -49,7 +49,7 @@ const DEFAULT_NAV = [
     label: "Solutions",
     href: "/solutions",
     children: [
-      { label: "Switch HOA Management Company", href: "/solutions/switch-hoa-management-company" },
+      { label: "Considering a Management Change", href: "/solutions/switch-hoa-management-company" },
       { label: "Self-Managed to Professional", href: "/solutions/self-managed-hoa" },
       { label: "Modern HOA Management", href: "/solutions/modern-hoa-management" }
     ]
@@ -99,11 +99,9 @@ const DEFAULT_NAV = [
       { label: "About Edison", href: "/about" },
       { label: "Meet Our Team", href: "/about/meet-our-team" },
       { label: "Meet Your Management", href: "/about/meet-your-management" },
-      { label: "Testimonials", href: "/testimonials" },
-      { label: "Case Studies", href: "/case-studies" }
+      { label: "Testimonials", href: "/testimonials" }
     ]
-  },
-  { label: "Contact", href: "/contact" }
+  }
 ];
 
 const DEFAULT_UTILITY = {
@@ -422,7 +420,7 @@ function SiteHeader({
   homeHref = "/",
   nav = DEFAULT_NAV,
   utility = DEFAULT_UTILITY,
-  cta = { label: "Request a Proposal", href: "/request-a-proposal" }
+  cta = { label: "Request Proposal / Contact", href: "/request-a-proposal" }
 }) {
   const [openIdx, setOpenIdx]       = useState(-1);
   const [hoveredIdx, setHoveredIdx] = useState(-1);

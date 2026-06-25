@@ -1,0 +1,265 @@
+// Adaptive multi-intent intake form.
+// Config-driven: all brand/client content lives in ./intake-form.config.js.
+// Multi-step intent picker → fields → submit → animated receipt. Posts to /api/lead.
+// Lucide-style icons, `if-` CSS class prefix (see the matching CSS file).
+import { useState, useEffect } from 'react';
+import { BRAND, TRACKING, INTENTS } from './intake-form.config.js';
+
+// ── Icons (Lucide-style) ─────────────────────────────────────────
+const I = {
+  building:   <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16"/><path d="M15 21V9h3a1 1 0 0 1 1 1v11"/><path d="M8 7h2M8 11h2M8 15h2"/></svg>,
+  hardhat:    <svg viewBox="0 0 24 24"><path d="M2 18a10 10 0 0 1 20 0"/><path d="M2 18h20"/><path d="M10 8.5V6a2 2 0 0 1 4 0v2.5"/><path d="M6 18v-2a6 6 0 0 1 1.2-3.6M18 18v-2a6 6 0 0 0-1.2-3.6"/></svg>,
+  wrench:     <svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8 6.2 21l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.5 2.5-2.3-.6-.6-2.3z"/></svg>,
+  chat:       <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.7-.7L3 21l1.4-4.2A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>,
+  home:       <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>,
+  arrowRight: <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>,
+  arrowLeft:  <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>,
+  check:      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>,
+  lock:       <svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>,
+  zap:        <svg viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 10 22 20 9 13 9 13 2"/></svg>,
+  chevron:    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>,
+  inbox:      <svg viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5h13l3.5 7v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6z"/></svg>,
+  users:      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>,
+  clock:      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 16 14"/></svg>,
+};
+function Ic({ name }) { return <span className="if-ic">{I[name]}</span>; }
+
+const intentById = (id) => INTENTS.find((i) => i.id === id);
+
+function genId() {
+  const d = new Date();
+  const s = `${String(d.getFullYear()).slice(2)}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`;
+  return 'REQ-' + s + '-' + Math.floor(1000 + Math.random() * 9000);
+}
+
+function Field({ def, value, error, onChange }) {
+  const span = def.col === 2 ? '1 / -1' : 'auto';
+  return (
+    <div className="if-field" style={{ gridColumn: span }}>
+      <label className="if-label">{def.label}{def.required && <span className="if-req">*</span>}</label>
+      {def.type === 'text' && (
+        <input className={'if-control' + (error ? ' is-err' : '')} type="text" placeholder={def.placeholder || ''}
+          value={value || ''} onChange={(e) => onChange(def.key, e.target.value)} />
+      )}
+      {def.type === 'select' && (
+        <div className={'if-select-wrap' + (error ? ' is-err' : '')}>
+          <select className="if-control if-select" value={value || ''} onChange={(e) => onChange(def.key, e.target.value)}>
+            <option value="" disabled>Select…</option>
+            {def.options.map((o) => <option key={o} value={o}>{o}</option>)}
+          </select>
+          <span className="if-caret"><Ic name="chevron" /></span>
+        </div>
+      )}
+      {def.type === 'radio' && (
+        <div className="if-segmented" role="radiogroup">
+          {def.options.map((o) => (
+            <button type="button" key={o} className={'if-seg' + (value === o ? ' on' : '')}
+              onClick={() => onChange(def.key, o)}>{o}</button>
+          ))}
+        </div>
+      )}
+      {error && <div className="if-err-msg">{error}</div>}
+    </div>
+  );
+}
+
+function Receipt({ intent }) {
+  const steps = [
+    { icon: 'check', title: 'Logged & time-stamped', detail: 'Saved to our system the moment you hit send — nothing slips through.' },
+    { icon: 'users', title: 'Routed to the right team', detail: `Sent straight to ${intent.routeTo}.` },
+    { icon: 'clock', title: 'A real person responds', detail: 'Expect to hear back within one business day — no auto-pilot.' },
+  ];
+  const [shown, setShown] = useState(0);
+  useEffect(() => {
+    setShown(0);
+    const timers = steps.map((_, i) => setTimeout(() => setShown((s) => Math.max(s, i + 1)), 280 + i * 360));
+    return () => timers.forEach(clearTimeout);
+  }, [intent.id]);
+  return (
+    <div className="if-receipt">
+      <div className="if-receipt-head"><Ic name="zap" /> Here’s what happens next</div>
+      <ul className="if-receipt-list">
+        {steps.map((r, i) => (
+          <li key={r.title} className={'if-receipt-row' + (i < shown ? ' on' : '')}>
+            <span className="if-receipt-check"><Ic name="check" /></span>
+            <span className="if-receipt-txt"><strong>{r.title}</strong><span>{r.detail}</span></span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default function IntakeForm() {
+  const [step, setStep] = useState('intent');
+  const [intentId, setIntentId] = useState(null);
+  const [contact, setContact] = useState({ name: '', email: '', phone: '' });
+  const [fields, setFields] = useState({});
+  const [message, setMessage] = useState('');
+  const [errors, setErrors] = useState({});
+  const [submission, setSubmission] = useState(null);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState('');
+  const [hp, setHp] = useState(''); // honeypot — must stay empty for humans
+
+  const intent = intentId ? intentById(intentId) : null;
+
+  // Deep-link: ?intent=proposal opens straight to that intent's fields.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const want = new URLSearchParams(window.location.search).get('intent');
+    const w = want && intentById(want);
+    if (w) {
+      if (w.redirect) { window.location.href = w.redirect; return; }
+      setIntentId(want); setFields({}); setErrors({}); setStep('form');
+    }
+  }, []);
+
+  // Intents with a `redirect` send the visitor straight there (e.g. vendor portal).
+  const pick = (id) => {
+    const it = intentById(id);
+    if (it?.redirect) { window.location.href = it.redirect; return; }
+    setIntentId(id); setFields({}); setErrors({}); setStep('form');
+  };
+  const back = () => { setStep('intent'); setErrors({}); setSendError(''); };
+  const setField = (k, v) => { setFields((f) => ({ ...f, [k]: v })); setErrors((e) => ({ ...e, [k]: null })); };
+  const setC = (k, v) => { setContact((c) => ({ ...c, [k]: v })); setErrors((e) => ({ ...e, [k]: null })); };
+
+  function validate() {
+    const e = {};
+    if (!contact.name.trim()) e.name = 'Required';
+    if (!contact.email.trim()) e.email = 'Required';
+    else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(contact.email)) e.email = 'Enter a valid email';
+    (intent.fields || []).forEach((f) => { if (f.required && !fields[f.key]) e[f.key] = 'Required'; });
+    if (intent.id === 'service' && !message.trim()) e.message = 'Required';
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  }
+
+  async function submit(ev) {
+    ev.preventDefault();
+    if (!validate() || sending) return;
+    setSending(true); setSendError('');
+    const id = genId();
+    const company = fields.company || fields.reference || fields.address || '';
+    // Send the per-intent fields as a labeled, ordered list so the handler can
+    // render every answer with its real label (not a cram-everything-into-message blob).
+    const fieldsJson = JSON.stringify(
+      (intent.fields || []).map((f) => ({ label: f.label, value: (fields[f.key] ?? '').toString().trim() }))
+    );
+
+    const fd = new FormData();
+    fd.set('name', contact.name.trim());
+    fd.set('email', contact.email.trim());
+    fd.set('phone', contact.phone.trim());
+    fd.set('company', company);
+    fd.set('intent', intent.id);
+    fd.set('intentLabel', intent.label);
+    fd.set('ref', id);
+    fd.set('fieldsJson', fieldsJson);
+    fd.set('message', message.trim()); // free-text "anything else" only
+    fd.set('source', typeof window !== 'undefined' ? window.location.pathname : '');
+    fd.set('website', hp); // honeypot — handler rejects if non-empty
+
+    try {
+      const res = await fetch('/api/lead', { method: 'POST', body: fd });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || json.success === false) throw new Error(json.error || 'Something went wrong.');
+      setSubmission({ id, first: contact.name.trim().split(' ')[0] });
+      setStep('done');
+    } catch (err) {
+      setSendError(err.message || `Something went wrong. Please try again or call ${BRAND.phone}.`);
+    } finally {
+      setSending(false);
+    }
+  }
+
+  function reset() {
+    setStep('intent'); setIntentId(null); setContact({ name: '', email: '', phone: '' });
+    setFields({}); setMessage(''); setErrors({}); setSubmission(null); setSendError('');
+  }
+
+  return (
+    <div className="if-widget">
+      <div className="if-inner">
+        {step === 'intent' && (
+          <div className="if-stage">
+            <div className="if-eyebrow">Get in touch</div>
+            <h2 className="if-title">How can we help?</h2>
+            <p className="if-sub">Pick what fits — we’ll only ask what we need, then make sure the right person sees it fast.</p>
+            <div className="if-intent-grid">
+              {INTENTS.map((it) => (
+                <button type="button" key={it.id} className={`if-intent-card tone-${it.tone}`} onClick={() => pick(it.id)}>
+                  <span className="if-intent-icon"><Ic name={it.icon} /></span>
+                  <span className="if-intent-body">
+                    <span className="if-intent-label">{it.label}{it.hot && <span className="if-hot">Most common</span>}</span>
+                    <span className="if-intent-blurb">{it.blurb}</span>
+                    <span className="if-intent-for">{it.forWho}</span>
+                  </span>
+                  <span className="if-intent-arrow"><Ic name="arrowRight" /></span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {step === 'form' && intent && (
+          // Call-tracking (e.g. WhatConverts) tracks only the intents listed in
+          // TRACKING.intents: those render the tracked id (TRACKING.formId); every
+          // other intent gets id="intake-form" so the tracker ignores it. The key
+          // forces a clean remount per intent for the tracker's form detection.
+          <form
+            key={intent.id}
+            id={TRACKING.intents.includes(intent.id) ? TRACKING.formId : 'intake-form'}
+            name={TRACKING.intents.includes(intent.id) ? TRACKING.formId : 'intake-form'}
+            className="if-stage" onSubmit={submit} noValidate>
+            {/* Honeypot — hidden from humans; bots that fill it get rejected by /api/lead */}
+            <div className="if-hp" aria-hidden="true">
+              <label>Leave this field empty
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} />
+              </label>
+            </div>
+            <button type="button" className="if-back" onClick={back}><Ic name="arrowLeft" /> Change request type</button>
+            <div className={`if-chosen tone-${intent.tone}`}>
+              <span className="if-intent-icon"><Ic name={intent.icon} /></span>
+              <span className="if-chosen-txt"><strong>{intent.label}</strong><span>{intent.blurb}</span></span>
+            </div>
+            <div className="if-grid">
+              <Field def={{ key: 'name', label: 'Your name', type: 'text', required: true, placeholder: 'First & last', col: 2 }} value={contact.name} error={errors.name} onChange={setC} />
+              <Field def={{ key: 'email', label: 'Email', type: 'text', required: true, placeholder: 'you@email.com' }} value={contact.email} error={errors.email} onChange={setC} />
+              <Field def={{ key: 'phone', label: 'Phone', type: 'text', placeholder: '(optional)' }} value={contact.phone} error={errors.phone} onChange={setC} />
+              {(intent.fields || []).map((f) => (
+                <Field key={f.key} def={f} value={fields[f.key]} error={errors[f.key]} onChange={setField} />
+              ))}
+              <div className="if-field" style={{ gridColumn: '1 / -1' }}>
+                <label className="if-label">{intent.id === 'service' ? 'How can we help?' : 'Anything else?'}{intent.id === 'service' && <span className="if-req">*</span>}</label>
+                <textarea className={'if-control if-textarea' + (errors.message ? ' is-err' : '')} rows={intent.id === 'general' ? 5 : 3}
+                  placeholder={intent.id === 'general' ? 'Tell us what’s on your mind…' : intent.id === 'service' ? 'Tell us what you need handled — the more detail, the faster we can help.' : 'A sentence or two helps us route this faster.'}
+                  value={message} onChange={(e) => { setMessage(e.target.value); setErrors((x) => ({ ...x, message: null })); }} />
+                {errors.message && <div className="if-err-msg">{errors.message}</div>}
+              </div>
+            </div>
+            {sendError && <div className="if-senderror">{sendError}</div>}
+            <div className="if-actions">
+              <div className="if-trust"><Ic name="lock" /> Your details stay private. No spam, ever.</div>
+              <button type="submit" className="if-submit" disabled={sending}>
+                {sending ? 'Sending…' : intent.id === 'proposal' ? 'Request my proposal' : 'Send message'}
+                {!sending && <Ic name="arrowRight" />}
+              </button>
+            </div>
+          </form>
+        )}
+
+        {step === 'done' && submission && (
+          <div className="if-stage if-done">
+            <div className="if-done-badge"><Ic name="check" /></div>
+            <h2 className="if-title" style={{ marginTop: 14 }}>You’re all set, {submission.first}.</h2>
+            <p className="if-sub">Your request is in — reference <strong style={{ color: 'var(--if-accent)' }}>{submission.id}</strong>. Expect to hear back within one business day.</p>
+            <Receipt intent={intent} />
+            <button type="button" className="if-restart" onClick={reset}>Submit another request</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

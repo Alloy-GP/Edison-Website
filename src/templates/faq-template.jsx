@@ -52,7 +52,7 @@ function FAQPage({ content }) {
         title="When you call Edison, a real person answers."
         body="If your question isn't here, ask us directly. Same-day reply for board members; 24-hour for homeowners."
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
-        secondary={{ label: "Contact Edison", href: "/contact" }}
+        secondary={{ label: "Contact Edison", href: "/request-a-proposal" }}
       />
     </main>
   );
@@ -75,14 +75,14 @@ const FAQ_CONTENT = {
       items: [
         { q: "Do you handle HOAs and condos differently?", a: "Yes. Florida governs them under different statutes, Chapter 720 for HOAs, Chapter 718 for condos. Edison runs both as distinct practices with statute-aware managers, accounting specialists, and compliance tracking." },
         { q: "Is accounting included or extra?", a: "Included. Every Edison management agreement covers monthly statements, reserve banking, audit prep, and tax filing, handled by a dedicated specialist supported by our CPA-led Director of Accounting." },
-        { q: "How is covenant enforcement handled?", a: "By a dedicated enforcement department, not your manager wearing another hat. Address-not-name inspections, correction-first protocols, quarterly board reporting." },
+        { q: "How is covenant enforcement handled?", a: "By a dedicated enforcement department, not your manager wearing another hat. Address-not-name inspections, correction-first protocols, monthly board reporting." },
         { q: "Do you provide collections work?", a: "Yes, in-house. Edison's collections department runs the delinquency workflow from courtesy reminders through intent-to-lien, coordinating with your association's attorney only when legal escalation is genuinely required." }
       ]
     },
     {
       eyebrow: "Pricing", title: "What it costs",
       items: [
-        { q: "How are management fees structured?", a: "Monthly fee based on community size, service scope, and operational complexity. No coupon books. No surprise upcharges for what should be standard. Edison's proposals are written, fixed-scope, and delivered within 5–7 days of the initial conversation." },
+        { q: "How are management fees structured?", a: "Monthly fee based on community size, service scope, and operational complexity. No surprise upcharges for what should be standard. Edison's proposals are written, fixed-scope, and delivered within 5–7 days of the initial conversation." },
         { q: "Is the Edison Transition Experience an extra fee?", a: "No. Transition coordination, records digitization, the Meet Your Management event, and 90 days of COO supervision are all included in the standard management agreement." },
         { q: "Are there hidden costs?", a: "No. Edison doesn't bill separately for ARC reviews, enforcement notices, or homeowner portal access. Capital project bid-coordination is included; project execution costs are paid to vendors directly per board approval." }
       ]

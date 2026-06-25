@@ -28,7 +28,20 @@ export default defineConfig({
   },
 
   redirects: {
-    // Add legacy URL redirects here as needed
-    // '/old-path': '/new-path',
+    // Legacy URL redirects (301) — mapped from the pre-rebuild Screaming Frog crawl.
+    // Trailing-slash variants are normalized to these by src/middleware.ts.
+    '/education-and-resources': '/edison-education',
+    '/services/hoa-enforcement': '/services/covenant-enforcement',
+    '/services/property-types': '/services/hoa-management',
+    '/services/property-types/single-family-hoa-management': '/services/hoa-management/single-family',
+    '/services/property-types/condominum-management': '/services/condo-management',
+    '/locations': '/services/hoa-management',
+    '/locations/florida': '/services/hoa-management',
+    '/locations/florida/orlando': '/services/hoa-management/orlando',
+    '/blog/hoa-bylwas-vs-ccrs': '/blog/hoa-bylaws-vs-ccrs',
+    '/blog/hoa-reserve-study-guide-florida': '/blog/hoa-reserve-study-guide',
+    '/blog/hoa-budget-preparation': '/services/hoa-accounting/budget-preparation',
+    '/blog/tag/[...slug]': '/blog',
+    '/blog/category/[...slug]': '/blog',
   },
 });

@@ -1,5 +1,6 @@
 import React, { useState as useTstState } from 'react';
 import { Breadcrumb, FinalCTA, InteriorButton, SectionHeading, TrustBadges } from '../components/interior-components';
+import { REVIEWS } from '../data/reviews';
 
 /* ---------- Star row ---------- */
 function Stars({ n = 5, size = 16 }) {
@@ -61,11 +62,11 @@ function TestimonialsPageA({ content }) {
             <div style={{
               fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18,
               color: "var(--edison-navy)"
-            }}>4.9 / 5.0</div>
+            }}><span data-edison-review-rating>{REVIEWS.rating.toFixed(1)}</span> / 5.0</div>
             <div style={{
               fontFamily: "var(--font-body)", fontSize: 14,
               color: "var(--edison-gray-mid)"
-            }}>{content.reviewCount} Google reviews</div>
+            }}><span data-edison-review-count>{content.reviewCount}</span> Google reviews</div>
           </div>
         </div>
       </section>
@@ -134,7 +135,7 @@ function TestimonialsPageA({ content }) {
         title="See if Edison is the right fit for your community."
         body="Boards switch to Edison because the difference is measurable. Request a proposal and see what working together looks like for your association."
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
-        secondary={{ label: "Read Case Studies", href: "/case-studies" }}
+        secondary={{ label: "Meet the Team", href: "/about/meet-our-team" }}
       />
     </main>
   );
@@ -173,12 +174,12 @@ function TestimonialsPageB({ content }) {
             <div style={{
               fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 22,
               color: "var(--edison-navy)"
-            }}>4.9 / 5.0</div>
+            }}><span data-edison-review-rating>{REVIEWS.rating.toFixed(1)}</span> / 5.0</div>
             <div style={{ width: 1, height: 18, background: "var(--border-strong)" }}/>
             <div style={{
               fontFamily: "var(--font-body)", fontSize: 14.5,
               color: "var(--edison-gray-mid)"
-            }}>{content.reviewCount} Google reviews · Highest in Central Florida</div>
+            }}><span data-edison-review-count>{content.reviewCount}</span> Google reviews · Highest in Central Florida</div>
           </div>
         </div>
       </section>
@@ -221,7 +222,7 @@ function TestimonialsPageB({ content }) {
       {/* 6 highlights */}
       <section style={{ background: "#fff", padding: "88px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHeading eyebrow="More from Edison boards" title="Six reasons boards stay"/>
+          <SectionHeading eyebrow="More from Edison boards" title="What boards say in their reviews"/>
           <div className="testi-all-grid" style={{
             marginTop: 40,
             display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18
@@ -262,11 +263,11 @@ function TestimonialsPageB({ content }) {
       </section>
 
       <FinalCTA
-        eyebrow="Read deeper"
-        title="See the full story behind these results."
-        body="Our case studies document specific transitions, capital project rescues, and financial turnarounds we've led, with the numbers and the timelines."
-        primary={{ label: "Read Case Studies", href: "/case-studies" }}
-        secondary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        eyebrow="Ready when you are"
+        title="See what working with Edison looks like for your community."
+        body="Boards switch to Edison because the difference is measurable. Request a proposal and we'll show you exactly what working together looks like for your association."
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Meet the Team", href: "/about/meet-our-team" }}
       />
     </main>
   );

@@ -7,8 +7,7 @@ const PHASE_1_PAGES = [
   /* CORE */
   { url: "/",                              label: "Home",                       template: "Home",          group: "Core" },
   { url: "/about",                        label: "About",                      template: "AboutPageB",    group: "Core" },
-  { url: "/contact",                      label: "Contact",                    template: "ContactPageA",  group: "Core" },
-  { url: "/request-a-proposal",           label: "Request a Proposal",         template: "ProposalPageA", group: "Core" },
+  { url: "/request-a-proposal",           label: "Request a Proposal",         template: "IntakeForm", group: "Core" },
 
   /* LANDING HUBS */
   { url: "/services",   label: "Services Landing",   template: "ServicesLandingPage",  group: "Core" },
@@ -50,7 +49,6 @@ const PHASE_1_PAGES = [
 
   /* TRUST & BRANDED */
   { url: "/testimonials",                  label: "Testimonials",            template: "TestimonialsPageB", group: "Trust & Branded" },
-  { url: "/case-studies",                  label: "Case Studies",            template: "CaseStudiesPageA",  group: "Trust & Branded" },
   { url: "/edison-education",              label: "Edison Education",        template: "EducationHubA",     group: "Trust & Branded" },
   { url: "/about/meet-our-team",           label: "Meet Our Team",           template: "TeamPageA",         group: "Trust & Branded" },
   { url: "/about/meet-your-management",    label: "Meet Your Management",    template: "MeetYourManagementPage", group: "Trust & Branded" },
@@ -63,7 +61,6 @@ const PHASE_1_PAGES = [
   { url: "/blog/hoa-audit",                                           label: "HOA Audit Guide",                         template: "BlogSpokeA", contentKey: "hoa-audit",                          group: "Blog Spokes" },
   { url: "/blog/florida-hoa-laws-guide",                              label: "Florida HOA Laws Guide",                  template: "BlogSpokeA", contentKey: "florida-hoa-laws-guide",             group: "Blog Spokes" },
   { url: "/blog/florida-milestone-inspection-guide",                  label: "Florida Milestone Inspection Guide",      template: "BlogSpokeA", contentKey: "florida-milestone-inspection-guide", group: "Blog Spokes" },
-  { url: "/blog/hoa-reserve-study-guide-florida",                     label: "HOA Reserve Study Guide (Florida)",       template: "BlogSpokeA", contentKey: "hoa-reserve-study-guide-florida",    group: "Blog Spokes" },
   { url: "/blog/hoa-board-member-responsibilities",                   label: "HOA Board Member Responsibilities",       template: "BlogSpokeA", contentKey: "hoa-board-member-responsibilities",  group: "Blog Spokes" },
   { url: "/blog/hoa-bylaws-vs-ccrs",                                  label: "HOA Bylaws vs CC&Rs",                     template: "BlogSpokeA", contentKey: "hoa-bylaws-vs-ccrs",                 group: "Blog Spokes" },
   { url: "/blog/unenforceable-hoa-rules-florida",                     label: "Unenforceable HOA Rules in Florida",      template: "BlogSpokeA", contentKey: "unenforceable-hoa-rules-florida",    group: "Blog Spokes" },

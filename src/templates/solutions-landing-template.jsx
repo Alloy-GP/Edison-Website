@@ -34,7 +34,7 @@ function SolutionsLandingPage({ content = SOLUTIONS_LANDING_CONTENT }) {
             }}>{content.hero.lede}</p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <InteriorButton variant="primary" size="lg" href="/request-a-proposal">Request a Proposal</InteriorButton>
-              <InteriorButton variant="ghost" size="lg" href="/contact">Schedule a Consultation</InteriorButton>
+              <InteriorButton variant="ghost" size="lg" href="/request-a-proposal">Schedule a Consultation</InteriorButton>
             </div>
           </div>
 
@@ -361,7 +361,7 @@ const SOLUTIONS_LANDING_CONTENT = {
 
   stats: [
     { value: "60–90", caption: "Days from signed agreement to live operations" },
-    { value: "8–10", caption: "Communities per Edison manager" },
+    { value: "Limited", caption: "Portfolio size per Edison manager, sized to your community" },
     { value: "4.9★", caption: "Highest-rated firm in Central Florida" },
     { value: "$0", caption: "Separate transition or onboarding fees" }
   ],
@@ -419,7 +419,7 @@ const SOLUTIONS_LANDING_CONTENT = {
           "Live Action Item List replaces stale monthly manager reports",
           "CINC portals + real-time financial dashboards for the treasurer",
           "WATTSON AI answers 24/7 resident questions",
-          "Plaud delivers polished draft meeting minutes within 48 hours"
+          "Polished draft meeting minutes delivered within 24 hours"
         ],
         signal: {
           eyebrow: "The shift",
@@ -434,7 +434,7 @@ const SOLUTIONS_LANDING_CONTENT = {
   },
 
   comparison: [
-    { label: "Manager portfolio size", left: "15+ communities per manager.", right: "8–10 communities per manager — half the industry average." },
+    { label: "Manager portfolio size", left: "15+ communities per manager.", right: "A limited portfolio per manager — well below the industry average." },
     { label: "Who runs onboarding", left: "Sales rep hands the file off on day one.", right: "Dedicated transition team with COO supervision through day 90." },
     { label: "Manager-to-board reporting", left: "Monthly manager report — already stale on arrival.", right: "Live Action Item List. Owner, status, target date — visible to the board in real time." },
     { label: "Accounting cadence", left: "Statements 'when they're ready.' Often weeks late.", right: "Monthly statements by the 15th. Audit-ready every month." },

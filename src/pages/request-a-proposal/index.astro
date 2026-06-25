@@ -1,11 +1,60 @@
 ---
+// Multi-intent intake form (ported from the AGP Astro starter).
+// Form options/copy: src/components/intake-form.config.js
+// Email routing/replies: src/lib/email.config.ts  ·  Posts to /api/lead
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import { ProposalPageA } from '../../templates/proposal-template.jsx';
+import IntakeForm from '../../components/IntakeForm.jsx';
+import '../../styles/intake-form.css';
 ---
 
 <SiteLayout
   title="Request an HOA Management Proposal | Edison"
   description="Request a customized HOA management proposal from Edison Association Management. Serving communities across Central Florida."
 >
-  <ProposalPageA client:load />
+  <section class="rap-section">
+    <div class="rap-grid">
+      <!-- LEFT: title + context (stays beside the form as it expands) -->
+      <div class="rap-context">
+        <p class="rap-eyebrow">Get in Touch</p>
+        <h1 class="rap-h1">Tell us how we can help, and we'll get back to you.</h1>
+        <p class="rap-lede">It only takes a few minutes. Whether you're a board exploring management, a vendor submitting a bid, or just have a question, tell us what you need — we'll make sure the right person follows up fast.</p>
+
+        <div class="rap-expect">
+          <p class="rap-block-h">What to expect</p>
+          <ul>
+            <li>One-business-day reply</li>
+            <li>Routed to the right person, fast</li>
+            <li>A real person follows up — never auto-pilot</li>
+            <li>No high-pressure sales follow-ups</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- RIGHT: the intake form (kit component) -->
+      <div class="rap-form-col">
+        <IntakeForm client:load />
+      </div>
+    </div>
+  </section>
 </SiteLayout>
+
+<style>
+  .rap-section { background: linear-gradient(180deg, #fff 0%, var(--edison-teal-pale) 100%); padding: clamp(48px, 7vw, 88px) 48px clamp(64px, 8vw, 104px); }
+  .rap-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr minmax(0, 560px); gap: 96px; align-items: start; }
+  .rap-context { padding-top: 6px; }
+  .rap-eyebrow { font-family: var(--font-display); font-weight: 700; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--edison-teal-dark); margin: 0 0 18px; }
+  .rap-h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 2.8vw, 36px); line-height: 1.12; letter-spacing: -0.02em; color: var(--edison-navy); margin: 0 0 20px; }
+  .rap-lede { font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: var(--edison-text-body); margin: 0 0 34px; max-width: 520px; }
+  .rap-block-h { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--edison-teal-dark); margin: 0 0 14px; }
+  .rap-expect ul { list-style: none; padding: 0; margin: 0 0 34px; display: flex; flex-direction: column; gap: 11px; }
+  .rap-expect li { font-family: var(--font-body); font-size: 15px; line-height: 1.5; color: var(--edison-text-body); padding-left: 26px; position: relative; }
+  .rap-expect li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--edison-teal-dark); font-weight: 800; }
+  .rap-form-col { display: flex; justify-content: flex-end; }
+  .rap-form-col :global(.if-widget) { width: 100%; }
+
+  @media (max-width: 900px) {
+    .rap-section { padding-left: 20px; padding-right: 20px; }
+    .rap-grid { grid-template-columns: 1fr; gap: 36px; }
+    .rap-form-col { justify-content: stretch; }
+  }
+</style>

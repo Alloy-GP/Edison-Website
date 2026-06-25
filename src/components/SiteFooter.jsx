@@ -34,8 +34,7 @@ const DEFAULT_FOOTER_COLUMNS = [
       { label: "Clermont", href: "/services/hoa-management/clermont" },
       { label: "Lake Mary", href: "/services/hoa-management/lake-mary" },
       { label: "Altamonte Springs", href: "/services/hoa-management/altamonte-springs" },
-      { label: "Oviedo", href: "/services/hoa-management/oviedo" },
-      { label: "Brevard County", href: "/services/hoa-management/brevard-county" }
+      { label: "Oviedo", href: "/services/hoa-management/oviedo" }
     ]
   },
   {
@@ -45,7 +44,6 @@ const DEFAULT_FOOTER_COLUMNS = [
       { label: "Edison Education", href: "/edison-education" },
       { label: "Blog", href: "/blog" },
       { label: "Testimonials", href: "/testimonials" },
-      { label: "Case Studies", href: "/case-studies" },
       { label: "FAQ", href: "/faq" }
     ]
   },
@@ -117,7 +115,7 @@ function SiteFooter({
   contact = {
     phone: { label: "(407) 317-5252", href: "tel:4073175252" },
     address: "Orlando, Florida",
-    cta: { label: "Contact Us", href: "/contact" }
+    cta: { label: "Contact Us", href: "/request-a-proposal" }
   },
   social = [
     { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61588615083028", Icon: IconFacebook },

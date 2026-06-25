@@ -4,9 +4,11 @@
    Quotes lightly edited for clarity and length.
    ============================================================ */
 
+import { REVIEWS } from '../data/reviews';
+
 const TESTIMONIALS_CONTENT = {
   intro: "Real Google reviews from Edison community members and board partners across Central Florida. We anonymize last names but keep the substance of what reviewers said.",
-  reviewCount: 100,
+  reviewCount: REVIEWS.count,
   testimonials: [
     {
       category: "Switching",
@@ -36,10 +38,26 @@ const TESTIMONIALS_CONTENT = {
     {
       category: "Responsiveness",
       rating: 5,
+      quote: "I had a serious issue with my AC unit and reached Fiona on the Edison team. She was cordial, understood the urgency, and helped me get approval quickly. Very professional and friendly. Phenomenal job at Edison.",
+      attribution: "Filipe M.",
+      role: "Homeowner",
+      community: "Edison-managed HOA"
+    },
+    {
+      category: "Responsiveness",
+      rating: 5,
       quote: "I can't say enough about how amazing Jessica has been at handling a long-standing issue that no one else, including my own HOA management, could resolve. She stepped in and took care of the situation immediately. Thanks to her, everything was finally resolved quickly and efficiently.",
       attribution: "Nurise P.",
       role: "Homeowner",
       community: "Edison-managed association"
+    },
+    {
+      category: "Switching",
+      rating: 5,
+      quote: "Since Edison took over our HOA it's been night and day with the service and attention given to our community. One person in particular has gone above and beyond the normal level of service.",
+      attribution: "BigFish N.",
+      role: "Board Member",
+      community: "Edison-managed HOA"
     },
     {
       category: "Responsiveness",
@@ -84,26 +102,10 @@ const TESTIMONIALS_CONTENT = {
     {
       category: "Responsiveness",
       rating: 5,
-      quote: "I had a serious issue with my AC unit and reached Fiona on the Edison team. She was cordial, understood the urgency, and helped me get approval quickly. Very professional and friendly. Phenomenal job at Edison.",
-      attribution: "Filipe M.",
-      role: "Homeowner",
-      community: "Edison-managed HOA"
-    },
-    {
-      category: "Responsiveness",
-      rating: 5,
       quote: "Had an issue with the payment portal and got in touch with Timothy. He walked me through it, very professional and great.",
       attribution: "Jazzie H.",
       role: "Homeowner",
       community: "Edison-managed association"
-    },
-    {
-      category: "Switching",
-      rating: 5,
-      quote: "Since Edison took over our HOA it's been night and day with the service and attention given to our community. One person in particular has gone above and beyond the normal level of service.",
-      attribution: "BigFish N.",
-      role: "Board Member",
-      community: "Edison-managed HOA"
     }
   ]
 };

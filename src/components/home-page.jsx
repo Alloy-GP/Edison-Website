@@ -1,6 +1,7 @@
 import React from 'react';
 import { BulbMark, FinalCTA, InteriorButton, InteriorEyebrow, SectionHeading, ServiceArea, TrustBadges } from '../components/interior-components';
 import { BulletsWithImage } from '../components/template-sections';
+import { REVIEWS } from '../data/reviews';
 
 /* ============================================================
    HOMEPAGE-SPECIFIC SECTIONS
@@ -97,8 +98,9 @@ function HomeHero({ eyebrow, title, lede, primary, audienceCards }) {
           <div className="hp-hero-cta-row" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             <InteriorButton variant="onDark" size="lg" href={primary.href}>{primary.label}</InteriorButton>
 
-            {/* Google review badge */}
-            <a href="https://www.google.com/maps/place/Edison+Association+Management/@28.5489,-81.3583,17z"
+            {/* Google review badge — href upgraded to the GBP reviews deep link by the client script in BaseLayout */}
+            <a data-edison-reviews-link
+               href="https://www.google.com/maps/search/?api=1&query=Edison%20Association%20Management%20Orlando%20FL"
                target="_blank" rel="noopener noreferrer"
                style={{
                  display: "inline-flex", alignItems: "center", gap: 12,
@@ -126,14 +128,14 @@ function HomeHero({ eyebrow, title, lede, primary, audienceCards }) {
                 ))}
               </div>
               <div>
-                <span style={{
+                <span data-edison-review-rating style={{
                   fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14.5,
                   color: "#fff", letterSpacing: "-0.01em"
-                }}>4.9</span>
+                }}>{REVIEWS.rating}</span>
                 <span style={{
                   fontFamily: "var(--font-body)", fontSize: 13,
                   color: "rgba(255,255,255,.72)", marginLeft: 6
-                }}>· 120 Google Reviews</span>
+                }}>· <span data-edison-review-count>{REVIEWS.count}</span> Google Reviews</span>
               </div>
             </a>
           </div>
@@ -164,7 +166,7 @@ function HomeHero({ eyebrow, title, lede, primary, audienceCards }) {
              }}
              onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-3px)"; }}
              onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}>
-            <div className="hp-hero-card-img" style={{
+            <div className="hp-hero-card-img" role="img" aria-label={c.alt} style={{
               backgroundImage: i === 0
                 ? `linear-gradient(180deg, rgba(15,29,51,.15) 0%, rgba(15,29,51,.55) 100%), url(${c.image})`
                 : `url(${c.image})`,
@@ -458,7 +460,8 @@ function HomePage() {
             eyebrow: "For HOA & Condo Boards",
             title: "See why Central Florida boards switch to Edison.",
             cta: "Learn more",
-            image: "/assets/img-inspector.jpg",
+            image: "/assets/central-florida-hoa-management-board-walkthrough.jpg",
+            alt: "Edison community manager walking an HOA board member past the community pool and amenities in Central Florida",
             href: "/about"
           },
           {
@@ -466,6 +469,7 @@ function HomePage() {
             title: "Pay dues, submit requests, and access your documents.",
             cta: "Resident portal",
             image: "/assets/img-resident-portal.jpg",
+            alt: "Homeowner using the Edison resident portal to pay dues and submit requests",
             href: "https://edison.cincwebaxis.com"
           }
         ]}
@@ -490,7 +494,7 @@ function HomePage() {
           {
             title: "Covenant Enforcement",
             body: "Consistent inspections, fair enforcement, full compliance tracking.",
-            image: "/assets/img-inspector.jpg",
+            image: "/assets/hoa-covenant-enforcement-inspection.jpg",
             href: "/services/covenant-enforcement"
           }
         ]}
@@ -563,9 +567,8 @@ function HomePage() {
       <ServiceArea
         eyebrow="Service Area"
         title="Serving Associations Throughout Central Florida"
-        body="Based in Orlando, Edison proudly manages homeowner and condominium associations across Central Florida, from Orange and Seminole counties to Osceola, Lake, and beyond."
+        body="Based in Orlando, Edison proudly manages homeowner and condominium associations in communities throughout Central Florida and the surrounding region."
         cities={[
-          "Orange County", "Seminole County", "Osceola County", "Lake County",
           "Orlando", "Winter Garden", "Clermont", "Kissimmee", "Lake Mary",
           "Altamonte Springs", "Oviedo", "Apopka"
         ]}
@@ -578,7 +581,7 @@ function HomePage() {
         title="Ready for a Better Association Management Experience?"
         body="Tell us about your community and receive a customized management proposal tailored to your association's needs."
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
-        secondary={{ label: "Contact Us", href: "/contact" }}
+        secondary={{ label: "Contact Us", href: "/request-a-proposal" }}
       />
 
     </main>
