@@ -29,19 +29,10 @@ export const INTENTS = [
     redirect: 'https://edisonassociationmanagement.com/vendors',
   },
   {
-    id: 'developer', label: 'I’m a developer', icon: 'building', tone: 'navy',
-    blurb: 'I’m building a community and want to talk.', forWho: 'Developers & builders',
-    routeTo: 'Edison’s leadership team', fields: [
-      { key: 'company', label: 'Company', type: 'text', required: true, placeholder: 'Your company', col: 2 },
-      { key: 'project', label: 'Project / community', type: 'text', required: false, placeholder: 'Name or location' },
-      { key: 'stage', label: 'Stage', type: 'radio', required: false, options: ['Pre-development', 'Under construction', 'Near turnover'], col: 2 },
-    ],
-  },
-  {
     id: 'homeowner', label: 'I’m a homeowner', icon: 'home', tone: 'ocean',
-    blurb: 'I have a question about my community.', forWho: 'Residents & owners',
+    blurb: 'I have a question about my account.', forWho: 'Residents & owners',
     routeTo: 'your community team', fields: [
-      { key: 'community', label: 'Your community', type: 'text', required: false, placeholder: 'Community name or address', col: 2 },
+      { key: 'community', label: 'Community or address', type: 'text', required: false, placeholder: 'Helps us find your account', col: 2 },
     ],
   },
   {

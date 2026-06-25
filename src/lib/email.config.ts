@@ -35,7 +35,6 @@ export const EMAIL_CONFIG = {
   // the staff notification to the matching list (falls back to `notify`). ──
   routes: {
     proposal:  ['contact@edisonassociationmanagement.com'],
-    developer: ['contact@edisonassociationmanagement.com'],
     homeowner: ['contact@edisonassociationmanagement.com'],
     general:   ['contact@edisonassociationmanagement.com'],
   } as Record<string, string[]>,
@@ -59,15 +58,6 @@ export const EMAIL_CONFIG = {
         `<p>Thank you for reaching out to Edison Association Management.</p>
         <p>We've received your request and a PCAM-led member of our team will review your community's details and follow up within one business day to talk through what management with Edison would look like.</p>
         <p>If it's urgent, call us anytime at (407) 317-5252.</p>
-        <p>— The Edison team</p>`,
-    },
-    developer: {
-      label: 'Developer Inquiry',
-      notifySubject: (who: string) => `New developer inquiry — ${who}`,
-      confirmSubject: 'We received your message — Edison Association Management',
-      confirmBody: () =>
-        `<p>Thanks for reaching out to Edison Association Management.</p>
-        <p>We've received your information and a member of our leadership team will follow up within one business day to talk through your project and how Edison can help at and beyond turnover.</p>
         <p>— The Edison team</p>`,
     },
     homeowner: {
