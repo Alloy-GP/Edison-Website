@@ -88,7 +88,7 @@ function AboutPageA({ content }) {
         title="Curious what working with Edison feels like?"
         body="Boards we serve don't switch companies on impulse, they switch because the difference is measurable. Request a proposal and see what that looks like for your community."
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
-        secondary={{ label: "Schedule a Consultation", href: "/contact" }}
+        secondary={{ label: "Schedule a Consultation", href: "/request-a-proposal" }}
       />
     </main>
   );
@@ -212,7 +212,7 @@ function AboutPageB({ content }) {
         title="Curious what working with Edison feels like?"
         body="Boards we serve don't switch companies on impulse, they switch because the difference is measurable. Request a proposal and see what that looks like for your community."
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
-        secondary={{ label: "Schedule a Consultation", href: "/contact" }}
+        secondary={{ label: "Schedule a Consultation", href: "/request-a-proposal" }}
       />
     </main>
   );
@@ -275,7 +275,7 @@ const ABOUT_CONTENT = {
     { title: "Testimonials", body: "What current Edison boards say about working with us, quoted, attributed, and verifiable.", href: "/testimonials" },
     { title: "Case Studies", body: "Specific transitions and turnarounds we've led for Central Florida communities, sized, dated, and outcome-tracked.", href: "/case-studies" },
     { title: "Meet Your Management", body: "The community-wide event Edison runs before every new contract starts. Why it matters and how it works.", href: "/about/meet-your-management" },
-    { title: "Contact", body: "Office address, phone, email, and the people who answer when you call. Same-day for board members, 24-hour for homeowners.", href: "/contact" }
+    { title: "Contact", body: "Office address, phone, email, and the people who answer when you call. Same-day for board members, 24-hour for homeowners.", href: "/request-a-proposal" }
   ],
   quote: {
     quote: "We chose Edison because Tracy was the only person we interviewed who didn't talk about ourselves and the community in the same sentence as 'one of many.' Two years in, that's still how it feels.",

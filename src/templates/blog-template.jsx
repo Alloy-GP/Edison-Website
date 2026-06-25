@@ -333,7 +333,7 @@ function BlogSpokeA({ content }) {
         title="Need help applying this to your community?"
         lede="Edison's team works with Florida boards every day. If you've got questions, we'll talk you through it."
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
-        secondary={{ label: "Contact Edison", href: "/contact" }}
+        secondary={{ label: "Contact Edison", href: "/request-a-proposal" }}
       />
 
       {/* Related articles */}
@@ -571,7 +571,7 @@ function BlogSpokeB({ content }) {
                 fontFamily: "var(--font-body)", fontSize: 13.5, lineHeight: 1.55,
                 color: "var(--edison-text-body)", margin: "0 0 14px"
               }}>Edison works with Florida boards every day. We'll talk you through it.</p>
-              <InteriorButton variant="primary" size="sm" href="/contact">Talk to Edison</InteriorButton>
+              <InteriorButton variant="primary" size="sm" href="/request-a-proposal">Talk to Edison</InteriorButton>
             </div>
           </aside>
         </div>

@@ -148,7 +148,7 @@ function GeoPageB({ content }) {
         title={`Ready to talk about your ${content.city} association?`}
         body="Send us the basics and we'll respond within one business day with next steps. Same-day for board members, 24-hour for homeowners, non-negotiable."
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
-        secondary={{ label: "Contact Us", href: "/contact" }}
+        secondary={{ label: "Contact Us", href: "/request-a-proposal" }}
       />
     </main>
   );

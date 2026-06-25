@@ -7,7 +7,6 @@ const PHASE_1_PAGES = [
   /* CORE */
   { url: "/",                              label: "Home",                       template: "Home",          group: "Core" },
   { url: "/about",                        label: "About",                      template: "AboutPageB",    group: "Core" },
-  { url: "/contact",                      label: "Contact",                    template: "ContactPageA",  group: "Core" },
   { url: "/request-a-proposal",           label: "Request a Proposal",         template: "IntakeForm", group: "Core" },
 
   /* LANDING HUBS */
