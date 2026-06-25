@@ -108,10 +108,19 @@ export default function IntakeForm() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const want = new URLSearchParams(window.location.search).get('intent');
-    if (want && intentById(want)) { setIntentId(want); setFields({}); setErrors({}); setStep('form'); }
+    const w = want && intentById(want);
+    if (w) {
+      if (w.redirect) { window.location.href = w.redirect; return; }
+      setIntentId(want); setFields({}); setErrors({}); setStep('form');
+    }
   }, []);
 
-  const pick = (id) => { setIntentId(id); setFields({}); setErrors({}); setStep('form'); };
+  // Intents with a `redirect` send the visitor straight there (e.g. vendor portal).
+  const pick = (id) => {
+    const it = intentById(id);
+    if (it?.redirect) { window.location.href = it.redirect; return; }
+    setIntentId(id); setFields({}); setErrors({}); setStep('form');
+  };
   const back = () => { setStep('intent'); setErrors({}); setSendError(''); };
   const setField = (k, v) => { setFields((f) => ({ ...f, [k]: v })); setErrors((e) => ({ ...e, [k]: null })); };
   const setC = (k, v) => { setContact((c) => ({ ...c, [k]: v })); setErrors((e) => ({ ...e, [k]: null })); };
@@ -234,7 +243,7 @@ export default function IntakeForm() {
             <div className="if-actions">
               <div className="if-trust"><Ic name="lock" /> Your details stay private. No spam, ever.</div>
               <button type="submit" className="if-submit" disabled={sending}>
-                {sending ? 'Sending…' : intent.id === 'proposal' ? 'Request my proposal' : intent.id === 'bid' ? 'Submit bid' : 'Send message'}
+                {sending ? 'Sending…' : intent.id === 'proposal' ? 'Request my proposal' : 'Send message'}
                 {!sending && <Ic name="arrowRight" />}
               </button>
             </div>
