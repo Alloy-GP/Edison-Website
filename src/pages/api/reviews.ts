@@ -36,7 +36,8 @@ const reviewsLink = (placeId: string) =>
 // Used when no Place ID is available (opens the listing rather than a blank map).
 const SEARCH_FALLBACK = 'https://www.google.com/maps/search/?api=1&query=Edison%20Association%20Management%20Orlando%20FL';
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ url }) => {
+  const debug = url.searchParams.get('debug') === '1';
   const key = import.meta.env.GOOGLE_PLACES_API_KEY;
   const fallback = {
     rating: REVIEWS.rating, count: REVIEWS.count,
@@ -44,11 +45,12 @@ export const GET: APIRoute = async () => {
     source: 'fallback', updatedAt: REVIEWS.updatedAt,
   };
 
-  if (!key) return json(fallback, false); // not configured yet — serve committed values
+  if (!key) return json(debug ? { ...fallback, _debug: { keyPresent: false } } : fallback, false);
 
   try {
     // Resolve the Place ID (env override preferred; otherwise look up by name).
     let placeId = import.meta.env.GOOGLE_PLACE_ID as string | undefined;
+    const placeIdFromEnv = !!placeId;
     if (!placeId) {
       const findUrl = `${PLACES}/findplacefromtext/json?input=${encodeURIComponent('Edison Association Management Orlando FL')}&inputtype=textquery&fields=place_id&key=${key}`;
       const found = await fetch(findUrl).then((r) => r.json());
@@ -63,6 +65,10 @@ export const GET: APIRoute = async () => {
 
     if (typeof rating === 'number' && typeof count === 'number') {
       return json({ rating, count, placeId, reviewsUrl: reviewsLink(placeId), source: 'live', updatedAt: new Date().toISOString() }, true);
+    }
+    if (debug) {
+      return json({ ...fallback, placeId, reviewsUrl: reviewsLink(placeId),
+        _debug: { keyPresent: true, placeIdFromEnv, detailsStatus: det?.status, detailsError: det?.error_message, hasResult: !!det?.result } }, false);
     }
     // Details missing numbers but we have a Place ID — still return a working reviews link.
     return json({ ...fallback, placeId, reviewsUrl: reviewsLink(placeId) }, false);
