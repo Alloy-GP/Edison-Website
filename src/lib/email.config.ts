@@ -62,9 +62,10 @@ export const EMAIL_CONFIG = {
       confirmSubject: 'We received your proposal request — Edison Association Management',
       confirmBody: () =>
         `<p>Thank you for reaching out to Edison Association Management.</p>
-        <p>We've received your request and a PCAM-led member of our team will review your community's details and follow up within one business day to talk through what management with Edison would look like.</p>
+        <p>We've received your request and a Senior member of our team will review your community's details and follow up within one business day to talk through what management with Edison would look like.</p>
         <p>If it's urgent, call us anytime at (407) 317-5252.</p>
-        <p>— The Edison team</p>`,
+        <p>Have a BRIGHT day!</p>
+        <p>Sincerely,<br>The Edison Team</p>`,
     },
     vendor: {
       label: 'Vendor Bid',
@@ -73,7 +74,8 @@ export const EMAIL_CONFIG = {
       confirmBody: () =>
         `<p>Thanks for your interest in working with Edison Association Management.</p>
         <p>We've received your information and our operations team will review it. If your services are a fit for the communities we manage, we'll be in touch.</p>
-        <p>— The Edison team</p>`,
+        <p>Have a BRIGHT day!</p>
+        <p>Sincerely,<br>The Edison Team</p>`,
     },
     homeowner: {
       label: 'Homeowner Question',
@@ -81,9 +83,10 @@ export const EMAIL_CONFIG = {
       confirmSubject: 'We received your question — Edison Association Management',
       confirmBody: () =>
         `<p>Thanks for reaching out.</p>
-        <p>Your question has been logged and routed to your community team. A real person will follow up within one business day.</p>
+        <p>Your question has been logged and routed to your community team. Someone will follow up with you within one business day.</p>
         <p>Need something urgently? Call us at (407) 317-5252.</p>
-        <p>— The Edison team</p>`,
+        <p>Have a BRIGHT day!</p>
+        <p>Sincerely,<br>The Edison Team</p>`,
     },
     general: {
       label: 'General Question',
@@ -92,7 +95,8 @@ export const EMAIL_CONFIG = {
       confirmBody: () =>
         `<p>Thanks for getting in touch with Edison Association Management.</p>
         <p>We've received your message and will make sure it reaches the right person. Expect to hear back within one business day.</p>
-        <p>— The Edison team</p>`,
+        <p>Have a BRIGHT day!</p>
+        <p>Sincerely,<br>The Edison Team</p>`,
     },
     default: {
       label: 'Inquiry',
@@ -101,7 +105,8 @@ export const EMAIL_CONFIG = {
       confirmBody: () =>
         `<p>Thanks for getting in touch with Edison Association Management.</p>
         <p>We've received your message and a member of our team will follow up within one business day.</p>
-        <p>— The Edison team</p>`,
+        <p>Have a BRIGHT day!</p>
+        <p>Sincerely,<br>The Edison Team</p>`,
     },
   } as Record<string, {
     label: string;
@@ -118,14 +123,16 @@ export const EMAIL_CONFIG = {
       confirmBody: (name: string, _siteUrl: string) =>
         `<p>Hi ${name},</p>
         <p>Thanks for reaching out. We typically respond within one business day.</p>
-        <p>— The Edison team</p>`,
+        <p>Have a BRIGHT day!</p>
+        <p>Sincerely,<br>The Edison Team</p>`,
     },
     subscribe: {
       confirmSubject: "You're on the list",
       confirmBody: (name: string) =>
         `<p>Hi${name ? ` ${name}` : ''},</p>
         <p>Thanks for subscribing. We'll be in touch soon.</p>
-        <p>— The Edison team</p>`,
+        <p>Have a BRIGHT day!</p>
+        <p>Sincerely,<br>The Edison Team</p>`,
     },
   },
 };
