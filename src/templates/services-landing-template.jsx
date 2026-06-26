@@ -147,7 +147,7 @@ function ServicesLandingPage({ content = SERVICES_LANDING_CONTENT }) {
         title="Central Florida boards, statewide rigor."
         body={content.serviceArea.body}
         cities={content.serviceArea.cities}
-        mapImg="/assets/img-neighborhood-aerial.jpg"
+        mapImg="/assets/img-neighborhood-aerial.webp"
         mapEmbed={true}
       />
 
@@ -371,7 +371,7 @@ const SERVICES_LANDING_CONTENT = {
   hero: {
     title: "Full-service community association management — built around your board.",
     lede: "HOA, condo, and townhome management for Central Florida communities. Dedicated managers carrying limited portfolios — well below the industry average. Dedicated back-office departments handling accounting, enforcement, and collections. Boards can focus on making decisions.",
-    image: "/assets/img-community-aerial.jpg"
+    image: "/assets/img-community-aerial.webp"
   },
 
   stats: [
@@ -390,7 +390,7 @@ const SERVICES_LANDING_CONTENT = {
         shortLabel: "HOA",
         statute: "FL Chapter 720",
         kicker: "Single-Family · Townhome · Master Associations",
-        image: "/assets/img-community-aerial.jpg",
+        image: "/assets/img-community-aerial.webp",
         body: "Day-to-day management for single-family and townhome HOAs across Central Florida. Dedicated managers, monthly property inspections, vendor coordination, and the live Action Item List that replaces stale manager reports.",
         bullets: [
           "Dedicated manager carrying a deliberately limited portfolio",
@@ -406,7 +406,7 @@ const SERVICES_LANDING_CONTENT = {
         shortLabel: "Condo",
         statute: "FL Chapter 718",
         kicker: "Condominium Associations · SB-4D · SIRS",
-        image: "/assets/img-22.jpg",
+        image: "/assets/img-22.webp",
         body: "Florida condo association management built for the new reality after SB-4D — milestone inspections, structural integrity reserve studies, and the funding discipline boards are now legally required to demonstrate.",
         bullets: [
           "Milestone inspection coordination (FL SB-4D)",

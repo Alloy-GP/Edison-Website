@@ -51,7 +51,7 @@ function EdisonTransitionPage() {
           <div className="transition-hero-img" style={{
             width: "100%", aspectRatio: "5 / 4",
             borderRadius: 18, overflow: "hidden",
-            backgroundImage: "url(/assets/img-community-aerial.jpg)",
+            backgroundImage: "url(/assets/img-community-aerial.webp)",
             backgroundSize: "cover", backgroundPosition: "center",
             boxShadow: "var(--shadow-lg)"
           }}/>

@@ -16,7 +16,7 @@ const PILLAR_CONTENT = {
     hero: {
       title: "HOA management built around the board, not the company growth chart.",
       lede: "Full-service management for single-family and townhome HOAs across Central Florida. Dedicated managers carrying limited portfolios, well below the industry average. Back-office departments handling what isn't community-facing. Boards stop starting over.",
-      image: "/assets/img-community-aerial.jpg"
+      image: "/assets/img-community-aerial.webp"
     },
     stats: [
       { value: "Limited", caption: "Portfolios sized to your community, well below the industry standard" },
@@ -34,7 +34,7 @@ const PILLAR_CONTENT = {
     included: {
       title: "Full-service HOA management with the depth boards actually need",
       sub: "Every Edison HOA management agreement includes the operational, financial, and advisory work that keeps Florida HOAs compliant, well-funded, and well-led.",
-      image: "/assets/img-inspector.jpg",
+      image: "/assets/img-inspector.webp",
       items: [
         { title: "Dedicated Association Manager", body: "Carries a deliberately limited portfolio. Visits the property monthly. Attends every board meeting. Knows your governing documents and your homeowners by name." },
         { title: "Monthly Property Inspections", body: "Documented walks of common areas, capital assets, and vendor work. Reported back to the board with photos and recommendations." },
@@ -138,7 +138,7 @@ const PILLAR_CONTENT = {
     hero: {
       title: "Florida condo management built for Chapter 718, and SB-4D reality.",
       lede: "Condo boards face a different statutory landscape than HOAs, milestone inspections, structural integrity reserve studies, and reserve funding mandates that weren't there five years ago. Edison's condo practice is built around that reality, with a dedicated accounting specialist and engineering coordination support.",
-      image: "/assets/img-21.jpg"
+      image: "/assets/img-21.webp"
     },
     stats: [
       { value: "Ch. 718", caption: "Florida condominium statute, distinct from HOA Ch. 720" },
@@ -156,7 +156,7 @@ const PILLAR_CONTENT = {
     included: {
       title: "Full-service condo management for Florida associations",
       sub: "Every Edison condo management agreement covers the day-to-day operations, the statutory compliance, and the engineering coordination that condo boards need to actually meet their obligations.",
-      image: "/assets/img-22.jpg",
+      image: "/assets/img-22.webp",
       items: [
         { title: "Dedicated Association Manager", body: "A deliberately limited portfolio. Walks the property monthly. Attends every board meeting. Knows your governing documents and homeowners by name." },
         { title: "SB-4D Compliance Tracking", body: "Milestone inspection deadlines, SIRS triggers, and reserve funding obligations tracked centrally. No statutory deadline misses on Edison's watch." },

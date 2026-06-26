@@ -225,7 +225,7 @@ const ABOUT_CONTENT = {
   hero: {
     title: "A boutique HOA management firm, built around the boards we serve.",
     lede: "Edison Association Management is an Orlando-based, PCAM-led HOA, condominium, and townhome management firm. We were founded on the belief that volunteer boards deserve a partner who treats their community like the only one in the portfolio, because we deliberately keep our portfolios small enough that it can be.",
-    image: "/assets/img-community-aerial.jpg"
+    image: "/assets/img-community-aerial.webp"
   },
   story: {
     title: "Why Edison exists",
@@ -259,7 +259,7 @@ const ABOUT_CONTENT = {
     "Punitive fine culture, correction first, fines as a last resort",
     "Overloaded managers. Edison's sweet spot is a limited portfolio per manager, well below the industry standard."
   ],
-  valuesImage: "/assets/img-11.jpg",
+  valuesImage: "/assets/img-11.webp",
   teamIntro: [
     "Edison's organizational model treats the manager as one node on a network, not the single point of failure. A manager is paired with a dedicated accounting specialist, an enforcement coordinator, a collections specialist, and an ARC reviewer. The back-office handles what isn't community-facing so the manager can be present where it counts.",
     "Leadership stays close. Tracy Durham personally onboards every new association and remains accessible to every board, not just the largest. The COO supervises transitions. The CAI Chapter Presidency role keeps Edison plugged into Florida legislative changes the day they happen."

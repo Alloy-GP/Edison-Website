@@ -11,10 +11,11 @@ const BLOG_CONTENT = {
     category: "Financial Management",
     title: "HOA Audit: What It Is, When It's Required, and How to Prepare",
     dek: "An HOA audit confirms your community's finances are accurate, transparent, and compliant with Florida law. Learn what's required based on your association's revenue, what documents to prepare, and how strong year-round financial management makes the process faster and less expensive for your board.",
+    metaDescription: "Florida HOA audit requirements by revenue tier, how audits differ from reviews and compilations, and how to prepare your records for a smooth process.",
     author: "Edison Association Management",
     date: "March 16, 2026",
     readTime: "9 min",
-    heroImage: "/assets/blog/hoa-board-members-reviewing-audit.jpg",
+    heroImage: "/assets/blog/hoa-board-members-reviewing-audit.webp",
     intro: [
       "An HOA audit is one of those topics that sounds more intimidating than it needs to be. Your fiscal year has closed, the 90-day reporting deadline is on the horizon, and your board needs to figure out what level of financial report is actually required. The terminology alone can make a volunteer leader's head spin. Audit, review, compilation: which one does your community actually need? What documents should you have ready? And what happens if the records aren't in order?",
       "The good news is that when your association's finances are well-managed throughout the year, the audit process becomes a straightforward confirmation of good governance. This guide covers what an HOA audit involves, how it differs from other reporting levels, what Florida law requires based on your community's revenue, and how to assemble everything your CPA will need."
@@ -77,7 +78,7 @@ const BLOG_CONTENT = {
           "A thorough HOA audit checklist includes:"
         ],
         list: [
-          "<a href=\"/blog/hoa-bylaws-vs-ccrs/\">Governing documents</a> (declaration of covenants, bylaws, articles of incorporation)",
+          "<a href=\"/blog/hoa-bylaws-vs-ccrs\">Governing documents</a> (declaration of covenants, bylaws, articles of incorporation)",
           "Financial statements (balance sheet, income statement, statement of cash flows)",
           "Bank statements and monthly reconciliations",
           "Accounts receivable and accounts payable reports",
@@ -130,8 +131,8 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "For Boards", title: "HOA Bylaws vs CC&Rs: Key Differences Explained", image: "/assets/blog/bylaws-vs-ccrs.jpg", href: "/blog/hoa-bylaws-vs-ccrs" },
-      { category: "Financial Management", title: "HOA Reserve Study Florida: What Boards Need to Know", image: "/assets/blog/reserve-study-specialist.jpg", href: "/blog/hoa-reserve-study-guide" }
+      { category: "For Boards", title: "HOA Bylaws vs CC&Rs: Key Differences Explained", image: "/assets/blog/bylaws-vs-ccrs.webp", href: "/blog/hoa-bylaws-vs-ccrs" },
+      { category: "Financial Management", title: "HOA Reserve Study Florida: What Boards Need to Know", image: "/assets/blog/reserve-study-specialist.webp", href: "/blog/hoa-reserve-study-guide" }
     ]
   },
 
@@ -140,7 +141,7 @@ const BLOG_CONTENT = {
     title: "Florida HOA Laws Guide: Ch. 720 and Ch. 718 Explained",
     dek: "A plain-language overview of the two Florida statutes that govern community associations, what they cover, where they differ, and what every board member should know.",
     author: "Edison Editorial", date: "March 2026", readTime: "12 min",
-    heroImage: "/assets/img-13.jpg",
+    heroImage: "/assets/img-13.webp",
     summary: "Florida governs homeowner associations under Chapter 720 and condominium associations under Chapter 718. They look similar from a distance but differ in reserve study mandates, milestone inspection requirements, governing-document conventions, and homeowner rights. Boards that confuse them make expensive mistakes.",
     sections: [
       { id: "chapter-720", heading: "Chapter 720, The HOA statute",
@@ -174,9 +175,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Florida Compliance", title: "Florida Milestone Inspection Guide", image: "/assets/img-22.jpg", href: "/blog/florida-milestone-inspection-guide" },
-      { category: "For Boards", title: "HOA Board Member Responsibilities", image: "/assets/img-11.jpg", href: "/blog/hoa-board-member-responsibilities" },
-      { category: "For Boards", title: "Condo Association vs HOA: Which Are You?", image: "/assets/img-21.jpg", href: "/blog/condo-association-vs-hoa" }
+      { category: "Florida Compliance", title: "Florida Milestone Inspection Guide", image: "/assets/img-22.webp", href: "/blog/florida-milestone-inspection-guide" },
+      { category: "For Boards", title: "HOA Board Member Responsibilities", image: "/assets/img-11.webp", href: "/blog/hoa-board-member-responsibilities" },
+      { category: "For Boards", title: "Condo Association vs HOA: Which Are You?", image: "/assets/img-21.webp", href: "/blog/condo-association-vs-hoa" }
     ]
   },
 
@@ -185,7 +186,7 @@ const BLOG_CONTENT = {
     title: "Florida Milestone Inspection Guide (SB-4D)",
     dek: "What Senate Bill 4D requires, when it triggers, and how Florida condo boards coordinate the work, by Phase 1 and Phase 2.",
     author: "Edison Editorial", date: "April 2026", readTime: "10 min",
-    heroImage: "/assets/img-22.jpg",
+    heroImage: "/assets/img-22.webp",
     summary: "Florida Senate Bill 4D requires condominium and cooperative buildings 3+ habitable stories to commission phased milestone inspections by a licensed engineer at the 30-year mark (25 in coastal counties), and every 10 years after. Most coastal Florida boards have either completed Phase 1 or are behind on it.",
     sections: [
       { id: "what-is-sb4d", heading: "What SB-4D actually requires",
@@ -212,9 +213,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide" },
-      { category: "Financial Management", title: "HOA Reserve Study Guide (Florida)", image: "/assets/img-21.jpg", href: "/blog/hoa-reserve-study-guide" },
-      { category: "For Boards", title: "Condo Association vs HOA", image: "/assets/img-22.jpg", href: "/blog/condo-association-vs-hoa" }
+      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.webp", href: "/blog/florida-hoa-laws-guide" },
+      { category: "Financial Management", title: "HOA Reserve Study Guide (Florida)", image: "/assets/img-21.webp", href: "/blog/hoa-reserve-study-guide" },
+      { category: "For Boards", title: "Condo Association vs HOA", image: "/assets/img-22.webp", href: "/blog/condo-association-vs-hoa" }
     ]
   },
 
@@ -223,7 +224,7 @@ const BLOG_CONTENT = {
     title: "HOA Reserve Study Guide (Florida)",
     dek: "What a reserve study covers, how often Florida communities need one, and how to read the report your engineer hands you.",
     author: "Edison Editorial", date: "March 2026", readTime: "10 min",
-    heroImage: "/assets/img-21.jpg",
+    heroImage: "/assets/img-21.webp",
     summary: "A reserve study is an engineer's inventory of community capital components, roofs, paving, pools, infrastructure, with remaining useful life and replacement cost estimates. Florida HOAs typically refresh every 3–5 years. Condos 3+ stories also need the SIRS under SB-4D.",
     sections: [
       { id: "what-is-it", heading: "What a reserve study is",
@@ -252,9 +253,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Financial Management", title: "HOA Audit Guide", image: "/assets/img-accounting.jpg", href: "/blog/hoa-audit" },
-      { category: "Florida Compliance", title: "Florida Milestone Inspection Guide", image: "/assets/img-22.jpg", href: "/blog/florida-milestone-inspection-guide" },
-      { category: "Financial Management", title: "HOA Special Assessment Guide", image: "/assets/img-13.jpg", href: "/blog/hoa-special-assessment" }
+      { category: "Financial Management", title: "HOA Audit Guide", image: "/assets/img-accounting.webp", href: "/blog/hoa-audit" },
+      { category: "Florida Compliance", title: "Florida Milestone Inspection Guide", image: "/assets/img-22.webp", href: "/blog/florida-milestone-inspection-guide" },
+      { category: "Financial Management", title: "HOA Special Assessment Guide", image: "/assets/img-13.webp", href: "/blog/hoa-special-assessment" }
     ]
   },
 
@@ -263,7 +264,7 @@ const BLOG_CONTENT = {
     title: "HOA Board Member Responsibilities",
     dek: "Fiduciary duty, Florida board certification, and what board members actually owe their communities, and themselves.",
     author: "Edison Editorial", date: "March 2026", readTime: "11 min",
-    heroImage: "/assets/img-11.jpg",
+    heroImage: "/assets/img-11.webp",
     summary: "Florida HOA and condo board members owe their communities a fiduciary duty, duty of care, duty of loyalty, duty to act in good faith. Failing those duties creates personal liability that the association's D&O insurance may not fully cover. Knowing the duties is step one; documenting them is step two.",
     sections: [
       { id: "fiduciary-duty", heading: "What fiduciary duty actually means",
@@ -290,9 +291,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide" },
-      { category: "For Boards", title: "HOA Bylaws vs CC&Rs Explained", image: "/assets/img-17.jpg", href: "/blog/hoa-bylaws-vs-ccrs" },
-      { category: "For Boards", title: "Unenforceable HOA Rules in Florida", image: "/assets/img-inspector.jpg", href: "/blog/unenforceable-hoa-rules-florida" }
+      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.webp", href: "/blog/florida-hoa-laws-guide" },
+      { category: "For Boards", title: "HOA Bylaws vs CC&Rs Explained", image: "/assets/img-17.webp", href: "/blog/hoa-bylaws-vs-ccrs" },
+      { category: "For Boards", title: "Unenforceable HOA Rules in Florida", image: "/assets/img-inspector.webp", href: "/blog/unenforceable-hoa-rules-florida" }
     ]
   },
 
@@ -300,10 +301,11 @@ const BLOG_CONTENT = {
     category: "For Boards",
     title: "HOA Bylaws vs CC&Rs: Key Differences Explained",
     dek: "Board members often reach for the wrong document when a decision needs to be made quickly. Understanding the difference between HOA bylaws and CC&Rs — and knowing which one governs your situation — is how volunteer leaders make confident, defensible decisions.",
+    metaDescription: "HOA bylaws vs CC&Rs in Florida: what each document governs, how they differ, and which one controls when your board needs to make a confident call.",
     author: "Edison Association Management",
     date: "February 4, 2026",
     readTime: "8 min",
-    heroImage: "/assets/blog/bylaws-vs-ccrs.jpg",
+    heroImage: "/assets/blog/bylaws-vs-ccrs.webp",
     intro: [
       "You're sitting at a board meeting and the question on the table is whether the board can pass a new rental restriction with a simple majority vote, or whether it has to go to the full membership. Someone thinks it's covered in the bylaws. Someone else is pretty sure it's a CC&R issue. A third board member isn't confident there's even a difference between the two documents.",
       "Understanding HOA bylaws vs CC&Rs isn't just useful background knowledge for Central Florida board members. It's how you make confident, defensible decisions when something actually comes up. This post breaks down what each document covers, how they interact, and which one to reach for depending on the situation."
@@ -327,14 +329,14 @@ const BLOG_CONTENT = {
         heading: "What Are CC&Rs?",
         body: [
           "CC&Rs — short for Covenants, Conditions, and Restrictions — are the foundational rules of community living, and they follow the property, not the owner. Think of them as the \"what\" of your association: the document that defines how the community looks, how property is used, and what obligations every homeowner carries. Boards can also adopt additional policies, as long as those policies don't conflict with the recorded documents or state statutes.",
-          "What makes CC&Rs distinct from other governing documents is that they are recorded with the county, meaning a record is kept on file and the property use restrictions are tied to the property itself, not the person who owns it. When a home sells, the CC&Rs transfer automatically to the new owner. Under Florida law, amendments to the Declaration of Covenants, Conditions, and Restrictions require a membership vote and must be re-recorded with the county, making changes deliberate and intentionally difficult to reverse. When Edison's <a href=\"/services/hoa-enforcement/\">covenant enforcement team</a> conducts property inspections, the CC&Rs are one of the governing standards they work from, alongside the Rules & Regulations and any other adopted community policies."
+          "What makes CC&Rs distinct from other governing documents is that they are recorded with the county, meaning a record is kept on file and the property use restrictions are tied to the property itself, not the person who owns it. When a home sells, the CC&Rs transfer automatically to the new owner. Under Florida law, amendments to the Declaration of Covenants, Conditions, and Restrictions require a membership vote and must be re-recorded with the county, making changes deliberate and intentionally difficult to reverse. When Edison's <a href=\"/services/covenant-enforcement\">covenant enforcement team</a> conducts property inspections, the CC&Rs are one of the governing standards they work from, alongside the Rules & Regulations and any other adopted community policies."
         ],
         subheading: "What CC&Rs Typically Cover",
         list: [
           "Property use restrictions (what can and can't be done with a lot or unit)",
           "Architectural guidelines and exterior modification requirements",
           "Homeowner maintenance obligations",
-          "<a href=\"/services/hoa-accounting/\">Assessment obligations and payment requirements</a>",
+          "<a href=\"/services/hoa-accounting\">Assessment obligations and payment requirements</a>",
           "Insurance obligations for homeowners and the association",
           "Dispute resolution mechanisms",
           "Lender protection provisions"
@@ -344,7 +346,7 @@ const BLOG_CONTENT = {
         id: "what-are-bylaws",
         heading: "What Are HOA Bylaws?",
         body: [
-          "Bylaws govern <a href=\"/services/hoa-management/\">how the HOA operates</a> as an organization — not what homeowners can do with their property, but how the board makes decisions, runs meetings, and fulfills the duties and responsibilities of board members. If the CC&Rs are the \"what,\" the bylaws are the \"how.\"",
+          "Bylaws govern <a href=\"/services/hoa-management\">how the HOA operates</a> as an organization — not what homeowners can do with their property, but how the board makes decisions, runs meetings, and fulfills the duties and responsibilities of board members. If the CC&Rs are the \"what,\" the bylaws are the \"how.\"",
           "Unlike CC&Rs, bylaws do not need to be recorded with the county under Florida law, though amendments typically require a homeowner vote, with the exact process depending on the amendment provisions written in the bylaws themselves. The bylaws are also where Florida's board certification requirement lives in practice: boards must be certified within 90 days of election under state law, and understanding the governing documents is a core part of that process.",
           "When a question comes up about whether something requires a vote or about the responsibilities of officers, the bylaws are almost always the right document to open first."
         ],
@@ -393,7 +395,7 @@ const BLOG_CONTENT = {
         heading: "HOA Bylaws vs CC&Rs: The Key Difference",
         body: [
           "CC&Rs define the rules homeowners must follow as property owners. Bylaws define the rules the board must follow when governing the association. Both are legally binding, both are difficult to amend, and neither can override state or federal law — but they operate in entirely different lanes.",
-          "When a question is about what a homeowner can or can't do, start with the CC&Rs. When a question is about how the HOA operates or how a decision gets made, start with the bylaws. Rules & Regulations fill in the operational gaps that neither document addresses at the level of <a href=\"/services/hoa-management/\">detail day-to-day management</a> requires."
+          "When a question is about what a homeowner can or can't do, start with the CC&Rs. When a question is about how the HOA operates or how a decision gets made, start with the bylaws. Rules & Regulations fill in the operational gaps that neither document addresses at the level of <a href=\"/services/hoa-management\">detail day-to-day management</a> requires."
         ]
       },
       {
@@ -420,8 +422,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Financial Management", title: "HOA Audit: What It Is, When It's Required, and How to Prepare", image: "/assets/blog/hoa-board-members-reviewing-audit.jpg", href: "/blog/hoa-audit" },
-      { category: "Financial Management", title: "HOA Reserve Study Florida: What Boards Need to Know", image: "/assets/blog/reserve-study-specialist.jpg", href: "/blog/hoa-reserve-study-guide" }
+      { category: "Financial Management", title: "HOA Audit: What It Is, When It's Required, and How to Prepare", image: "/assets/blog/hoa-board-members-reviewing-audit.webp", href: "/blog/hoa-audit" },
+      { category: "For Boards", title: "Unenforceable HOA Rules in Florida", image: "/assets/img-inspector.webp", href: "/blog/unenforceable-hoa-rules-florida" },
+      { category: "Financial Management", title: "HOA Reserve Study Florida: What Boards Need to Know", image: "/assets/blog/reserve-study-specialist.webp", href: "/blog/hoa-reserve-study-guide" }
     ]
   },
 
@@ -430,7 +433,7 @@ const BLOG_CONTENT = {
     title: "Unenforceable HOA Rules in Florida",
     dek: "Just because a rule is on the books doesn't mean a court will uphold it. What Florida law says about which HOA rules stick, and which don't.",
     author: "Edison Editorial", date: "February 2026", readTime: "8 min",
-    heroImage: "/assets/img-inspector.jpg",
+    heroImage: "/assets/img-inspector.webp",
     summary: "Florida law protects homeowners from HOA rules that conflict with statute, exceed the board's documented authority, or are enforced selectively. Boards that try to enforce unenforceable rules create legal exposure for themselves, and lose the homeowner's trust along the way.",
     sections: [
       { id: "why-rules-fail", heading: "Why some HOA rules are unenforceable",
@@ -458,9 +461,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "For Boards", title: "HOA Bylaws vs CC&Rs Explained", image: "/assets/img-17.jpg", href: "/blog/hoa-bylaws-vs-ccrs" },
-      { category: "For Boards", title: "HOA Board Member Responsibilities", image: "/assets/img-11.jpg", href: "/blog/hoa-board-member-responsibilities" },
-      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide" }
+      { category: "For Boards", title: "HOA Bylaws vs CC&Rs Explained", image: "/assets/img-17.webp", href: "/blog/hoa-bylaws-vs-ccrs" },
+      { category: "For Boards", title: "HOA Board Member Responsibilities", image: "/assets/img-11.webp", href: "/blog/hoa-board-member-responsibilities" },
+      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.webp", href: "/blog/florida-hoa-laws-guide" }
     ]
   },
 
@@ -469,7 +472,7 @@ const BLOG_CONTENT = {
     title: "Condo Association vs HOA: Which Are You?",
     dek: "Different statutes, different governing documents, different rules. A quick decision tree for boards who aren't sure which framework applies.",
     author: "Edison Editorial", date: "January 2026", readTime: "6 min",
-    heroImage: "/assets/img-21.jpg",
+    heroImage: "/assets/img-21.webp",
     summary: "If your community is declared under a Declaration of Condominium, you're a condo association under Florida Chapter 718. Otherwise, single-family neighborhoods, townhomes, master associations, you're typically an HOA under Chapter 720. The distinction matters for reserves, milestone inspections, and homeowner rights.",
     sections: [
       { id: "the-decision-tree", heading: "The decision tree",
@@ -492,9 +495,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide" },
-      { category: "Florida Compliance", title: "Florida Milestone Inspection Guide", image: "/assets/img-22.jpg", href: "/blog/florida-milestone-inspection-guide" },
-      { category: "For Boards", title: "HOA Bylaws vs CC&Rs Explained", image: "/assets/img-17.jpg", href: "/blog/hoa-bylaws-vs-ccrs" }
+      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.webp", href: "/blog/florida-hoa-laws-guide" },
+      { category: "Florida Compliance", title: "Florida Milestone Inspection Guide", image: "/assets/img-22.webp", href: "/blog/florida-milestone-inspection-guide" },
+      { category: "For Boards", title: "HOA Bylaws vs CC&Rs Explained", image: "/assets/img-17.webp", href: "/blog/hoa-bylaws-vs-ccrs" }
     ]
   },
 
@@ -503,7 +506,7 @@ const BLOG_CONTENT = {
     title: "HOA Management Fees: What Boards Actually Pay",
     dek: "What's standard, what's premium, and how to read a management proposal without losing the plot.",
     author: "Edison Editorial", date: "January 2026", readTime: "10 min",
-    heroImage: "/assets/img-13.jpg",
+    heroImage: "/assets/img-13.webp",
     summary: "HOA management fees in Florida typically run a monthly per-door rate based on community size, service scope, and complexity. The headline number is rarely the whole story, what's included, what's an upcharge, and what happens after year one matters more than the per-door rate.",
     sections: [
       { id: "fee-structure", heading: "How management fees are usually structured",
@@ -538,9 +541,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Financial Management", title: "HOA Audit Guide", image: "/assets/img-accounting.jpg", href: "/blog/hoa-audit" },
-      { category: "Financial Management", title: "HOA Special Assessment Guide", image: "/assets/img-13.jpg", href: "/blog/hoa-special-assessment" },
-      { category: "Local Authority", title: "Best HOA Management Companies in Orlando", image: "/assets/img-community-aerial.jpg", href: "/blog/best-hoa-management-companies-orlando" }
+      { category: "Financial Management", title: "HOA Audit Guide", image: "/assets/img-accounting.webp", href: "/blog/hoa-audit" },
+      { category: "Financial Management", title: "HOA Special Assessment Guide", image: "/assets/img-13.webp", href: "/blog/hoa-special-assessment" },
+      { category: "Local Authority", title: "Best HOA Management Companies in Orlando", image: "/assets/img-community-aerial.webp", href: "/blog/best-hoa-management-companies-orlando" }
     ]
   },
 
@@ -549,7 +552,7 @@ const BLOG_CONTENT = {
     title: "HOA Special Assessment Guide",
     dek: "When special assessments make sense, how they're approved, what they look like in Florida, and the alternatives most boards skip past.",
     author: "Edison Editorial", date: "February 2026", readTime: "8 min",
-    heroImage: "/assets/img-accounting.jpg",
+    heroImage: "/assets/img-accounting.webp",
     summary: "A special assessment is a one-time charge to homeowners outside the regular assessment cycle, usually to fund a capital project that reserves can't cover. They work, but they damage homeowner trust, drive owner attrition, and are usually preventable with disciplined reserve banking.",
     sections: [
       { id: "what-it-is", heading: "What a special assessment is",
@@ -576,9 +579,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Financial Management", title: "HOA Reserve Study Guide (Florida)", image: "/assets/img-21.jpg", href: "/blog/hoa-reserve-study-guide" },
-      { category: "Financial Management", title: "HOA Audit Guide", image: "/assets/img-accounting.jpg", href: "/blog/hoa-audit" },
-      { category: "Financial Management", title: "HOA Management Fees", image: "/assets/img-13.jpg", href: "/blog/hoa-management-fees" }
+      { category: "Financial Management", title: "HOA Reserve Study Guide (Florida)", image: "/assets/img-21.webp", href: "/blog/hoa-reserve-study-guide" },
+      { category: "Financial Management", title: "HOA Audit Guide", image: "/assets/img-accounting.webp", href: "/blog/hoa-audit" },
+      { category: "Financial Management", title: "HOA Management Fees", image: "/assets/img-13.webp", href: "/blog/hoa-management-fees" }
     ]
   },
 
@@ -589,7 +592,7 @@ const BLOG_CONTENT = {
     author: "Edison Association Management",
     date: "May 20, 2026",
     readTime: "10 min",
-    heroImage: "/assets/blog/reserve-study-specialist.jpg",
+    heroImage: "/assets/blog/reserve-study-specialist.webp",
     intro: [
       "You're staring at a line item in the budget labeled \"reserves,\" and you're not entirely sure the number is right. Maybe it was carried over from last year. Maybe it was set by a previous board. Maybe no one has looked at the actual condition of the roof, the pool deck, or the parking lot in years. If any of this sounds familiar, your community probably needs an HOA reserve study.",
       "A reserve study is the financial planning tool that tells your board exactly where your community stands: what's aging, when it will need replacement, and whether the money is there to pay for it. In Florida, where hurricane exposure, humidity, and rapid development put constant pressure on shared infrastructure, reserve planning is not optional. It's how boards avoid the surprise special assessments that frustrate homeowners and erode trust.",
@@ -663,7 +666,7 @@ const BLOG_CONTENT = {
           "<strong>Most management companies hand the reserve study off to a vendor, wait for the report, and drop it in a board packet. Edison's approach is different.</strong>",
           "Before the study begins, Edison's team walks the property and provides the reserve specialist with practical, on-the-ground context. Which components were recently repaired or replaced? Which areas are showing early signs of failure that might not be obvious in a single-day inspection? What vendor quotes has the board already received for upcoming projects? This kind of input makes the reserve study more accurate and more useful.",
           "During the study, Edison coordinates property access, provides historical maintenance records from CINC Systems, and ensures the specialist has accurate data on prior replacements and upgrades. Organized records and responsive management support mean the specialist spends their time inspecting, not chasing documentation.",
-          "After the study is complete, Edison translates the findings into the community's <a href=\"/services/hoa-accounting/\">annual budget</a>. Reserve contribution recommendations are adjusted, the funding plan is mapped against upcoming capital projects, and the board has a clear path forward. Edison's banking partnership with One Florida Bank also helps boards optimize how reserve dollars are held. CDs, sweep accounts, and FDIC coverage structuring ensure reserve funds earn interest while they wait, rather than sitting idle in a low-yield account.",
+          "After the study is complete, Edison translates the findings into the community's <a href=\"/services/hoa-accounting\">annual budget</a>. Reserve contribution recommendations are adjusted, the funding plan is mapped against upcoming capital projects, and the board has a clear path forward. Edison's banking partnership with One Florida Bank also helps boards optimize how reserve dollars are held. CDs, sweep accounts, and FDIC coverage structuring ensure reserve funds earn interest while they wait, rather than sitting idle in a low-yield account.",
           "This is what reserve planning looks like when the management company treats it as part of ongoing financial stewardship rather than a one-time vendor deliverable."
         ]
       },
@@ -691,8 +694,8 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Financial Management", title: "HOA Audit: What It Is, When It's Required, and How to Prepare", image: "/assets/blog/hoa-board-members-reviewing-audit.jpg", href: "/blog/hoa-audit" },
-      { category: "For Boards", title: "HOA Bylaws vs CC&Rs: Key Differences Explained", image: "/assets/blog/bylaws-vs-ccrs.jpg", href: "/blog/hoa-bylaws-vs-ccrs" }
+      { category: "Financial Management", title: "HOA Audit: What It Is, When It's Required, and How to Prepare", image: "/assets/blog/hoa-board-members-reviewing-audit.webp", href: "/blog/hoa-audit" },
+      { category: "For Boards", title: "HOA Bylaws vs CC&Rs: Key Differences Explained", image: "/assets/blog/bylaws-vs-ccrs.webp", href: "/blog/hoa-bylaws-vs-ccrs" }
     ]
   },
 
@@ -701,7 +704,7 @@ const BLOG_CONTENT = {
     title: "Best HOA Management Companies in Orlando: An Honest Field Guide",
     dek: "Written for boards comparing options. What to look for, what to watch out for, and how Edison stacks up, without disparaging competitors.",
     author: "Edison Editorial", date: "December 2025", readTime: "11 min",
-    heroImage: "/assets/img-community-aerial.jpg",
+    heroImage: "/assets/img-community-aerial.webp",
     summary: "Orlando has more HOA management options than any other city in Central Florida, from national operators with hundreds of communities to single-manager boutiques. The right choice for your board depends on portfolio size per manager, depth of back-office, transition discipline, and how loud the company's voicemail gets.",
     sections: [
       { id: "what-to-look-for", heading: "What to look for in any HOA management company",
@@ -738,9 +741,9 @@ const BLOG_CONTENT = {
       }
     ],
     related: [
-      { category: "Financial Management", title: "HOA Management Fees: What Boards Actually Pay", image: "/assets/img-13.jpg", href: "/blog/hoa-management-fees" },
-      { category: "For Boards", title: "HOA Board Member Responsibilities", image: "/assets/img-11.jpg", href: "/blog/hoa-board-member-responsibilities" },
-      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.jpg", href: "/blog/florida-hoa-laws-guide" }
+      { category: "Financial Management", title: "HOA Management Fees: What Boards Actually Pay", image: "/assets/img-13.webp", href: "/blog/hoa-management-fees" },
+      { category: "For Boards", title: "HOA Board Member Responsibilities", image: "/assets/img-11.webp", href: "/blog/hoa-board-member-responsibilities" },
+      { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.webp", href: "/blog/florida-hoa-laws-guide" }
     ]
   }
 };

@@ -212,7 +212,7 @@ function TestimonialsPageB({ content }) {
           <div style={{
             width: "100%", aspectRatio: "1 / 1",
             borderRadius: 16, overflow: "hidden",
-            backgroundImage: `url(${featured.image || "/assets/img-11.jpg"})`,
+            backgroundImage: `url(${featured.image || "/assets/img-11.webp"})`,
             backgroundSize: "cover", backgroundPosition: "center",
             boxShadow: "var(--shadow-md)"
           }}/>

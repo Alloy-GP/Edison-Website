@@ -400,7 +400,7 @@ function TrustBadges({ eyebrow, title, sub, badges }) {
               boxShadow: "var(--shadow-xs)"
             }}>
               {b.img
-                ? <img src={b.img} alt={b.label}
+                ? <img src={b.img} alt={b.label} loading="lazy" decoding="async"
                        style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", display: "block" }}/>
                 : (
                   <div style={{ textAlign: "center" }}>
