@@ -72,6 +72,23 @@
 .if-textarea { resize: vertical; min-height: 64px; line-height: 1.5; }
 .if-select-wrap { position: relative; }
 .if-select { appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 34px; }
+/* Floating label: sits inside the field, shrinks to the top border on focus/fill */
+.if-float { position: relative; }
+.if-flabel {
+  position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+  transform-origin: left center; font-family: var(--if-font-body); font-size: 14px; line-height: 1;
+  color: var(--if-muted); pointer-events: none; background: var(--if-input-bg); padding: 0 5px;
+  max-width: calc(100% - 26px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: top .14s ease, transform .14s ease, color .14s ease, background .14s ease;
+}
+.if-float.if-float-top .if-flabel { top: 14px; transform: none; }
+.if-float:focus-within .if-flabel,
+.if-float.has-value .if-flabel {
+  top: 0; transform: translateY(-50%) scale(.84); font-weight: 600; background: #fff; color: var(--if-muted);
+}
+.if-float:focus-within .if-flabel { color: var(--if-accent); }
+.if-float.is-err .if-control { border-color: #b9466a; }
+.if-float .if-req { color: var(--if-accent); }
 .if-caret { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--if-muted); pointer-events: none; }
 .if-caret .if-ic { width: 14px; height: 14px; }
 .if-segmented { display: flex; gap: 7px; flex-wrap: wrap; }
