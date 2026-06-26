@@ -262,7 +262,7 @@ const SIRS_CONTENT = {
   hero: {
     title: "Structural Integrity Reserve Study (SIRS) coordination.",
     lede: "Florida condominium associations three stories or more must commission a Structural Integrity Reserve Study by their statutory deadline. Edison coordinates the engineer, manages the deliverable, and helps your board build a funding plan that actually meets the mandate.",
-    image: "/assets/img-21.jpg",
+    image: "/assets/img-21.webp",
     statute: "Florida Statute § 718.112(2)(g) · SB-4D"
   },
   spec: [

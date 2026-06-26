@@ -21,9 +21,10 @@ interface Props {
   pageSchema?: Record<string, unknown> | Record<string, unknown>[];
   twitterAuthor?: string;
   twitterReadTime?: string;
+  preloadImages?: { href: string; media?: string }[];
 }
 
-const { title, description, ogType, ogImage, robots, pageSchema, twitterAuthor, twitterReadTime } = Astro.props;
+const { title, description, ogType, ogImage, robots, pageSchema, twitterAuthor, twitterReadTime, preloadImages } = Astro.props;
 ---
 
 <BaseLayout
@@ -35,6 +36,7 @@ const { title, description, ogType, ogImage, robots, pageSchema, twitterAuthor, 
   pageSchema={pageSchema}
   twitterAuthor={twitterAuthor}
   twitterReadTime={twitterReadTime}
+  preloadImages={preloadImages}
 >
   <SiteHeader client:load />
   <main>

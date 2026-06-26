@@ -6,6 +6,10 @@ import { HomePage } from '../components/home-page.jsx';
 <SiteLayout
   title="Central Florida HOA Management | Edison Association Management"
   description="Boutique, PCAM-led HOA management for Central Florida boards. 4.9★, BBB A+, dedicated back-office teams. Request a proposal."
+  preloadImages={[
+    { href: '/assets/img-community-aerial-mobile.webp', media: '(max-width: 640px)' },
+    { href: '/assets/img-community-aerial.webp', media: '(min-width: 641px)' },
+  ]}
 >
   <HomePage client:load />
 </SiteLayout>

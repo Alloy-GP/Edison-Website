@@ -99,8 +99,7 @@ const DEFAULT_NAV = [
       { label: "About Edison", href: "/about" },
       { label: "Meet Our Team", href: "/about/meet-our-team" },
       { label: "Meet Your Management", href: "/about/meet-your-management" },
-      { label: "Testimonials", href: "/testimonials" },
-      { label: "Case Studies", href: "/case-studies" }
+      { label: "Testimonials", href: "/testimonials" }
     ]
   }
 ];
@@ -214,7 +213,7 @@ function FeatureCard({ feature, compact = false }) {
 /* ---------- Mega menu (desktop) ---------- */
 function MegaMenu({ columns }) {
   return (
-    <div role="menu" data-mega-menu className="edison-mega-menu" style={{
+    <div data-mega-menu className="edison-mega-menu" style={{
       position: "absolute", top: "calc(100% + 1px)", left: "50%",
       width: "min(1200px, calc(100vw - 32px))",
       background: "#fff",
@@ -279,7 +278,7 @@ function MegaItem({ item }) {
 /* ---------- Simple dropdown (desktop) ---------- */
 function SimpleDropdown({ items }) {
   return (
-    <ul role="menu" className="edison-simple-dropdown" style={{
+    <ul className="edison-simple-dropdown" style={{
       listStyle: "none", margin: 0, padding: "6px", minWidth: 260,
       background: "#fff", border: "1px solid var(--border-hairline)",
       borderTop: "2px solid var(--edison-teal)", borderRadius: "0 0 10px 10px",
@@ -416,7 +415,7 @@ function NavCtaButton({ href, label }) {
    SiteHeader
    ============================================================ */
 function SiteHeader({
-  logoSrc = "/assets/logo.png",
+  logoSrc = "/assets/logo.webp",
   logoAlt = "Edison Association Management",
   homeHref = "/",
   nav = DEFAULT_NAV,
@@ -687,7 +686,7 @@ function SiteHeader({
           }}>
             {/* Logo */}
             <a href={homeHref} aria-label={logoAlt} style={{ display: "block", borderBottom: 0, flexShrink: 0 }}>
-              <img src={logoSrc} alt={logoAlt} style={{ height: 40, width: "auto", display: "block" }}/>
+              <img src={logoSrc} alt={logoAlt} width={133} height={40} fetchpriority="high" decoding="async" style={{ height: 40, width: "auto", display: "block" }}/>
             </a>
 
             {/* Desktop nav */}

@@ -18,9 +18,15 @@ export function ServiceAreaMap({ highlightedCounty = null }) {
   const mapRef       = useRef(null);
   const layersRef    = useRef({});   // { "Orange County": LeafletLayer, ... }
 
-  /* ── Build map once ─────────────────────────────────────── */
+  /* ── Build map once, only when it nears the viewport ──────
+     Leaflet JS/CSS + CARTO basemap tiles are heavy third-party
+     requests. Deferring them until the map scrolls into view
+     keeps them off the critical path (better LCP/Speed Index). */
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
+
+    function build() {
+    if (mapRef.current) return;
 
     if (!document.getElementById('leaflet-css')) {
       const link = document.createElement('link');
@@ -131,8 +137,15 @@ export function ServiceAreaMap({ highlightedCounty = null }) {
         if (window.L) { clearInterval(poll); initMap(); }
       }, 50);
     }
+    } // end build()
+
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { io.disconnect(); build(); }
+    }, { rootMargin: '400px' });
+    io.observe(containerRef.current);
 
     return () => {
+      io.disconnect();
       if (mapRef.current) { mapRef.current.remove(); mapRef.current = null; }
     };
   }, []);

@@ -34,7 +34,8 @@ const DEFAULT_FOOTER_COLUMNS = [
       { label: "Clermont", href: "/services/hoa-management/clermont" },
       { label: "Lake Mary", href: "/services/hoa-management/lake-mary" },
       { label: "Altamonte Springs", href: "/services/hoa-management/altamonte-springs" },
-      { label: "Oviedo", href: "/services/hoa-management/oviedo" }
+      { label: "Oviedo", href: "/services/hoa-management/oviedo" },
+      { label: "Brevard County", href: "/services/hoa-management/brevard-county" }
     ]
   },
   {
@@ -44,7 +45,6 @@ const DEFAULT_FOOTER_COLUMNS = [
       { label: "Edison Education", href: "/edison-education" },
       { label: "Blog", href: "/blog" },
       { label: "Testimonials", href: "/testimonials" },
-      { label: "Case Studies", href: "/case-studies" },
       { label: "FAQ", href: "/faq" }
     ]
   },
@@ -108,7 +108,7 @@ function FooterCol({ title, href, links }) {
 }
 
 function SiteFooter({
-  logoSrc = "/assets/logo-white.png",
+  logoSrc = "/assets/logo-white.webp",
   logoAlt = "Edison Association Management",
   homeHref = "/",
   blurb = "Professional HOA and condominium management services in Orlando, Florida. Lighting the way for community associations since 2021.",
@@ -143,7 +143,7 @@ function SiteFooter({
         {/* Brand column */}
         <div>
           <a href={homeHref} aria-label={logoAlt} style={{ display: "inline-block", borderBottom: 0 }}>
-            <img src={logoSrc} alt={logoAlt}
+            <img src={logoSrc} alt={logoAlt} width={166} height={50} loading="lazy" decoding="async"
                  style={{ height: 50, width: "auto", display: "block", marginBottom: 20 }}/>
           </a>
           <p style={{

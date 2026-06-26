@@ -135,7 +135,7 @@ function TestimonialsPageA({ content }) {
         title="See if Edison is the right fit for your community."
         body="Boards switch to Edison because the difference is measurable. Request a proposal and see what working together looks like for your association."
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
-        secondary={{ label: "Read Case Studies", href: "/case-studies" }}
+        secondary={{ label: "Meet the Team", href: "/about/meet-our-team" }}
       />
     </main>
   );
@@ -212,7 +212,7 @@ function TestimonialsPageB({ content }) {
           <div style={{
             width: "100%", aspectRatio: "1 / 1",
             borderRadius: 16, overflow: "hidden",
-            backgroundImage: `url(${featured.image || "/assets/img-11.jpg"})`,
+            backgroundImage: `url(${featured.image || "/assets/img-11.webp"})`,
             backgroundSize: "cover", backgroundPosition: "center",
             boxShadow: "var(--shadow-md)"
           }}/>
@@ -263,11 +263,11 @@ function TestimonialsPageB({ content }) {
       </section>
 
       <FinalCTA
-        eyebrow="Read deeper"
-        title="See the full story behind these results."
-        body="Our case studies document specific transitions, capital project rescues, and financial turnarounds we've led, with the numbers and the timelines."
-        primary={{ label: "Read Case Studies", href: "/case-studies" }}
-        secondary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        eyebrow="Ready when you are"
+        title="See what working with Edison looks like for your community."
+        body="Boards switch to Edison because the difference is measurable. Request a proposal and we'll show you exactly what working together looks like for your association."
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        secondary={{ label: "Meet the Team", href: "/about/meet-our-team" }}
       />
     </main>
   );

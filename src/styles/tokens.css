@@ -4,9 +4,10 @@
    ========================================================================== */
 
 /* Webfonts: Montserrat (headings) + Open Sans (body) sourced from Google Fonts.
-   The brand guide names these directly. If self-hosting is required, replace
-   the @import below with @font-face rules pointing at /fonts/. */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+   Loaded non-blocking via <link> in BaseLayout.astro (preconnect + async swap)
+   instead of @import here, which would serialize on the critical render path
+   and block first paint. If self-hosting is required, add @font-face rules
+   pointing at /fonts/ and drop the BaseLayout links. */
 
 :root {
   /* ----- Layout ------------------------------------------------------ */
@@ -28,7 +29,7 @@
   --edison-navy-90:     #2A3A5E;
   --edison-navy-50:     #8B95AB;
   --edison-navy-10:     #E3E5EC;
-  --edison-teal-dark:   #2BA8A8;
+  --edison-teal-dark:   #127979;   /* Teal for text/links/eyebrows on light — ~5.2:1 on white (WCAG AA). Was #2BA8A8 (failed at ~2.8:1). */
   --edison-bg-cream:    #FAF9F6;   /* Warm off-white surface (used sparingly) */
   --edison-text-body:   #1F2937;   /* Per brand guide: navy or dark gray for body */
 

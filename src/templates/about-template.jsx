@@ -225,7 +225,7 @@ const ABOUT_CONTENT = {
   hero: {
     title: "A boutique HOA management firm, built around the boards we serve.",
     lede: "Edison Association Management is an Orlando-based, PCAM-led HOA, condominium, and townhome management firm. We were founded on the belief that volunteer boards deserve a partner who treats their community like the only one in the portfolio, because we deliberately keep our portfolios small enough that it can be.",
-    image: "/assets/img-community-aerial.jpg"
+    image: "/assets/img-community-aerial.webp"
   },
   story: {
     title: "Why Edison exists",
@@ -259,7 +259,7 @@ const ABOUT_CONTENT = {
     "Punitive fine culture, correction first, fines as a last resort",
     "Overloaded managers. Edison's sweet spot is a limited portfolio per manager, well below the industry standard."
   ],
-  valuesImage: "/assets/img-11.jpg",
+  valuesImage: "/assets/img-11.webp",
   teamIntro: [
     "Edison's organizational model treats the manager as one node on a network, not the single point of failure. A manager is paired with a dedicated accounting specialist, an enforcement coordinator, a collections specialist, and an ARC reviewer. The back-office handles what isn't community-facing so the manager can be present where it counts.",
     "Leadership stays close. Tracy Durham personally onboards every new association and remains accessible to every board, not just the largest. The COO supervises transitions. The CAI Chapter Presidency role keeps Edison plugged into Florida legislative changes the day they happen."
@@ -273,7 +273,6 @@ const ABOUT_CONTENT = {
   subPages: [
     { title: "Meet Our Team", body: "Edison's managers, specialists, and leadership, the people who actually do the work for your board.", href: "/about/meet-our-team" },
     { title: "Testimonials", body: "What current Edison boards say about working with us, quoted, attributed, and verifiable.", href: "/testimonials" },
-    { title: "Case Studies", body: "Specific transitions and turnarounds we've led for Central Florida communities, sized, dated, and outcome-tracked.", href: "/case-studies" },
     { title: "Meet Your Management", body: "The community-wide event Edison runs before every new contract starts. Why it matters and how it works.", href: "/about/meet-your-management" },
     { title: "Contact", body: "Office address, phone, email, and the people who answer when you call. Same-day for board members, 24-hour for homeowners.", href: "/request-a-proposal" }
   ],
