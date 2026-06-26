@@ -14,12 +14,16 @@ export const TRACKING = { formId: 'lead-form', intents: ['proposal'] };
 // (e.g. a vendor portal / software) when picked.
 export const INTENTS = [
   {
-    id: 'proposal', label: 'I’m on a board', icon: 'users', tone: 'teal', hot: true,
-    blurb: 'We’re exploring new management and want a proposal.', forWho: 'Boards & directors',
+    id: 'proposal', label: 'Request a proposal', icon: 'building', tone: 'teal', hot: true,
+    blurb: 'We’re a board exploring new management.', forWho: 'Boards & HOA / condo directors',
     routeTo: 'Edison’s leadership team', fields: [
-      { key: 'company', label: 'Community / association name', type: 'text', required: true, placeholder: 'e.g. Heathrow Master Association', col: 2 },
-      { key: 'communityType', label: 'Community type', type: 'select', required: true, options: ['HOA (single-family)', 'Townhome', 'Condominium', 'Master / mixed'] },
-      { key: 'timeline', label: 'Timeline', type: 'radio', required: true, options: ['ASAP', '1–3 months', 'Just exploring'], col: 2 },
+      { key: 'association', label: 'Association / community name', type: 'text', required: true, placeholder: 'e.g. Heathrow Master Association', col: 2 },
+      { key: 'city', label: 'City', type: 'text', required: true, placeholder: 'e.g. Orlando' },
+      { key: 'zip', label: 'ZIP code', type: 'text', required: true, placeholder: 'e.g. 32801', inputMode: 'numeric', maxLength: 10 },
+      { key: 'units', label: 'Number of units', type: 'text', required: true, placeholder: 'e.g. 120', inputMode: 'numeric', maxLength: 6 },
+      { key: 'propertyType', label: 'Property type', type: 'select', required: true, options: ['HOA', 'Condominium', 'Townhome', 'Master-planned', 'Commercial / mixed-use', 'Rental property'] },
+      { key: 'situation', label: 'Current situation', type: 'select', required: true, options: ['Self-managed today', 'Unhappy with current manager', 'Contract ending soon', 'Just exploring'], col: 2 },
+      { key: 'timeline', label: 'Decision timeline', type: 'radio', required: true, options: ['ASAP', '1–3 months', 'Just researching'], col: 2 },
     ],
   },
   {

@@ -32,32 +32,59 @@ function genId() {
   return 'REQ-' + s + '-' + Math.floor(1000 + Math.random() * 9000);
 }
 
+// WhatConverts reads the DOM form on submit and only captures controls that have
+// a `name` attribute. Map the standard contact fields to the canonical names WC
+// maps to its built-in lead fields (Name/Email/Phone/Company); every other field
+// uses its human label as the name so WC shows it verbatim as a custom field.
+// (The POST builds its own FormData, so these names don't change what the handler
+// receives — they exist purely for WC capture.)
+const WC_STD = { name: 'name', email: 'email', phone: 'phone', association: 'company', company: 'company' };
+const wcName = (def) => WC_STD[def.key] || def.label;
+
 function Field({ def, value, error, onChange }) {
   const span = def.col === 2 ? '1 / -1' : 'auto';
-  return (
-    <div className="if-field" style={{ gridColumn: span }}>
-      <label className="if-label">{def.label}{def.required && <span className="if-req">*</span>}</label>
-      {def.type === 'text' && (
-        <input className={'if-control' + (error ? ' is-err' : '')} type="text" placeholder={def.placeholder || ''}
-          value={value || ''} onChange={(e) => onChange(def.key, e.target.value)} />
-      )}
-      {def.type === 'select' && (
-        <div className={'if-select-wrap' + (error ? ' is-err' : '')}>
-          <select className="if-control if-select" value={value || ''} onChange={(e) => onChange(def.key, e.target.value)}>
-            <option value="" disabled>Select…</option>
-            {def.options.map((o) => <option key={o} value={o}>{o}</option>)}
-          </select>
-          <span className="if-caret"><Ic name="chevron" /></span>
-        </div>
-      )}
-      {def.type === 'radio' && (
+  const fid = 'if-' + def.key;
+  const name = wcName(def);
+  const filled = value != null && String(value) !== '';
+
+  // Radio (segmented) keeps a static label; a hidden input carries the value into
+  // the DOM form so WhatConverts captures it.
+  if (def.type === 'radio') {
+    return (
+      <div className="if-field" style={{ gridColumn: span }}>
+        <label className="if-label" htmlFor={fid}>{def.label}{def.required && <span className="if-req">*</span>}</label>
         <div className="if-segmented" role="radiogroup">
           {def.options.map((o) => (
             <button type="button" key={o} className={'if-seg' + (value === o ? ' on' : '')}
               onClick={() => onChange(def.key, o)}>{o}</button>
           ))}
+          <input type="hidden" id={fid} name={name} value={value || ''} readOnly />
         </div>
-      )}
+        {error && <div className="if-err-msg">{error}</div>}
+      </div>
+    );
+  }
+
+  // Floating label: sits inside the field, shrinks to the top border on focus/fill.
+  return (
+    <div className="if-field" style={{ gridColumn: span }}>
+      <div className={'if-float' + (filled ? ' has-value' : '') + (error ? ' is-err' : '')}>
+        {def.type === 'text' && (
+          <input id={fid} name={name} aria-label={def.label} className="if-control" type="text" placeholder=" "
+            inputMode={def.inputMode} maxLength={def.maxLength}
+            value={value || ''} onChange={(e) => onChange(def.key, e.target.value)} />
+        )}
+        {def.type === 'select' && (
+          <>
+            <select id={fid} name={name} aria-label={def.label} className="if-control if-select" value={value || ''} onChange={(e) => onChange(def.key, e.target.value)}>
+              <option value="" disabled></option>
+              {def.options.map((o) => <option key={o} value={o}>{o}</option>)}
+            </select>
+            <span className="if-caret"><Ic name="chevron" /></span>
+          </>
+        )}
+        <label className="if-flabel" htmlFor={fid}>{def.label}{def.required && <span className="if-req">*</span>}</label>
+      </div>
       {error && <div className="if-err-msg">{error}</div>}
     </div>
   );
@@ -141,7 +168,7 @@ export default function IntakeForm() {
     if (!validate() || sending) return;
     setSending(true); setSendError('');
     const id = genId();
-    const company = fields.company || fields.reference || fields.address || '';
+    const company = fields.association || fields.company || fields.reference || fields.address || '';
     // Send the per-intent fields as a labeled, ordered list so the handler can
     // render every answer with its real label (not a cram-everything-into-message blob).
     const fieldsJson = JSON.stringify(
@@ -232,10 +259,12 @@ export default function IntakeForm() {
                 <Field key={f.key} def={f} value={fields[f.key]} error={errors[f.key]} onChange={setField} />
               ))}
               <div className="if-field" style={{ gridColumn: '1 / -1' }}>
-                <label className="if-label">{intent.id === 'vendor' ? 'Tell us about your services' : 'Anything else?'}</label>
-                <textarea className={'if-control if-textarea' + (errors.message ? ' is-err' : '')} rows={intent.id === 'general' || intent.id === 'vendor' ? 5 : 3}
-                  placeholder={intent.id === 'general' ? 'Tell us what’s on your mind…' : intent.id === 'vendor' ? 'What you do, where you work, and anything that sets your company apart.' : 'A sentence or two helps us route this faster.'}
-                  value={message} onChange={(e) => { setMessage(e.target.value); setErrors((x) => ({ ...x, message: null })); }} />
+                <div className={'if-float if-float-top' + (message ? ' has-value' : '') + (errors.message ? ' is-err' : '')}>
+                  <textarea id="if-message" aria-label={intent.id === 'vendor' ? 'Tell us about your services' : 'Anything else?'} name="Message" className="if-control if-textarea" rows={intent.id === 'general' || intent.id === 'vendor' ? 5 : 3}
+                    placeholder=" "
+                    value={message} onChange={(e) => { setMessage(e.target.value); setErrors((x) => ({ ...x, message: null })); }} />
+                  <label className="if-flabel" htmlFor="if-message">{intent.id === 'vendor' ? 'Tell us about your services' : 'Anything else?'}</label>
+                </div>
                 {errors.message && <div className="if-err-msg">{errors.message}</div>}
               </div>
             </div>
