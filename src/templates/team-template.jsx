@@ -108,7 +108,7 @@ function TeamPageA({ content }) {
                     color: "var(--edison-navy)",
                     background: "var(--edison-teal)",
                     padding: "4px 10px", borderRadius: 4
-                  }}>Placeholder photo</span>
+                  }}>Photo coming soon</span>
                 </div>
                 <div style={{ padding: "26px 28px" }}>
                   <h3 style={{
@@ -187,6 +187,21 @@ function TeamPageA({ content }) {
                       color: "var(--edison-teal-dark)", marginTop: 4
                     }}>{p.role}</div>
                   </div>
+                  {p.credentials && (
+                    <div style={{
+                      display: "flex", flexWrap: "wrap", gap: 6, justifyContent: "center"
+                    }}>
+                      {p.credentials.map((c, j) => (
+                        <span key={j} style={{
+                          fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 10.5,
+                          letterSpacing: "0.06em",
+                          background: "var(--edison-teal-pale)",
+                          color: "var(--edison-teal-dark)",
+                          padding: "3px 8px", borderRadius: 4
+                        }}>{c}</span>
+                      ))}
+                    </div>
+                  )}
                   {p.bio && (
                     <p style={{
                       fontFamily: "var(--font-body)", fontSize: 13, lineHeight: 1.55,
@@ -311,7 +326,7 @@ function TeamPageB({ content }) {
                     color: "rgba(15,29,51,.65)",
                     background: "rgba(255,255,255,.85)",
                     padding: "3px 8px", borderRadius: 3
-                  }}>Placeholder</span>
+                  }}>Photo coming soon</span>
                 </div>
                 <div style={{ padding: "20px 22px" }}>
                   <h3 style={{
@@ -351,49 +366,43 @@ function TeamPageB({ content }) {
    SAMPLE CONTENT, Placeholder team
    ============================================================ */
 const TEAM_CONTENT = {
-  intro: "Edison is small on purpose. The manager who learns your community in year one is the same one you'll work with in year three. Our back-office departments are dedicated specialists, not managers wearing another hat.",
+  intro: "Edison is small on purpose. The manager who learns your community in year one is the same one you'll work with in year three. Our back-office team is dedicated specialists, not managers wearing another hat. Team photos coming soon.",
   team: [
     {
       name: "Tracy Durham",
-      role: "Founder & Principal",
+      role: "President & CEO",
       department: "Leadership",
       featured: true,
       credentials: ["PCAM", "2025 CAI Chapter President"],
-      bio: "Tracy founded Edison in 2001 with a deliberate alternative to volume-driven HOA management. PCAM-credentialed and the 2025 Central Florida CAI Chapter President, she personally onboards every new association."
+      bio: "Tracy founded Edison and leads it as President & CEO, bringing more than 20 years in community association management. She holds the PCAM designation — one of the industry's highest — and serves as the 2025 Central Florida CAI Chapter President. She personally onboards every new association."
     },
     {
       name: "Sabrina Stephan",
-      role: "Chief Operating Officer",
+      role: "COO & Partner",
       department: "Leadership",
       featured: true,
-      credentials: ["CMCA"],
+      credentials: ["AMS"],
       bio: "Sabrina oversees the entire transition process for new communities and supervises day-to-day operations across Edison's portfolio. The COO is the person who makes sure the Transition Experience actually works."
     },
-    {
-      name: "Jordan Reyes",
-      role: "Director of Accounting",
-      department: "Leadership",
-      featured: true,
-      credentials: ["CPA"],
-      bio: "Jordan leads Edison's accounting department, monthly financials, reserve banking, audit prep, and the discipline that keeps boards out of trouble with their CPAs."
-    },
-    /* Management */
-    { name: "Maya Henderson", role: "Senior Association Manager", department: "Management" },
-    { name: "Daniel Park", role: "Association Manager", department: "Management" },
-    { name: "Priya Shah", role: "Association Manager", department: "Management" },
-    { name: "Marcus Lee", role: "Association Manager", department: "Management" },
-    { name: "Elena Vega", role: "Association Manager", department: "Management" },
-    { name: "Trevor Boyd", role: "Manager in Training", department: "Management" },
-    /* Accounting */
-    { name: "Renee Carter", role: "Accounting Specialist", department: "Accounting" },
-    { name: "Hannah Liu", role: "Accounting Specialist", department: "Accounting" },
-    { name: "Devon Park", role: "Reserve & Capital Analyst", department: "Accounting" },
-    /* Enforcement */
-    { name: "Sam Whitmore", role: "Enforcement Lead", department: "Enforcement & Compliance" },
-    { name: "Olivia Russo", role: "Inspector & ARC Coordinator", department: "Enforcement & Compliance" },
-    /* Collections */
-    { name: "Wesley Brooks", role: "Collections Specialist", department: "Collections" },
-    { name: "Naomi Foster", role: "Collections Coordinator", department: "Collections" }
+    /* Licensed Association Managers */
+    { name: "Stuart McMillan", role: "Senior Association Manager", department: "Association Managers" },
+    { name: "Melissa Maldonado", role: "Association Manager", department: "Association Managers" },
+    { name: "Krystal Soto", role: "Association Manager", department: "Association Managers" },
+    { name: "Jessica Shearer", role: "Association Manager", department: "Association Managers" },
+    { name: "Lindsey Schneider", role: "Association Manager", department: "Association Managers" },
+    { name: "Maggie Matos", role: "Association Manager", department: "Association Managers", credentials: ["CMCA"] },
+    { name: "Tim Hayes", role: "Association Manager", department: "Association Managers" },
+    { name: "Lizbeth Martell", role: "Association Manager", department: "Association Managers" },
+    { name: "Beau Surratt III", role: "Association Manager", department: "Association Managers" },
+    { name: "Hannah Borrero", role: "Association Manager", department: "Association Managers" },
+    { name: "Marizeli Bonilla", role: "Association Manager", department: "Association Managers" },
+    /* Back Office */
+    { name: "Carmen Robles", role: "Administrative Operations Manager", department: "Back Office" },
+    { name: "Nicole Montoya", role: "Accounts Receivable Specialist", department: "Back Office" },
+    { name: "Krystal Zelaya", role: "Compliance Specialist", department: "Back Office" },
+    { name: "Fiona McMillan", role: "ARC Specialist", department: "Back Office" },
+    { name: "Denise Burgos", role: "ARC Specialist", department: "Back Office" },
+    { name: "Kyla Zelaya", role: "Community Specialist", department: "Back Office" }
   ]
 };
 
