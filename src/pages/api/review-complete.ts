@@ -10,6 +10,8 @@
 //   ZENDESK_API_TOKEN       — Zendesk API token
 //   ZENDESK_TICKET_ID       — ID of the open K-C website review ticket
 
+export const prerender = false; // API routes must run on-demand (hybrid prerenders them by default)
+
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 
