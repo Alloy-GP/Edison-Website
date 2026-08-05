@@ -745,6 +745,121 @@ const BLOG_CONTENT = {
       { category: "For Boards", title: "HOA Board Member Responsibilities", image: "/assets/img-11.webp", href: "/blog/hoa-board-member-responsibilities" },
       { category: "Florida Compliance", title: "Florida HOA Laws Guide", image: "/assets/img-13.webp", href: "/blog/florida-hoa-laws-guide" }
     ]
+  },
+
+  "hoa-budget-preparation": {
+    category: "Financial Management",
+    title: "How to Prepare an HOA Budget: A Board's Step-by-Step Guide",
+    dek: "Budget season doesn't have to be the hardest thing your board does all year. A step-by-step guide to preparing an HOA budget, from funding reserves to setting dues, plus the Florida requirements and the backwards-planning method that keeps every deadline calm.",
+    metaDescription: "Learn how to prepare an HOA budget step by step, from reserve funding to board approval, plus the Florida requirements every board should know.",
+    author: "Edison Association Management",
+    date: "August 5, 2026",
+    readTime: "8 min",
+    heroImage: "/assets/blog/hoa-budget-preparation.webp",
+    imageAlt: "HOA board members reviewing an annual budget with their association manager; Florida HOA board preparing its operating and reserve budget",
+    intro: [
+      "Budget season arrives, and the board has last year's spreadsheet, a folder of vendor invoices, and a community full of homeowners who will judge whatever comes out the other end. Building an HOA budget can feel like the hardest thing a volunteer board does all year, but it does not have to be. With the right sequence, preparing an HOA budget becomes a repeatable process any board can follow and defend. This guide walks through what an HOA budget covers, how to fund reserves, how to set dues, and what Central Florida boards should know before the adoption meeting. The goal is simple: a budget you can stand behind, explained clearly enough that homeowners trust it."
+    ],
+    sections: [
+      {
+        id: "what-an-hoa-budget-covers",
+        heading: "What an HOA budget actually covers",
+        body: [
+          "An HOA budget is the association's projected income and expenses for the coming year, funded almost entirely by owner assessments. <strong>Every HOA budget has two distinct parts: the operating budget and reserve funding.</strong> Understanding that split is the first step to building one that holds up.",
+          "The operating budget covers the community's day-to-day costs, the recurring line items that keep things running: landscaping, utilities, insurance, management, pool service, and routine repairs that show up month after month.",
+          "Reserve funding is different. It sets aside money for the major components that will reach the end of their useful life someday: the roofs, roads, pools, and painting that represent large capital expenses down the road. Rather than hitting owners with a surprise special assessment when a roof needs replacing, the association sets money aside each year through steady reserve contributions. A healthy HOA budget treats both parts as non-negotiable rather than trimming reserves to keep dues flat."
+        ],
+        table: {
+          headers: ["Operating budget", "Reserve funding"],
+          rows: [
+            ["Day-to-day recurring costs", "Major components nearing the end of useful life"],
+            ["Landscaping, utilities, insurance, management, repairs", "Roofs, roads, pools, painting, capital expenses"],
+            ["Spent within the budget year", "Saved over time toward future replacement"]
+          ]
+        }
+      },
+      {
+        id: "start-with-the-adoption-date",
+        heading: "Start with the adoption date and work backwards",
+        body: [
+          "Most boards plan forward from a start date and run out of runway. <strong>The better approach is to set the budget adoption meeting date first and work backwards from it.</strong> This is Edison's Backwards Budget Planning method, and it is the single change that turns a rushed, stressful HOA budget into a calm one.",
+          "Working backwards, the adoption meeting anchors everything. Before it comes the notice to members, which needs enough lead time for owners to review the proposed budget. Before the notice comes the board pressure-test, where directors challenge assumptions and confirm the numbers. Before that comes drafting, and before drafting comes gathering, when the association collects vendor bids, reserve data, and current-year actuals.",
+          "Edison targets an October adoption, which runs about a month ahead of the typical industry cycle. Pulling the date forward means the gathering phase starts in late summer rather than early fall, so nothing gets crammed into the final weeks and the board never has to choose between a rushed decision and a missed deadline."
+        ]
+      },
+      {
+        id: "how-to-prepare-step-by-step",
+        heading: "How to prepare an HOA budget, step by step",
+        body: [
+          "Once the calendar is set, knowing how to create an HOA budget comes down to four steps: review last year's actuals, confirm current vendor costs, fund reserves from the reserve study, then total everything and set dues.",
+          "<strong>1. Review last year's budget vs. actuals.</strong> Start from real numbers, not last year's projections. The budget vs. actual comparison, sometimes called variance, is where every good budget begins. Look at where the community over- or under-spent, and separate the one-time surprises from the patterns. A line item that ran over three years running is not an anomaly; it is next year's baseline.",
+          "<strong>2. Re-bid expiring contracts and confirm vendor costs.</strong> Gather current pricing before you project a single expense. Contracts that are expiring or auto-renewing should go back out to bid so the board knows what the market actually charges today. One of the first things we do at Edison is source at least three competing bids and lay them out in an apples-to-apples comparison spreadsheet, so boards can weigh the largest line items without reading long proposals.",
+          "<strong>3. Fund reserves from the reserve study.</strong> Reserve contributions should come from the association's reserve study, not a guess. A reserve study identifies the community's major components, projects when each will need to be replaced, and recommends a funding schedule to get there. It is a plan, not just a price list. Edison walks the property alongside the reserve provider and supplies component ages and maintenance history, so the study reflects the community's real condition rather than a generic table. For a deeper look at how the study works, see our <a href=\"/blog/hoa-reserve-study-guide\">Florida HOA reserve study guide</a>.",
+          "<strong>4. Total the budget and set dues.</strong> The math is straightforward once the inputs are solid: operating costs plus reserve funding equals the total the association needs to raise. Divide that total across the units according to the allocation in your governing documents, and you have next year's assessments. Build the budget honestly and let the dues follow, rather than backing into a target figure and forcing the numbers to fit.",
+          "None of this has to land entirely on the board. Much of what a management company does is carry the groundwork of the budget: pulling the actuals, gathering and comparing vendor bids, coordinating the reserve study, and drafting the numbers for the board to review. At Edison, the association manager and the accounting department handle that legwork, so the board's role becomes reviewing, questioning, and approving a budget rather than building one from a blank spreadsheet. <strong>A volunteer board should be making the decisions, not doing all the data-gathering behind them.</strong>"
+        ]
+      },
+      {
+        id: "getting-approved-in-florida",
+        heading: "Getting the HOA budget approved in Florida",
+        body: [
+          "The HOA budget approval process in Florida is simpler than many boards expect. The board adopts the budget at a properly noticed meeting, and members must receive notice with the proposed budget before that meeting takes place. <strong>Owners generally do not vote to approve the budget, but they do have the right to see it in advance and weigh in.</strong>",
+          "Florida's homeowners' association statute, <a href=\"https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&amp;URL=0700-0799/0720/0720.html\" target=\"_blank\" rel=\"noopener\">Chapter 720</a>, sets the framework for budget adoption, member notice, and financial reporting. The specific Florida HOA budget requirements, including notice windows and reporting thresholds, depend on your community's size and governing documents, and the law in this area has been revised more than once. Rather than relying on a day count you found online, confirm the exact timeline with your governing documents and association counsel. The <a href=\"https://www.caionline.org/\" target=\"_blank\" rel=\"noopener\">Community Associations Institute</a> is another solid resource for budgeting and reserve best practices, and Edison's leadership serves as a 2025 CAI chapter president."
+        ]
+      },
+      {
+        id: "best-practices",
+        heading: "HOA budget best practices that prevent surprises",
+        body: [
+          "The difference between a contentious budget meeting and a calm one usually comes down to a few habits. <strong>The best HOA budget planning is transparent long before the statement arrives.</strong> A handful of practices consistently keep boards out of trouble:"
+        ],
+        list: [
+          "Build from actuals, not wishes. A budget rooted in last year's real spending is far easier to defend than one built on optimism.",
+          "Fund reserves consistently, every year, so the community is never caught choosing between a special assessment and a deferred repair.",
+          "Communicate any increase before homeowners see it on a statement. As we like to put it, an assessment explained in advance is a policy; an assessment discovered on a statement is a grievance.",
+          "Review budget vs. actual throughout the year, not just at budget time, so small variances get caught early."
+        ]
+      },
+      {
+        id: "faq",
+        heading: "Frequently Asked Questions",
+        faq: [
+          {
+            q: "How do you prepare an HOA budget?",
+            a: "Start with last year's actuals, confirm current vendor costs, fund reserves from the reserve study, then total everything and divide it into assessments. Working backwards from the adoption meeting date keeps every step on schedule, and a professional manager can carry most of the data-gathering for the board."
+          },
+          {
+            q: "When should an HOA start working on its budget?",
+            a: "Work backwards from the adoption meeting date, which for many Florida associations means starting the gathering phase in late summer. Edison targets an October adoption, so collecting vendor bids and reserve data begins around August. Planning forward from a start date is how boards run out of runway and end up rushing the most important financial decision of the year."
+          },
+          {
+            q: "Who approves the HOA budget?",
+            a: "The board of directors adopts the budget at a properly noticed meeting; homeowners generally do not vote on it, but they must receive notice with the proposed budget in advance. The exact notice requirements live in your governing documents and Florida law, so confirm the specifics with your association counsel before the meeting."
+          },
+          {
+            q: "How are HOA dues calculated from the budget?",
+            a: "Total the operating and reserve needs, then divide that figure across units according to the allocation in your governing documents. Some communities split costs evenly, while others use square footage or unit type. The budget sets the total the association must raise, and the governing documents set each owner's share."
+          },
+          {
+            q: "What happens if the budget isn't approved?",
+            a: "The association typically continues operating under the prior year's budget until a new one is adopted. That is a stopgap, not a plan, so boards should resolve whatever stalled the budget quickly. Your governing documents and counsel can clarify the community's specific rules."
+          }
+        ]
+      },
+      {
+        id: "sequence-not-spreadsheets",
+        heading: "A defensible budget is about sequence, not spreadsheets",
+        body: [
+          "An HOA budget the board can defend has less to do with fancy spreadsheets and more to do with sequence and transparency. Set the adoption date, work backwards, build from real numbers, fund reserves from the study, and tell homeowners what is coming before they find out on a statement.",
+          "Boards that would rather not carry all of that alone can <a href=\"/services/hoa-accounting/budget-preparation/\">see how Edison supports budget preparation</a> from start to finish, and can lean on <a href=\"/edison-education/\">Edison Education</a> for ongoing guidance on running a stronger community."
+        ]
+      }
+    ],
+    related: [
+      { category: "Financial Management", title: "HOA Reserve Study Florida: What Boards Need to Know", image: "/assets/blog/reserve-study-specialist.webp", href: "/blog/hoa-reserve-study-guide" },
+      { category: "Financial Management", title: "HOA Audit: What It Is, When It's Required, and How to Prepare", image: "/assets/blog/hoa-board-members-reviewing-audit.webp", href: "/blog/hoa-audit" },
+      { category: "Financial Management", title: "HOA Special Assessment Guide", image: "/assets/img-accounting.webp", href: "/blog/hoa-special-assessment" }
+    ]
   }
 };
 

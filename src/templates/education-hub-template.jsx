@@ -379,6 +379,7 @@ const EDUCATION_CONTENT = {
       body: "Reserve funding, audit prep, and how to read financial statements your board can actually defend.",
       color: "#EEF4FF",
       articles: [
+        { title: "How to Prepare an HOA Budget: A Board's Step-by-Step Guide", readTime: "8 min", href: "/blog/hoa-budget-preparation" },
         { title: "HOA Audit: What It Is, When It's Required, and How to Prepare", readTime: "9 min", href: "/blog/hoa-audit" },
         { title: "HOA Reserve Study Florida: What Boards Need to Know", readTime: "10 min", href: "/blog/hoa-reserve-study-guide" }
       ]
@@ -386,10 +387,10 @@ const EDUCATION_CONTENT = {
   ],
   featured: {
     category: "Financial Management",
-    title: "HOA Audit: What It Is, When It's Required, and How to Prepare",
-    excerpt: "An HOA audit confirms your community's finances are accurate, transparent, and compliant with Florida law. Learn what's required based on your association's revenue, and how strong year-round financial management makes the process faster and less expensive.",
-    image: "/assets/blog/hoa-board-members-reviewing-audit.webp",
-    href: "/blog/hoa-audit"
+    title: "How to Prepare an HOA Budget: A Board's Step-by-Step Guide",
+    excerpt: "Budget season doesn't have to be the hardest thing your board does all year. A step-by-step guide to preparing an HOA budget, from funding reserves to setting dues, plus the Florida requirements and the backwards-planning method that keeps every deadline calm.",
+    image: "/assets/blog/hoa-budget-preparation.webp",
+    href: "/blog/hoa-budget-preparation"
   }
 };
 
