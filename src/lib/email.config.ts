@@ -43,6 +43,9 @@ export const EMAIL_CONFIG = {
     vendor:    ['admin@edison-mgmt.com'],
     homeowner: ['admin@edison-mgmt.com'],
     general:   ['admin@edison-mgmt.com'],
+    // Newsletter "Ask Edison" questions (/api/newsletter-ask).
+    // TODO(Edison): confirm the inbox that owns the 1-business-day reply promise.
+    newsletter: ['admin@edison-mgmt.com'],
   } as Record<string, string[]>,
 
   mailchimp: {
@@ -131,6 +134,17 @@ export const EMAIL_CONFIG = {
       confirmBody: (name: string) =>
         `<p>Hi${name ? ` ${name}` : ''},</p>
         <p>Thanks for subscribing. We'll be in touch soon.</p>
+        <p>Have a BRIGHT day!</p>
+        <p>Sincerely,<br>The Edison Team</p>`,
+    },
+    // Newsletter "Ask Edison" form (/api/newsletter-ask).
+    newsletterAsk: {
+      notifySubject: (who: string) => `New newsletter question — ${who}`,
+      confirmSubject: 'We received your question — Edison Association Management',
+      confirmBody: (name: string) =>
+        `<p>Hi${name ? ` ${name}` : ''},</p>
+        <p>Thanks for your question. A licensed manager will reply directly — usually within one business day.</p>
+        <p>If it's urgent, call us anytime at (407) 317-5252.</p>
         <p>Have a BRIGHT day!</p>
         <p>Sincerely,<br>The Edison Team</p>`,
     },
