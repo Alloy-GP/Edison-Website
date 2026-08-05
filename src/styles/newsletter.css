@@ -1,0 +1,394 @@
+/* src/styles/newsletter.css
+   Styles for /newsletter. Values ported from the design handoff; all colors,
+   type and motion reference the existing tokens in tokens.css — no hardcoded
+   brand hex. `nl-` prefix throughout. Two breakpoints: 980px, 620px. */
+
+/* ── Section 1 — Current issue ─────────────────────────────────────── */
+.nl-current {
+  background: #fff;
+  border-bottom: 1px solid var(--border-hairline);
+}
+.nl-current-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 64px 32px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.nl-current h1 {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.1;
+  color: var(--edison-navy);
+}
+.nl-dek {
+  margin: 0 0 24px;
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--edison-text-body);
+  max-width: 48ch;
+}
+.nl-readmore {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--edison-teal-dark);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(43, 168, 168, 0.4);
+  padding-bottom: 3px;
+}
+.nl-iti-wrap {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border-hairline);
+}
+.nl-iti {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.nl-iti li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 10px;
+  align-items: start;
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--edison-text-body);
+}
+.nl-iti-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12.5px;
+  color: var(--edison-teal-dark);
+  padding-top: 3px;
+}
+.nl-hero {
+  position: relative;
+  align-self: stretch;
+  min-height: 380px;
+  margin-bottom: -1px;
+}
+.nl-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.nl-current-spacer {
+  height: 64px;
+}
+
+/* ── Section 2 — Ask band ──────────────────────────────────────────── */
+.nl-ask-band {
+  background: var(--edison-navy);
+  padding: 72px 32px;
+  scroll-margin-top: 96px;
+}
+.nl-ask {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 64px;
+  align-items: start;
+}
+.nl-ask-left h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 32px;
+  color: #fff;
+}
+.nl-ask-left .eyebrow {
+  color: var(--edison-teal);
+  margin-bottom: 14px;
+}
+.nl-ask-body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.76);
+}
+.nl-prompts {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.nl-prompt {
+  background: #243657;
+  padding: 14px 18px;
+  border-left: 2px solid var(--edison-teal);
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: #fff;
+}
+
+/* ── Section 2 — Form (dark, on navy) ──────────────────────────────── */
+.nl-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.nl-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.nl-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.nl-span {
+  grid-column: 1 / -1;
+}
+.nl-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.82);
+  letter-spacing: 0.01em;
+}
+.nl-req {
+  color: var(--edison-teal);
+  margin-left: 3px;
+}
+.nl-input {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.4;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  width: 100%;
+}
+.nl-input::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+.nl-textarea {
+  resize: vertical;
+  min-height: 112px;
+}
+.nl-select {
+  appearance: none;
+}
+/* Native dropdown options inherit dark text — force a legible color. */
+.nl-select option {
+  color: var(--edison-text-body);
+}
+.nl-check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.68);
+  cursor: pointer;
+}
+.nl-check input {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--edison-teal);
+  flex-shrink: 0;
+}
+.nl-submit {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  align-self: flex-start;
+  background: var(--edison-teal);
+  color: var(--edison-navy);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  padding: 15px 28px;
+  border-radius: 8px;
+  transition: filter 140ms var(--ease-standard), transform 140ms var(--ease-standard),
+    opacity 140ms;
+}
+.nl-submit:hover:not(:disabled) {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+.nl-submit:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+.nl-note {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.68);
+}
+.nl-error {
+  padding: 13px 16px;
+  border-radius: 8px;
+  background: rgba(176, 57, 46, 0.16);
+  border: 1px solid rgba(255, 155, 145, 0.45);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: #ffd9d4;
+}
+.nl-error a {
+  color: #fff;
+}
+.nl-sent {
+  padding: 48px 32px;
+  text-align: center;
+  border: 1px solid rgba(60, 200, 200, 0.35);
+  border-radius: 12px;
+  background: rgba(60, 200, 200, 0.08);
+}
+.nl-sent-h {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.nl-sent-b {
+  margin: 0 auto;
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.68);
+  max-width: 44ch;
+}
+/* Offscreen honeypot */
+.nl-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ── Section 3 — Archive ───────────────────────────────────────────── */
+.nl-archive {
+  background: #fff;
+  padding: 80px 32px;
+}
+.nl-archive-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.nl-archive-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 34px;
+}
+.nl-archive-head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--edison-navy);
+}
+.nl-archive-note {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: var(--edison-gray-mid);
+  max-width: 42ch;
+}
+.nl-rows {
+  border-top: 2px solid var(--edison-navy);
+}
+.nl-row {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding: 22px 4px;
+  border-bottom: 1px solid var(--border-hairline);
+  text-decoration: none;
+  background: transparent;
+  transition: background 160ms var(--ease-standard);
+}
+.nl-row:hover {
+  background: rgba(60, 200, 200, 0.05);
+}
+.nl-row-date {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--edison-teal-dark);
+}
+.nl-row-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--edison-navy);
+  margin-bottom: 4px;
+}
+.nl-row-blurb {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--edison-gray-mid);
+}
+.nl-row-arrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--edison-teal-dark);
+  transition: color 140ms var(--ease-standard);
+}
+.nl-row:hover .nl-row-arrow {
+  color: var(--edison-navy);
+}
+.nl-empty {
+  padding: 56px 32px;
+  text-align: center;
+  border: 1px dashed var(--border-strong);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--edison-gray-mid);
+}
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 980px) {
+  .nl-current-inner,
+  .nl-ask {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+@media (max-width: 620px) {
+  .nl-grid {
+    grid-template-columns: 1fr;
+  }
+  .nl-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}

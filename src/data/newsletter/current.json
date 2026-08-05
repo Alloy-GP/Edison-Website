@@ -1,0 +1,29 @@
+{
+  "$comment": "MONTHLY EDIT LIVES HERE. Title, date, 'read full issue' link and archive blurbs come automatically from the latest Mailchimp campaign in the 'Edison Newsletter' folder. Only the fields Mailchimp cannot know are edited by hand each month: slug, heroImg, heroAlt, inThisIssue, and the whole ask block. dek is optional — leave it and the campaign preview text is used. When no campaign has been fetched yet (pre-send, or folder id not set), this whole block renders as-is so the page still works.",
+  "current": {
+    "slug": "2026-08",
+    "issueLabel": "August 2026",
+    "title": "Budget Season Is Underway",
+    "dek": "August is the month next year takes shape. Across the communities we manage, our accounting team and association managers are building draft budgets now — and walking every board through them line by line.",
+    "heroImg": "/assets/newsletter/2026-08.jpg",
+    "heroAlt": "Aerial view of a Central Florida residential community",
+    "archiveUrl": "",
+    "inThisIssue": [
+      "How budget season works, step by step",
+      "The board checklist before any budget meeting",
+      "Team spotlight: two promotions at Edison"
+    ],
+    "ask": {
+      "title": "Ask a Budget Question",
+      "body": "No question is too small — whether Edison manages your community today or your board is weighing a change. A licensed manager answers personally, usually within one business day.",
+      "prompts": [
+        "Why did insurance jump this year?",
+        "How much belongs in reserves?",
+        "Do we have to raise assessments?"
+      ],
+      "questionLabel": "Your budget question",
+      "questionPlaceholder": "e.g. Our insurance renewal came in 40% higher than last year. What are our options before we consider a special assessment?",
+      "submitLabel": "Send My Question"
+    }
+  }
+}

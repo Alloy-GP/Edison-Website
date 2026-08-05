@@ -1,0 +1,122 @@
+---
+// src/pages/newsletter.astro
+// The Edison board newsletter's canonical home — the "Ask Your Question" CTA
+// in each monthly Mailchimp send lands here (#ask). Three sections:
+//   1. Current issue   — static, derived from the latest campaign + editorial seed
+//   2. Ask form        — static navy band; only the <AskForm> form is hydrated
+//   3. Archive         — static rows, built from past campaigns (empty-state safe)
+//
+// Prerendered so the Mailchimp fetch runs at BUILD time, not per view. A
+// campaign-sent webhook rebuilds the page (src/pages/api/newsletter-webhook.ts).
+// Monthly content edits: src/content/newsletter/current.json.
+export const prerender = true;
+
+import SiteLayout from '../layouts/SiteLayout.astro';
+import AskForm from '../components/newsletter/AskForm.jsx';
+import { getNewsletterData } from '../lib/newsletter';
+import '../styles/newsletter.css';
+
+const { current, archive } = await getNewsletterData();
+
+const pageSchema =
+  archive.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'Edison Board Newsletter — Past Issues',
+        itemListElement: archive.map((it, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: it.url,
+          name: it.title,
+        })),
+      }
+    : undefined;
+---
+
+<SiteLayout
+  title={`${current.title} | Edison Board Newsletter`}
+  description={current.dek}
+  ogImage={current.heroImg}
+  {...(pageSchema ? { pageSchema } : {})}
+>
+  {/* ── Section 1 — Current issue ─────────────────────────────── */}
+  <section class="nl-current">
+    <div class="nl-current-inner">
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px">Current Issue · {current.issueLabel}</div>
+        <h1>{current.title}</h1>
+        <p class="nl-dek">{current.dek}</p>
+        {current.archiveUrl && (
+          <a class="nl-readmore" href={current.archiveUrl} target="_blank" rel="noopener noreferrer">
+            Read the full {current.issueLabel} issue <span aria-hidden="true">→</span>
+          </a>
+        )}
+        {current.inThisIssue.length > 0 && (
+          <div class="nl-iti-wrap">
+            <ul class="nl-iti">
+              {current.inThisIssue.map((item, i) => (
+                <li>
+                  <span class="nl-iti-num">{String(i + 1).padStart(2, '0')}</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      <div class="nl-hero">
+        <img src={current.heroImg} alt={current.heroAlt} />
+      </div>
+    </div>
+    <div class="nl-current-spacer"></div>
+  </section>
+
+  {/* ── Section 2 — Ask form (CTA destination) ────────────────── */}
+  <section id="ask" class="nl-ask-band">
+    <div class="nl-ask">
+      <div class="nl-ask-left">
+        <div class="eyebrow">Ask Edison</div>
+        <h2>{current.ask.title}</h2>
+        <p class="nl-ask-body">{current.ask.body}</p>
+        <div class="nl-prompts">
+          {current.ask.prompts.map((p) => <div class="nl-prompt">{p}</div>)}
+        </div>
+      </div>
+      <AskForm client:load slug={current.slug} issueLabel={current.issueLabel} ask={current.ask} />
+    </div>
+  </section>
+
+  {/* ── Section 3 — Archive ───────────────────────────────────── */}
+  <section class="nl-archive">
+    <div class="nl-archive-inner">
+      <div class="nl-archive-head">
+        <div>
+          <div class="eyebrow" style="margin-bottom:10px">The Archive</div>
+          <h2>Past Issues</h2>
+        </div>
+        <div class="nl-archive-note">
+          Every issue stays readable. Board members join mid-year all the time.
+        </div>
+      </div>
+      {archive.length > 0 ? (
+        <div class="nl-rows">
+          {archive.map((it) => (
+            <a class="nl-row" href={it.url} target="_blank" rel="noopener noreferrer">
+              <div class="nl-row-date">{it.issueLabel}</div>
+              <div>
+                <div class="nl-row-title">{it.title}</div>
+                {it.blurb && <div class="nl-row-blurb">{it.blurb}</div>}
+              </div>
+              <div class="nl-row-arrow" aria-hidden="true">→</div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="nl-empty">
+          {current.issueLabel} is the first issue. Past issues will appear here as they publish.
+        </div>
+      )}
+    </div>
+  </section>
+</SiteLayout>
