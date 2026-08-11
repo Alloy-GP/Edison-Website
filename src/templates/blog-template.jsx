@@ -1,5 +1,6 @@
 import React, { useState as useBlogState, useEffect as useBlogEffect } from 'react';
 import { Breadcrumb, FinalCTA, InteriorButton, MidCTA, SectionHeading } from '../components/interior-components';
+import { AuthorBylineBlock } from '../components/template-sections';
 
 /* ---------- Reading-progress bar (shared) ---------- */
 function ReadingProgress() {
@@ -26,6 +27,29 @@ function ReadingProgress() {
         transition: "width 80ms linear"
       }}/>
     </div>
+  );
+}
+
+/* ---------- Prose paragraph ----------
+   BLOG_CONTENT paragraphs are authored in-repo and may carry inline markup
+   (<strong>, <a>) anywhere in the string, not just at the start. The old check
+   was `para.startsWith('<')`, which escaped the markup of any paragraph whose
+   HTML began mid-sentence — readers saw literal `<a href="...">` text and the
+   links carried no equity. Detect a tag anywhere instead. */
+const PROSE_STYLE = {
+  fontSize: 17, lineHeight: 1.7,
+  color: "var(--edison-text-body)", margin: "0 0 18px"
+};
+const hasMarkup = (s) => /<[a-z][^>]*>/i.test(s);
+
+function Prose({ paragraphs, style = PROSE_STYLE }) {
+  if (!paragraphs) return null;
+  return paragraphs.map((para, j) =>
+    hasMarkup(para) ? (
+      <p key={j} style={style} dangerouslySetInnerHTML={{ __html: para }}/>
+    ) : (
+      <p key={j} style={style}>{para}</p>
+    )
   );
 }
 
@@ -77,7 +101,11 @@ function BlogSpokeA({ content }) {
 
       <section className="blog-a-body" style={{ background: "#fff", padding: "32px 48px 0" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <img src={content.heroImage} alt={content.imageAlt || content.title} fetchpriority="high" decoding="async"
+          {/* width/height are the intrinsic ratio hint — they stop the 460px-tall
+              hero from shifting layout while it loads (CLS). */}
+          <img src={content.heroImage} alt={content.imageAlt || content.title}
+               width="1200" height="460"
+               fetchpriority="high" decoding="async"
                style={{
                  width: "100%", height: 460, objectFit: "cover",
                  borderRadius: 16, display: "block",
@@ -128,20 +156,35 @@ function BlogSpokeA({ content }) {
           </aside>
 
           <article style={{ maxWidth: 720, fontFamily: "var(--font-body)" }}>
-            {/* Intro paragraphs (before first section heading) */}
-            {content.intro && content.intro.map((para, j) =>
-              para.startsWith('<') ? (
-                <p key={j} dangerouslySetInnerHTML={{ __html: para }} style={{
-                  fontSize: 17, lineHeight: 1.7,
-                  color: "var(--edison-text-body)", margin: "0 0 18px"
-                }}/>
-              ) : (
-                <p key={j} style={{
-                  fontSize: 17, lineHeight: 1.7,
-                  color: "var(--edison-text-body)", margin: "0 0 18px"
-                }}>{para}</p>
-              )
+            {/* Answer-first summary. Sits above the intro so both skimming boards
+                and answer engines (AI Overviews, ChatGPT, Perplexity) hit the
+                extractable version of the article before the prose. */}
+            {content.keyTakeaways && (
+              <aside aria-labelledby="key-takeaways-heading" style={{
+                background: "var(--edison-teal-pale)",
+                border: "1px solid var(--border-hairline)",
+                borderLeft: "4px solid var(--edison-teal)",
+                borderRadius: 10, padding: "22px 26px", margin: "0 0 32px"
+              }}>
+                <h2 id="key-takeaways-heading" style={{
+                  fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12.5,
+                  letterSpacing: "0.14em", textTransform: "uppercase",
+                  color: "var(--edison-teal-dark)", margin: "0 0 14px"
+                }}>Key takeaways</h2>
+                <ul style={{ padding: "0 0 0 20px", margin: 0,
+                             display: "flex", flexDirection: "column", gap: 9 }}>
+                  {content.keyTakeaways.map((t, i) => (
+                    <li key={i} style={{
+                      fontSize: 15.5, lineHeight: 1.6,
+                      color: "var(--edison-text-body)"
+                    }} dangerouslySetInnerHTML={{ __html: t }}/>
+                  ))}
+                </ul>
+              </aside>
             )}
+
+            {/* Intro paragraphs (before first section heading) */}
+            <Prose paragraphs={content.intro}/>
 
             {content.sections.map((s, i) => (
               <section key={i} id={s.id} style={{ marginBottom: 48 }}>
@@ -161,19 +204,41 @@ function BlogSpokeA({ content }) {
                   }}>{s.note}</p>
                 )}
 
-                {/* Body paragraphs — support inline HTML via leading < */}
-                {s.body && s.body.map((para, j) =>
-                  para.startsWith('<') ? (
-                    <p key={j} dangerouslySetInnerHTML={{ __html: para }} style={{
-                      fontSize: 17, lineHeight: 1.7,
-                      color: "var(--edison-text-body)", margin: "0 0 18px"
-                    }}/>
-                  ) : (
-                    <p key={j} style={{
-                      fontSize: 17, lineHeight: 1.7,
-                      color: "var(--edison-text-body)", margin: "0 0 18px"
-                    }}>{para}</p>
-                  )
+                {/* Body paragraphs — inline HTML supported anywhere in the string */}
+                <Prose paragraphs={s.body}/>
+
+                {/* Numbered procedure. A real <ol> with <h3> step names, so the
+                    sequence is machine-readable — this is what HowTo schema and
+                    answer engines key off. Mirrors s.steps exactly. */}
+                {s.steps && (
+                  <ol style={{ padding: 0, margin: "8px 0 24px", listStyle: "none",
+                               counterReset: "edison-step",
+                               display: "flex", flexDirection: "column", gap: 20 }}>
+                    {s.steps.map((step, k) => (
+                      <li key={k} style={{
+                        display: "grid", gridTemplateColumns: "36px 1fr", gap: 16,
+                        alignItems: "start"
+                      }}>
+                        <span aria-hidden="true" style={{
+                          width: 36, height: 36, borderRadius: 999,
+                          background: "var(--edison-navy)", color: "#fff",
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15
+                        }}>{k + 1}</span>
+                        <div>
+                          <h3 style={{
+                            fontFamily: "var(--font-display)", fontWeight: 700,
+                            fontSize: 19, lineHeight: 1.3,
+                            color: "var(--edison-navy)", margin: "6px 0 8px"
+                          }}>{`Step ${k + 1}: ${step.name}`}</h3>
+                          <p style={{
+                            fontSize: 17, lineHeight: 1.7,
+                            color: "var(--edison-text-body)", margin: 0
+                          }} dangerouslySetInnerHTML={{ __html: step.html ?? step.text }}/>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
                 )}
 
                 {/* Inline image — diagram / infographic */}
@@ -192,19 +257,7 @@ function BlogSpokeA({ content }) {
                 )}
 
                 {/* Body paragraphs after image */}
-                {s.body2 && s.body2.map((para, j) =>
-                  para.startsWith('<') ? (
-                    <p key={j} dangerouslySetInnerHTML={{ __html: para }} style={{
-                      fontSize: 17, lineHeight: 1.7,
-                      color: "var(--edison-text-body)", margin: "0 0 18px"
-                    }}/>
-                  ) : (
-                    <p key={j} style={{
-                      fontSize: 17, lineHeight: 1.7,
-                      color: "var(--edison-text-body)", margin: "0 0 18px"
-                    }}>{para}</p>
-                  )
-                )}
+                <Prose paragraphs={s.body2}/>
 
                 {/* Comparison / data table */}
                 {s.table && (
@@ -245,19 +298,7 @@ function BlogSpokeA({ content }) {
                 )}
 
                 {/* Body paragraphs after table */}
-                {s.body3 && s.body3.map((para, j) =>
-                  para.startsWith('<') ? (
-                    <p key={j} dangerouslySetInnerHTML={{ __html: para }} style={{
-                      fontSize: 17, lineHeight: 1.7,
-                      color: "var(--edison-text-body)", margin: "0 0 18px"
-                    }}/>
-                  ) : (
-                    <p key={j} style={{
-                      fontSize: 17, lineHeight: 1.7,
-                      color: "var(--edison-text-body)", margin: "0 0 18px"
-                    }}>{para}</p>
-                  )
-                )}
+                <Prose paragraphs={s.body3}/>
 
                 {/* Callout box */}
                 {s.callout && (
@@ -327,6 +368,19 @@ function BlogSpokeA({ content }) {
           </article>
         </div>
       </section>
+
+      {/* Named-author E-E-A-T block. Only renders when the post carries a human
+          byline — org-authored posts skip it. */}
+      {content.authorBio && (
+        <AuthorBylineBlock
+          name={content.authorSchema?.name ?? content.author}
+          role={content.authorRole}
+          credentials={content.authorCredentials ?? []}
+          bio={content.authorBio}
+          image={content.authorImage}
+          cta={{ label: "Meet the Edison team", href: "/about/meet-our-team" }}
+        />
+      )}
 
       <MidCTA
         variant="teal"

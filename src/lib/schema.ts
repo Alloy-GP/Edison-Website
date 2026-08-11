@@ -115,7 +115,36 @@ export function articleSchema(opts: {
   dateModified?: string;
   image?: string;
   about?: string[];        // topic names
+  /** Named human author. Omit for an Organization byline. Strong E-E-A-T signal. */
+  author?: {
+    name: string;
+    jobTitle?: string;
+    url?: string;
+    /** e.g. ['PCAM', '2025 CAI Central Florida Chapter President'] */
+    credentials?: string[];
+  };
+  articleSection?: string; // e.g. 'Financial Management'
+  keywords?: string[];
+  wordCount?: number;
 }) {
+  const author = opts.author
+    ? {
+        '@type': 'Person',
+        name: opts.author.name,
+        ...(opts.author.jobTitle ? { jobTitle: opts.author.jobTitle } : {}),
+        ...(opts.author.url ? { url: opts.author.url } : {}),
+        ...(opts.author.credentials?.length
+          ? {
+              hasCredential: opts.author.credentials.map((c) => ({
+                '@type': 'EducationalOccupationalCredential',
+                name: c,
+              })),
+            }
+          : {}),
+        worksFor: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+      }
+    : { '@type': 'Organization', name: SITE.name, url: SITE.url };
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -123,18 +152,85 @@ export function articleSchema(opts: {
     description: opts.description,
     datePublished: opts.datePublished,
     dateModified: opts.dateModified ?? opts.datePublished,
-    author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    author,
     publisher: {
       '@type': 'Organization',
       name: SITE.name,
       logo: { '@type': 'ImageObject', url: SITE.org.logo },
     },
-    mainEntityOfPage: opts.url,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': opts.url },
+    url: opts.url,
     inLanguage: 'en-US',
+    isAccessibleForFree: true,
     ...(opts.image ? { image: opts.image } : {}),
+    ...(opts.articleSection ? { articleSection: opts.articleSection } : {}),
+    ...(opts.keywords?.length ? { keywords: opts.keywords.join(', ') } : {}),
+    ...(opts.wordCount ? { wordCount: opts.wordCount } : {}),
     ...(opts.about
       ? { about: opts.about.map((name) => ({ '@type': 'Thing', name })) }
       : {}),
+  };
+}
+
+// ── HowTo ─────────────────────────────────────────────────────────────────────
+// Use on step-by-step guides. Google retired HowTo rich results, but the markup
+// still gives answer engines (AI Overviews, ChatGPT, Perplexity) a clean,
+// unambiguous step sequence to extract and cite. Steps must mirror the on-page
+// ordered list exactly.
+
+export function howToSchema(opts: {
+  name: string;
+  description: string;
+  url: string;
+  steps: Array<{ name: string; text: string }>;
+  image?: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: opts.name,
+    description: opts.description,
+    inLanguage: 'en-US',
+    ...(opts.image ? { image: opts.image } : {}),
+    step: opts.steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+      url: `${opts.url}#how-to-prepare-step-by-step`,
+    })),
+  };
+}
+
+// ── CollectionPage ────────────────────────────────────────────────────────────
+// Use on resource hubs and article indexes. The ItemList gives answer engines an
+// explicit, ordered inventory of what the hub contains.
+
+export function collectionPageSchema(opts: {
+  name: string;
+  description: string;
+  url: string;
+  items: Array<{ name: string; url: string }>;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: opts.name,
+    description: opts.description,
+    url: opts.url,
+    inLanguage: 'en-US',
+    isPartOf: { '@type': 'WebSite', name: SITE.name, url: SITE.url },
+    publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: opts.items.length,
+      itemListElement: opts.items.map((item, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: item.name,
+        url: item.url,
+      })),
+    },
   };
 }
 

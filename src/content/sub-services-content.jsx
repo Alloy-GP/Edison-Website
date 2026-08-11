@@ -216,7 +216,7 @@ const SUB_SERVICES_CONTENT = {
     related: [
       { kind: "Full service", title: "HOA Accounting", body: "Full financial management, monthly reporting, reserve banking, audit prep, tax filing.", href: "/services/hoa-accounting" },
       { kind: "Also included", title: "Reserve Study Support", body: "Coordination with reserve study engineers and funding plan integration.", href: "/services/hoa-accounting/reserve-study-support" },
-      { kind: "Guide", title: "HOA Audit Guide", body: "When audits are required and how to prepare, written for FL boards.", href: "/blog/hoa-audit" }
+      { kind: "Guide", title: "How to Prepare an HOA Budget", body: "The step-by-step board guide behind this service, from actuals to adopted dues.", href: "/blog/hoa-budget-preparation" }
     ],
     cta: {
       title: "A budget your board can defend, with the work that builds it.",

@@ -103,13 +103,15 @@ function BlogIndexPage({ content }) {
                       textDecoration: "none", borderBottom: 0
                     }}>
                       <span>{t.label}</span>
+                      {/* Count is derived, not hardcoded — the hand-maintained
+                          t.count values drifted out of sync with the articles. */}
                       <span style={{
                         background: "var(--edison-teal-pale)",
                         color: "var(--edison-teal-dark)",
                         padding: "3px 10px", borderRadius: 999,
                         fontFamily: "var(--font-body)", fontSize: 12,
                         fontWeight: 700
-                      }}>{t.count}</span>
+                      }}>{all.filter((a) => a.category === t.label).length}</span>
                     </a>
                   </li>
                 ))}

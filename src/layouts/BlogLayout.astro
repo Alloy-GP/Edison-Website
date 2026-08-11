@@ -1,8 +1,9 @@
 ---
 // src/layouts/BlogLayout.astro
 // Drop-in layout for every Edison blog post.
-// Automatically wires title, description, OG image, and Twitter
-// read-time meta from BLOG_CONTENT — no manual plumbing required.
+// Automatically wires title, description, OG image, Twitter read-time meta,
+// and the full JSON-LD stack (Article + BreadcrumbList + FAQPage + HowTo)
+// from BLOG_CONTENT — no manual plumbing required.
 //
 // Usage (new posts):
 //   ---
@@ -13,6 +14,8 @@
 import SiteLayout from './SiteLayout.astro';
 import { BlogSpokeA } from '../templates/blog-template.jsx';
 import { BLOG_CONTENT } from '../content/blog-content.jsx';
+import { SITE } from '../config/site.ts';
+import { articleSchema, breadcrumbSchema, faqSchema, howToSchema } from '../lib/schema.ts';
 
 interface Props {
   /** Key matching an entry in BLOG_CONTENT */
@@ -26,19 +29,102 @@ if (!content) {
   throw new Error(`BlogLayout: no BLOG_CONTENT entry found for key "${contentKey}"`);
 }
 
-const pageTitle       = `${content.title} | Edison`;
+// titleTag lets a post ship a short SERP title without shortening the on-page H1.
+const pageTitle       = content.titleTag ?? `${content.title} | Edison`;
 // dek is the on-page subtitle (often >160 chars). Prefer an explicit, SEO-length
 // metaDescription when provided, falling back to dek then title.
 const pageDescription = content.metaDescription ?? content.dek ?? content.title;
+
+const base      = Astro.site ?? SITE.url;
+const canonical = new URL(Astro.url.pathname, base).toString();
+const absolute  = (path: string) => new URL(path, base).toString();
+
+// ── Dates ────────────────────────────────────────────────────────────────────
+// Prefer explicit ISO fields. Fall back to parsing the human-readable display
+// date so posts written before those fields existed still emit valid schema.
+const toIso = (value?: string) => {
+  if (!value) return undefined;
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? undefined : parsed.toISOString().slice(0, 10);
+};
+const datePublished = content.datePublished ?? toIso(content.date);
+const dateModified  = content.dateModified  ?? datePublished;
+
+// ── Word count ───────────────────────────────────────────────────────────────
+// Rendered prose only, tags stripped — feeds Article.wordCount.
+const strip = (html: string) => html.replace(/<[^>]+>/g, ' ');
+const prose: string[] = [
+  ...(content.intro ?? []),
+  ...(content.keyTakeaways ?? []),
+  ...(content.sections ?? []).flatMap((s: any) => [
+    s.heading ?? '',
+    ...(s.body ?? []), ...(s.body2 ?? []), ...(s.body3 ?? []),
+    ...(s.list ?? []),
+    ...(s.steps ?? []).flatMap((step: any) => [step.name, step.text]),
+    ...(s.faq ?? []).flatMap((f: any) => [f.q, f.a]),
+  ]),
+];
+const wordCount = prose.map(strip).join(' ').split(/\s+/).filter(Boolean).length;
+
+// ── Schema ───────────────────────────────────────────────────────────────────
+const faqSection  = (content.sections ?? []).find((s: any) => s.faq?.length);
+const stepSection = (content.sections ?? []).find((s: any) => s.steps?.length);
+const schemaImage = absolute(content.ogImage ?? content.heroImage);
+
+const pageSchema: Record<string, unknown>[] = [
+  articleSchema({
+    headline: content.title,
+    description: pageDescription,
+    url: canonical,
+    datePublished: datePublished,
+    ...(dateModified ? { dateModified } : {}),
+    image: schemaImage,
+    wordCount,
+    ...(content.about        ? { about: content.about }              : {}),
+    ...(content.authorSchema ? { author: content.authorSchema }      : {}),
+    ...(content.category     ? { articleSection: content.category }  : {}),
+    ...(content.keywords     ? { keywords: content.keywords }        : {}),
+  }),
+  // Mirrors the visible <Breadcrumb> trail in blog-template.jsx exactly.
+  breadcrumbSchema([
+    { name: 'Home',             url: absolute('/') },
+    { name: 'Edison Education', url: absolute('/edison-education') },
+    { name: 'Blog',             url: absolute('/blog') },
+    { name: content.title,      url: canonical },
+  ]),
+];
+
+// Answers are lifted verbatim from the on-page accordion — Google penalises
+// FAQPage markup that doesn't match visible text.
+if (faqSection) pageSchema.push(faqSchema(faqSection.faq));
+
+if (stepSection) {
+  pageSchema.push(
+    howToSchema({
+      name: content.title,
+      description: pageDescription,
+      url: canonical,
+      image: schemaImage,
+      steps: stepSection.steps.map((s: any) => ({ name: s.name, text: s.text })),
+    })
+  );
+}
 ---
 
 <SiteLayout
   title={pageTitle}
   description={pageDescription}
   ogType="article"
-  ogImage={content.heroImage}
+  ogImage={content.ogImage ?? content.heroImage}
+  ogImageAlt={content.imageAlt}
+  articlePublishedTime={datePublished}
+  articleModifiedTime={dateModified}
+  articleSection={content.category}
+  articleTags={content.keywords}
   twitterAuthor={content.author}
   twitterReadTime={content.readTime}
+  pageSchema={pageSchema}
+  preloadImages={[{ href: content.heroImage }]}
 >
   <BlogSpokeA content={content} client:load />
 </SiteLayout>
