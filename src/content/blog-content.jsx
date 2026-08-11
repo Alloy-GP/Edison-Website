@@ -141,7 +141,7 @@ const BLOG_CONTENT = {
     category: "Florida Compliance",
     title: "Florida HOA Laws Guide: Ch. 720 and Ch. 718 Explained",
     dek: "A plain-language overview of the two Florida statutes that govern community associations, what they cover, where they differ, and what every board member should know.",
-    author: "Edison Editorial", date: "March 2026", readTime: "12 min",
+    author: "Edison Editorial", date: "March 2026", readTime: "2 min",
     heroImage: "/assets/img-13.webp",
     summary: "Florida governs homeowner associations under Chapter 720 and condominium associations under Chapter 718. They look similar from a distance but differ in reserve study mandates, milestone inspection requirements, governing-document conventions, and homeowner rights. Boards that confuse them make expensive mistakes.",
     sections: [
@@ -186,7 +186,7 @@ const BLOG_CONTENT = {
     category: "Florida Compliance",
     title: "Florida Milestone Inspection Guide (SB-4D)",
     dek: "What Senate Bill 4D requires, when it triggers, and how Florida condo boards coordinate the work, by Phase 1 and Phase 2.",
-    author: "Edison Editorial", date: "April 2026", readTime: "10 min",
+    author: "Edison Editorial", date: "April 2026", readTime: "2 min",
     heroImage: "/assets/img-22.webp",
     summary: "Florida Senate Bill 4D requires condominium and cooperative buildings 3+ habitable stories to commission phased milestone inspections by a licensed engineer at the 30-year mark (25 in coastal counties), and every 10 years after. Most coastal Florida boards have either completed Phase 1 or are behind on it.",
     sections: [
@@ -264,7 +264,7 @@ const BLOG_CONTENT = {
     category: "For Boards",
     title: "HOA Board Member Responsibilities",
     dek: "Fiduciary duty, Florida board certification, and what board members actually owe their communities, and themselves.",
-    author: "Edison Editorial", date: "March 2026", readTime: "11 min",
+    author: "Edison Editorial", date: "March 2026", readTime: "2 min",
     heroImage: "/assets/img-11.webp",
     summary: "Florida HOA and condo board members owe their communities a fiduciary duty, duty of care, duty of loyalty, duty to act in good faith. Failing those duties creates personal liability that the association's D&O insurance may not fully cover. Knowing the duties is step one; documenting them is step two.",
     sections: [
@@ -433,7 +433,7 @@ const BLOG_CONTENT = {
     category: "For Boards",
     title: "Unenforceable HOA Rules in Florida",
     dek: "Just because a rule is on the books doesn't mean a court will uphold it. What Florida law says about which HOA rules stick, and which don't.",
-    author: "Edison Editorial", date: "February 2026", readTime: "8 min",
+    author: "Edison Editorial", date: "February 2026", readTime: "2 min",
     heroImage: "/assets/img-inspector.webp",
     summary: "Florida law protects homeowners from HOA rules that conflict with statute, exceed the board's documented authority, or are enforced selectively. Boards that try to enforce unenforceable rules create legal exposure for themselves, and lose the homeowner's trust along the way.",
     sections: [
@@ -472,7 +472,7 @@ const BLOG_CONTENT = {
     category: "For Boards",
     title: "Condo Association vs HOA: Which Are You?",
     dek: "Different statutes, different governing documents, different rules. A quick decision tree for boards who aren't sure which framework applies.",
-    author: "Edison Editorial", date: "January 2026", readTime: "6 min",
+    author: "Edison Editorial", date: "January 2026", readTime: "2 min",
     heroImage: "/assets/img-21.webp",
     summary: "If your community is declared under a Declaration of Condominium, you're a condo association under Florida Chapter 718. Otherwise, single-family neighborhoods, townhomes, master associations, you're typically an HOA under Chapter 720. The distinction matters for reserves, milestone inspections, and homeowner rights.",
     sections: [
@@ -506,7 +506,7 @@ const BLOG_CONTENT = {
     category: "Financial Management",
     title: "HOA Management Fees: What Boards Actually Pay",
     dek: "What's standard, what's premium, and how to read a management proposal without losing the plot.",
-    author: "Edison Editorial", date: "January 2026", readTime: "10 min",
+    author: "Edison Editorial", date: "January 2026", readTime: "2 min",
     heroImage: "/assets/img-13.webp",
     summary: "HOA management fees in Florida typically run a monthly per-door rate based on community size, service scope, and complexity. The headline number is rarely the whole story, what's included, what's an upcharge, and what happens after year one matters more than the per-door rate.",
     sections: [
@@ -552,7 +552,7 @@ const BLOG_CONTENT = {
     category: "Financial Management",
     title: "HOA Special Assessment Guide",
     dek: "When special assessments make sense, how they're approved, what they look like in Florida, and the alternatives most boards skip past.",
-    author: "Edison Editorial", date: "February 2026", readTime: "8 min",
+    author: "Edison Editorial", date: "February 2026", readTime: "2 min",
     heroImage: "/assets/img-accounting.webp",
     summary: "A special assessment is a one-time charge to homeowners outside the regular assessment cycle, usually to fund a capital project that reserves can't cover. They work, but they damage homeowner trust, drive owner attrition, and are usually preventable with disciplined reserve banking.",
     sections: [
@@ -705,7 +705,7 @@ const BLOG_CONTENT = {
     category: "Local Authority",
     title: "Best HOA Management Companies in Orlando: An Honest Field Guide",
     dek: "Written for boards comparing options. What to look for, what to watch out for, and how Edison stacks up, without disparaging competitors.",
-    author: "Edison Editorial", date: "December 2025", readTime: "11 min",
+    author: "Edison Editorial", date: "December 2025", readTime: "2 min",
     heroImage: "/assets/img-community-aerial.webp",
     summary: "Orlando has more HOA management options than any other city in Central Florida, from national operators with hundreds of communities to single-manager boutiques. The right choice for your board depends on portfolio size per manager, depth of back-office, transition discipline, and how loud the company's voicemail gets.",
     sections: [
