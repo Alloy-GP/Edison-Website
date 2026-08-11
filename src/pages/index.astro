@@ -1,6 +1,12 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { HomePage } from '../components/home-page.jsx';
+import { getLatestPosts } from '../lib/blog.ts';
+
+// The education band always shows the two newest live posts. Computed here so
+// only these two objects cross into the island — importing BLOG_CONTENT inside
+// the React component would ship every post's full body to the browser.
+const latestPosts = getLatestPosts(2);
 ---
 
 <SiteLayout
@@ -11,5 +17,5 @@ import { HomePage } from '../components/home-page.jsx';
     { href: '/assets/img-community-aerial.webp', media: '(min-width: 641px)' },
   ]}
 >
-  <HomePage client:load />
+  <HomePage latestPosts={latestPosts} client:load />
 </SiteLayout>
