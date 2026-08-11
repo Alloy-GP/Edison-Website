@@ -448,7 +448,25 @@ function EducationBand({ title, sub, posts }) {
 /* ============================================================
    PAGE COMPOSITION
    ============================================================ */
-function HomePage() {
+/* Shown only if the page forgets to pass latestPosts. src/pages/index.astro
+   supplies the real list, derived from BLOG_CONTENT by date. */
+const FALLBACK_POSTS = [
+  {
+    category: "Financial Management",
+    title: "How to Prepare an HOA Budget: A Board's Step-by-Step Guide",
+    image: "/assets/blog/hoa-budget-preparation.webp",
+    href: "/blog/hoa-budget-preparation"
+  },
+  {
+    category: "Financial Management",
+    title: "HOA Reserve Study Florida: What Boards Need to Know",
+    image: "/assets/blog/reserve-study-specialist.webp",
+    href: "/blog/hoa-reserve-study-guide"
+  }
+];
+
+function HomePage({ latestPosts }) {
+  const eduPosts = latestPosts?.length ? latestPosts : FALLBACK_POSTS;
   return (
     <main data-screen-label="Home">
       <style dangerouslySetInnerHTML={{ __html: HOME_STYLES }}/>
@@ -549,22 +567,7 @@ function HomePage() {
       <EducationBand
         title="HOA Board Education & Resources"
         sub="Serving on a board is easier when you have the right information. Explore our guides and articles on HOA governance, compliance, and best practices, written specifically for Florida community leaders."
-        posts={[
-          {
-            category: "Finance & Audit",
-            title: "HOA Audit: What It Is, When It's Required, and How to Prepare",
-            excerpt: "An HOA audit confirms your community's finances are accurate, transparent, and compliant with Florida law.",
-            image: "/assets/blog/hoa-board-members-reviewing-audit.webp",
-            href: "/blog/hoa-audit"
-          },
-          {
-            category: "Governance",
-            title: "HOA Bylaws vs CC&Rs: Key Differences Explained",
-            excerpt: "Understanding the difference between HOA bylaws and CC&Rs helps boards make confident, defensible decisions.",
-            image: "/assets/blog/bylaws-vs-ccrs.webp",
-            href: "/blog/hoa-bylaws-vs-ccrs"
-          }
-        ]}
+        posts={eduPosts}
       />
 
       <ServiceArea
