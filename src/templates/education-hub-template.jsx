@@ -376,9 +376,9 @@ const EDUCATION_CONTENT = {
       color: "#F2F7F6",
       // Titles match each post's H1 exactly; readTime reflects actual length.
       articles: [
-        { title: "Florida HOA Laws Guide: Ch. 720 and Ch. 718 Explained", readTime: "3 min", href: "/blog/florida-hoa-laws-guide" },
-        { title: "Florida Milestone Inspection Guide (SB-4D)", readTime: "3 min", href: "/blog/florida-milestone-inspection-guide" },
-        { title: "Condo Association vs HOA: Which Are You?", readTime: "3 min", href: "/blog/condo-association-vs-hoa" }
+        { title: "Florida HOA Laws Guide: Ch. 720 and Ch. 718 Explained", readTime: "2 min", href: "/blog/florida-hoa-laws-guide" },
+        { title: "Florida Milestone Inspection Guide (SB-4D)", readTime: "2 min", href: "/blog/florida-milestone-inspection-guide" },
+        { title: "Condo Association vs HOA: Which Are You?", readTime: "2 min", href: "/blog/condo-association-vs-hoa" }
       ]
     },
     {
@@ -389,8 +389,8 @@ const EDUCATION_CONTENT = {
       color: "#FAF4ED",
       articles: [
         { title: "HOA Bylaws vs CC&Rs: Key Differences Explained", readTime: "8 min", href: "/blog/hoa-bylaws-vs-ccrs" },
-        { title: "HOA Board Member Responsibilities", readTime: "3 min", href: "/blog/hoa-board-member-responsibilities" },
-        { title: "Unenforceable HOA Rules in Florida", readTime: "3 min", href: "/blog/unenforceable-hoa-rules-florida" }
+        { title: "HOA Board Member Responsibilities", readTime: "2 min", href: "/blog/hoa-board-member-responsibilities" },
+        { title: "Unenforceable HOA Rules in Florida", readTime: "2 min", href: "/blog/unenforceable-hoa-rules-florida" }
       ]
     },
     {
@@ -403,8 +403,8 @@ const EDUCATION_CONTENT = {
         { title: "How to Prepare an HOA Budget: A Board's Step-by-Step Guide", readTime: "8 min", href: "/blog/hoa-budget-preparation" },
         { title: "HOA Audit: What It Is, When It's Required, and How to Prepare", readTime: "9 min", href: "/blog/hoa-audit" },
         { title: "HOA Reserve Study Florida: What Boards Need to Know", readTime: "10 min", href: "/blog/hoa-reserve-study-guide" },
-        { title: "HOA Special Assessment Guide", readTime: "3 min", href: "/blog/hoa-special-assessment" },
-        { title: "HOA Management Fees: What Boards Actually Pay", readTime: "3 min", href: "/blog/hoa-management-fees" }
+        { title: "HOA Special Assessment Guide", readTime: "2 min", href: "/blog/hoa-special-assessment" },
+        { title: "HOA Management Fees: What Boards Actually Pay", readTime: "2 min", href: "/blog/hoa-management-fees" }
       ]
     }
   ],
