@@ -78,12 +78,13 @@ function EducationHubA({ content }) {
           </div>
           <div className="edu-course-grid" style={{display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
           {content.topics.map((t, i) => (
-            <article key={i} style={{
+            <article key={i} id={t.id} style={{
               background: "#fff",
               border: "1px solid var(--border-hairline)",
               borderRadius: 16, overflow: "hidden",
               boxShadow: "var(--shadow-xs)",
-              display: "flex", flexDirection: "column"
+              display: "flex", flexDirection: "column",
+              scrollMarginTop: 100
             }}>
               <div style={{
                 background: t.color || "var(--edison-teal-pale)",
@@ -309,7 +310,7 @@ function EducationHubB({ content }) {
                            display: "flex", flexDirection: "column", gap: 4 }}>
                 {content.topics.map((t, i) => (
                   <li key={i}>
-                    <a href="#" style={{
+                    <a href={t.id ? `#${t.id}` : "/blog"} style={{
                       display: "flex", justifyContent: "space-between", alignItems: "center",
                       padding: "11px 14px", borderRadius: 6,
                       fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14,
@@ -363,33 +364,56 @@ function EducationHubB({ content }) {
    ============================================================ */
 const EDUCATION_CONTENT = {
   intro: "Edison Education is our free library of articles, guides, and Florida compliance updates, written specifically for HOA, condo, and townhome board members. Every piece is grounded in the actual statute, the actual board pain point, and the actual decision boards have to make.",
+  // Three clusters, mirroring the Edison Education mega menu (Florida
+  // Compliance / Board Governance / Financial Management). `id` is what the
+  // Topics sidebar anchors to.
   topics: [
     {
+      id: "florida-compliance",
+      label: "Florida Compliance",
+      title: "What Florida statute actually requires",
+      body: "Chapter 720, Chapter 718, and the post-Surfside inspection rules, translated out of legalese into what your board has to do and by when.",
+      color: "#F2F7F6",
+      // Titles match each post's H1 exactly; readTime reflects actual length.
+      articles: [
+        { title: "Florida HOA Laws Guide: Ch. 720 and Ch. 718 Explained", readTime: "3 min", href: "/blog/florida-hoa-laws-guide" },
+        { title: "Florida Milestone Inspection Guide (SB-4D)", readTime: "3 min", href: "/blog/florida-milestone-inspection-guide" },
+        { title: "Condo Association vs HOA: Which Are You?", readTime: "3 min", href: "/blog/condo-association-vs-hoa" }
+      ]
+    },
+    {
+      id: "board-governance",
       label: "Board governance",
       title: "Practical guides for volunteer board members",
       body: "Governance fundamentals, document hierarchy, enforcement boundaries, and decision-making frameworks for boards who didn't sign up to be lawyers.",
       color: "#FAF4ED",
       articles: [
-        { title: "HOA Bylaws vs CC&Rs: Key Differences Explained", readTime: "8 min", href: "/blog/hoa-bylaws-vs-ccrs" }
+        { title: "HOA Bylaws vs CC&Rs: Key Differences Explained", readTime: "8 min", href: "/blog/hoa-bylaws-vs-ccrs" },
+        { title: "HOA Board Member Responsibilities", readTime: "3 min", href: "/blog/hoa-board-member-responsibilities" },
+        { title: "Unenforceable HOA Rules in Florida", readTime: "3 min", href: "/blog/unenforceable-hoa-rules-florida" }
       ]
     },
     {
+      id: "financial-management",
       label: "Financial Management",
       title: "Audits, budgets, fees, and reserves",
       body: "Reserve funding, audit prep, and how to read financial statements your board can actually defend.",
       color: "#EEF4FF",
       articles: [
+        { title: "How to Prepare an HOA Budget: A Board's Step-by-Step Guide", readTime: "8 min", href: "/blog/hoa-budget-preparation" },
         { title: "HOA Audit: What It Is, When It's Required, and How to Prepare", readTime: "9 min", href: "/blog/hoa-audit" },
-        { title: "HOA Reserve Study Florida: What Boards Need to Know", readTime: "10 min", href: "/blog/hoa-reserve-study-guide" }
+        { title: "HOA Reserve Study Florida: What Boards Need to Know", readTime: "10 min", href: "/blog/hoa-reserve-study-guide" },
+        { title: "HOA Special Assessment Guide", readTime: "3 min", href: "/blog/hoa-special-assessment" },
+        { title: "HOA Management Fees: What Boards Actually Pay", readTime: "3 min", href: "/blog/hoa-management-fees" }
       ]
     }
   ],
   featured: {
     category: "Financial Management",
-    title: "HOA Audit: What It Is, When It's Required, and How to Prepare",
-    excerpt: "An HOA audit confirms your community's finances are accurate, transparent, and compliant with Florida law. Learn what's required based on your association's revenue, and how strong year-round financial management makes the process faster and less expensive.",
-    image: "/assets/blog/hoa-board-members-reviewing-audit.webp",
-    href: "/blog/hoa-audit"
+    title: "How to Prepare an HOA Budget: A Board's Step-by-Step Guide",
+    excerpt: "Budget season doesn't have to be the hardest thing your board does all year. A step-by-step guide to preparing an HOA budget, from funding reserves to setting dues, plus the Florida requirements and the backwards-planning method that keeps every deadline calm.",
+    image: "/assets/blog/hoa-budget-preparation.webp",
+    href: "/blog/hoa-budget-preparation"
   }
 };
 

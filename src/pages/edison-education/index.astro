@@ -2,11 +2,46 @@
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { EducationHubA, EDUCATION_CONTENT } from '../../templates/education-hub-template.jsx';
 import InsuranceVideoLibrary from '../../components/InsuranceVideoLibrary.astro';
+import { SITE } from '../../config/site.ts';
+import { breadcrumbSchema, collectionPageSchema } from '../../lib/schema.ts';
+
+const base      = Astro.site ?? SITE.url;
+const absolute  = (path: string) => new URL(path, base).toString();
+const canonical = absolute('/edison-education');
+
+const description = 'Free Florida HOA and condo board education from Edison: statutory guides, governance explainers, and financial management resources for volunteer boards.';
+
+// Every article surfaced on the hub, flattened in display order — gives answer
+// engines an explicit inventory of what this hub actually contains.
+const articles = EDUCATION_CONTENT.topics.flatMap((topic) =>
+  topic.articles.map((article) => ({
+    name: article.title,
+    url: absolute(article.href),
+  }))
+);
+
+// NOTE: EducationalOccupationalProgram is deliberately NOT emitted yet. The
+// course library is still "coming 2026" — claiming a program that doesn't exist
+// is exactly the kind of structured data Google discounts. Add it when real
+// courses ship.
+const pageSchema = [
+  collectionPageSchema({
+    name: 'Edison Education',
+    description,
+    url: canonical,
+    items: articles,
+  }),
+  breadcrumbSchema([
+    { name: 'Home',             url: absolute('/') },
+    { name: 'Edison Education', url: canonical },
+  ]),
+];
 ---
 
 <SiteLayout
-  title="Edison Education, HOA Board Resources | Edison"
-  description="Board certification, continuing education, and legislative updates for Florida HOA and condo boards. Edison Education, lighting the way for volunteer leaders."
+  title="Edison Education: Florida HOA & Condo Board Resources | Edison"
+  description={description}
+  pageSchema={pageSchema}
 >
   <EducationHubA content={EDUCATION_CONTENT} client:load />
   <InsuranceVideoLibrary />

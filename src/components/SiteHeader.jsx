@@ -68,6 +68,7 @@ const DEFAULT_NAV = [
       {
         title: "Financial Management",
         items: [
+          { label: "How to Prepare an HOA Budget", href: "/blog/hoa-budget-preparation", desc: "Step-by-step board guide" },
           { label: "HOA Audit Guide", href: "/blog/hoa-audit", desc: "Audit requirements + checklist" },
           { label: "HOA Reserve Study Guide", href: "/blog/hoa-reserve-study-guide", desc: "What boards need to know" }
         ]

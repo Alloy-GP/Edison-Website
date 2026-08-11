@@ -17,14 +17,23 @@ interface Props {
   description: string;
   ogType?: 'website' | 'article';
   ogImage?: string;
+  ogImageAlt?: string;
   robots?: string;
   pageSchema?: Record<string, unknown> | Record<string, unknown>[];
   twitterAuthor?: string;
   twitterReadTime?: string;
   preloadImages?: { href: string; media?: string }[];
+  articlePublishedTime?: string;
+  articleModifiedTime?: string;
+  articleSection?: string;
+  articleTags?: string[];
 }
 
-const { title, description, ogType, ogImage, robots, pageSchema, twitterAuthor, twitterReadTime, preloadImages } = Astro.props;
+const {
+  title, description, ogType, ogImage, ogImageAlt, robots, pageSchema,
+  twitterAuthor, twitterReadTime, preloadImages,
+  articlePublishedTime, articleModifiedTime, articleSection, articleTags,
+} = Astro.props;
 ---
 
 <BaseLayout
@@ -32,11 +41,16 @@ const { title, description, ogType, ogImage, robots, pageSchema, twitterAuthor, 
   description={description}
   ogType={ogType}
   ogImage={ogImage}
+  ogImageAlt={ogImageAlt}
   robots={robots}
   pageSchema={pageSchema}
   twitterAuthor={twitterAuthor}
   twitterReadTime={twitterReadTime}
   preloadImages={preloadImages}
+  articlePublishedTime={articlePublishedTime}
+  articleModifiedTime={articleModifiedTime}
+  articleSection={articleSection}
+  articleTags={articleTags}
 >
   <SiteHeader client:load />
   <main>

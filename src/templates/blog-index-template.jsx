@@ -103,13 +103,15 @@ function BlogIndexPage({ content }) {
                       textDecoration: "none", borderBottom: 0
                     }}>
                       <span>{t.label}</span>
+                      {/* Count is derived, not hardcoded — the hand-maintained
+                          t.count values drifted out of sync with the articles. */}
                       <span style={{
                         background: "var(--edison-teal-pale)",
                         color: "var(--edison-teal-dark)",
                         padding: "3px 10px", borderRadius: 999,
                         fontFamily: "var(--font-body)", fontSize: 12,
                         fontWeight: 700
-                      }}>{t.count}</span>
+                      }}>{all.filter((a) => a.category === t.label).length}</span>
                     </a>
                   </li>
                 ))}
@@ -142,10 +144,11 @@ function BlogIndexPage({ content }) {
 const BLOG_INDEX_CONTENT = {
   intro: "Long-form guides, statutory explainers, and board-education articles, written for Florida HOA and condo boards by Edison's team. New articles every month.",
   topics: [
-    { label: "Financial Management", count: 3 },
+    { label: "Financial Management", count: 4 },
     { label: "For Boards", count: 1 }
   ],
   articles: [
+    { category: "Financial Management", title: "How to Prepare an HOA Budget: A Board's Step-by-Step Guide", dek: "A step-by-step guide to preparing an HOA budget, from funding reserves to setting dues, plus the Florida requirements and the backwards-planning method that keeps every deadline calm.", readTime: "8 min", date: "August 5, 2026", image: "/assets/blog/hoa-budget-preparation.webp", href: "/blog/hoa-budget-preparation" },
     { category: "Financial Management", title: "HOA Reserve Study Florida: What Boards Need to Know", dek: "What a reserve study covers, how Florida law treats HOAs vs condos, what it costs, and how Edison supports the process from start to finish.", readTime: "10 min", date: "May 20, 2026", image: "/assets/blog/reserve-study-specialist.webp", href: "/blog/hoa-reserve-study-guide" },
     { category: "Financial Management", title: "HOA Audit: What It Is, When It's Required, and How to Prepare", dek: "Florida audit thresholds, prep checklist, and how strong year-round bookkeeping cuts cost and time.", readTime: "9 min", date: "March 16, 2026", image: "/assets/blog/hoa-board-members-reviewing-audit.webp", href: "/blog/hoa-audit" },
     { category: "For Boards", title: "HOA Bylaws vs CC&Rs: Key Differences Explained", dek: "Which document governs your situation, and how to find out without calling a lawyer.", readTime: "8 min", date: "February 4, 2026", image: "/assets/blog/bylaws-vs-ccrs.webp", href: "/blog/hoa-bylaws-vs-ccrs" }
