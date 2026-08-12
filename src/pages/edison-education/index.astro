@@ -4,6 +4,20 @@ import { EducationHubA, EDUCATION_CONTENT } from '../../templates/education-hub-
 import InsuranceVideoLibrary from '../../components/InsuranceVideoLibrary.astro';
 import { SITE } from '../../config/site.ts';
 import { breadcrumbSchema, collectionPageSchema } from '../../lib/schema.ts';
+import { getLatestPosts } from '../../lib/blog.ts';
+
+// Topic clusters stay curated — they're an editorial grouping. Only the
+// featured card tracks the newest post, so it can't go stale after a publish.
+const [newest] = getLatestPosts(1);
+const content  = newest
+  ? { ...EDUCATION_CONTENT, featured: {
+      category: newest.category,
+      title:    newest.title,
+      excerpt:  newest.dek,
+      image:    newest.image,
+      href:     newest.href,
+    } }
+  : EDUCATION_CONTENT;
 
 const base      = Astro.site ?? SITE.url;
 const absolute  = (path: string) => new URL(path, base).toString();
@@ -13,7 +27,7 @@ const description = 'Free Florida HOA and condo board education from Edison: sta
 
 // Every article surfaced on the hub, flattened in display order — gives answer
 // engines an explicit inventory of what this hub actually contains.
-const articles = EDUCATION_CONTENT.topics.flatMap((topic) =>
+const articles = content.topics.flatMap((topic) =>
   topic.articles.map((article) => ({
     name: article.title,
     url: absolute(article.href),
@@ -43,6 +57,6 @@ const pageSchema = [
   description={description}
   pageSchema={pageSchema}
 >
-  <EducationHubA content={EDUCATION_CONTENT} client:load />
+  <EducationHubA content={content} client:load />
   <InsuranceVideoLibrary />
 </SiteLayout>
