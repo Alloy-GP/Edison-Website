@@ -2,6 +2,15 @@
 // The only file you edit per client for email setup.
 // All API routes (contact.ts, lead.ts, subscribe.ts) read from here.
 
+/**
+ * True when this deploy has somewhere in Slack to log submissions —
+ * FORM_SLACK_WEBHOOK (this client's own channel) or the shared
+ * FORM_ALERT_SLACK_URL. Used to retire Alloy's email CC below.
+ */
+const SLACK_CHANNEL_CONFIGURED = Boolean(
+  import.meta.env.FORM_SLACK_WEBHOOK || import.meta.env.FORM_ALERT_SLACK_URL
+);
+
 export const EMAIL_CONFIG = {
 
   // ── Client brand identity. Used in headings, signatures, and links. ──
@@ -31,9 +40,14 @@ export const EMAIL_CONFIG = {
     'admin@edison-mgmt.com',
   ],
 
-  // ── TEMPORARY: CC'd on every lead notification (Alloy monitoring).
-  // Remove this when no longer needed. ──
-  ccAll: ['admin@alloygp.co'],
+  // ── Alloy's copy of every lead notification.
+  //
+  // Empty as soon as this site has a Slack channel: every submission is logged
+  // there (see form-alert.ts), which is a better record than a copy in a shared
+  // inbox and keeps Alloy off a thread with the client's board or vendor. Until
+  // a webhook is set the CC stays, so monitoring is never dropped silently —
+  // there is no window where nobody is watching. ──
+  ccAll: SLACK_CHANNEL_CONFIGURED ? [] : ['admin@alloygp.co'],
 
   // ── Per-intent routing. The intake form sends an `intent`; /api/lead routes
   // the staff notification to the matching list (falls back to `notify`).

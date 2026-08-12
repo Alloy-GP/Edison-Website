@@ -6,11 +6,15 @@ import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 import mailchimp from '@mailchimp/mailchimp_marketing';
 import { EMAIL_CONFIG } from '~/lib/email.config';
-import { sendWithAlert } from '~/lib/form-alert';
+import { sendWithAlert, notifySubmission } from '~/lib/form-alert';
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 // Astro reads env via import.meta.env, so pass the Slack URL explicitly.
-const FORM_ALERT_SLACK_URL = import.meta.env.FORM_ALERT_SLACK_URL;
+// Slack destination. FORM_SLACK_WEBHOOK is this client's own channel and takes
+// precedence for BOTH submissions and failures; FORM_ALERT_SLACK_URL is the
+// shared fallback for clients without a channel of their own.
+const SLACK_WEBHOOK =
+  import.meta.env.FORM_SLACK_WEBHOOK || import.meta.env.FORM_ALERT_SLACK_URL;
 
 if (EMAIL_CONFIG.mailchimp.enabled) {
   mailchimp.setConfig({
@@ -64,31 +68,66 @@ export const POST: APIRoute = async ({ request }) => {
       .join('');
 
     // Internal notification — alerts Slack + email if the send fails (then re-throws → 500)
-    await sendWithAlert(
-      {
-        client: EMAIL_CONFIG.brand.name,
-        formName: `${intentCfg.label}${intent ? ` (${intent})` : ''}`,
-        slackWebhookUrl: FORM_ALERT_SLACK_URL,
-        alertEmail: { apiKey: import.meta.env.RESEND_API_KEY, to: EMAIL_CONFIG.alertsTo, from: EMAIL_CONFIG.from.notifications },
-      },
-      () => resend.emails.send({
-        from:    EMAIL_CONFIG.from.notifications,
-        replyTo: EMAIL_CONFIG.replyTo,
-        to:      notifyTo,
-        cc:      EMAIL_CONFIG.ccAll,
-        subject: intentCfg.notifySubject(company || name),
-        html: `
-          <h2>${esc(intentCfg.label)}</h2>
-          <p><strong>Name:</strong> ${esc(name)}</p>
-          <p><strong>Email:</strong> ${esc(email)}</p>
-          ${phone   ? `<p><strong>Phone:</strong> ${esc(phone)}</p>` : ''}
-          ${company ? `<p><strong>Company:</strong> ${esc(company)}</p>` : ''}
-          ${detailRows ? `<table style="border-collapse:collapse;margin:14px 0;font-size:14px">${detailRows}</table>` : ''}
-          ${message ? `<p><strong>Message:</strong><br>${esc(message).replace(/\n/g, '<br>')}</p>` : ''}
-          <hr><p style="color:#888;font-size:12px">${ref ? `Ref ${esc(ref)} · ` : ''}Form: ${esc(intent || 'lead')}${source ? ` · Source ${esc(source)}` : ''}</p>
-        `,
-      })
-    );
+    // The error is held rather than thrown so the Slack log below still runs;
+    // it is re-thrown straight after, so the form still gets its 500.
+    let notifyError: unknown = null;
+    try {
+      await sendWithAlert(
+        {
+          client: EMAIL_CONFIG.brand.name,
+          formName: `${intentCfg.label}${intent ? ` (${intent})` : ''}`,
+          slackWebhookUrl: SLACK_WEBHOOK,
+          alertEmail: { apiKey: import.meta.env.RESEND_API_KEY, to: EMAIL_CONFIG.alertsTo, from: EMAIL_CONFIG.from.notifications },
+        },
+        () => resend.emails.send({
+          from:    EMAIL_CONFIG.from.notifications,
+          replyTo: EMAIL_CONFIG.replyTo,
+          to:      notifyTo,
+          ...(EMAIL_CONFIG.ccAll.length ? { cc: EMAIL_CONFIG.ccAll } : {}),
+          subject: intentCfg.notifySubject(company || name),
+          html: `
+            <h2>${esc(intentCfg.label)}</h2>
+            <p><strong>Name:</strong> ${esc(name)}</p>
+            <p><strong>Email:</strong> ${esc(email)}</p>
+            ${phone   ? `<p><strong>Phone:</strong> ${esc(phone)}</p>` : ''}
+            ${company ? `<p><strong>Company:</strong> ${esc(company)}</p>` : ''}
+            ${detailRows ? `<table style="border-collapse:collapse;margin:14px 0;font-size:14px">${detailRows}</table>` : ''}
+            ${message ? `<p><strong>Message:</strong><br>${esc(message).replace(/\n/g, '<br>')}</p>` : ''}
+            <hr><p style="color:#888;font-size:12px">${ref ? `Ref ${esc(ref)} · ` : ''}Form: ${esc(intent || 'lead')}${source ? ` · Source ${esc(source)}` : ''}</p>
+          `,
+        })
+      );
+    } catch (err) {
+      notifyError = err;
+    }
+
+    // Log the lead to the client's Slack channel, whether or not the email went
+    // out. On the happy path this is the running record of what the site
+    // produced; when the send failed it is the *only* copy of what someone
+    // typed, so it posts either way and says which of the two it is.
+    await notifySubmission({
+      client: EMAIL_CONFIG.brand.name,
+      slackWebhookUrl: SLACK_WEBHOOK,
+      route: intentCfg.label,
+      formName: notifyError
+        ? `${intent || 'lead'} form → intended for ${[notifyTo].flat().join(', ')}`
+        : `${intent || 'lead'} form → ${[notifyTo].flat().join(', ')}`,
+      delivered: !notifyError,
+      fields: [
+        ['Name', name],
+        ['Email', email],
+        ['Phone', phone],
+        ['Company', company],
+        ...detailFields.map((f) => [f.label, f.value] as [string, string]),
+        ['Message', message],
+        ['Ref', ref],
+        ['Source', source],
+      ] as Array<[string, string]>,
+    });
+
+    // Now that the lead is recorded, a failed notification is still a failed
+    // submission: rethrow so the outer catch returns the 500 the form expects.
+    if (notifyError) throw notifyError;
 
     // Confirmation to submitter — per-intent subject + body
     const firstName = name.split(' ')[0] || name;

@@ -6,8 +6,14 @@ import type { APIRoute } from 'astro';
 import mailchimp from '@mailchimp/mailchimp_marketing';
 import { Resend } from 'resend';
 import { EMAIL_CONFIG } from '~/lib/email.config';
+import { notifySubmission, fieldsFromFormData } from '~/lib/form-alert';
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
+// Slack destination. FORM_SLACK_WEBHOOK is this client's own channel and takes
+// precedence for BOTH submissions and failures; FORM_ALERT_SLACK_URL is the
+// shared fallback for clients without a channel of their own.
+const SLACK_WEBHOOK =
+  import.meta.env.FORM_SLACK_WEBHOOK || import.meta.env.FORM_ALERT_SLACK_URL;
 
 if (EMAIL_CONFIG.mailchimp.enabled) {
   mailchimp.setConfig({
@@ -45,10 +51,31 @@ export const POST: APIRoute = async ({ request }) => {
         const alreadyExists = err?.response?.body?.title === 'Member Exists';
         if (!alreadyExists) {
           console.error('Mailchimp subscribe error:', err?.response?.body ?? err);
+          // Post it anyway or the address is gone: Mailchimp never took it, and
+          // this route emails nobody internally.
+          await notifySubmission({
+            client: EMAIL_CONFIG.brand.name,
+            slackWebhookUrl: SLACK_WEBHOOK,
+            route: 'Newsletter sign-up',
+            formName: 'Mailchimp rejected the add',
+            delivered: false,
+            fields: fieldsFromFormData(data),
+          });
           return new Response(JSON.stringify({ error: 'Could not subscribe. Please try again.' }), { status: 500 });
         }
       }
     }
+
+    // Log the sign-up to the client's Slack channel. Nobody is emailed
+    // internally about a newsletter opt-in, so without this the only trace is a
+    // row in a Mailchimp audience.
+    await notifySubmission({
+      client: EMAIL_CONFIG.brand.name,
+      slackWebhookUrl: SLACK_WEBHOOK,
+      route: 'Newsletter sign-up',
+      formName: EMAIL_CONFIG.mailchimp.enabled ? 'Added to Mailchimp' : 'Mailchimp is off for this client',
+      fields: fieldsFromFormData(data),
+    });
 
     // Welcome email
     try {
