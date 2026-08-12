@@ -14,12 +14,16 @@ import crypto from 'node:crypto';
 import mailchimp from '@mailchimp/mailchimp_marketing';
 import { Resend } from 'resend';
 import { EMAIL_CONFIG } from '~/lib/email.config';
-import { sendWithAlert } from '~/lib/form-alert';
+import { sendWithAlert, notifySubmission } from '~/lib/form-alert';
 
 export const prerender = false;
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
-const FORM_ALERT_SLACK_URL = import.meta.env.FORM_ALERT_SLACK_URL;
+// Slack destination. FORM_SLACK_WEBHOOK is this client's own channel and takes
+// precedence for BOTH submissions and failures; FORM_ALERT_SLACK_URL is the
+// shared fallback for clients without a channel of their own.
+const SLACK_WEBHOOK =
+  import.meta.env.FORM_SLACK_WEBHOOK || import.meta.env.FORM_ALERT_SLACK_URL;
 
 if (EMAIL_CONFIG.mailchimp.enabled) {
   mailchimp.setConfig({
@@ -96,27 +100,54 @@ export const POST: APIRoute = async ({ request }) => {
       `<p><strong>Issue:</strong> ${esc(issueLabel)} ${issueSlug ? `(${esc(issueSlug)})` : ''}</p>` +
       `<p style="color:#6B7280;font-size:13px">Subscribed to newsletter: ${subscribe ? 'yes' : 'no'}</p>`;
 
-    await sendWithAlert(
-      {
-        client: EMAIL_CONFIG.brand.name,
-        formName: 'Newsletter Ask form',
-        slackWebhookUrl: FORM_ALERT_SLACK_URL,
-        alertEmail: {
-          apiKey: import.meta.env.RESEND_API_KEY,
-          to: EMAIL_CONFIG.alertsTo,
-          from: EMAIL_CONFIG.from.notifications,
+    // The error is held rather than thrown so the Slack log below still runs;
+    // it is re-thrown straight after, so the form still gets its 500.
+    let notifyError: unknown = null;
+    try {
+      await sendWithAlert(
+        {
+          client: EMAIL_CONFIG.brand.name,
+          formName: 'Newsletter Ask form',
+          slackWebhookUrl: SLACK_WEBHOOK,
+          alertEmail: {
+            apiKey: import.meta.env.RESEND_API_KEY,
+            to: EMAIL_CONFIG.alertsTo,
+            from: EMAIL_CONFIG.from.notifications,
+          },
         },
-      },
-      () =>
-        resend.emails.send({
-          from: EMAIL_CONFIG.from.notifications,
-          to,
-          cc: EMAIL_CONFIG.ccAll,
-          replyTo: email, // reply goes straight to the person who asked
-          subject: EMAIL_CONFIG.copy.newsletterAsk.notifySubject(who),
-          html: notifyHtml,
-        })
-    );
+        () =>
+          resend.emails.send({
+            from: EMAIL_CONFIG.from.notifications,
+            to,
+            ...(EMAIL_CONFIG.ccAll.length ? { cc: EMAIL_CONFIG.ccAll } : {}),
+            replyTo: email, // reply goes straight to the person who asked
+            subject: EMAIL_CONFIG.copy.newsletterAsk.notifySubject(who),
+            html: notifyHtml,
+          })
+      );
+    } catch (err) {
+      notifyError = err;
+    }
+
+    // Log the question to the client's Slack channel — see lead.ts for why this
+    // posts even when the email failed.
+    await notifySubmission({
+      client: EMAIL_CONFIG.brand.name,
+      slackWebhookUrl: SLACK_WEBHOOK,
+      route: 'Newsletter question',
+      formName: `Newsletter ask → ${[to].flat().join(', ')}`,
+      delivered: !notifyError,
+      fields: [
+        ['Name', who],
+        ['Email', email],
+        ['Community', COMMUNITY],
+        ['Role', ROLE],
+        ['Issue', issueLabel],
+        ['Question', QUESTION],
+      ],
+    });
+
+    if (notifyError) throw notifyError;
 
     // ── 3. Confirmation to the asker (best-effort). ──
     try {

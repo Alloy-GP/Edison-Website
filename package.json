@@ -2,14 +2,15 @@
   "name": "edison-association-management",
   "type": "module",
   "version": "1.0.0",
-  "description": "AGP client site — Innovia",
+  "description": "AGP client site \u2014 Innovia",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "test:forms": "node scripts/test-form-alert.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
