@@ -2,12 +2,30 @@
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import { SolutionPageB } from '../../../templates/solution-template.jsx';
 import { SOLUTIONS } from '../../../content/solutions-content.jsx';
+import { SITE } from '../../../config/site.ts';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../../../lib/schema.ts';
 const content = SOLUTIONS['self-managed-hoa'];
+
+const url = `${SITE.url}/solutions/self-managed-hoa`;
+const description = "Ready to move from self-managed to professional HOA management? Edison makes the transition seamless for Central Florida communities.";
+
+// Sitemap v3.2 spec for a solution page: Article + FAQPage. Evergreen, so no
+// datePublished — these aren't dated posts.
+const pageSchema = [
+  articleSchema({ headline: 'Self-Managed HOA Moving to Professional Management', description, url }),
+  breadcrumbSchema([
+    { name: 'Home',      url: `${SITE.url}/` },
+    { name: 'Solutions', url: `${SITE.url}/solutions` },
+    { name: 'Self-Managed HOA',   url },
+  ]),
+  faqSchema(content.faqs),
+];
 ---
 
 <SiteLayout
-  title="Self-Managed HOA Moving to Professional Management | Edison"
-  description="Ready to move from self-managed to professional HOA management? Edison makes the transition seamless for Central Florida communities."
+  title="Self-Managed HOA Ready for Professional Help? | Edison"
+  description={description}
+  pageSchema={pageSchema}
 >
   <SolutionPageB content={content} client:load />
 </SiteLayout>

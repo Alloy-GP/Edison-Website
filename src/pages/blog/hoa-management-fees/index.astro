@@ -1,15 +1,5 @@
 ---
-import SiteLayout from '../../../layouts/SiteLayout.astro';
-import { BlogSpokeA } from '../../../templates/blog-template.jsx';
-import { BLOG_CONTENT } from '../../../content/blog-content.jsx';
-
-const content = BLOG_CONTENT['hoa-management-fees'];
+import BlogLayout from '../../../layouts/BlogLayout.astro';
 ---
 
-<SiteLayout
-  title="HOA Management Fees in Florida: What to Expect | Edison"
-  description="What do HOA management companies charge in Florida? A breakdown of management fees, what's included, and how to evaluate whether you're getting value."
-  ogType="article"
->
-  <BlogSpokeA content={content} client:load />
-</SiteLayout>
+<BlogLayout contentKey="hoa-management-fees" />

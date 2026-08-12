@@ -1,15 +1,5 @@
 ---
-import SiteLayout from '../../../layouts/SiteLayout.astro';
-import { BlogSpokeA } from '../../../templates/blog-template.jsx';
-import { BLOG_CONTENT } from '../../../content/blog-content.jsx';
-
-const content = BLOG_CONTENT['unenforceable-hoa-rules-florida'];
+import BlogLayout from '../../../layouts/BlogLayout.astro';
 ---
 
-<SiteLayout
-  title="Unenforceable HOA Rules in Florida | Edison"
-  description="Which HOA rules can't be enforced in Florida? Learn about restrictions that conflict with state law, fair housing, and constitutional rights."
-  ogType="article"
->
-  <BlogSpokeA content={content} client:load />
-</SiteLayout>
+<BlogLayout contentKey="unenforceable-hoa-rules-florida" />

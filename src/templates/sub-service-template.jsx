@@ -1,6 +1,6 @@
 import React from 'react';
 import { BodyProse, Breadcrumb, BulbMark, FAQ, FeatureGrid, FinalCTA, InteriorButton, MidCTA, SectionHeading } from '../components/interior-components';
-import { NumberedSteps, PullQuote } from '../components/template-sections';
+import { ComparisonTable, NumberedSteps, PullQuote } from '../components/template-sections';
 
 /* ============================================================
    SUB-SERVICE PAGE TEMPLATE
@@ -106,6 +106,31 @@ function SubServicePage({ content }) {
         title={content.context.title}
         paragraphs={content.context.paragraphs}
       />
+
+      {/* Optional side-by-side, for sub-services boards routinely confuse with
+          a neighbouring requirement (SIRS vs traditional reserve study). */}
+      {content.compare && (
+        <ComparisonTable
+          eyebrow={content.compare.eyebrow}
+          title={content.compare.title}
+          sub={content.compare.sub}
+          leftLabel={content.compare.leftLabel}
+          rightLabel={content.compare.rightLabel}
+          rows={content.compare.rows}
+        />
+      )}
+
+      {/* Optional statutory component inventory, e.g. the 8 SIRS components */}
+      {content.components && (
+        <FeatureGrid
+          background="#fff"
+          eyebrow={content.components.eyebrow}
+          title={content.components.title}
+          sub={content.components.sub}
+          columns={4}
+          items={content.components.items}
+        />
+      )}
 
       {/* What's included, 3-up cards */}
       <section style={{ background: "var(--bg-3, #F5F7FA)", padding: "88px 48px" }}>

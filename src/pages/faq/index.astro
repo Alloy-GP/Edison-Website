@@ -1,11 +1,28 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { FAQPage, FAQ_CONTENT } from '../../templates/faq-template.jsx';
+import { SITE } from '../../config/site.ts';
+import { breadcrumbSchema, faqSchema } from '../../lib/schema.ts';
+
+const url = `${SITE.url}/faq`;
+
+// Sitemap v3.2 spec: FAQPage. Every group on the page is flattened into one
+// FAQPage node so the markup matches what a visitor can actually read.
+const allFaqs = FAQ_CONTENT.sections.flatMap((s) => s.items);
+
+const pageSchema = [
+  faqSchema(allFaqs),
+  breadcrumbSchema([
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'FAQ',  url },
+  ]),
+];
 ---
 
 <SiteLayout
-  title="HOA Management FAQs | Edison Association Management"
+  title="HOA Management FAQ | Edison Association Management"
   description="Answers to the most common HOA and condo management questions for Florida boards. From switching companies to reserve studies and enforcement."
+  pageSchema={pageSchema}
 >
   <FAQPage content={FAQ_CONTENT} client:load />
 </SiteLayout>

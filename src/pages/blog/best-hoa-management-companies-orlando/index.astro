@@ -1,15 +1,5 @@
 ---
-import SiteLayout from '../../../layouts/SiteLayout.astro';
-import { BlogSpokeA } from '../../../templates/blog-template.jsx';
-import { BLOG_CONTENT } from '../../../content/blog-content.jsx';
-
-const content = BLOG_CONTENT['best-hoa-management-companies-orlando'];
+import BlogLayout from '../../../layouts/BlogLayout.astro';
 ---
 
-<SiteLayout
-  title="Best HOA Management Companies in Orlando, FL | Edison"
-  description="Looking for the best HOA management company in Orlando? Compare top Central Florida management firms, ratings, credentials, and what sets Edison apart."
-  ogType="article"
->
-  <BlogSpokeA content={content} client:load />
-</SiteLayout>
+<BlogLayout contentKey="best-hoa-management-companies-orlando" />

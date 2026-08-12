@@ -473,8 +473,8 @@ function HomePage({ latestPosts }) {
 
       <HomeHero
         eyebrow="Orlando, Florida · Since 2021"
-        title="HOA & Condominium Management Services"
-        lede="Edison Association Management provides professional HOA and condominium management services designed to support boards, protect property values, and simplify day-to-day operations."
+        title="Central Florida HOA & Condominium Management"
+        lede="Edison Association Management is a boutique, Orlando-based firm serving community associations throughout Central Florida — supporting boards, protecting property values, and simplifying day-to-day operations."
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
         audienceCards={[
           {
@@ -498,7 +498,7 @@ function HomePage({ latestPosts }) {
 
       <ServicesBand
         title="Condo & HOA Management Services"
-        sub="From day-to-day operations to long-term planning, our management services are built to give boards confidence and residents peace of mind."
+        sub="From day-to-day operations to long-term planning, our community association management services are built to give boards confidence and residents peace of mind."
         services={[
           {
             title: "HOA Management Services",
@@ -572,8 +572,8 @@ function HomePage({ latestPosts }) {
 
       <ServiceArea
         eyebrow="Service Area"
-        title="Serving Associations Throughout Central Florida"
-        body="Based in Orlando, Edison proudly manages homeowner and condominium associations in communities throughout Central Florida and the surrounding region."
+        title="Community Association Management Across Central Florida"
+        body="Based in Orlando, Edison proudly manages homeowner and condominium associations in communities throughout Central Florida and the surrounding region. Select a city to see how we serve it."
         cities={[
           "Orlando", "Winter Garden", "Clermont", "Kissimmee", "Lake Mary",
           "Altamonte Springs", "Oviedo", "Apopka"

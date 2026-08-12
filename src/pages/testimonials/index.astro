@@ -2,12 +2,34 @@
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { TestimonialsPageB } from '../../templates/testimonials-template.jsx';
 import { TESTIMONIALS_CONTENT } from '../../content/testimonials-content.jsx';
+import { SITE } from '../../config/site.ts';
+import { breadcrumbSchema, reviewPageSchema } from '../../lib/schema.ts';
 const content = TESTIMONIALS_CONTENT;
+
+const url = `${SITE.url}/testimonials`;
+
+// Sitemap v3.2 spec for the trust page: Review + AggregateRating. Reviews are
+// the ones rendered on the page, so markup and visible text agree.
+const pageSchema = [
+  reviewPageSchema({
+    url,
+    reviews: content.testimonials.map((t) => ({
+      quote: t.quote,
+      attribution: t.attribution,
+      rating: t.rating,
+    })),
+  }),
+  breadcrumbSchema([
+    { name: 'Home',         url: `${SITE.url}/` },
+    { name: 'Testimonials', url },
+  ]),
+];
 ---
 
 <SiteLayout
   title="HOA Management Reviews | Edison Association Management"
   description="Read what HOA and condo boards say about Edison Association Management. 4.9★ Google rating, the highest-rated management company in Central Florida."
+  pageSchema={pageSchema}
 >
   <TestimonialsPageB content={content} client:load />
 </SiteLayout>

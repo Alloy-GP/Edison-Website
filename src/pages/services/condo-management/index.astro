@@ -2,12 +2,36 @@
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import { PillarPageA } from '../../../templates/service-template.jsx';
 import { PILLAR_CONTENT } from '../../../content/pillars-content.jsx';
+import { SITE } from '../../../config/site.ts';
+import { aggregateRatingSchema, breadcrumbSchema, faqSchema, serviceSchema } from '../../../lib/schema.ts';
 const content = PILLAR_CONTENT['condo-management'];
+
+const url = `${SITE.url}/services/condo-management`;
+const description = "Professional condo association management in Central Florida. Edison handles FL Chapter 718 compliance, milestone inspections, and SIRS support.";
+
+// Sitemap v3.2 spec for a main pillar:
+// Service + Organization + AggregateRating + FAQPage.
+const pageSchema = [
+  serviceSchema({
+    name: 'Condo Association Management',
+    serviceType: 'Condominium Association Management',
+    description,
+    url,
+  }),
+  aggregateRatingSchema(),
+  breadcrumbSchema([
+    { name: 'Home',     url: `${SITE.url}/` },
+    { name: 'Services', url: `${SITE.url}/services` },
+    { name: 'Condo Management',  url },
+  ]),
+  faqSchema(content.faqs),
+];
 ---
 
 <SiteLayout
-  title="Condo Association Management Orlando, FL | Edison"
-  description="Professional condo association management in Central Florida. Edison handles FL Chapter 718 compliance, milestone inspections, and SIRS support."
+  title="Condo Management | Florida Condo Association Management | Edison"
+  description={description}
+  pageSchema={pageSchema}
 >
   <PillarPageA content={content} client:load />
 </SiteLayout>

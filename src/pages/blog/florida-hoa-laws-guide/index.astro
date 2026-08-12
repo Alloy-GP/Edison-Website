@@ -1,15 +1,5 @@
 ---
-import SiteLayout from '../../../layouts/SiteLayout.astro';
-import { BlogSpokeA } from '../../../templates/blog-template.jsx';
-import { BLOG_CONTENT } from '../../../content/blog-content.jsx';
-
-const content = BLOG_CONTENT['florida-hoa-laws-guide'];
+import BlogLayout from '../../../layouts/BlogLayout.astro';
 ---
 
-<SiteLayout
-  title="Florida HOA Laws Guide 2024 | Edison Association Management"
-  description="A complete guide to Florida HOA laws under Chapter 720. Board responsibilities, owner rights, meeting requirements, and enforcement rules explained."
-  ogType="article"
->
-  <BlogSpokeA content={content} client:load />
-</SiteLayout>
+<BlogLayout contentKey="florida-hoa-laws-guide" />

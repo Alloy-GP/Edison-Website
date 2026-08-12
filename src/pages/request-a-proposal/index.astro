@@ -5,11 +5,33 @@
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import IntakeForm from '../../components/IntakeForm.jsx';
 import '../../styles/intake-form.css';
+import { SITE } from '../../config/site.ts';
+import { breadcrumbSchema, serviceSchema, webPageSchema } from '../../lib/schema.ts';
+
+const url = `${SITE.url}/request-a-proposal`;
+const description =
+  'Request a customized HOA management proposal from Edison Association Management. Serving communities across Central Florida.';
+
+// Sitemap v3.2 spec for the conversion endpoint: WebPage + Service.
+const pageSchema = [
+  webPageSchema({ name: 'Request a Management Proposal', description, url }),
+  serviceSchema({
+    name: 'HOA & Condo Management Proposal',
+    serviceType: 'Community Association Management',
+    description,
+    url,
+  }),
+  breadcrumbSchema([
+    { name: 'Home',                url: `${SITE.url}/` },
+    { name: 'Request a Proposal',  url },
+  ]),
+];
 ---
 
 <SiteLayout
-  title="Request an HOA Management Proposal | Edison"
-  description="Request a customized HOA management proposal from Edison Association Management. Serving communities across Central Florida."
+  title="Request a Management Proposal | Edison Association Management"
+  description={description}
+  pageSchema={pageSchema}
 >
   <section class="rap-section">
     <div class="rap-grid">

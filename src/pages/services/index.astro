@@ -1,11 +1,37 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { ServicesLandingPage } from '../../templates/services-landing-template.jsx';
+import { SITE } from '../../config/site.ts';
+import { breadcrumbSchema, collectionPageSchema } from '../../lib/schema.ts';
+
+const url = `${SITE.url}/services`;
+const description =
+  'Full-service HOA and condo management for Central Florida. Dedicated managers, specialist back-office departments, and 4.9★ service. Request a proposal.';
+
+const pageSchema = [
+  collectionPageSchema({
+    name: 'HOA & Condo Management Services',
+    description,
+    url,
+    items: [
+      { name: 'HOA Management',        url: `${SITE.url}/services/hoa-management` },
+      { name: 'Condo Management',      url: `${SITE.url}/services/condo-management` },
+      { name: 'HOA Accounting',        url: `${SITE.url}/services/hoa-accounting` },
+      { name: 'Covenant Enforcement',  url: `${SITE.url}/services/covenant-enforcement` },
+      { name: 'HOA Collections',       url: `${SITE.url}/services/hoa-collections` },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home',     url: `${SITE.url}/` },
+    { name: 'Services', url },
+  ]),
+];
 ---
 
 <SiteLayout
   title="HOA & Condo Management Services | Edison Association Management"
-  description="Full-service HOA and condo management for Central Florida. Dedicated managers, specialist back-office departments, and 4.9★ service. Request a proposal."
+  description={description}
+  pageSchema={pageSchema}
 >
   <ServicesLandingPage client:load />
 </SiteLayout>

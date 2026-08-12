@@ -2,16 +2,40 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { HomePage } from '../components/home-page.jsx';
 import { getLatestPosts } from '../lib/blog.ts';
+import { SITE } from '../config/site.ts';
+import { aggregateRatingSchema, serviceSchema } from '../lib/schema.ts';
 
 // The education band always shows the two newest live posts. Computed here so
 // only these two objects cross into the island — importing BLOG_CONTENT inside
 // the React component would ship every post's full body to the browser.
 const latestPosts = getLatestPosts(2);
+
+// Sitemap v3.2 spec for "/": Organization + LocalBusiness + AggregateRating.
+// Organization/LocalBusiness is emitted site-wide by BaseLayout, so the page
+// adds the rating plus a Service node per primary practice.
+const pageSchema = [
+  aggregateRatingSchema(),
+  serviceSchema({
+    name: 'HOA Management',
+    serviceType: 'HOA Management',
+    description:
+      'Full-service HOA management for community associations in Orlando and Central Florida — dedicated managers, monthly inspections, vendor coordination, and board reporting.',
+    url: `${SITE.url}/services/hoa-management`,
+  }),
+  serviceSchema({
+    name: 'Condominium Association Management',
+    serviceType: 'Condominium Association Management',
+    description:
+      'Florida Chapter 718 condo association management, including milestone inspection and Structural Integrity Reserve Study (SIRS) coordination.',
+    url: `${SITE.url}/services/condo-management`,
+  }),
+];
 ---
 
 <SiteLayout
   title="Central Florida HOA Management | Edison Association Management"
   description="Boutique, PCAM-led HOA management for Central Florida boards. 4.9★, BBB A+, dedicated back-office teams. Request a proposal."
+  pageSchema={pageSchema}
   preloadImages={[
     { href: '/assets/img-community-aerial-mobile.webp', media: '(max-width: 640px)' },
     { href: '/assets/img-community-aerial.webp', media: '(min-width: 641px)' },

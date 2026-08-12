@@ -1,15 +1,5 @@
 ---
-import SiteLayout from '../../../layouts/SiteLayout.astro';
-import { BlogSpokeA } from '../../../templates/blog-template.jsx';
-import { BLOG_CONTENT } from '../../../content/blog-content.jsx';
-
-const content = BLOG_CONTENT['hoa-board-member-responsibilities'];
+import BlogLayout from '../../../layouts/BlogLayout.astro';
 ---
 
-<SiteLayout
-  title="HOA Board Member Responsibilities in Florida | Edison"
-  description="What Florida HOA board members are legally responsible for, meetings, finances, enforcement, and fiduciary duty explained in plain language."
-  ogType="article"
->
-  <BlogSpokeA content={content} client:load />
-</SiteLayout>
+<BlogLayout contentKey="hoa-board-member-responsibilities" />

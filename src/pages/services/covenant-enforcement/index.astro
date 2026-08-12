@@ -2,12 +2,29 @@
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import { ServicePage } from '../../../templates/service-page-template.jsx';
 import { SERVICES_CONTENT } from '../../../content/services-content.jsx';
+import { SITE } from '../../../config/site.ts';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '../../../lib/schema.ts';
 const content = SERVICES_CONTENT['covenant-enforcement'];
+
+const url = `${SITE.url}/services/covenant-enforcement`;
+const description = "Dedicated covenant enforcement for HOAs and condo associations in Central Florida. Fair, consistent, and correction-first enforcement.";
+
+// Sitemap v3.2 spec for a service page: Service + FAQPage.
+const pageSchema = [
+  serviceSchema({ name: 'HOA Covenant Enforcement', serviceType: 'Covenant Enforcement', description, url }),
+  breadcrumbSchema([
+    { name: 'Home',     url: `${SITE.url}/` },
+    { name: 'Services', url: `${SITE.url}/services` },
+    { name: 'Covenant Enforcement',  url },
+  ]),
+  faqSchema(content.faqs),
+];
 ---
 
 <SiteLayout
   title="HOA Covenant Enforcement Services | Edison Association Management"
-  description="Dedicated covenant enforcement for HOAs and condo associations in Central Florida. Fair, consistent, and correction-first enforcement."
+  description={description}
+  pageSchema={pageSchema}
 >
   <ServicePage content={content} client:load />
 </SiteLayout>

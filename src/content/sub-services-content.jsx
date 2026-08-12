@@ -250,7 +250,9 @@ const SUB_SERVICES_CONTENT = {
       title: "Reserve studies that produce funding plans, not just reports",
       paragraphs: [
         "A reserve study by itself doesn't fund anything. It's an engineer's inventory and price estimate for the community's capital components, useful, but inert until a board adopts a funding strategy that matches it. The gap between 'we have a reserve study' and 'we're funding to the study' is where most communities end up underfunded.",
-        "Edison's reserve study support closes that gap. We coordinate the engineer engagement (sourcing, scope review, document prep, site access), review the draft report against the community's actual capital and maintenance history, and translate the engineer's recommendations into a funding plan the board can adopt. Then we integrate the plan into the annual budget so reserve banking actually tracks the study."
+        "Edison's reserve study support closes that gap. We coordinate the engineer engagement (sourcing, scope review, document prep, site access), review the draft report against the community's actual capital and maintenance history, and translate the engineer's recommendations into a funding plan the board can adopt. Then we integrate the plan into the <a href=\"/services/hoa-accounting/budget-preparation\">annual budget</a> so reserve banking actually tracks the study.",
+        "Florida treats the two association types differently. Under Ch. 720, HOAs must carry reserve accounts and disclose them in the budget, but owners can vote each year to waive or partially fund, which is exactly how communities drift into special-assessment territory one budget at a time. Under Ch. 718, condominium buildings three stories or higher also need a <a href=\"/services/condo-management/structural-integrity-reserve-study\">Structural Integrity Reserve Study</a>, and funding for those structural components can't be waived the same way. Most condo associations end up needing both studies, on two different cadences.",
+        "Where a study is out of date, the practical question isn't whether to refresh, it's what the refresh will surface. Components priced four years ago in a Florida construction market rarely cost what the old report says today. Edison's accounting team models the delta before the board commissions the work, so the funding conversation starts from a realistic number rather than a stale one. Our <a href=\"/blog/hoa-reserve-study-guide\">Florida reserve study guide</a> walks boards through what the report contains and how to read it."
       ]
     },
     included: {
@@ -284,7 +286,11 @@ const SUB_SERVICES_CONTENT = {
       { q: "Can we use our existing reserve study?", a: "Yes if it's current and scoped appropriately. Edison reviews what you have, flags gaps against the community's actual capital inventory and statutory requirements, and recommends a refresh only if the gap requires it, not as a default revenue play." },
       { q: "What's the difference between a reserve study and a SIRS?", a: "A traditional reserve study covers community capital components broadly (amenities, infrastructure, equipment). A SIRS is FL-specific, scoped to 8 mandated structural and life-safety components for condos 3+ stories, and required by SB-4D. Most condos now need both." },
       { q: "Does Edison do the engineering work directly?", a: "No, FL practice and the credibility of the study require an independent engineer or licensed reserve study firm. Edison coordinates the engagement; the engineer performs the study itself." },
-      { q: "What does a reserve study cost?", a: "Typical full studies for HOAs run $4,000–$9,000 depending on community size and capital inventory complexity. SIRS engagements for condos run $8,000–$25,000+ given the structural engineering involved. Edison sources 3 competing bids and the board selects." }
+      { q: "What does a reserve study cost?", a: "Typical full studies for HOAs run $4,000–$9,000 depending on community size and capital inventory complexity. SIRS engagements for condos run $8,000–$25,000+ given the structural engineering involved. Edison sources 3 competing bids and the board selects." },
+      { q: "Does Florida law require our HOA to have a reserve study?", a: "Chapter 720 does not mandate a formal reserve study for HOAs. It requires reserve accounts in the annual budget and disclosure to members, and it lets owners vote to waive or partially fund. Most governing documents, however, require a study every three to five years, and lenders, insurers, and buyers increasingly ask for a current one. Condominium buildings three stories or higher are in a different position: the SIRS is mandatory under Chapter 718." },
+      { q: "What percent funded should our reserves be?", a: "CAI treats 70% funded or above as adequately funded, 30–70% as a caution range where special assessment risk rises, and below 30% as high risk. The percentage matters less than the trajectory. A community at 45% and climbing on an adopted plan is in better shape than one at 65% that has waived reserves three years running." },
+      { q: "Can we use reserve funds for something other than what the study lists?", a: "Not without following the statutory process. Reserve funds earmarked by the budget for specific components generally can't be redirected to operating expenses or other projects without the required membership vote. Edison flags this before a board makes an informal decision that has to be unwound later, and documents the vote when the board does choose to reallocate." },
+      { q: "What happens if the study says we're badly underfunded?", a: "It becomes a sequencing problem rather than a crisis. Edison's accounting team models the paths, phased assessment increases, capital deferral where the engineer says deferral is safe, reserve banking adjustments, and in some cases financing, and presents the trade-offs side by side. Boards make a better decision seeing three funded scenarios than seeing one alarming number." }
     ],
     related: [
       { kind: "Full Service", title: "HOA Accounting", body: "Monthly financial management with reserve banking strategy.", href: "/services/hoa-accounting" },
@@ -383,7 +389,7 @@ const SUB_SERVICES_CONTENT = {
     eyebrow: "compliance · Condo Management",
     phone: "(407) 317-5252",
     hero: {
-      title: "Structural Integrity Reserve Study (SIRS) coordination.",
+      title: "Structural Integrity Reserve Study (SIRS) coordination in Florida.",
       lede: "Florida condominium associations three stories or more must commission a Structural Integrity Reserve Study by their statutory deadline. Edison coordinates the engineer, manages the deliverable, and helps your board build a funding plan that meets the mandate.",
       image: "/assets/img-21.webp",
       statute: "Florida Statute § 718.112(2)(g) · SB-4D"
@@ -397,8 +403,40 @@ const SUB_SERVICES_CONTENT = {
     context: {
       title: "What a SIRS actually is, and why it's not a normal reserve study",
       paragraphs: [
-        "A Structural Integrity Reserve Study is a Florida-specific reserve assessment created by Senate Bill 4D. It applies to condominium and cooperative buildings three stories or more, and it requires a licensed engineer or architect to inventory and price the remaining useful life of eight specific structural and life-safety components, roof, load-bearing walls, floor, foundation, fireproofing, plumbing, electrical, and waterproofing.",
-        "A SIRS is not interchangeable with a traditional reserve study. The traditional reserve study covers a broader set of community assets but isn't sufficient on its own under FL Ch. 718. Most associations now need both: a SIRS for statutory compliance, and a comprehensive reserve study for full capital planning. Edison coordinates both, sequences them, and translates the engineering findings into a fundable plan."
+        "A Structural Integrity Reserve Study is a Florida-specific reserve assessment created by Senate Bill 4D after the Champlain Towers South collapse. It applies to condominium and cooperative buildings three stories or more, and it requires a licensed engineer or architect to inventory and price the remaining useful life of eight specific structural and life-safety components, roof, load-bearing walls, floor, foundation, fireproofing, plumbing, electrical, and waterproofing.",
+        "A SIRS is not interchangeable with a traditional reserve study. The traditional reserve study covers a broader set of community assets, pools, paving, clubhouses, amenity replacements, but isn't sufficient on its own under FL Ch. 718. Most associations now need both: a SIRS for statutory compliance, and a <a href=\"/services/hoa-accounting/reserve-study-support\">comprehensive reserve study</a> for full capital planning. Edison coordinates both, sequences them, and translates the engineering findings into a fundable plan.",
+        "Boards routinely ask how the SIRS relates to the <a href=\"/services/condo-management/milestone-inspections\">milestone inspection</a>, because SB-4D created both. The milestone inspection answers a condition question: is the structure sound today? The SIRS answers a money question: what will those structural components cost to maintain and replace, and what does the association need to bank each year to get there. They are usually sequenced, milestone first, SIRS second, so the reserve numbers reflect what the engineer actually found on the building.",
+        "The compliance dates have moved more than once. The original SB-4D deadline for existing buildings was December 31, 2024, and subsequent legislative sessions extended relief to associations whose milestone inspection was due at the end of 2024, pushing them to December 31, 2025. Both dates are now behind us. An association without a completed SIRS is not exempt, it is behind on a statutory obligation the board has a fiduciary duty to remedy, and Edison's intake starts by confirming exactly which deadline applied to your building. For the broader picture of how reserve studies work in Florida, our <a href=\"/blog/hoa-reserve-study-guide\">reserve study guide for Florida boards</a> covers the fundamentals."
+      ]
+    },
+    compare: {
+      eyebrow: "Know the difference",
+      title: "SIRS vs. a traditional reserve study",
+      sub: "Boards are often told they already have \"a reserve study.\" Under Ch. 718, that answer is usually incomplete. Here is where the two actually diverge.",
+      leftLabel: "Traditional reserve study",
+      rightLabel: "SIRS (Ch. 718 · SB-4D)",
+      rows: [
+        { label: "What's in scope", left: "Community capital components broadly, roofs, paving, pools, clubhouses, amenities, equipment.", right: "Eight mandated structural and life-safety components, plus items over the statutory cost threshold that affect structural integrity." },
+        { label: "Who performs it", left: "A reserve specialist or reserve study firm, credentialing varies by state and by firm.", right: "A Florida-licensed engineer or architect, or a professional the statute qualifies to perform the visual inspection portion." },
+        { label: "Who it applies to", left: "Any association doing responsible capital planning, HOA or condo, any building height.", right: "Condominium and cooperative associations with buildings three habitable stories or more." },
+        { label: "Funding flexibility", left: "Boards and owners can, in many cases, vote to waive or partially fund reserves.", right: "Funding for SIRS components cannot be waived the way traditional reserves sometimes can." },
+        { label: "Refresh cadence", left: "Best practice is a full study every 3–5 years with updates in between.", right: "At least every 10 years, which is a statutory floor rather than a best practice." },
+        { label: "What it produces", left: "A funding plan across the community's full capital inventory.", right: "A statutory compliance record plus a structural funding obligation that flows into the budget." }
+      ]
+    },
+    components: {
+      eyebrow: "The mandated eight",
+      title: "What a Florida SIRS must inventory",
+      sub: "Every SIRS engagement covers these components at minimum. The engineer may add anything else with a deferred maintenance or replacement cost above the statutory threshold that bears on structural integrity.",
+      items: [
+        { title: "Roof", body: "Assembly, covering, and remaining useful life, the component most likely to drive the near-term funding number." },
+        { title: "Load-Bearing Walls", body: "Load-bearing walls and other primary structural members, assessed for condition and remaining life." },
+        { title: "Floor", body: "Floor structure and slabs, including the deterioration patterns coastal buildings see first." },
+        { title: "Foundation", body: "Foundation systems, evaluated against the building's settlement, drainage, and water-intrusion history." },
+        { title: "Fireproofing", body: "Fireproofing and fire protection systems, a life-safety component boards frequently under-reserve." },
+        { title: "Plumbing", body: "Supply, waste, and vertical stack systems, where age-based repiping decisions get expensive fast." },
+        { title: "Electrical", body: "Electrical systems, including distribution equipment that predates current code expectations." },
+        { title: "Waterproofing", body: "Waterproofing and exterior painting where related to structure, the recurring cycle that protects everything above." }
       ]
     },
     included: {
@@ -429,18 +467,24 @@ const SUB_SERVICES_CONTENT = {
     },
     faqs: [
       { q: "Does our community need a SIRS?", a: "If your association governs a condominium or cooperative building three stories or more (counting habitable stories above grade), yes. Buildings under three stories aren't subject to the SIRS requirement but typically still need a traditional reserve study." },
-      { q: "When is the SIRS due?", a: "The original SB-4D deadline was December 31, 2024 for existing buildings. Associations that missed the deadline are still subject to the requirement. New buildings have specific milestone-based deadlines tied to occupancy date." },
+      { q: "When is the SIRS due?", a: "The original SB-4D deadline was December 31, 2024 for existing buildings, with later legislative relief extending some associations to December 31, 2025. Both dates have passed. Associations that missed them are still subject to the requirement, and the study is then updated at least every 10 years. Newer buildings have deadlines tied to their certificate of occupancy, so Edison's intake confirms which date applies to your specific building rather than assuming." },
       { q: "What's the difference between a SIRS and a milestone inspection?", a: "The milestone inspection is a structural condition assessment. The SIRS is a reserve study scoped to the structural components the milestone identifies. Many associations need both, sequenced, milestone first, SIRS second." },
       { q: "What are the 8 components a SIRS must cover?", a: "Roof; load-bearing walls or other primary structural members; floor; foundation; fireproofing and fire protection systems; plumbing; electrical systems; and waterproofing and exterior painting (where related to structure)." },
       { q: "Can our existing reserve study count?", a: "Usually no, a traditional reserve study isn't typically scoped to the SIRS-required components and doesn't follow the same engineering standard. Some studies completed after SB-4D may be compliant if specifically scoped for it." },
       { q: "How much does a SIRS cost?", a: "Typical range is $8,000–$25,000 for the engineer's work, depending on building size and complexity. Edison's coordination is included in the management agreement." },
       { q: "Does the SIRS require us to fully fund reserves?", a: "The SIRS quantifies the funding need; FL Ch. 718 as amended requires associations to fund SIRS components on a pooled-or-component basis. Boards cannot waive funding for SIRS components the way they could for some traditional reserves." },
       { q: "What happens if we don't comply?", a: "Non-compliance creates personal liability exposure for board members and is increasingly scrutinized in unit-sale due diligence. Edison's first step is to assess current status and build the fastest credible remediation path." },
-      { q: "How does Edison handle this differently?", a: "We treat the SIRS as a multi-year capital planning exercise, not a one-time filing. Engineer selection, document prep, board education, funding plan integration, and ongoing reserve banking strategy are all coordinated by the same accounting team responsible for your monthly financials." }
+      { q: "How does Edison handle this differently?", a: "We treat the SIRS as a multi-year capital planning exercise, not a one-time filing. Engineer selection, document prep, board education, funding plan integration, and ongoing reserve banking strategy are all coordinated by the same accounting team responsible for your monthly financials." },
+      { q: "Who is qualified to perform a Structural Integrity Reserve Study in Florida?", a: "The structural portion of the study must be performed by a Florida-licensed engineer or architect. The visual inspection component may be performed by other professionals the statute qualifies, but the association's credibility, and the study's defensibility if it is ever challenged, rests on the credentials behind it. Edison sources bids only from firms with documented Florida SIRS experience and reviews scope before the board selects." },
+      { q: "How long does a SIRS take from start to finish?", a: "Typically 90 to 150 days. Engineer sourcing and board selection run 3–4 weeks, document prep and site work another 4–6 weeks depending on building access and engineer backlog, and draft review through final issuance a further 3–4 weeks. Boards that start the process before their budget cycle can fold the funding plan into the same year's budget rather than waiting a full cycle." },
+      { q: "Does the SIRS affect our monthly assessments?", a: "Frequently, yes. The study quantifies a funding obligation for components that cannot be waived, so if the association has been under-reserving on structural items, the gap becomes visible and has to be funded. Edison's accounting team models the funding paths, phased assessment increases, reserve banking adjustments, capital sequencing, before the board votes, so the decision is made with the trade-offs in front of it rather than after homeowners react." },
+      { q: "Our building is two stories. Do we need a SIRS?", a: "No. The SIRS requirement applies to condominium and cooperative buildings three habitable stories or more. Two-story buildings still benefit from a traditional reserve study for capital planning, and lenders, insurers, and buyers increasingly expect one, but the Ch. 718 structural mandate does not reach them." },
+      { q: "How does the SIRS affect unit sales and lending?", a: "Buyer-side due diligence now routinely asks for the SIRS and the milestone inspection report. A missing or outdated study stalls closings, complicates lender approval, and gives buyers a reason to renegotiate. Boards that treat compliance as a paperwork problem tend to discover it as a property-value problem." }
     ],
     related: [
       { kind: "also required", title: "Milestone Inspection Coordination", body: "The structural condition assessment that often precedes the SIRS.", href: "/services/condo-management/milestone-inspections" },
       { kind: "full service", title: "Condo Management", body: "Full-service management for Florida condominium associations under Ch. 718.", href: "/services/condo-management" },
+      { kind: "also included", title: "Reserve Study Support", body: "The traditional reserve study that sits alongside the SIRS, engineer coordination through adopted funding plan.", href: "/services/hoa-accounting/reserve-study-support" },
       { kind: "guide", title: "HOA Reserve Study Florida: What Boards Need to Know", body: "How reserve studies work, what they cost, and how Edison coordinates the process.", href: "/blog/hoa-reserve-study-guide" }
     ],
     cta: {

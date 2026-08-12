@@ -10,6 +10,7 @@ const GEO_CONTENT = {
     region: "Orange County, FL",
     phone: "(407) 317-5252",
     hero: {
+      title: "The Orlando HOA management company boards actually stay with.",
       lede: "Orlando boards have more management choices than any other city in Central Florida, and more competing pressures than most. Edison is the boutique alternative: a dedicated manager who knows your community, a PCAM-credentialed leader at the top, and back-office departments that close the loop on what most companies leave open.",
       image: "/assets/img-community-aerial.webp"
     },
@@ -43,7 +44,33 @@ const GEO_CONTENT = {
       "Edgewood", "Pine Hills", "Rosemont", "Southchase", "Williamsburg",
       "Vista Park", "Eola Heights", "Thornton Park"
     ],
-    nearbyCities: ["Winter Garden", "Kissimmee", "Clermont", "Lake Mary", "Altamonte Springs", "Oviedo", "Apopka", "Sanford", "Maitland", "Winter Park", "St. Cloud", "Brevard County"]
+    nearbyCities: ["Winter Garden", "Kissimmee", "Clermont", "Lake Mary", "Altamonte Springs", "Oviedo", "Apopka", "Sanford", "Maitland", "Winter Park", "St. Cloud", "Brevard County"],
+    faqs: [
+      {
+        q: "What should a board compare when evaluating HOA management companies in Orlando?",
+        a: "Four things separate Orlando management companies far more than the per-door fee does: how many communities each manager carries, whether accounting is a dedicated department or the manager's second job, what the company's actual manager turnover rate is, and what the renewal terms look like in year two. Ask for numbers, not adjectives. The cheapest proposal in the stack is frequently the most expensive one eighteen months later."
+      },
+      {
+        q: "How much does HOA management cost in Orlando?",
+        a: "Most Florida proposals quote a monthly base fee calculated per door, sized to community count, service scope, and complexity. The headline rate matters less than what sits outside it. Edison quotes fixed scope with no per-violation enforcement fees, no per-submission ARC fees, and no per-resident technology fees, so the number on the proposal is the number the association pays."
+      },
+      {
+        q: "Which Orlando neighborhoods does Edison serve?",
+        a: "Edison manages associations across the Orlando metro, including Lake Nona, Baldwin Park, MetroWest, Dr. Phillips, Hunters Creek, College Park, Avalon Park, Conway, Belle Isle, and Southchase, plus the surrounding cities in Orange, Seminole, Osceola, Lake, and Brevard counties. If a community isn't on the list, ask, coverage grows as boards reach out."
+      },
+      {
+        q: "Does Edison manage condominium associations in Orlando, or only HOAs?",
+        a: "Both. HOAs and townhome associations are managed under Florida Chapter 720; condominium associations are managed under Chapter 718, which adds milestone inspection and Structural Integrity Reserve Study obligations for buildings three stories or higher. Edison runs condo management as a separate practice for exactly that reason."
+      },
+      {
+        q: "How long does it take to switch to Edison from another Orlando management company?",
+        a: "Sixty to ninety days end to end, supervised by Edison's COO. That window covers records transfer, bank and lockbox migration, vendor contract review, resident portal setup, and homeowner communication. Boards are not asked to project-manage their own transition, that burden is the one Edison absorbs."
+      },
+      {
+        q: "How small a community will Edison take on?",
+        a: "Edison manages Orlando associations from roughly 60 units through 500+. Smaller communities don't get a smaller manager or a reduced back-office, they get the same boutique-portfolio model with proportionally smaller scope."
+      }
+    ]
   },
 
   "winter-garden": {

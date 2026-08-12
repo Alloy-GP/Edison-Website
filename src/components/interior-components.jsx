@@ -495,6 +495,19 @@ const CITY_COUNTY = {
   'Vero Beach': 'Brevard County', 'Sebastian Inlet': 'Brevard County',
 };
 
+/* Cities with a dedicated geo page. Chips for these link through, so the city
+   page is the thing that ranks for "<city> HOA management", not this band. */
+const CITY_PAGE = {
+  'Orlando':           '/services/hoa-management/orlando',
+  'Winter Garden':     '/services/hoa-management/winter-garden',
+  'Clermont':          '/services/hoa-management/clermont',
+  'Kissimmee':         '/services/hoa-management/kissimmee',
+  'Lake Mary':         '/services/hoa-management/lake-mary',
+  'Altamonte Springs': '/services/hoa-management/altamonte-springs',
+  'Oviedo':            '/services/hoa-management/oviedo',
+  'Brevard County':    '/services/hoa-management/brevard-county',
+};
+
 function ServiceArea({ eyebrow, title, body, cities, mapImg, mapEmbed = false }) {
   const [hoveredCounty, setHoveredCounty] = useState(null);
 
@@ -514,9 +527,12 @@ function ServiceArea({ eyebrow, title, body, cities, mapImg, mapEmbed = false })
               {cities.map(c => {
                 const county = CITY_COUNTY[c] || null;
                 const isActive = hoveredCounty && county === hoveredCounty;
+                const href = CITY_PAGE[c];
+                const Chip = href ? 'a' : 'span';
                 return (
-                  <span
+                  <Chip
                     key={c}
+                    {...(href ? { href } : {})}
                     onMouseEnter={() => county && setHoveredCounty(county)}
                     onMouseLeave={() => setHoveredCounty(null)}
                     style={{
@@ -524,10 +540,11 @@ function ServiceArea({ eyebrow, title, body, cities, mapImg, mapEmbed = false })
                       color: isActive ? "#fff" : "var(--edison-navy)",
                       background: isActive ? "var(--edison-teal-dark)" : "var(--edison-teal-pale)",
                       padding: "6px 12px", borderRadius: 999,
-                      cursor: county ? "default" : "default",
+                      cursor: href ? "pointer" : "default",
+                      textDecoration: "none", borderBottom: 0,
                       transition: "background 180ms ease, color 180ms ease"
                     }}
-                  >{c}</span>
+                  >{c}</Chip>
                 );
               })}
             </div>

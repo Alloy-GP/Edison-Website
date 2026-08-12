@@ -1,11 +1,28 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { AboutPageB, ABOUT_CONTENT } from '../../templates/about-template.jsx';
+import { SITE } from '../../config/site.ts';
+import { aboutPageSchema, breadcrumbSchema, orgSchema } from '../../lib/schema.ts';
+
+const url = `${SITE.url}/about`;
+const description =
+  'Meet the team behind Edison Association Management, boutique HOA management in Orlando, FL. PCAM-led, education-first, built for Central Florida communities.';
+
+// Sitemap v3.2 spec: AboutPage + Organization.
+const pageSchema = [
+  aboutPageSchema({ name: 'About Edison Association Management', description, url }),
+  orgSchema(),
+  breadcrumbSchema([
+    { name: 'Home',  url: `${SITE.url}/` },
+    { name: 'About', url },
+  ]),
+];
 ---
 
 <SiteLayout
   title="About Edison Association Management | Orlando, FL"
-  description="Meet the team behind Edison Association Management, boutique HOA management in Orlando, FL. PCAM-led, education-first, built for Central Florida communities."
+  description={description}
+  pageSchema={pageSchema}
 >
   <AboutPageB content={ABOUT_CONTENT} client:load />
 </SiteLayout>

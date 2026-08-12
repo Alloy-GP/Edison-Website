@@ -39,7 +39,22 @@ export const SITE = {
     addressLocality: 'Orlando',
     addressRegion: 'FL',
     addressCountry: 'US',
-    areaServed: 'United States',
+    /**
+     * Cities and counties Edison actually manages in. Emitted as a schema.org
+     * Place list, a national 'United States' value tells search engines nothing
+     * about the Orlando metro this business competes in.
+     */
+    areaServed: [
+      'Orlando, FL',
+      'Winter Garden, FL',
+      'Kissimmee, FL',
+      'Clermont, FL',
+      'Lake Mary, FL',
+      'Altamonte Springs, FL',
+      'Oviedo, FL',
+      'Brevard County, FL',
+      'Central Florida',
+    ],
     priceRange: '$$',
     logo: 'https://edisonassociationmanagement.com/assets/logo.svg',
   },

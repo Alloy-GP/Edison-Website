@@ -2,12 +2,29 @@
 import SiteLayout from '../../../../layouts/SiteLayout.astro';
 import { GeoPageB } from '../../../../templates/geo-template.jsx';
 import { GEO_CONTENT } from '../../../../content/geo-content.jsx';
+import { SITE } from '../../../../config/site.ts';
+import { breadcrumbSchema, geoPageSchema } from '../../../../lib/schema.ts';
 const content = GEO_CONTENT['kissimmee'];
+
+const url = `${SITE.url}/services/hoa-management/kissimmee`;
+const description = "HOA management in Kissimmee, FL. Edison serves Osceola County communities with full-service association management and dedicated back-office support.";
+
+// Sitemap v3.2 spec for a geo page: LocalBusiness (with serviceArea) + Service.
+const pageSchema = [
+  ...geoPageSchema({ city: content.city, region: content.region, url, description }),
+  breadcrumbSchema([
+    { name: 'Home',           url: `${SITE.url}/` },
+    { name: 'Services',       url: `${SITE.url}/services` },
+    { name: 'HOA Management', url: `${SITE.url}/services/hoa-management` },
+    { name: content.city,     url },
+  ]),
+];
 ---
 
 <SiteLayout
-  title="HOA Management Kissimmee, FL | Edison"
-  description="HOA management in Kissimmee, FL. Edison serves Osceola County communities with full-service association management and dedicated back-office support."
+  title="HOA Management in Kissimmee, FL | Edison"
+  description={description}
+  pageSchema={pageSchema}
 >
   <GeoPageB content={content} client:load />
 </SiteLayout>

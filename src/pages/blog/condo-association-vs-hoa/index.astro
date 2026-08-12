@@ -1,15 +1,5 @@
 ---
-import SiteLayout from '../../../layouts/SiteLayout.astro';
-import { BlogSpokeA } from '../../../templates/blog-template.jsx';
-import { BLOG_CONTENT } from '../../../content/blog-content.jsx';
-
-const content = BLOG_CONTENT['condo-association-vs-hoa'];
+import BlogLayout from '../../../layouts/BlogLayout.astro';
 ---
 
-<SiteLayout
-  title="Condo Association vs HOA: Key Differences in Florida | Edison"
-  description="HOA vs condo association in Florida, what's the difference? Chapter 718 vs Chapter 720, ownership structure, and what it means for management."
-  ogType="article"
->
-  <BlogSpokeA content={content} client:load />
-</SiteLayout>
+<BlogLayout contentKey="condo-association-vs-hoa" />

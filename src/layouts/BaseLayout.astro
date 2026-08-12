@@ -15,6 +15,7 @@
 
 import '../styles/global.css';
 import { SITE } from '../config/site.ts';
+import { areaServedLd } from '../lib/schema.ts';
 import { REVIEW_ITEMS, PASTEL_BASE, TICKET_ID } from '../config/review.ts';
 
 interface Props {
@@ -78,6 +79,11 @@ const OG_MIME: Record<string, string> = {
 };
 const ogImageType = OG_MIME[ogImagePath.split('.').pop()?.toLowerCase() ?? ''] ?? 'image/png';
 
+// SITE.ogImageWidth/Height describe the default OG asset only. Article hero
+// images have their own aspect ratios, so declaring 1200×630 for them tells
+// scrapers something false — better to let them read the real file.
+const isDefaultOgImage = ogImagePath === SITE.defaultOgImage;
+
 const orgLd = {
   '@context': 'https://schema.org',
   '@type': SITE.org.type,
@@ -93,7 +99,7 @@ const orgLd = {
   },
   telephone: SITE.org.telephone,
   email:     SITE.org.email,
-  areaServed: SITE.org.areaServed,
+  areaServed: areaServedLd(),
   priceRange: SITE.org.priceRange,
 };
 
@@ -146,8 +152,8 @@ const isProduction    = import.meta.env.PUBLIC_ENV === 'production';
     <meta property="og:locale"      content={SITE.locale} />
     <meta property="og:image"       content={resolvedOgImage} />
     <meta property="og:image:type"  content={ogImageType} />
-    <meta property="og:image:width" content={SITE.ogImageWidth} />
-    <meta property="og:image:height" content={SITE.ogImageHeight} />
+    {isDefaultOgImage && <meta property="og:image:width" content={SITE.ogImageWidth} />}
+    {isDefaultOgImage && <meta property="og:image:height" content={SITE.ogImageHeight} />}
     <meta property="og:image:alt"   content={ogImageAlt ?? SITE.name} />
 
     {ogType === 'article' && articlePublishedTime && (

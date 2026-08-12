@@ -1,15 +1,5 @@
 ---
-import SiteLayout from '../../../layouts/SiteLayout.astro';
-import { BlogSpokeA } from '../../../templates/blog-template.jsx';
-import { BLOG_CONTENT } from '../../../content/blog-content.jsx';
-
-const content = BLOG_CONTENT['florida-milestone-inspection-guide'];
+import BlogLayout from '../../../layouts/BlogLayout.astro';
 ---
 
-<SiteLayout
-  title="Florida Milestone Inspection Guide | SB-4D Compliance | Edison"
-  description="Everything Florida condo boards need to know about milestone inspections under SB-4D. Requirements, timelines, engineer selection, and what happens next."
-  ogType="article"
->
-  <BlogSpokeA content={content} client:load />
-</SiteLayout>
+<BlogLayout contentKey="florida-milestone-inspection-guide" />

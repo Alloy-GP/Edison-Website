@@ -10,6 +10,7 @@ const BLOG_CONTENT = {
   "hoa-audit": {
     category: "Financial Management",
     title: "HOA Audit: What It Is, When It's Required, and How to Prepare",
+    titleTag: "HOA Audit: Requirements, Checklist & Best Practices | Edison",
     dek: "An HOA audit confirms your community's finances are accurate, transparent, and compliant with Florida law. Learn what's required based on your association's revenue, what documents to prepare, and how strong year-round financial management makes the process faster and less expensive for your board.",
     metaDescription: "Florida HOA audit requirements by revenue tier, how audits differ from reviews and compilations, and how to prepare your records for a smooth process.",
     author: "Edison Association Management",
@@ -140,7 +141,9 @@ const BLOG_CONTENT = {
   "florida-hoa-laws-guide": {
     category: "Florida Compliance",
     title: "Florida HOA Laws Guide: Ch. 720 and Ch. 718 Explained",
+    titleTag: "Florida HOA Laws: 2026 Board Member Guide | Edison",
     dek: "A plain-language overview of the two Florida statutes that govern community associations, what they cover, where they differ, and what every board member should know.",
+    metaDescription: "A plain-language guide to Florida HOA and condo law. What Chapter 720 and Chapter 718 each require, where they diverge, and what boards must do under both.",
     author: "Edison Editorial", date: "March 2026", readTime: "2 min",
     heroImage: "/assets/img-13.webp",
     summary: "Florida governs homeowner associations under Chapter 720 and condominium associations under Chapter 718. They look similar from a distance but differ in reserve study mandates, milestone inspection requirements, governing-document conventions, and homeowner rights. Boards that confuse them make expensive mistakes.",
@@ -153,7 +156,7 @@ const BLOG_CONTENT = {
       },
       { id: "chapter-718", heading: "Chapter 718, The condo statute",
         body: [
-          "Chapter 718 governs condominium associations. It runs parallel to Ch. 720 in many respects but diverges sharply on structural requirements after Senate Bill 4D. Buildings 3+ stories face mandatory milestone inspections and Structural Integrity Reserve Studies (SIRS) under timelines tied to building age.",
+          "Chapter 718 governs condominium associations. It runs parallel to Ch. 720 in many respects but diverges sharply on structural requirements after Senate Bill 4D. Buildings 3+ stories face mandatory <a href=\"/services/condo-management/milestone-inspections\">milestone inspections</a> and <a href=\"/services/condo-management/structural-integrity-reserve-study\">Structural Integrity Reserve Studies (SIRS)</a> under timelines tied to building age.",
           "Ch. 718 also has different conventions on common elements vs limited common elements, master insurance, and reserve funding, boards generally cannot waive SIRS-component reserves the way they sometimes can for traditional reserves."
         ],
         callout: { label: "SB-4D", text: "Senate Bill 4D, passed in 2022 in response to the Champlain Towers collapse, reshaped condo statute. If your building is 3+ stories, milestone inspection and SIRS obligations apply." }
@@ -172,7 +175,7 @@ const BLOG_CONTENT = {
         body: ["Both statutes now require new board members to complete certification within 90 days of election, either by signing an affidavit confirming they've read the governing documents and statutes, or by completing a state-approved course. The course route is generally safer. Failure to certify creates personal liability exposure and can be raised by homeowners challenging board actions."]
       },
       { id: "staying-current", heading: "How boards stay current",
-        body: ["Florida legislative sessions reshape community association statute every year. Boards that rely on memory of how things were two years ago tend to fall behind. Edison's management team tracks legislative changes the day they pass, surfaces what's relevant per community type, and updates board operations accordingly. Boards aren't expected to be lawyers, but they are expected to govern under current law."]
+        body: ["Florida legislative sessions reshape community association statute every year. Boards that rely on memory of how things were two years ago tend to fall behind. Edison's <a href=\"/services/hoa-management\">HOA management</a> and <a href=\"/services/condo-management\">condo management</a> teams track legislative changes the day they pass, surface what's relevant per community type, and update board operations accordingly. Boards aren't expected to be lawyers, but they are expected to govern under current law."]
       }
     ],
     related: [
@@ -185,7 +188,9 @@ const BLOG_CONTENT = {
   "florida-milestone-inspection-guide": {
     category: "Florida Compliance",
     title: "Florida Milestone Inspection Guide (SB-4D)",
+    titleTag: "Florida Milestone Inspections: 2026 Compliance Guide",
     dek: "What Senate Bill 4D requires, when it triggers, and how Florida condo boards coordinate the work, by Phase 1 and Phase 2.",
+    metaDescription: "Everything Florida condo boards need to know about milestone inspections under SB-4D. Requirements, timelines, engineer selection, and what happens next.",
     author: "Edison Editorial", date: "April 2026", readTime: "2 min",
     heroImage: "/assets/img-22.webp",
     summary: "Florida Senate Bill 4D requires condominium and cooperative buildings 3+ habitable stories to commission phased milestone inspections by a licensed engineer at the 30-year mark (25 in coastal counties), and every 10 years after. Most coastal Florida boards have either completed Phase 1 or are behind on it.",
@@ -206,11 +211,12 @@ const BLOG_CONTENT = {
         ]
       },
       { id: "edisons-role", heading: "How Edison coordinates milestone work",
-        body: ["Edison doesn't perform the engineering, that's the licensed engineer's job. Edison sources 3 competing engineer bids, coordinates document preparation and site access, reviews the draft report against actual building history, and translates findings into a board-friendly summary plus a funding plan if structural work is required. Filing with the local building department is handled on the statutory timeline."],
+        body: ["Edison doesn't perform the engineering, that's the licensed engineer's job. Edison's <a href=\"/services/condo-management/milestone-inspections\">milestone inspection coordination</a> sources 3 competing engineer bids, handles document preparation and site access, reviews the draft report against actual building history, and translates findings into a board-friendly summary plus a funding plan if structural work is required. Filing with the local building department is handled on the statutory timeline."],
         callout: { label: "Behind deadline?", text: "Missing a milestone inspection deadline doesn't eliminate the requirement, it creates personal liability for board members and stalls unit sales as buyer due diligence catches the gap. Edison's first step is intake; we'll tell you exactly where you stand." }
       },
       { id: "milestone-vs-sirs", heading: "Milestone inspection vs SIRS",
-        body: ["The milestone inspection is a structural condition assessment. The Structural Integrity Reserve Study (SIRS), also created by SB-4D, is a reserve study scoped to the structural components the milestone inspection identifies. They're complementary, often sequenced, milestone first, SIRS second. Most affected buildings need both."]
+        body: ["The milestone inspection is a structural condition assessment. The <a href=\"/services/condo-management/structural-integrity-reserve-study\">Structural Integrity Reserve Study (SIRS)</a>, also created by SB-4D, is a reserve study scoped to the structural components the milestone inspection identifies. They're complementary, often sequenced, milestone first, SIRS second. Most affected buildings need both.",
+          "Practically, that means two engagements, two engineer relationships, and two sets of board decisions inside the same compliance window. Edison runs both from the same <a href=\"/services/condo-management\">condo management</a> practice so the structural findings flow straight into the reserve funding plan instead of being re-litigated months later."]
       }
     ],
     related: [
@@ -263,9 +269,13 @@ const BLOG_CONTENT = {
   "hoa-board-member-responsibilities": {
     category: "For Boards",
     title: "HOA Board Member Responsibilities",
+    titleTag: "HOA Board Member Responsibilities: The Complete Guide",
     dek: "Fiduciary duty, Florida board certification, and what board members actually owe their communities, and themselves.",
+    metaDescription: "What Florida HOA board members are legally responsible for, meetings, finances, enforcement, and fiduciary duty explained in plain language.",
     author: "Edison Editorial", date: "March 2026", readTime: "2 min",
     heroImage: "/assets/img-11.webp",
+    // Portrait hero — the default landscape OG asset renders better as a card.
+    ogImage: "/assets/og.png",
     summary: "Florida HOA and condo board members owe their communities a fiduciary duty, duty of care, duty of loyalty, duty to act in good faith. Failing those duties creates personal liability that the association's D&O insurance may not fully cover. Knowing the duties is step one; documenting them is step two.",
     sections: [
       { id: "fiduciary-duty", heading: "What fiduciary duty actually means",
@@ -301,6 +311,7 @@ const BLOG_CONTENT = {
   "hoa-bylaws-vs-ccrs": {
     category: "For Boards",
     title: "HOA Bylaws vs CC&Rs: Key Differences Explained",
+    titleTag: "HOA Bylaws vs CC&Rs: Understanding the Key Differences | Edison",
     dek: "Board members often reach for the wrong document when a decision needs to be made quickly. Understanding the difference between HOA bylaws and CC&Rs — and knowing which one governs your situation — is how volunteer leaders make confident, defensible decisions.",
     metaDescription: "HOA bylaws vs CC&Rs in Florida: what each document governs, how they differ, and which one controls when your board needs to make a confident call.",
     author: "Edison Association Management",
@@ -432,9 +443,13 @@ const BLOG_CONTENT = {
   "unenforceable-hoa-rules-florida": {
     category: "For Boards",
     title: "Unenforceable HOA Rules in Florida",
+    titleTag: "Unenforceable HOA Rules in Florida: What Boards Need to Know",
     dek: "Just because a rule is on the books doesn't mean a court will uphold it. What Florida law says about which HOA rules stick, and which don't.",
+    metaDescription: "Which HOA rules can't be enforced in Florida? Learn about restrictions that conflict with state law, fair housing, and constitutional rights.",
     author: "Edison Editorial", date: "February 2026", readTime: "2 min",
     heroImage: "/assets/img-inspector.webp",
+    // Portrait hero — the default landscape OG asset renders better as a card.
+    ogImage: "/assets/og.png",
     summary: "Florida law protects homeowners from HOA rules that conflict with statute, exceed the board's documented authority, or are enforced selectively. Boards that try to enforce unenforceable rules create legal exposure for themselves, and lose the homeowner's trust along the way.",
     sections: [
       { id: "why-rules-fail", heading: "Why some HOA rules are unenforceable",
@@ -471,7 +486,9 @@ const BLOG_CONTENT = {
   "condo-association-vs-hoa": {
     category: "For Boards",
     title: "Condo Association vs HOA: Which Are You?",
+    titleTag: "Condo Association vs HOA: Key Differences (Florida 2026)",
     dek: "Different statutes, different governing documents, different rules. A quick decision tree for boards who aren't sure which framework applies.",
+    metaDescription: "HOA vs condo association in Florida, what's the difference? Chapter 718 vs Chapter 720, ownership structure, and what it means for management.",
     author: "Edison Editorial", date: "January 2026", readTime: "2 min",
     heroImage: "/assets/img-21.webp",
     summary: "If your community is declared under a Declaration of Condominium, you're a condo association under Florida Chapter 718. Otherwise, single-family neighborhoods, townhomes, master associations, you're typically an HOA under Chapter 720. The distinction matters for reserves, milestone inspections, and homeowner rights.",
@@ -492,7 +509,7 @@ const BLOG_CONTENT = {
         body: ["Condo boards spend more time on building maintenance, insurance, and statutory compliance, the building itself is association property. HOA boards spend more time on amenities, common-area landscaping, and homeowner-property enforcement. Edison runs both as distinct practices because the operating profile genuinely differs."]
       },
       { id: "which-edison-page", heading: "Which Edison page applies to you?",
-        body: ["Single-family HOAs and townhome HOAs, see /services/hoa-management/. Condominium associations, see /services/condo-management/. Brevard County coastal communities are predominantly condo and have their own geo page noting the SB-4D compliance focus."]
+        body: ["Single-family and townhome HOAs, see <a href=\"/services/hoa-management\">HOA management</a>, or <a href=\"/services/hoa-management/orlando\">HOA management in Orlando</a> if your community is in the metro. Condominium associations, see <a href=\"/services/condo-management\">condo management</a>, along with <a href=\"/services/condo-management/structural-integrity-reserve-study\">Structural Integrity Reserve Study coordination</a> and <a href=\"/services/condo-management/milestone-inspections\">milestone inspections</a> if your building is three stories or more. <a href=\"/services/hoa-management/brevard-county\">Brevard County</a> coastal communities are predominantly condo, with SB-4D compliance as the defining workload."]
       }
     ],
     related: [
@@ -505,7 +522,9 @@ const BLOG_CONTENT = {
   "hoa-management-fees": {
     category: "Financial Management",
     title: "HOA Management Fees: What Boards Actually Pay",
+    titleTag: "HOA Management Fees: What Boards Actually Pay (2026 Guide)",
     dek: "What's standard, what's premium, and how to read a management proposal without losing the plot.",
+    metaDescription: "What do HOA management companies charge in Florida? A breakdown of management fees, what's included, and how to evaluate whether you're getting value.",
     author: "Edison Editorial", date: "January 2026", readTime: "2 min",
     heroImage: "/assets/img-13.webp",
     summary: "HOA management fees in Florida typically run a monthly per-door rate based on community size, service scope, and complexity. The headline number is rarely the whole story, what's included, what's an upcharge, and what happens after year one matters more than the per-door rate.",
@@ -538,7 +557,8 @@ const BLOG_CONTENT = {
         body: ["Most management agreements include an annual renewal with a CPI-pegged or fixed percentage increase. Read the renewal clause carefully, some companies front-load the first-year discount knowing the increase resets the economics in year two. Edison's agreements are 12-month terms with transparent renewal mechanics; if a board chooses not to renew, they walk free with all records intact."]
       },
       { id: "how-to-evaluate", heading: "How to evaluate a management proposal",
-        body: ["The base per-door fee is the starting point, not the conclusion. Compare what's included, what's an upcharge, what the renewal terms look like, and what the company's portfolio sizes per manager actually are. A cheap proposal from a 20-communities-per-manager firm is often more expensive in 18 months than a slightly higher proposal from a boutique firm, because the cost of poor service shows up as legal bills, special assessments, and homeowner attrition."]
+        body: ["The base per-door fee is the starting point, not the conclusion. Compare what's included, what's an upcharge, what the renewal terms look like, and what the company's portfolio sizes per manager actually are. A cheap proposal from a 20-communities-per-manager firm is often more expensive in 18 months than a slightly higher proposal from a boutique firm, because the cost of poor service shows up as legal bills, special assessments, and homeowner attrition.",
+          "Boards weighing <a href=\"/services/hoa-management/orlando\">HOA management companies in Orlando</a> can see Edison's full scope on the <a href=\"/services/hoa-management\">HOA management</a> page, or <a href=\"/request-a-proposal\">request a proposal</a> and compare a fixed-scope quote against whatever else is on the table."]
       }
     ],
     related: [
@@ -551,7 +571,9 @@ const BLOG_CONTENT = {
   "hoa-special-assessment": {
     category: "Financial Management",
     title: "HOA Special Assessment Guide",
+    titleTag: "HOA Special Assessments: A Board's Guide (Florida 2026)",
     dek: "When special assessments make sense, how they're approved, what they look like in Florida, and the alternatives most boards skip past.",
+    metaDescription: "What Florida HOA boards need to know about special assessments, when they're allowed, how to levy them, and how to communicate with homeowners.",
     author: "Edison Editorial", date: "February 2026", readTime: "2 min",
     heroImage: "/assets/img-accounting.webp",
     summary: "A special assessment is a one-time charge to homeowners outside the regular assessment cycle, usually to fund a capital project that reserves can't cover. They work, but they damage homeowner trust, drive owner attrition, and are usually preventable with disciplined reserve banking.",
@@ -589,6 +611,7 @@ const BLOG_CONTENT = {
   "hoa-reserve-study-guide": {
     category: "Financial Management",
     title: "HOA Reserve Study Florida: What Boards Need to Know",
+    titleTag: "Florida HOA Reserve Study Guide: Requirements & Best Practices",
     dek: "What is an HOA reserve study and why does Florida law require one? Learn what boards need to know about reserve studies, costs, and funding requirements.",
     author: "Edison Association Management",
     date: "May 20, 2026",
@@ -627,7 +650,7 @@ const BLOG_CONTENT = {
         },
         body3: [
           "<strong>For HOAs governed under <a href=\"https://www.flsenate.gov/Laws/Statutes/2000/720.303\" target=\"_blank\" rel=\"noopener\">Florida Statute 720.303(6)</a>, there is no statutory mandate requiring a formal reserve study.</strong> The statute requires associations to include reserve accounts in their annual budget and disclose reserve balances to members, but boards may vote each year to waive or partially fund those reserves. That said, most community governing documents require a reserve study every three to five years. Lenders, insurance carriers, and prospective buyers are also increasingly looking for current reserve studies as a sign of responsible governance. Skipping a reserve study is the fastest path to a special assessment.",
-          "For condominiums under <a href=\"https://www.flsenate.gov/Laws/Statutes/2025/Chapter718/All\" target=\"_blank\" rel=\"noopener\">Chapter 718</a>, the requirements are significantly stricter. Florida now mandates a Structural Integrity Reserve Study (SIRS) for condominium buildings three stories or higher. The initial SIRS deadline was December 31, 2025, and studies must be updated at least every 10 years. SIRS covers eight mandatory structural components, and reserves for those components cannot be waived by a vote of the owners. It's important to note that SIRS addresses structural elements only. Condominium associations still benefit from a traditional reserve study for non-structural items like pool equipment, landscaping, and common-area finishes."
+          "For condominiums under <a href=\"https://www.flsenate.gov/Laws/Statutes/2025/Chapter718/All\" target=\"_blank\" rel=\"noopener\">Chapter 718</a>, the requirements are significantly stricter. Florida now mandates a <a href=\"/services/condo-management/structural-integrity-reserve-study\">Structural Integrity Reserve Study (SIRS)</a> for condominium buildings three stories or higher. The original SB-4D deadline was December 31, 2024, with later legislative relief extending some associations to December 31, 2025; both dates have now passed, and studies must be updated at least every 10 years thereafter. SIRS covers eight mandatory structural components, and reserves for those components cannot be waived by a vote of the owners. It's important to note that SIRS addresses structural elements only. Condominium associations still benefit from a traditional reserve study for non-structural items like pool equipment, landscaping, and common-area finishes."
         ]
       },
       {
@@ -668,7 +691,7 @@ const BLOG_CONTENT = {
           "Before the study begins, Edison's team walks the property and provides the reserve specialist with practical, on-the-ground context. Which components were recently repaired or replaced? Which areas are showing early signs of failure that might not be obvious in a single-day inspection? What vendor quotes has the board already received for upcoming projects? This kind of input makes the reserve study more accurate and more useful.",
           "During the study, Edison coordinates property access, provides historical maintenance records from CINC Systems, and ensures the specialist has accurate data on prior replacements and upgrades. Organized records and responsive management support mean the specialist spends their time inspecting, not chasing documentation.",
           "After the study is complete, Edison translates the findings into the community's <a href=\"/services/hoa-accounting\">annual budget</a>. Reserve contribution recommendations are adjusted, the funding plan is mapped against upcoming capital projects, and the board has a clear path forward. Edison's banking partnership with One Florida Bank also helps boards optimize how reserve dollars are held. CDs, sweep accounts, and FDIC coverage structuring ensure reserve funds earn interest while they wait, rather than sitting idle in a low-yield account.",
-          "This is what reserve planning looks like when the management company treats it as part of ongoing financial stewardship rather than a one-time vendor deliverable."
+          "This is what reserve planning looks like when the management company treats it as part of ongoing financial stewardship rather than a one-time vendor deliverable. Edison's <a href=\"/services/hoa-accounting/reserve-study-support\">reserve study support</a> covers the traditional study end to end; condominium buildings three stories or higher also need <a href=\"/services/condo-management/structural-integrity-reserve-study\">Structural Integrity Reserve Study coordination</a>, which runs on its own statutory track."
         ]
       },
       {
@@ -704,7 +727,10 @@ const BLOG_CONTENT = {
   "best-hoa-management-companies-orlando": {
     category: "Local Authority",
     title: "Best HOA Management Companies in Orlando: An Honest Field Guide",
+    titleTag: "Best HOA Management Companies in Orlando: 2026 Guide | Edison",
     dek: "Written for boards comparing options. What to look for, what to watch out for, and how Edison stacks up, without disparaging competitors.",
+    metaDescription: "Looking for the best HOA management company in Orlando? Compare top Central Florida management firms, ratings, credentials, and what sets Edison apart.",
+    keywords: ["HOA management companies Orlando", "HOA management company Orlando", "Orlando HOA management"],
     author: "Edison Editorial", date: "December 2025", readTime: "2 min",
     heroImage: "/assets/img-community-aerial.webp",
     summary: "Orlando has more HOA management options than any other city in Central Florida, from national operators with hundreds of communities to single-manager boutiques. The right choice for your board depends on portfolio size per manager, depth of back-office, transition discipline, and how loud the company's voicemail gets.",
@@ -721,7 +747,8 @@ const BLOG_CONTENT = {
         ]
       },
       { id: "the-orlando-market", heading: "The Orlando HOA management market",
-        body: ["Orlando's HOA market includes large national firms (multi-state operators), regional firms (Florida-only but multi-city), and boutique firms like Edison. National firms scale through process and technology; regional firms scale through relationships and local knowledge; boutiques scale through portfolio discipline and back-office depth. None is automatically better, fit matters."]
+        body: ["Orlando's HOA market includes large national firms (multi-state operators), regional firms (Florida-only but multi-city), and boutique firms like Edison. National firms scale through process and technology; regional firms scale through relationships and local knowledge; boutiques scale through portfolio discipline and back-office depth. None is automatically better, fit matters.",
+          "Boards comparing <a href=\"/services/hoa-management/orlando\">HOA management companies in Orlando</a> should shortlist across all three categories rather than within one. A 40-community regional firm and a 400-community national operator will quote similar per-door numbers and deliver very different weeks. The variable that predicts your experience isn't company size, it's how many communities the specific manager assigned to you is carrying."]
       },
       { id: "questions-to-ask", heading: "Questions to ask in any interview",
         list: [
@@ -739,7 +766,8 @@ const BLOG_CONTENT = {
         body: ["The cheapest proposal almost always becomes the most expensive one in 18 months. Cheap usually means overloaded managers, thin back-office, high turnover, and a renewal mechanism that resets the economics in year two. The real cost of a management company shows up as legal exposure, special assessments, homeowner attrition, and the time the board spends doing the management company's job."]
       },
       { id: "how-edison-shows-up", heading: "How Edison shows up in the market",
-        body: ["Edison is deliberately a boutique. Manager portfolios are deliberately limited. Tracy Durham (PCAM, 2025 CAI Central Florida Chapter President) personally onboards every new association. Back-office departments, accounting, enforcement, collections, are separate from management. Same-day response for board members; 24-hour for homeowners; non-negotiable. We don't try to be the cheapest. We try to be the firm boards stay with."]
+        body: ["Edison is deliberately a boutique. Manager portfolios are deliberately limited. Tracy Durham (PCAM, 2025 CAI Central Florida Chapter President) personally onboards every new association. Back-office departments, <a href=\"/services/hoa-accounting\">accounting</a>, <a href=\"/services/covenant-enforcement\">enforcement</a>, <a href=\"/services/hoa-collections\">collections</a>, are separate from management. Same-day response for board members; 24-hour for homeowners; non-negotiable. We don't try to be the cheapest. We try to be the firm boards stay with.",
+          "If your board is at the shortlist stage, the <a href=\"/services/hoa-management/orlando\">Orlando HOA management</a> page lays out what Edison delivers metro-wide, and <a href=\"/solutions/switch-hoa-management-company\">switching management companies</a> covers the 60–90 day transition in detail. Condominium boards should start at <a href=\"/services/condo-management\">condo management</a> instead, the Ch. 718 workload is a different job."]
       }
     ],
     related: [
