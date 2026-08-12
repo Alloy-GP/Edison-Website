@@ -52,6 +52,9 @@ export interface LatestPost {
   slug: string;
   category: string;
   title: string;
+  /** The post's on-page subtitle. Used by article-list cards. */
+  dek: string;
+  /** Tightest one-liner available. Used by the single featured card. */
   excerpt: string;
   image: string;
   href: string;
@@ -68,6 +71,7 @@ export function getAllPostsByDate(): LatestPost[] {
       slug,
       category: post.category ?? '',
       title: post.title ?? '',
+      dek: post.dek ?? post.summary ?? post.metaDescription ?? '',
       // metaDescription is the tightest one-liner a post has; summary/dek are
       // the longer on-page forms.
       excerpt: post.metaDescription ?? post.summary ?? post.dek ?? '',
@@ -81,4 +85,18 @@ export function getAllPostsByDate(): LatestPost[] {
 /** The newest `count` live posts. */
 export function getLatestPosts(count = 2): LatestPost[] {
   return getAllPostsByDate().slice(0, count);
+}
+
+/**
+ * Categories present across live posts, most-populated first. Drives the
+ * /blog topic sidebar so a new category can't be missing from the filter list.
+ */
+export function getTopics(posts: LatestPost[] = getAllPostsByDate()) {
+  const counts = new Map<string, number>();
+  for (const post of posts) {
+    if (post.category) counts.set(post.category, (counts.get(post.category) ?? 0) + 1);
+  }
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([label, count]) => ({ label, count }));
 }

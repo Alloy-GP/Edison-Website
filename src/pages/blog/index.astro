@@ -1,7 +1,14 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { BlogIndexPage, BLOG_INDEX_CONTENT } from '../../templates/blog-index-template.jsx';
-const content = BLOG_INDEX_CONTENT;
+import { getAllPostsByDate, getTopics } from '../../lib/blog.ts';
+
+// The H1 promises "every article we've published, newest first" — so build the
+// list from BLOG_CONTENT rather than a hand-maintained array, which had drifted
+// to 4 of the 12 live posts. Topics are derived too, so a new category can't go
+// missing from the sidebar.
+const articles = getAllPostsByDate();
+const content  = { ...BLOG_INDEX_CONTENT, articles, topics: getTopics(articles) };
 ---
 
 <SiteLayout
