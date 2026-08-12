@@ -91,7 +91,9 @@ function GeoPageB({ content }) {
 
       <GeoHeroService
         eyebrow={`HOA Management · ${content.city}, FL`}
-        title={`Professional HOA management for ${content.city} boards.`}
+        /* hero.title lets a high-volume city phrase its own H1; the rest fall
+           back to the standard service-first headline. */
+        title={content.hero.title ?? `Professional HOA management for ${content.city} boards.`}
         lede={content.hero.lede}
         city={content.city}
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
@@ -142,6 +144,17 @@ function GeoPageB({ content }) {
         cities={content.nearbyCities}
         mapImg="/assets/img-neighborhood-aerial.webp"
       />
+
+      {/* Local FAQ — only cities that ship one get the section. Answers are
+          mirrored into FAQPage JSON-LD by the route. */}
+      {content.faqs?.length > 0 && (
+        <FAQ
+          eyebrow="Local FAQ"
+          title={`HOA management in ${content.city}, answered`}
+          background="var(--edison-teal-pale)"
+          items={content.faqs}
+        />
+      )}
 
       <FinalCTA
         eyebrow="Get started"

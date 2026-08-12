@@ -189,12 +189,17 @@ function ComparisonTable({ eyebrow, title, sub, leftLabel, rightLabel, rows, bac
     <section className="ts-comparison" style={{ background, padding: "88px 48px" }}>
       <div style={{ maxWidth: 1080, margin: "0 auto" }}>
         <SectionHeading eyebrow={eyebrow} title={title} sub={sub} align="center"/>
+        {/* The mobile stacked layout replaces the header row with ::before
+            labels; feed it the real column names so a non-"Typical vs Edison"
+            comparison doesn't get mislabelled. */}
         <div className="ts-comparison-wrap" style={{
           marginTop: 48,
           background: "#fff",
           border: "1px solid var(--border-hairline)",
           borderRadius: 14, overflow: "hidden",
-          boxShadow: "var(--shadow-sm)"
+          boxShadow: "var(--shadow-sm)",
+          "--cmp-left-label": `"${leftLabel}"`,
+          "--cmp-right-label": `"${rightLabel}"`
         }}>
           <div style={{
             display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr",

@@ -690,7 +690,7 @@ p { text-align: justify; }
     background: #fafafa !important;
   }
   .ts-comparison-wrap > div > div:nth-child(2)::before {
-    content: "Typical";
+    content: var(--cmp-left-label, "Typical");
     display: block;
     font-size: 10px;
     font-weight: 700;
@@ -707,7 +707,7 @@ p { text-align: justify; }
     background: rgba(60,200,200,.07) !important;
   }
   .ts-comparison-wrap > div > div:nth-child(3)::before {
-    content: "Edison";
+    content: var(--cmp-right-label, "Edison");
     display: block;
     font-size: 10px;
     font-weight: 700;
