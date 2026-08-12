@@ -2,6 +2,8 @@
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { BlogIndexPage, BLOG_INDEX_CONTENT } from '../../templates/blog-index-template.jsx';
 import { getAllPostsByDate, getTopics } from '../../lib/blog.ts';
+import { SITE } from '../../config/site.ts';
+import { breadcrumbSchema, collectionPageSchema } from '../../lib/schema.ts';
 
 // The H1 promises "every article we've published, newest first" — so build the
 // list from BLOG_CONTENT rather than a hand-maintained array, which had drifted
@@ -9,11 +11,30 @@ import { getAllPostsByDate, getTopics } from '../../lib/blog.ts';
 // missing from the sidebar.
 const articles = getAllPostsByDate();
 const content  = { ...BLOG_INDEX_CONTENT, articles, topics: getTopics(articles) };
+
+const url = `${SITE.url}/blog`;
+const description =
+  'HOA and condo association resources for Florida boards. Florida HOA laws, reserve studies, enforcement, financial management, and more.';
+
+// ItemList gives answer engines an explicit inventory of what the hub holds.
+const pageSchema = [
+  collectionPageSchema({
+    name: 'Edison HOA Management Blog',
+    description,
+    url,
+    items: articles.map((a) => ({ name: a.title, url: `${SITE.url}${a.href}` })),
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'Blog', url },
+  ]),
+];
 ---
 
 <SiteLayout
   title="HOA Management Blog | Edison Association Management"
-  description="HOA and condo association resources for Florida boards. Florida HOA laws, reserve studies, enforcement, financial management, and more."
+  description={description}
+  pageSchema={pageSchema}
 >
   <BlogIndexPage content={content} client:load />
 </SiteLayout>

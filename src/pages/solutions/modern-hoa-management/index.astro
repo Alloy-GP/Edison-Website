@@ -2,12 +2,30 @@
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import { SolutionPageB } from '../../../templates/solution-template.jsx';
 import { SOLUTIONS } from '../../../content/solutions-content.jsx';
+import { SITE } from '../../../config/site.ts';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../../../lib/schema.ts';
 const content = SOLUTIONS['modern-hoa-management'];
+
+const url = `${SITE.url}/solutions/modern-hoa-management`;
+const description = "Modern HOA management built on technology, transparency, and low manager turnover. Discover how Edison's model compares to traditional management.";
+
+// Sitemap v3.2 spec for a solution page: Article + FAQPage. Evergreen, so no
+// datePublished — these aren't dated posts.
+const pageSchema = [
+  articleSchema({ headline: 'Modern HOA Management', description, url }),
+  breadcrumbSchema([
+    { name: 'Home',      url: `${SITE.url}/` },
+    { name: 'Solutions', url: `${SITE.url}/solutions` },
+    { name: 'Modern HOA Management',   url },
+  ]),
+  faqSchema(content.faqs),
+];
 ---
 
 <SiteLayout
   title="Modern HOA Management in Central Florida | Edison"
-  description="Modern HOA management built on technology, transparency, and low manager turnover. Discover how Edison's model compares to traditional management."
+  description={description}
+  pageSchema={pageSchema}
 >
   <SolutionPageB content={content} client:load />
 </SiteLayout>

@@ -22,6 +22,16 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { SITE } from '~/config/site';
+import { REVIEWS } from '~/data/reviews';
+
+// ── areaServed ────────────────────────────────────────────────────────────────
+// SITE.org.areaServed is a list of cities/counties. Emit each as a Place so the
+// geographic signal is machine-readable instead of one ambiguous string.
+
+export function areaServedLd(area: string | readonly string[] = SITE.org.areaServed) {
+  const list = typeof area === 'string' ? [area] : area;
+  return list.map((name) => ({ '@type': 'Place', name }));
+}
 
 // ── Organization ─────────────────────────────────────────────────────────────
 // Already rendered by BaseLayout on every page. Import this only if you need
@@ -42,9 +52,78 @@ export function orgSchema() {
       addressRegion: SITE.org.addressRegion,
       addressCountry: SITE.org.addressCountry,
     },
-    areaServed: SITE.org.areaServed,
+    areaServed: areaServedLd(),
     priceRange: SITE.org.priceRange,
   };
+}
+
+// ── AggregateRating ───────────────────────────────────────────────────────────
+// Sitemap v3.2 puts this on the homepage, both pillars, and the testimonials
+// page. Numbers come from src/data/reviews.ts, the same source the visible
+// review badge renders — schema and on-page must not disagree.
+
+export function aggregateRatingSchema(opts?: { rating?: number; count?: number }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': SITE.org.type,
+    name: SITE.name,
+    url: SITE.url,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: String(opts?.rating ?? REVIEWS.rating),
+      reviewCount: String(opts?.count ?? REVIEWS.count),
+      bestRating: '5',
+      worstRating: '1',
+    },
+  };
+}
+
+// ── Geo (city) page ───────────────────────────────────────────────────────────
+// Sitemap v3.2 spec for /services/hoa-management/[city]/:
+// "LocalBusiness (with serviceArea) + Service".
+
+export function geoPageSchema(opts: {
+  city: string;
+  /** e.g. 'Orange County, FL' — rendered alongside the city in serviceArea. */
+  region?: string;
+  url: string;
+  description: string;
+}) {
+  const area = opts.region ? [`${opts.city}, FL`, opts.region] : [`${opts.city}, FL`];
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      name: SITE.name,
+      url: opts.url,
+      logo: SITE.org.logo,
+      telephone: SITE.org.telephone,
+      email: SITE.org.email,
+      description: opts.description,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: SITE.org.addressLocality,
+        addressRegion: SITE.org.addressRegion,
+        addressCountry: SITE.org.addressCountry,
+      },
+      areaServed: areaServedLd(area),
+      priceRange: SITE.org.priceRange,
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: String(REVIEWS.rating),
+        reviewCount: String(REVIEWS.count),
+        bestRating: '5',
+        worstRating: '1',
+      },
+    },
+    serviceSchema({
+      name: `HOA Management in ${opts.city}, FL`,
+      serviceType: 'HOA Management',
+      description: opts.description,
+      url: opts.url,
+      areaServed: area,
+    }),
+  ];
 }
 
 // ── BreadcrumbList ────────────────────────────────────────────────────────────
@@ -86,7 +165,10 @@ export function serviceSchema(opts: {
   description: string;
   url: string;
   image?: string;
-  areaServed?: string;
+  /** Override the site-wide service area — e.g. a single city on a geo page. */
+  areaServed?: string | readonly string[];
+  /** Service type, e.g. 'HOA Management'. Helps disambiguate sibling services. */
+  serviceType?: string;
 }) {
   return {
     '@context': 'https://schema.org',
@@ -98,8 +180,16 @@ export function serviceSchema(opts: {
       '@type': SITE.org.type,
       name: SITE.name,
       url: SITE.url,
+      telephone: SITE.org.telephone,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: SITE.org.addressLocality,
+        addressRegion: SITE.org.addressRegion,
+        addressCountry: SITE.org.addressCountry,
+      },
     },
-    areaServed: opts.areaServed ?? SITE.org.areaServed,
+    ...(opts.serviceType ? { serviceType: opts.serviceType } : {}),
+    areaServed: areaServedLd(opts.areaServed),
     ...(opts.image ? { image: opts.image } : {}),
   };
 }
@@ -111,7 +201,8 @@ export function articleSchema(opts: {
   headline: string;
   description: string;
   url: string;
-  datePublished: string;   // ISO 8601: '2026-05-13'
+  /** ISO 8601: '2026-05-13'. Omit on evergreen pages that aren't dated posts. */
+  datePublished?: string;
   dateModified?: string;
   image?: string;
   about?: string[];        // topic names
@@ -150,8 +241,10 @@ export function articleSchema(opts: {
     '@type': 'Article',
     headline: opts.headline,
     description: opts.description,
-    datePublished: opts.datePublished,
-    dateModified: opts.dateModified ?? opts.datePublished,
+    ...(opts.datePublished ? { datePublished: opts.datePublished } : {}),
+    ...(opts.dateModified ?? opts.datePublished
+      ? { dateModified: opts.dateModified ?? opts.datePublished }
+      : {}),
     author,
     publisher: {
       '@type': 'Organization',
@@ -260,6 +353,96 @@ export function courseSchema(opts: {
   };
 }
 
+// ── AboutPage / Person / WebPage / Review ─────────────────────────────────────
+// Rounds out the sitemap v3.2 "schema by page type" table.
+
+export function aboutPageSchema(opts: { name: string; description: string; url: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: opts.name,
+    description: opts.description,
+    url: opts.url,
+    inLanguage: 'en-US',
+    isPartOf: { '@type': 'WebSite', name: SITE.name, url: SITE.url },
+    about: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  };
+}
+
+export function personSchema(opts: {
+  name: string;
+  jobTitle: string;
+  url: string;
+  credentials?: string[];
+  description?: string;
+  image?: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: opts.name,
+    jobTitle: opts.jobTitle,
+    url: opts.url,
+    worksFor: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    ...(opts.description ? { description: opts.description } : {}),
+    ...(opts.image ? { image: opts.image } : {}),
+    ...(opts.credentials?.length
+      ? {
+          hasCredential: opts.credentials.map((c) => ({
+            '@type': 'EducationalOccupationalCredential',
+            name: c,
+          })),
+        }
+      : {}),
+  };
+}
+
+export function webPageSchema(opts: { name: string; description: string; url: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: opts.name,
+    description: opts.description,
+    url: opts.url,
+    inLanguage: 'en-US',
+    isPartOf: { '@type': 'WebSite', name: SITE.name, url: SITE.url },
+    publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  };
+}
+
+// Testimonials page: the org node carries the rating, with each quote as a
+// nested Review. Reviewer names must match what's visible on the page.
+export function reviewPageSchema(opts: {
+  url: string;
+  reviews: Array<{ quote: string; attribution: string; rating: number }>;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': SITE.org.type,
+    name: SITE.name,
+    url: SITE.url,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: String(REVIEWS.rating),
+      reviewCount: String(REVIEWS.count),
+      bestRating: '5',
+      worstRating: '1',
+    },
+    review: opts.reviews.map((r) => ({
+      '@type': 'Review',
+      reviewBody: r.quote,
+      author: { '@type': 'Person', name: r.attribution },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: String(r.rating),
+        bestRating: '5',
+        worstRating: '1',
+      },
+      itemReviewed: { '@type': SITE.org.type, name: SITE.name, url: SITE.url },
+    })),
+  };
+}
+
 // ── LocalBusiness ─────────────────────────────────────────────────────────────
 // Use on the Contact or About page when you want the full local business card.
 
@@ -278,7 +461,7 @@ export function localBusinessSchema(opts?: { description?: string }) {
       addressRegion: SITE.org.addressRegion,
       addressCountry: SITE.org.addressCountry,
     },
-    areaServed: SITE.org.areaServed,
+    areaServed: areaServedLd(),
     priceRange: SITE.org.priceRange,
     ...(opts?.description ? { description: opts.description } : {}),
   };

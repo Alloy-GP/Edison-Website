@@ -2,12 +2,33 @@
 import SiteLayout from '../../../../layouts/SiteLayout.astro';
 import { GeoPageB } from '../../../../templates/geo-template.jsx';
 import { GEO_CONTENT } from '../../../../content/geo-content.jsx';
+import { SITE } from '../../../../config/site.ts';
+import { breadcrumbSchema, faqSchema, geoPageSchema } from '../../../../lib/schema.ts';
 const content = GEO_CONTENT['orlando'];
+
+const url = `${SITE.url}/services/hoa-management/orlando`;
+const description =
+  'Full-service HOA and community association management for Orlando boards — dedicated managers, in-house accounting, covenant enforcement, and reserve planning.';
+
+// Sitemap v3.2 spec for a geo page: LocalBusiness (with serviceArea) + Service.
+// Orlando is the primary market, so it also ships an FAQ block; answers are
+// lifted verbatim from the on-page accordion.
+const pageSchema = [
+  ...geoPageSchema({ city: content.city, region: content.region, url, description }),
+  breadcrumbSchema([
+    { name: 'Home',           url: `${SITE.url}/` },
+    { name: 'Services',       url: `${SITE.url}/services` },
+    { name: 'HOA Management', url: `${SITE.url}/services/hoa-management` },
+    { name: content.city,     url },
+  ]),
+  faqSchema(content.faqs),
+];
 ---
 
 <SiteLayout
   title="HOA Management Companies in Orlando, FL | Edison"
-  description="Boutique HOA management companies in Orlando, FL. Edison Association Management serves the Orlando metro with PCAM-led, full-service community management."
+  description="Comparing HOA management companies in Orlando, FL? Edison is the boutique alternative — PCAM-led, limited manager portfolios, and in-house accounting."
+  pageSchema={pageSchema}
 >
   <GeoPageB content={content} client:load />
 </SiteLayout>

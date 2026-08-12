@@ -1,11 +1,31 @@
 ---
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import { MeetYourManagementPage } from '../../../templates/edison-transition-and-meet.jsx';
+import { SITE } from '../../../config/site.ts';
+import { breadcrumbSchema, orgSchema, webPageSchema } from '../../../lib/schema.ts';
+
+const url = `${SITE.url}/about/meet-your-management`;
+const description =
+  "Edison's signature community transition event. The full team comes on-property, helps residents set up portals, and even brings an ice cream truck.";
+
+// Sitemap v3.2 asks for Event + Organization here. Event markup needs a real
+// startDate and location, and these are scheduled per community rather than
+// published — so this ships WebPage + Organization until dated events exist.
+const pageSchema = [
+  webPageSchema({ name: "Meet Your Management: Edison's Community Welcome Event", description, url }),
+  orgSchema(),
+  breadcrumbSchema([
+    { name: 'Home',                 url: `${SITE.url}/` },
+    { name: 'About',                url: `${SITE.url}/about` },
+    { name: 'Meet Your Management', url },
+  ]),
+];
 ---
 
 <SiteLayout
-  title="Meet Your Management Event | Edison"
-  description="Edison's signature community transition event. The full team comes on-property, helps residents set up portals, and even brings an ice cream truck."
+  title="Meet Your Management: Edison's Community Welcome Event"
+  description={description}
+  pageSchema={pageSchema}
 >
   <MeetYourManagementPage client:load />
 </SiteLayout>

@@ -1,11 +1,40 @@
 ---
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import { TeamPageA, TEAM_CONTENT } from '../../../templates/team-template.jsx';
+import { SITE } from '../../../config/site.ts';
+import { aboutPageSchema, breadcrumbSchema, personSchema } from '../../../lib/schema.ts';
+
+const url = `${SITE.url}/about/meet-our-team`;
+const description =
+  'Meet the association managers and leadership team at Edison. PCAM-led, CAI-credentialed, and built for Central Florida communities.';
+
+// Sitemap v3.2 spec: AboutPage + Person (Tracy Durham). Featured leadership
+// entries come from TEAM_CONTENT so the markup tracks the page.
+const leadership = TEAM_CONTENT.team.filter((p) => p.featured);
+
+const pageSchema = [
+  aboutPageSchema({ name: 'Meet the Edison Team', description, url }),
+  ...leadership.map((p) =>
+    personSchema({
+      name: p.name,
+      jobTitle: p.role,
+      url,
+      ...(p.credentials ? { credentials: p.credentials } : {}),
+      ...(p.bio ? { description: p.bio } : {}),
+    })
+  ),
+  breadcrumbSchema([
+    { name: 'Home',          url: `${SITE.url}/` },
+    { name: 'About',         url: `${SITE.url}/about` },
+    { name: 'Meet Our Team', url },
+  ]),
+];
 ---
 
 <SiteLayout
-  title="Meet Our Team | Edison Association Management"
-  description="Meet the association managers and leadership team at Edison. PCAM-led, CAI-credentialed, and built for Central Florida communities."
+  title="Meet Our Team: PCAM-Led Florida HOA Management | Edison"
+  description={description}
+  pageSchema={pageSchema}
 >
   <TeamPageA content={TEAM_CONTENT} client:load />
 </SiteLayout>

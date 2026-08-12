@@ -2,12 +2,30 @@
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import { SolutionPageB } from '../../../templates/solution-template.jsx';
 import { SOLUTIONS } from '../../../content/solutions-content.jsx';
+import { SITE } from '../../../config/site.ts';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../../../lib/schema.ts';
 const content = SOLUTIONS['switch-hoa-management-company'];
+
+const url = `${SITE.url}/solutions/switch-hoa-management-company`;
+const description = "Thinking about switching HOA management companies? Edison's transition experience handles onboarding, records, and vendor review in 60-90 days.";
+
+// Sitemap v3.2 spec for a solution page: Article + FAQPage. Evergreen, so no
+// datePublished — these aren't dated posts.
+const pageSchema = [
+  articleSchema({ headline: 'Switching HOA Management Companies', description, url }),
+  breadcrumbSchema([
+    { name: 'Home',      url: `${SITE.url}/` },
+    { name: 'Solutions', url: `${SITE.url}/solutions` },
+    { name: 'Switch Management Company',   url },
+  ]),
+  faqSchema(content.faqs),
+];
 ---
 
 <SiteLayout
-  title="Switching HOA Management Companies in Florida | Edison"
-  description="Thinking about switching HOA management companies? Edison's transition experience handles onboarding, records, and vendor review in 60–90 days."
+  title="Switching HOA Management Companies? Edison Makes it Seamless"
+  description={description}
+  pageSchema={pageSchema}
 >
   <SolutionPageB content={content} client:load />
 </SiteLayout>

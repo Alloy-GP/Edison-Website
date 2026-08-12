@@ -2,12 +2,36 @@
 import SiteLayout from '../../../../layouts/SiteLayout.astro';
 import { SubServicePage } from '../../../../templates/sub-service-template.jsx';
 import { SUB_SERVICES_CONTENT } from '../../../../content/sub-services-content.jsx';
+import { SITE } from '../../../../config/site.ts';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '../../../../lib/schema.ts';
 const content = SUB_SERVICES_CONTENT['reserve-study-support'];
+
+const url = `${SITE.url}/services/hoa-accounting/reserve-study-support`;
+
+// Answers are lifted verbatim from the on-page accordion — Google penalises
+// FAQPage markup that doesn't match visible text.
+const pageSchema = [
+  breadcrumbSchema([
+    { name: 'Home',                  url: `${SITE.url}/` },
+    { name: 'Services',              url: `${SITE.url}/services` },
+    { name: 'HOA Accounting',        url: `${SITE.url}/services/hoa-accounting` },
+    { name: 'Reserve Study Support', url },
+  ]),
+  serviceSchema({
+    name: 'HOA Reserve Study Support',
+    serviceType: 'Reserve Study Coordination',
+    description:
+      'Reserve study coordination for Florida HOA and condo associations — engineer sourcing, document prep, draft review, and funding plan integration into the annual budget.',
+    url,
+  }),
+  faqSchema(content.faqs),
+];
 ---
 
 <SiteLayout
-  title="HOA Reserve Study Support | Edison"
-  description="Reserve study support for HOA and condo associations in Central Florida — on-the-ground input and banking partnerships for reserve optimization."
+  title="HOA Reserve Study Support | Edison Association Management"
+  description="Florida reserve study requirements, costs, and funding plans. Edison sources the engineer, reviews the draft, and folds the plan into your annual budget."
+  pageSchema={pageSchema}
 >
   <SubServicePage content={content} client:load />
 </SiteLayout>

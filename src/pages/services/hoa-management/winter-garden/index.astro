@@ -2,12 +2,29 @@
 import SiteLayout from '../../../../layouts/SiteLayout.astro';
 import { GeoPageB } from '../../../../templates/geo-template.jsx';
 import { GEO_CONTENT } from '../../../../content/geo-content.jsx';
+import { SITE } from '../../../../config/site.ts';
+import { breadcrumbSchema, geoPageSchema } from '../../../../lib/schema.ts';
 const content = GEO_CONTENT['winter-garden'];
+
+const url = `${SITE.url}/services/hoa-management/winter-garden`;
+const description = "HOA management in Winter Garden, FL. Edison serves communities across West Orange County with responsive, boutique association management.";
+
+// Sitemap v3.2 spec for a geo page: LocalBusiness (with serviceArea) + Service.
+const pageSchema = [
+  ...geoPageSchema({ city: content.city, region: content.region, url, description }),
+  breadcrumbSchema([
+    { name: 'Home',           url: `${SITE.url}/` },
+    { name: 'Services',       url: `${SITE.url}/services` },
+    { name: 'HOA Management', url: `${SITE.url}/services/hoa-management` },
+    { name: content.city,     url },
+  ]),
+];
 ---
 
 <SiteLayout
-  title="HOA Management Winter Garden, FL | Edison"
-  description="HOA management in Winter Garden, FL. Edison serves communities across West Orange County with responsive, boutique association management."
+  title="HOA Management in Winter Garden, FL | Edison"
+  description={description}
+  pageSchema={pageSchema}
 >
   <GeoPageB content={content} client:load />
 </SiteLayout>

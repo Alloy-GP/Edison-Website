@@ -2,12 +2,29 @@
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import { ServicePage } from '../../../templates/service-page-template.jsx';
 import { SERVICES_CONTENT } from '../../../content/services-content.jsx';
+import { SITE } from '../../../config/site.ts';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '../../../lib/schema.ts';
 const content = SERVICES_CONTENT['hoa-accounting'];
+
+const url = `${SITE.url}/services/hoa-accounting`;
+const description = "HOA financial management for Florida associations: monthly financials, budgets, reserve banking, AP, and audit-ready books from a dedicated accounting team.";
+
+// Sitemap v3.2 spec for a service page: Service + FAQPage.
+const pageSchema = [
+  serviceSchema({ name: 'HOA Accounting & Financial Management', serviceType: 'HOA Accounting', description, url }),
+  breadcrumbSchema([
+    { name: 'Home',     url: `${SITE.url}/` },
+    { name: 'Services', url: `${SITE.url}/services` },
+    { name: 'HOA Accounting',  url },
+  ]),
+  faqSchema(content.faqs),
+];
 ---
 
 <SiteLayout
   title="HOA Accounting & Financial Management | Edison"
-  description="Dedicated HOA accounting services in Orlando, FL. Budgets, reserve studies, accounts payable, and transparent financial reporting for community associations."
+  description={description}
+  pageSchema={pageSchema}
 >
   <ServicePage content={content} client:load />
 </SiteLayout>

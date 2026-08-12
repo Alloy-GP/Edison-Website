@@ -2,12 +2,36 @@
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import { PillarPageA } from '../../../templates/service-template.jsx';
 import { PILLAR_CONTENT } from '../../../content/pillars-content.jsx';
+import { SITE } from '../../../config/site.ts';
+import { aggregateRatingSchema, breadcrumbSchema, faqSchema, serviceSchema } from '../../../lib/schema.ts';
 const content = PILLAR_CONTENT['hoa-management'];
+
+const url = `${SITE.url}/services/hoa-management`;
+const description = "Full-service HOA management for single-family and townhome communities in Central Florida. PCAM-led, limited manager portfolios, dedicated back-office.";
+
+// Sitemap v3.2 spec for a main pillar:
+// Service + Organization + AggregateRating + FAQPage.
+const pageSchema = [
+  serviceSchema({
+    name: 'HOA Management',
+    serviceType: 'HOA Management',
+    description,
+    url,
+  }),
+  aggregateRatingSchema(),
+  breadcrumbSchema([
+    { name: 'Home',     url: `${SITE.url}/` },
+    { name: 'Services', url: `${SITE.url}/services` },
+    { name: 'HOA Management',  url },
+  ]),
+  faqSchema(content.faqs),
+];
 ---
 
 <SiteLayout
   title="HOA Management | Edison Association Management"
-  description="Full-service HOA management for single-family and townhome communities in Central Florida. PCAM-led, limited manager portfolios, dedicated back-office."
+  description={description}
+  pageSchema={pageSchema}
 >
   <PillarPageA content={content} client:load />
 </SiteLayout>

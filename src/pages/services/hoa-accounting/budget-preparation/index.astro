@@ -2,12 +2,31 @@
 import SiteLayout from '../../../../layouts/SiteLayout.astro';
 import { SubServicePage } from '../../../../templates/sub-service-template.jsx';
 import { SUB_SERVICES_CONTENT } from '../../../../content/sub-services-content.jsx';
+import { SITE } from '../../../../config/site.ts';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '../../../../lib/schema.ts';
 const content = SUB_SERVICES_CONTENT['budget-preparation'];
+
+const url = `${SITE.url}/services/hoa-accounting/budget-preparation`;
+const description = "HOA budget preparation services in Orlando, FL. Edison helps associations build accurate, reserve-funded budgets that protect community financial health.";
+
+// Sitemap v3.2 spec for a sub-service: Service + FAQPage. FAQ answers are
+// lifted verbatim from the on-page accordion.
+const pageSchema = [
+  serviceSchema({ name: 'HOA Budget Preparation', serviceType: 'HOA Accounting', description, url }),
+  breadcrumbSchema([
+    { name: 'Home',      url: `${SITE.url}/` },
+    { name: 'Services',  url: `${SITE.url}/services` },
+    { name: 'HOA Accounting',  url: `${SITE.url}/services/hoa-accounting` },
+    { name: 'Budget Preparation',   url },
+  ]),
+  faqSchema(content.faqs),
+];
 ---
 
 <SiteLayout
-  title="HOA Budget Preparation Services | Edison"
-  description="HOA budget preparation services in Orlando, FL. Edison helps associations build accurate, reserve-funded budgets that protect community financial health."
+  title="HOA Budget Preparation Services | Edison Association Management"
+  description={description}
+  pageSchema={pageSchema}
 >
   <SubServicePage content={content} client:load />
 </SiteLayout>

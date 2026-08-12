@@ -2,12 +2,31 @@
 import SiteLayout from '../../../../layouts/SiteLayout.astro';
 import { SubServicePage } from '../../../../templates/sub-service-template.jsx';
 import { SUB_SERVICES_CONTENT } from '../../../../content/sub-services-content.jsx';
+import { SITE } from '../../../../config/site.ts';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '../../../../lib/schema.ts';
 const content = SUB_SERVICES_CONTENT['milestone-inspections'];
+
+const url = `${SITE.url}/services/condo-management/milestone-inspections`;
+const description = "Florida SB-4D milestone inspection coordination for condo associations. Edison manages engineer scheduling, board communication, and compliance tracking.";
+
+// Sitemap v3.2 spec for a sub-service: Service + FAQPage. FAQ answers are
+// lifted verbatim from the on-page accordion.
+const pageSchema = [
+  serviceSchema({ name: 'Milestone Inspection Coordination', serviceType: 'Milestone Inspection Coordination', description, url }),
+  breadcrumbSchema([
+    { name: 'Home',      url: `${SITE.url}/` },
+    { name: 'Services',  url: `${SITE.url}/services` },
+    { name: 'Condo Management',  url: `${SITE.url}/services/condo-management` },
+    { name: 'Milestone Inspections',   url },
+  ]),
+  faqSchema(content.faqs),
+];
 ---
 
 <SiteLayout
-  title="Milestone Inspection Coordination | Edison"
-  description="Florida SB-4D milestone inspection coordination for condo associations. Edison manages engineer scheduling, board communication, and compliance tracking."
+  title="Florida Milestone Inspection Coordination for Condos | Edison"
+  description={description}
+  pageSchema={pageSchema}
 >
   <SubServicePage content={content} client:load />
 </SiteLayout>

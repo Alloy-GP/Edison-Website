@@ -1,11 +1,35 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { SolutionsLandingPage } from '../../templates/solutions-landing-template.jsx';
+import { SITE } from '../../config/site.ts';
+import { breadcrumbSchema, collectionPageSchema } from '../../lib/schema.ts';
+
+const url = `${SITE.url}/solutions`;
+const description =
+  "Switching management companies, professionalizing a self-managed HOA, or modernizing operations — Edison's three solution tracks meet boards where they are.";
+
+const pageSchema = [
+  collectionPageSchema({
+    name: 'HOA Management Solutions',
+    description,
+    url,
+    items: [
+      { name: 'Switch HOA Management Company', url: `${SITE.url}/solutions/switch-hoa-management-company` },
+      { name: 'Self-Managed HOA',              url: `${SITE.url}/solutions/self-managed-hoa` },
+      { name: 'Modern HOA Management',         url: `${SITE.url}/solutions/modern-hoa-management` },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home',      url: `${SITE.url}/` },
+    { name: 'Solutions', url },
+  ]),
+];
 ---
 
 <SiteLayout
   title="HOA Management Solutions for Central Florida Boards | Edison"
-  description="Switching management companies, professionalizing a self-managed HOA, or modernizing operations — Edison's three solution tracks meet boards where they are."
+  description={description}
+  pageSchema={pageSchema}
 >
   <SolutionsLandingPage client:load />
 </SiteLayout>

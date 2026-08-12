@@ -2,12 +2,31 @@
 import SiteLayout from '../../../../layouts/SiteLayout.astro';
 import { SubServicePage } from '../../../../templates/sub-service-template.jsx';
 import { SUB_SERVICES_CONTENT } from '../../../../content/sub-services-content.jsx';
+import { SITE } from '../../../../config/site.ts';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '../../../../lib/schema.ts';
 const content = SUB_SERVICES_CONTENT['single-family'];
+
+const url = `${SITE.url}/services/hoa-management/single-family`;
+const description = "Single-family HOA management for Central Florida neighborhoods — ARC workflow, common-area inspections, vendor sourcing, and Ch. 720 compliance.";
+
+// Sitemap v3.2 spec for a sub-service: Service + FAQPage. FAQ answers are
+// lifted verbatim from the on-page accordion.
+const pageSchema = [
+  serviceSchema({ name: 'Single-Family HOA Management', serviceType: 'HOA Management', description, url }),
+  breadcrumbSchema([
+    { name: 'Home',      url: `${SITE.url}/` },
+    { name: 'Services',  url: `${SITE.url}/services` },
+    { name: 'HOA Management',  url: `${SITE.url}/services/hoa-management` },
+    { name: 'Single-Family',   url },
+  ]),
+  faqSchema(content.faqs),
+];
 ---
 
 <SiteLayout
-  title="Single-Family HOA Management Orlando, FL | Edison"
-  description="HOA management for single-family communities in Central Florida. Edison handles operations, enforcement, financials, and board support under FL Chapter 720."
+  title="Single-Family HOA Management | Edison Association Management"
+  description={description}
+  pageSchema={pageSchema}
 >
   <SubServicePage content={content} client:load />
 </SiteLayout>

@@ -2,12 +2,37 @@
 import SiteLayout from '../../../../layouts/SiteLayout.astro';
 import { SubServicePage } from '../../../../templates/sub-service-template.jsx';
 import { SUB_SERVICES_CONTENT } from '../../../../content/sub-services-content.jsx';
+import { SITE } from '../../../../config/site.ts';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '../../../../lib/schema.ts';
 const content = SUB_SERVICES_CONTENT['sirs'];
+
+const url = `${SITE.url}/services/condo-management/structural-integrity-reserve-study`;
+
+// Answers are lifted verbatim from the on-page accordion — Google penalises
+// FAQPage markup that doesn't match visible text.
+const pageSchema = [
+  breadcrumbSchema([
+    { name: 'Home',                                url: `${SITE.url}/` },
+    { name: 'Services',                            url: `${SITE.url}/services` },
+    { name: 'Condo Management',                    url: `${SITE.url}/services/condo-management` },
+    { name: 'Structural Integrity Reserve Study',  url },
+  ]),
+  serviceSchema({
+    name: 'Structural Integrity Reserve Study (SIRS) Coordination',
+    serviceType: 'Structural Integrity Reserve Study',
+    description:
+      'SIRS coordination for Florida condominium associations under Ch. 718 and SB-4D — engineer sourcing, document and access coordination, draft review, and funding plan integration.',
+    url,
+    areaServed: ['Florida', 'Orlando, FL', 'Brevard County, FL', 'Central Florida'],
+  }),
+  faqSchema(content.faqs),
+];
 ---
 
 <SiteLayout
-  title="Structural Integrity Reserve Study (SIRS) | Edison"
-  description="SIRS support for Florida condo associations. Edison coordinates structural integrity reserve studies and helps boards understand their compliance obligations."
+  title="Structural Integrity Reserve Study (SIRS) Florida | Edison"
+  description="Florida SIRS requirements for condos 3+ stories: the 8 mandated components, deadlines, costs, and how Edison coordinates the engineer and the funding plan."
+  pageSchema={pageSchema}
 >
   <SubServicePage content={content} client:load />
 </SiteLayout>
