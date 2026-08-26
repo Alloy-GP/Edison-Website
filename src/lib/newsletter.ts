@@ -61,7 +61,7 @@ export interface NewsletterData {
 interface MailchimpCampaign {
   send_time: string;
   long_archive_url?: string;
-  settings?: { title?: string; subject_line?: string; preview_text?: string };
+  settings?: { subject_line?: string; preview_text?: string };
 }
 
 // "2026-08-14T13:00:00+00:00" -> "August 2026", pinned to Eastern so the
@@ -93,7 +93,7 @@ async function fetchCampaigns(): Promise<MailchimpCampaign[]> {
     sort_dir: 'DESC',
     count: '24',
     fields:
-      'campaigns.send_time,campaigns.long_archive_url,campaigns.settings.title,campaigns.settings.subject_line,campaigns.settings.preview_text',
+      'campaigns.send_time,campaigns.long_archive_url,campaigns.settings.subject_line,campaigns.settings.preview_text',
   });
 
   try {
@@ -122,13 +122,18 @@ export async function getNewsletterData(): Promise<NewsletterData> {
   }
 
   const [latest, ...rest] = campaigns;
-  const currentSlug = seed.slug || latest.send_time.slice(0, 7);
+  // Derived from the campaign, NOT seed.slug: a stale hand-edited slug would
+  // match the previous issue and the dedupe filter below would strip it out of
+  // the archive, leaving the page claiming this month is the first issue.
+  const currentSlug = latest.send_time.slice(0, 7);
 
   const current: Issue = {
     ...seed,
     slug: currentSlug,
     issueLabel: monthLabel(latest.send_time),
-    title: latest.settings?.title || latest.settings?.subject_line || seed.title,
+    // subject_line is the public-facing line; settings.title is Mailchimp's
+    // internal campaign name ("Edison NL Aug 2026 - v3 FINAL") — never the H1.
+    title: latest.settings?.subject_line || seed.title,
     // Editorial dek wins (it's richer); fall back to the campaign preview text.
     dek: seed.dek || latest.settings?.preview_text || '',
     archiveUrl: latest.long_archive_url || seed.archiveUrl || '',
@@ -138,7 +143,7 @@ export async function getNewsletterData(): Promise<NewsletterData> {
     .map((c) => ({
       slug: c.send_time.slice(0, 7),
       issueLabel: monthLabel(c.send_time),
-      title: c.settings?.title || c.settings?.subject_line || 'Newsletter',
+      title: c.settings?.subject_line || 'Newsletter',
       blurb: c.settings?.preview_text || '',
       url: c.long_archive_url || '',
     }))

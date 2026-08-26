@@ -8,7 +8,7 @@
 //
 // Prerendered so the Mailchimp fetch runs at BUILD time, not per view. A
 // campaign-sent webhook rebuilds the page (src/pages/api/newsletter-webhook.ts).
-// Monthly content edits: src/content/newsletter/current.json.
+// Monthly content edits: src/data/newsletter/current.json.
 export const prerender = true;
 
 import SiteLayout from '../layouts/SiteLayout.astro';
@@ -38,6 +38,7 @@ const pageSchema =
   title={`${current.title} | Edison Board Newsletter`}
   description={current.dek}
   ogImage={current.heroImg}
+  ogImageAlt={current.heroAlt}
   {...(pageSchema ? { pageSchema } : {})}
 >
   {/* ── Section 1 — Current issue ─────────────────────────────── */}
