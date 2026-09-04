@@ -1,4 +1,5 @@
 import React, { useState as useEdState } from 'react';
+import { NewsletterSignup } from '../components/NewsletterSignup';
 import { Breadcrumb, FinalCTA, InteriorButton, MidCTA, SectionHeading } from '../components/interior-components';
 
 /* ============================================================
@@ -181,12 +182,14 @@ function EducationHubA({ content }) {
         </div>
       </section>
 
-      <FinalCTA
+      {/* Live signup (posts to /api/subscribe). Replaces a CTA that pointed at
+          a #subscribe anchor with nothing behind it. */}
+      <NewsletterSignup
+        id="subscribe"
+        background="#fff"
         eyebrow="Stay informed"
         title="Get Edison Education updates straight to your inbox"
         body="One monthly email with new articles, Florida compliance updates, and board education. No sales pitches."
-        primary={{ label: "Subscribe", href: "#subscribe" }}
-        secondary={{ label: "Browse the blog", href: "/blog" }}
       />
     </main>
   );
@@ -331,27 +334,12 @@ function EducationHubB({ content }) {
               </ul>
             </div>
 
-            <div style={{
-              background: "var(--edison-teal-pale)",
-              borderRadius: 12, padding: 24
-            }}>
-              <div style={{
-                fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11.5,
-                letterSpacing: "0.14em", textTransform: "uppercase",
-                color: "var(--edison-teal-dark)", marginBottom: 12
-              }}>Monthly newsletter</div>
-              <p style={{
-                fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.55,
-                color: "var(--edison-text-body)", margin: "0 0 16px"
-              }}>One email a month. New articles, FL compliance updates, board education. No sales pitches.</p>
-              <input type="email" placeholder="board@yourcommunity.org" style={{
-                width: "100%", border: "1px solid var(--border-strong)", outline: 0,
-                padding: "11px 14px", borderRadius: 8,
-                fontFamily: "var(--font-body)", fontSize: 14,
-                marginBottom: 10
-              }}/>
-              <InteriorButton variant="primary" size="sm" type="submit">Subscribe →</InteriorButton>
-            </div>
+            <NewsletterSignup
+              id="subscribe"
+              variant="card"
+              eyebrow="Monthly newsletter"
+              body="One email a month. New articles, FL compliance updates, board education. No sales pitches."
+            />
           </aside>
         </div>
       </section>

@@ -274,7 +274,9 @@ const ABOUT_CONTENT = {
     { title: "Meet Our Team", body: "Edison's managers, specialists, and leadership, the people who actually do the work for your board.", href: "/about/meet-our-team" },
     { title: "Testimonials", body: "What current Edison boards say about working with us, quoted, attributed, and verifiable.", href: "/testimonials" },
     { title: "Meet Your Management", body: "The community-wide event Edison runs before every new contract starts. Why it matters and how it works.", href: "/about/meet-your-management" },
-    { title: "Contact", body: "Office address, phone, email, and the people who answer when you call. Same-day for board members, 24-hour for homeowners.", href: "/request-a-proposal" }
+    { title: "Contact", body: "Office address, phone, email, and the people who answer when you call. Same-day for board members, 24-hour for homeowners.", href: "/request-a-proposal" },
+    { title: "Florida HOA Management Company", body: "What Edison delivers as a Florida HOA management company: dedicated managers, limited portfolios, and the back-office departments behind them.", href: "/services/hoa-management" },
+    { title: "Condo Management", body: "Chapter 718 condominium management, including milestone inspection and Structural Integrity Reserve Study coordination.", href: "/services/condo-management" }
   ],
   quote: {
     quote: "We chose Edison because Tracy was the only person we interviewed who didn't talk about ourselves and the community in the same sentence as 'one of many.' Two years in, that's still how it feels.",

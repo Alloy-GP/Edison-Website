@@ -194,6 +194,15 @@ export default function IntakeForm() {
       if (!res.ok || json.success === false) throw new Error(json.error || 'Something went wrong.');
       setSubmission({ id, first: contact.name.trim().split(' ')[0] });
       setStep('done');
+      // GA4 conversion. WhatConverts tracks the form separately; this lets the
+      // lead be tied back to landing page + query in GA4 reports.
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          intent: intent.id,
+          form_id: formId,
+          page_path: window.location.pathname,
+        });
+      }
     } catch (err) {
       setSendError(err.message || `Something went wrong. Please try again or call ${BRAND.phone}.`);
     } finally {

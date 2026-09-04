@@ -3,7 +3,7 @@ import SiteLayout from '../../../../layouts/SiteLayout.astro';
 import { GeoPageB } from '../../../../templates/geo-template.jsx';
 import { GEO_CONTENT } from '../../../../content/geo-content.jsx';
 import { SITE } from '../../../../config/site.ts';
-import { breadcrumbSchema, geoPageSchema } from '../../../../lib/schema.ts';
+import { breadcrumbSchema, faqSchema, geoPageSchema } from '../../../../lib/schema.ts';
 const content = GEO_CONTENT['kissimmee'];
 
 const url = `${SITE.url}/services/hoa-management/kissimmee`;
@@ -18,6 +18,7 @@ const pageSchema = [
     { name: 'HOA Management', url: `${SITE.url}/services/hoa-management` },
     { name: content.city,     url },
   ]),
+  faqSchema(content.faqs),
 ];
 ---
 
