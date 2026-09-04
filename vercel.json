@@ -1,18 +1,34 @@
 {
   "crons": [
-    { "path": "/api/reviews", "schedule": "0 8 * * *" }
+    {
+      "path": "/api/reviews",
+      "schedule": "0 8 * * *"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/Services",
+      "destination": "/services",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/fonts/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     }
   ]

@@ -16,9 +16,9 @@ export const onRequest = defineMiddleware((context, next) => {
   if (/[A-Z]/.test(clean)) clean = clean.toLowerCase();
 
   if (clean !== pathname) {
-    const url = new URL(context.url);
-    url.pathname = clean || '/';
-    return Response.redirect(url.toString(), 301);
+    // Relative Location on purpose: inside the Vercel function context.url's
+    // host is "localhost", so an absolute URL would send visitors there.
+    return context.redirect(`${clean || '/'}${context.url.search}`, 301);
   }
   return next();
 });
