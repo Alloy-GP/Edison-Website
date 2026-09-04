@@ -44,6 +44,7 @@ const DEFAULT_FOOTER_COLUMNS = [
     links: [
       { label: "Edison Education", href: "/edison-education" },
       { label: "Blog", href: "/blog" },
+      { label: "Board Newsletter", href: "/newsletter" },
       { label: "Testimonials", href: "/testimonials" },
       { label: "FAQ", href: "/faq" }
     ]

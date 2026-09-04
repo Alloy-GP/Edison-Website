@@ -106,7 +106,29 @@ const GEO_CONTENT = {
       { title: "PCAM Leadership", body: "Tracy Durham, PCAM, personally onboards every new Edison community." }
     ],
     neighborhoods: ["Horizon West", "Bradford Creek", "Independence", "Stoneybrook West", "Black Lake Park", "Winter Garden Village", "Hamlin", "Hickory Hammock", "Verandahs", "Crown Point"],
-    nearbyCities: ["Orlando", "Clermont", "Ocoee", "Windermere", "Apopka", "Oakland", "Mt. Dora"]
+    nearbyCities: ["Orlando", "Clermont", "Ocoee", "Windermere", "Apopka", "Oakland", "Mt. Dora"],
+    faqs: [
+      {
+        q: "Does Edison manage new-construction HOAs in Winter Garden that are coming out of developer control?",
+        a: "Yes, and it is one of the most common ways Winter Garden boards find Edison. Post-developer transition is where inherited vendor contracts, incomplete records, and an unfunded first reserve study surface at the same time. Edison's Transition Experience runs records recovery, vendor review, and the first reserve study refresh in parallel over 60 to 90 days."
+      },
+      {
+        q: "How much does HOA management cost in Winter Garden?",
+        a: "Most Florida proposals, including Edison's, quote a monthly base fee calculated per door and sized to unit count, service scope, and complexity. The headline rate matters less than what sits outside it. Edison quotes fixed scope for Winter Garden associations with no per-violation enforcement fees, no per-submission ARC fees, and no per-resident technology fees, so the number on the proposal is the number the association pays."
+      },
+      {
+        q: "Which Winter Garden communities does Edison serve?",
+        a: "Edison serves associations across Winter Garden and Horizon West, including communities in and around Hamlin, Independence, Bradford Creek, Stoneybrook West, Black Lake Park, and Hickory Hammock, plus nearby Ocoee, Windermere, and Oakland. If your community isn't listed, ask; coverage grows as boards reach out."
+      },
+      {
+        q: "Is Edison local to Winter Garden?",
+        a: "Edison is headquartered in Orlando, a short drive east of downtown Winter Garden, and West Orange County is one of its core service areas. Managers visit each community monthly for a documented inspection in addition to attending every board meeting, so the board sees the manager on the property, not just on a call."
+      },
+      {
+        q: "How long does switching to Edison take for a Winter Garden HOA?",
+        a: "Sixty to ninety days end to end, supervised by Edison's COO. That window covers records transfer, bank and lockbox migration, vendor contract review, resident portal setup, and homeowner communication, so the board is not project-managing its own transition."
+      }
+    ]
   },
 
   "kissimmee": {
@@ -142,7 +164,29 @@ const GEO_CONTENT = {
       { title: "Manager Continuity", body: "Industry-low manager turnover means boards stop starting over." }
     ],
     neighborhoods: ["Solivita", "Bellalago", "Poinciana", "Celebration", "ChampionsGate", "Reunion", "Buenaventura Lakes", "Kissimmee Bay", "Indian Wells", "Liberty Village"],
-    nearbyCities: ["Orlando", "St. Cloud", "Davenport", "Lake Buena Vista", "Celebration", "Poinciana"]
+    nearbyCities: ["Orlando", "St. Cloud", "Davenport", "Lake Buena Vista", "Celebration", "Poinciana"],
+    faqs: [
+      {
+        q: "Does Edison manage 55+ and active-adult communities in Kissimmee?",
+        a: "Yes. Active-adult HOAs run on a different cadence: aging-in-place capital planning, heavier amenity use, and resident communication that favors a phone call and a printed notice alongside the portal. Edison assigns managers whose portfolios are calibrated to that profile rather than treating every Kissimmee community the same way."
+      },
+      {
+        q: "How does Edison handle short-term rentals in Kissimmee communities?",
+        a: "Enforcement follows the governing documents, not the manager's opinion. Edison's dedicated enforcement department applies rental restrictions consistently, inspects by address rather than by name so owner-occupied and rental units are held to the same standard, and works correction-first so issues near the attractions corridor are resolved without a fine-first culture."
+      },
+      {
+        q: "How much does HOA management cost in Kissimmee?",
+        a: "Most Florida proposals, including Edison's, quote a monthly base fee calculated per door and sized to unit count, service scope, and complexity. The headline rate matters less than what sits outside it. Edison quotes fixed scope for Kissimmee associations with no per-violation enforcement fees, no per-submission ARC fees, and no per-resident technology fees, so the number on the proposal is the number the association pays."
+      },
+      {
+        q: "Which Kissimmee and Osceola County communities does Edison serve?",
+        a: "Edison serves associations across Kissimmee and Osceola County, including communities in and around Solivita, Bellalago, Poinciana, Celebration, ChampionsGate, Reunion, and Buenaventura Lakes, plus St. Cloud and Davenport. If your community isn't listed, ask; coverage grows as boards reach out."
+      },
+      {
+        q: "How long does it take to switch to Edison from another Kissimmee management company?",
+        a: "Sixty to ninety days end to end, supervised by Edison's COO. That window covers records transfer, bank and lockbox migration, vendor contract review, resident portal setup, and homeowner communication, so the board is not project-managing its own transition."
+      }
+    ]
   },
 
   "clermont": {
@@ -157,7 +201,8 @@ const GEO_CONTENT = {
       title: "Why Clermont's terrain shapes its HOA operations",
       paragraphs: [
         "Clermont is unusual for Central Florida: actual hills. The terrain shapes everything HOA operations touch. Stormwater requires more vendor coordination than flat-county HOAs. Landscape contracts run higher because terrain slows mowing and edging. Pool decks, retaining walls, and pathway maintenance have different reserve study profiles. Most generic HOA managers don't adjust for any of this, Edison does.",
-        "On top of the terrain difference, Clermont's HOA population skews younger and more transplant-heavy than the rest of Lake County. ARC submission volume is consistently higher than the county average. Edison's enforcement department handles the volume with a documented workflow rather than ad hoc manager decisions."
+        "On top of the terrain difference, Clermont's HOA population skews younger and more transplant-heavy than the rest of Lake County. ARC submission volume is consistently higher than the county average. Edison's enforcement department handles the volume with a documented workflow rather than ad hoc manager decisions.",
+        "Edison's Clermont coverage follows the US-27 and State Road 50 corridors and includes the communities listed below, Kings Ridge, Heritage Hills, Lost Lake Reserve, Sawgrass Bay, Greater Hills, Magnolia Park, and Highland Lakes among them, and extends into Minneola, Groveland, and Mascotte as south Lake County keeps building. Every one of them gets the same terrain-aware vendor scoping, the same documented ARC workflow, and a manager whose portfolio is sized so Clermont boards are not competing with a dozen other communities for attention."
       ],
       image: "/assets/img-13.webp"
     },
@@ -178,7 +223,33 @@ const GEO_CONTENT = {
       { title: "Local Vendor Network", body: "Edison's Clermont vendor relationships span the trades that this terrain actually needs." }
     ],
     neighborhoods: ["Lost Lake Reserve", "Heritage Hills", "Sawgrass Bay", "Greater Hills", "Vistas at Sawgrass", "Indian Hills", "Magnolia Park", "Tradd's Landing", "Highland Lakes", "Kings Ridge"],
-    nearbyCities: ["Winter Garden", "Minneola", "Mascotte", "Groveland", "Howey-in-the-Hills", "Mt. Dora", "Apopka"]
+    nearbyCities: ["Winter Garden", "Minneola", "Mascotte", "Groveland", "Howey-in-the-Hills", "Mt. Dora", "Apopka"],
+    faqs: [
+      {
+        q: "How does Clermont's terrain affect HOA management costs?",
+        a: "Hills change the vendor math. Landscape contracts run higher because slopes slow mowing and edging, stormwater and retaining-wall maintenance need more coordination than flat-county communities, and pool decks and pathways carry different reserve profiles. Edison scopes and bids vendor work with those realities built in rather than applying a flat-county template."
+      },
+      {
+        q: "Does Edison manage 55+ communities in Clermont?",
+        a: "Yes. Clermont has several large active-adult communities, and they run on a different cadence than family neighborhoods: aging-in-place capital planning, heavier amenity use, and residents who want a phone call answered as much as a portal update. Edison calibrates the manager's portfolio to that profile."
+      },
+      {
+        q: "How does Edison handle the high ARC volume in Clermont communities?",
+        a: "Through a documented workflow in Edison's enforcement and ARC department. Requests are reviewed against the governing documents on a predictable timeline, decisions are recorded, and homeowners hear back without waiting on a single manager's inbox. Correction-first enforcement keeps the volume from turning into a fine-first culture."
+      },
+      {
+        q: "How much does HOA management cost in Clermont?",
+        a: "Most Florida proposals, including Edison's, quote a monthly base fee calculated per door and sized to unit count, service scope, and complexity. The headline rate matters less than what sits outside it. Edison quotes fixed scope for Clermont associations with no per-violation enforcement fees, no per-submission ARC fees, and no per-resident technology fees, so the number on the proposal is the number the association pays."
+      },
+      {
+        q: "Which Clermont and Lake County communities does Edison serve?",
+        a: "Edison serves associations across Clermont and south Lake County, including communities in and around Kings Ridge, Heritage Hills, Lost Lake Reserve, Sawgrass Bay, Greater Hills, Magnolia Park, and Highland Lakes, plus Minneola, Groveland, and Mascotte. If your community isn't listed, ask; coverage grows as boards reach out."
+      },
+      {
+        q: "How long does switching to Edison take for a Clermont HOA?",
+        a: "Sixty to ninety days end to end, supervised by Edison's COO. That window covers records transfer, bank and lockbox migration, vendor contract review, resident portal setup, and homeowner communication, so the board is not project-managing its own transition."
+      }
+    ]
   },
 
   "lake-mary": {
@@ -214,7 +285,29 @@ const GEO_CONTENT = {
       { title: "Modern Stack, Human Touch", body: "CINC, WATTSON, Plaud, plus a real person who answers the phone." }
     ],
     neighborhoods: ["Heathrow", "Magnolia Plantation", "Greenwood Lakes", "Lake Forest", "Timacuan", "Sweetwater Oaks", "Cardinal Pointe", "Lake Mary Woods", "Sanford Farms", "Markham Woods"],
-    nearbyCities: ["Sanford", "Heathrow", "Longwood", "Altamonte Springs", "Winter Springs", "Casselberry", "Oviedo"]
+    nearbyCities: ["Sanford", "Heathrow", "Longwood", "Altamonte Springs", "Winter Springs", "Casselberry", "Oviedo"],
+    faqs: [
+      {
+        q: "What does Edison do differently for established Lake Mary communities?",
+        a: "Established communities have mature capital plans and boards who have already cycled through management companies. Edison's standard offering is built around what those boards ask for: a CPA-led accounting department, reserve banking on a documented cadence, audit-ready books, and a manager who stays for years rather than months."
+      },
+      {
+        q: "Does Edison coordinate reserve studies for Lake Mary HOAs?",
+        a: "Yes. Edison sources competing bids from reserve specialists, reviews scope before the engagement starts, and integrates the funding plan into the annual budget so the study drives the numbers instead of sitting in a drawer. The Reserve Study Support page covers the full process."
+      },
+      {
+        q: "How much does HOA management cost in Lake Mary?",
+        a: "Most Florida proposals, including Edison's, quote a monthly base fee calculated per door and sized to unit count, service scope, and complexity. The headline rate matters less than what sits outside it. Edison quotes fixed scope for Lake Mary associations with no per-violation enforcement fees, no per-submission ARC fees, and no per-resident technology fees, so the number on the proposal is the number the association pays."
+      },
+      {
+        q: "Which Lake Mary communities does Edison serve?",
+        a: "Edison serves associations across Lake Mary and north Seminole County, including communities in and around Heathrow, Magnolia Plantation, Greenwood Lakes, Timacuan, Lake Forest, and Markham Woods, plus Sanford and Longwood. If your community isn't listed, ask; coverage grows as boards reach out."
+      },
+      {
+        q: "How long does switching to Edison take for a Lake Mary HOA?",
+        a: "Sixty to ninety days end to end, supervised by Edison's COO. That window covers records transfer, bank and lockbox migration, vendor contract review, resident portal setup, and homeowner communication, so the board is not project-managing its own transition."
+      }
+    ]
   },
 
   "altamonte-springs": {
@@ -250,7 +343,29 @@ const GEO_CONTENT = {
       { title: "PCAM Leadership", body: "Tracy Durham personally onboards every Edison community." }
     ],
     neighborhoods: ["Sabal Point", "Spring Oaks", "Westmonte", "Sausalito", "Hidden Lakes", "Sanlando Springs", "Spring Valley", "Bear Lake", "Sweetwater Cove", "Lake Brantley"],
-    nearbyCities: ["Longwood", "Casselberry", "Maitland", "Apopka", "Winter Park", "Lake Mary", "Heathrow"]
+    nearbyCities: ["Longwood", "Casselberry", "Maitland", "Apopka", "Winter Park", "Lake Mary", "Heathrow"],
+    faqs: [
+      {
+        q: "Our Altamonte Springs community is facing roofs, paint, and pool deck replacement at the same time. How does Edison help?",
+        a: "This is the most common Altamonte Springs situation Edison sees: communities built in the 1980s and 1990s hitting first or second replacement cycles together. Edison's accounting team sequences capital projects against reserve cash flow, sources three competing bids on each project, and gives the board a homeowner communication plan that explains the funding path before a special assessment is ever on the table."
+      },
+      {
+        q: "Can Edison help an Altamonte Springs HOA avoid a special assessment?",
+        a: "Not every one, and any company that promises otherwise is guessing. What Edison does is get a current reserve study, build the funding plan into the budget, phase projects across years where the engineering allows it, and use in-house collections to protect cash flow. Boards that start that work early usually have options; boards that start after the roof fails usually don't."
+      },
+      {
+        q: "How much does HOA management cost in Altamonte Springs?",
+        a: "Most Florida proposals, including Edison's, quote a monthly base fee calculated per door and sized to unit count, service scope, and complexity. The headline rate matters less than what sits outside it. Edison quotes fixed scope for Altamonte Springs associations with no per-violation enforcement fees, no per-submission ARC fees, and no per-resident technology fees, so the number on the proposal is the number the association pays."
+      },
+      {
+        q: "Which Altamonte Springs communities does Edison serve?",
+        a: "Edison serves associations across Altamonte Springs and central Seminole County, including communities in and around Sabal Point, Spring Oaks, Westmonte, Sausalito, Hidden Lakes, Bear Lake, and Lake Brantley, plus Longwood, Casselberry, and Maitland. If your community isn't listed, ask; coverage grows as boards reach out."
+      },
+      {
+        q: "How long does switching to Edison take for an Altamonte Springs HOA?",
+        a: "Sixty to ninety days end to end, supervised by Edison's COO. That window covers records transfer, bank and lockbox migration, vendor contract review, resident portal setup, and homeowner communication, so the board is not project-managing its own transition."
+      }
+    ]
   },
 
   "oviedo": {
@@ -286,7 +401,29 @@ const GEO_CONTENT = {
       { title: "Local Vendor Network", body: "Edison's Seminole County vendor relationships span the trades Oviedo communities need." }
     ],
     neighborhoods: ["Twin Rivers", "Live Oak Reserve", "Alafaya Woods", "Black Hammock", "Carillon", "Kingsbridge", "River Oaks", "Sanctuary", "Whispering Winds", "Kingfisher Run"],
-    nearbyCities: ["Winter Springs", "Casselberry", "Geneva", "Chuluota", "Lake Mary", "Sanford", "Orlando"]
+    nearbyCities: ["Winter Springs", "Casselberry", "Geneva", "Chuluota", "Lake Mary", "Sanford", "Orlando"],
+    faqs: [
+      {
+        q: "What response times can an Oviedo board expect from Edison?",
+        a: "Same-day response for board members and 24-hour response for homeowners, and that standard is written into how Edison sizes manager portfolios. Monthly property inspections are documented with photos and reported back to the board, and the Action Item List shows the status of every open item in real time."
+      },
+      {
+        q: "Does Edison handle ARC requests for Oviedo communities?",
+        a: "Yes. Architectural review runs through Edison's dedicated enforcement and ARC department using a documented workflow, so a fence, paint, or roof request is reviewed against the governing documents on a predictable timeline rather than waiting on a manager's inbox."
+      },
+      {
+        q: "How much does HOA management cost in Oviedo?",
+        a: "Most Florida proposals, including Edison's, quote a monthly base fee calculated per door and sized to unit count, service scope, and complexity. The headline rate matters less than what sits outside it. Edison quotes fixed scope for Oviedo associations with no per-violation enforcement fees, no per-submission ARC fees, and no per-resident technology fees, so the number on the proposal is the number the association pays."
+      },
+      {
+        q: "Which Oviedo communities does Edison serve?",
+        a: "Edison serves associations across Oviedo and east Seminole County, including communities in and around Twin Rivers, Live Oak Reserve, Alafaya Woods, Carillon, Kingsbridge, River Oaks, and Black Hammock, plus Winter Springs, Casselberry, and Chuluota. If your community isn't listed, ask; coverage grows as boards reach out."
+      },
+      {
+        q: "How long does switching to Edison take for an Oviedo HOA?",
+        a: "Sixty to ninety days end to end, supervised by Edison's COO. That window covers records transfer, bank and lockbox migration, vendor contract review, resident portal setup, and homeowner communication, so the board is not project-managing its own transition."
+      }
+    ]
   },
 
   "brevard-county": {
@@ -322,7 +459,29 @@ const GEO_CONTENT = {
       { title: "PCAM Leadership", body: "Tracy Durham, PCAM, personally onboards every Edison community, coastal or inland." }
     ],
     neighborhoods: ["Cocoa Beach", "Cape Canaveral", "Satellite Beach", "Indian Harbour Beach", "Indialantic", "Melbourne Beach", "Titusville", "Merritt Island", "Suntree", "Viera"],
-    nearbyCities: ["Cocoa", "Rockledge", "Melbourne", "Palm Bay", "Sebastian Inlet", "Vero Beach", "Titusville"]
+    nearbyCities: ["Cocoa", "Rockledge", "Melbourne", "Palm Bay", "Sebastian Inlet", "Vero Beach", "Titusville"],
+    faqs: [
+      {
+        q: "Does Edison manage condominium associations in Brevard County, or only HOAs?",
+        a: "Both, and on the Brevard coast the work is mostly condominium. Buildings three stories or higher fall under Florida Chapter 718's milestone inspection and Structural Integrity Reserve Study requirements, and Edison's condo management practice coordinates the engineers, the deadlines, and the funding plan. Inland Brevard HOAs are managed under the same full-service model as the rest of Central Florida."
+      },
+      {
+        q: "Can Edison help a Brevard County condo that is behind on its SIRS or milestone inspection?",
+        a: "Yes. Edison's intake starts by confirming which statutory deadline applied to your building, then sources bids from Florida-licensed structural engineers, coordinates access and documents, reviews the draft, and integrates the results into the reserve budget. An association that missed a deadline is still subject to the requirement, so the priority is getting compliant quickly and documenting the board's actions."
+      },
+      {
+        q: "How does Edison handle hurricane season for coastal Brevard associations?",
+        a: "Storm preparation, insurance claim coordination, and post-event capital work are built into the operating calendar rather than improvised. Edison tracks master insurance policies and carrier requirements for coastal buildings and lines up vendors before and after an event so the board isn't sourcing contractors in the week after a storm."
+      },
+      {
+        q: "Which Brevard County communities does Edison serve?",
+        a: "Edison serves associations along the Brevard coast and inland, including Cocoa Beach, Cape Canaveral, Satellite Beach, Indian Harbour Beach, Indialantic, Melbourne Beach, Titusville, Merritt Island, Suntree, and Viera, plus Cocoa, Rockledge, Melbourne, and Palm Bay. If your community isn't listed, ask; coverage grows as boards reach out."
+      },
+      {
+        q: "How long does switching to Edison take for a Brevard County association?",
+        a: "Sixty to ninety days end to end, supervised by Edison's COO. That window covers records transfer, bank and lockbox migration, vendor contract review, resident portal setup, and homeowner communication, so the board is not project-managing its own transition. For condominiums, the transition also captures milestone inspection and SIRS records so compliance tracking starts on day one."
+      }
+    ]
   }
 
 };

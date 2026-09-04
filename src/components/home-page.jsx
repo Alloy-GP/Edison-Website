@@ -279,7 +279,7 @@ function ServicesBand({ title, sub, services }) {
 }
 
 /* ---------- Solutions split ---------- */
-function SolutionsSplit({ eyebrow, title, sub, options }) {
+function SolutionsSplit({ eyebrow, title, sub, options, links = [] }) {
   return (
     <section className="hp-solutions" style={{ background: "var(--edison-teal-pale)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -335,6 +335,23 @@ function SolutionsSplit({ eyebrow, title, sub, options }) {
             </a>
           ))}
         </div>
+        {links.length > 0 && (
+          <p className="hp-solutions-links" style={{
+            fontFamily: "var(--font-body)", fontSize: 15, lineHeight: 1.7,
+            color: "var(--edison-text-body)", textAlign: "center",
+            margin: "28px auto 0", maxWidth: 760
+          }}>
+            {links.map((l, i) => (
+              <React.Fragment key={i}>
+                {i === 0 ? null : <span aria-hidden="true" style={{ margin: "0 10px", color: "var(--edison-teal-dark)" }}>·</span>}
+                <a href={l.href} style={{
+                  color: "var(--edison-teal-dark)", fontWeight: 700,
+                  textDecoration: "none", borderBottom: "1px solid currentColor"
+                }}>{l.label}</a>
+              </React.Fragment>
+            ))}
+          </p>
+        )}
       </div>
     </section>
   );
@@ -536,6 +553,11 @@ function HomePage({ latestPosts }) {
             image: "/assets/img-21.webp",
             href: "/services/condo-management"
           }
+        ]}
+        links={[
+          { label: "Structural Integrity Reserve Study (SIRS) coordination", href: "/services/condo-management/structural-integrity-reserve-study" },
+          { label: "Milestone inspections", href: "/services/condo-management/milestone-inspections" },
+          { label: "HOA management in Orlando", href: "/services/hoa-management/orlando" }
         ]}
       />
 
