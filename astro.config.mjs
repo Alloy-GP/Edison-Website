@@ -35,6 +35,10 @@ export default defineConfig({
     '/services/property-types': '/services/hoa-management',
     '/services/property-types/single-family-hoa-management': '/services/hoa-management/single-family',
     '/services/property-types/condominum-management': '/services/condo-management',
+    // Legacy mixed-case URL that still ranks (Ahrefs: "hoa financial management florida").
+    // src/middleware.ts lowercases every path generically; this explicit rule is handled
+    // at Vercel's routing layer so the known URL never depends on a function invocation.
+    '/Services': '/services',
     '/locations': '/services/hoa-management',
     '/locations/florida': '/services/hoa-management',
     '/locations/florida/orlando': '/services/hoa-management/orlando',

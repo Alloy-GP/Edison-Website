@@ -1,0 +1,67 @@
+---
+// Custom 404. Two jobs:
+//  1. A branded not-found page instead of Vercel's bare "NOT_FOUND" text.
+//  2. Routing: @astrojs/vercel only emits a catch-all route to the server
+//     function when a /404 route exists. Without it, unmatched paths never
+//     reach src/middleware.ts, so the lowercase/trailing-slash redirects
+//     there never ran in production (e.g. legacy /Services 404'd).
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+Astro.response.status = 404;
+
+const links = [
+  { label: 'HOA Management',        href: '/services/hoa-management',   desc: 'Single-family and townhome associations' },
+  { label: 'Condo Management',      href: '/services/condo-management', desc: 'Chapter 718, milestone inspections, SIRS' },
+  { label: 'Edison Education',      href: '/edison-education',          desc: 'Free guides for Florida boards' },
+  { label: 'Request a Proposal',    href: '/request-a-proposal',        desc: 'One-business-day reply' },
+];
+---
+
+<SiteLayout
+  title="Page Not Found | Edison Association Management"
+  description="That page has moved or never existed. Find Edison's HOA and condo management services, board education, and contact details from here."
+  robots="noindex, follow"
+>
+  <section class="nf-section">
+    <div class="nf-inner">
+      <p class="nf-eyebrow">404 · Page not found</p>
+      <h1 class="nf-h1">We couldn't find that page.</h1>
+      <p class="nf-lede">
+        The address may have changed when we rebuilt the site, or the link you followed was out of date.
+        Here's where most people were headed:
+      </p>
+      <ul class="nf-links">
+        {links.map((l) => (
+          <li>
+            <a href={l.href}>
+              <span class="nf-link-label">{l.label} →</span>
+              <span class="nf-link-desc">{l.desc}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="nf-foot">
+        Or <a href="/">go to the homepage</a>, or call <a href="tel:4073175252">(407) 317-5252</a>, Monday to Friday, 9am to 5pm.
+      </p>
+    </div>
+  </section>
+</SiteLayout>
+
+<style>
+  .nf-section { background: linear-gradient(180deg, #fff 0%, var(--edison-teal-pale) 100%); padding: clamp(64px, 9vw, 112px) 48px clamp(72px, 9vw, 120px); }
+  .nf-inner { max-width: 820px; margin: 0 auto; }
+  .nf-eyebrow { font-family: var(--font-display); font-weight: 700; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--edison-teal-dark); margin: 0 0 18px; }
+  .nf-h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(32px, 4.2vw, 52px); line-height: 1.08; letter-spacing: -0.02em; color: var(--edison-navy); margin: 0 0 20px; }
+  .nf-lede { font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: var(--edison-text-body); margin: 0 0 32px; max-width: 640px; }
+  .nf-links { list-style: none; padding: 0; margin: 0 0 32px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .nf-links a { display: flex; flex-direction: column; gap: 4px; padding: 18px 20px; border-radius: 12px; background: #fff; border: 1px solid var(--border-hairline); text-decoration: none; transition: transform 200ms, box-shadow 200ms, border-color 200ms; }
+  .nf-links a:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(15,29,51,.10); border-color: var(--edison-teal); }
+  .nf-link-label { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--edison-navy); }
+  .nf-link-desc { font-family: var(--font-body); font-size: 13.5px; color: var(--edison-text-body); }
+  .nf-foot { font-family: var(--font-body); font-size: 15px; line-height: 1.6; color: var(--edison-text-body); margin: 0; }
+  .nf-foot a { color: var(--edison-teal-dark); font-weight: 700; }
+  @media (max-width: 640px) {
+    .nf-section { padding-left: 20px; padding-right: 20px; }
+    .nf-links { grid-template-columns: 1fr; }
+  }
+</style>
