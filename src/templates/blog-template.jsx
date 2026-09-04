@@ -1,6 +1,7 @@
 import React, { useState as useBlogState, useEffect as useBlogEffect } from 'react';
 import { Breadcrumb, FinalCTA, InteriorButton, MidCTA, SectionHeading } from '../components/interior-components';
 import { AuthorBylineBlock } from '../components/template-sections';
+import { NewsletterSignup } from '../components/NewsletterSignup';
 
 /* ---------- Reading-progress bar (shared) ---------- */
 function ReadingProgress() {
@@ -389,6 +390,10 @@ function BlogSpokeA({ content }) {
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
         secondary={{ label: "Contact Edison", href: "/request-a-proposal" }}
       />
+
+      {/* Lower-commitment ask for readers who aren't shopping for management.
+          Posts to /api/subscribe (Mailchimp). */}
+      <NewsletterSignup background="#fff" />
 
       {/* Related articles */}
       <section className="blog-a-related" style={{ background: "#fff", padding: "88px 48px" }}>

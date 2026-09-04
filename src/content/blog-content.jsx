@@ -5,6 +5,21 @@
    list items where statute is involved.
    ============================================================ */
 
+/* Named byline reused by posts Tracy signs. Mirrors the block on the budget
+   post so the author schema stays identical across articles. */
+const TRACY_BYLINE = {
+  author: "Tracy Durham, PCAM",
+  authorRole: "President & CEO · Edison Association Management",
+  authorCredentials: ["PCAM", "2025 CAI Central Florida Chapter President"],
+  authorBio: "Tracy founded Edison and leads it as President & CEO, bringing more than 20 years in community association management. She holds the PCAM designation, one of the industry's highest, and serves as the 2025 Central Florida CAI Chapter President. She personally onboards every new association.",
+  authorSchema: {
+    name: "Tracy Durham",
+    jobTitle: "President & CEO",
+    url: "https://edisonassociationmanagement.com/about/meet-our-team",
+    credentials: ["PCAM (Professional Community Association Manager)", "2025 CAI Central Florida Chapter President"]
+  }
+};
+
 const BLOG_CONTENT = {
 
   "hoa-audit": {
@@ -175,7 +190,7 @@ const BLOG_CONTENT = {
         body: ["Both statutes now require new board members to complete certification within 90 days of election, either by signing an affidavit confirming they've read the governing documents and statutes, or by completing a state-approved course. The course route is generally safer. Failure to certify creates personal liability exposure and can be raised by homeowners challenging board actions."]
       },
       { id: "staying-current", heading: "How boards stay current",
-        body: ["Florida legislative sessions reshape community association statute every year. Boards that rely on memory of how things were two years ago tend to fall behind. Edison's <a href=\"/services/hoa-management\">HOA management</a> and <a href=\"/services/condo-management\">condo management</a> teams track legislative changes the day they pass, surface what's relevant per community type, and update board operations accordingly. Boards aren't expected to be lawyers, but they are expected to govern under current law."]
+        body: ["Florida legislative sessions reshape community association statute every year. Boards that rely on memory of how things were two years ago tend to fall behind. Edison, a <a href=\"/services/hoa-management\">Florida HOA management company</a> with a dedicated <a href=\"/services/condo-management\">condo management</a> practice, tracks legislative changes the day they pass, surfaces what's relevant per community type, and updates board operations accordingly. Boards aren't expected to be lawyers, but they are expected to govern under current law."]
       }
     ],
     related: [
@@ -314,8 +329,10 @@ const BLOG_CONTENT = {
     titleTag: "HOA Bylaws vs CC&Rs: Understanding the Key Differences | Edison",
     dek: "Board members often reach for the wrong document when a decision needs to be made quickly. Understanding the difference between HOA bylaws and CC&Rs — and knowing which one governs your situation — is how volunteer leaders make confident, defensible decisions.",
     metaDescription: "HOA bylaws vs CC&Rs in Florida: what each document governs, how they differ, and which one controls when your board needs to make a confident call.",
-    author: "Edison Association Management",
+    ...TRACY_BYLINE,
     date: "February 4, 2026",
+    datePublished: "2026-02-04",
+    dateModified: "2026-09-04",
     readTime: "8 min",
     heroImage: "/assets/blog/bylaws-vs-ccrs.webp",
     intro: [
@@ -613,8 +630,10 @@ const BLOG_CONTENT = {
     title: "HOA Reserve Study Florida: What Boards Need to Know",
     titleTag: "Florida HOA Reserve Study Guide: Requirements & Best Practices",
     dek: "What is an HOA reserve study and why does Florida law require one? Learn what boards need to know about reserve studies, costs, and funding requirements.",
-    author: "Edison Association Management",
+    ...TRACY_BYLINE,
     date: "May 20, 2026",
+    datePublished: "2026-05-20",
+    dateModified: "2026-09-04",
     readTime: "10 min",
     heroImage: "/assets/blog/reserve-study-specialist.webp",
     intro: [
@@ -748,7 +767,8 @@ const BLOG_CONTENT = {
       },
       { id: "the-orlando-market", heading: "The Orlando HOA management market",
         body: ["Orlando's HOA market includes large national firms (multi-state operators), regional firms (Florida-only but multi-city), and boutique firms like Edison. National firms scale through process and technology; regional firms scale through relationships and local knowledge; boutiques scale through portfolio discipline and back-office depth. None is automatically better, fit matters.",
-          "Boards comparing <a href=\"/services/hoa-management/orlando\">HOA management companies in Orlando</a> should shortlist across all three categories rather than within one. A 40-community regional firm and a 400-community national operator will quote similar per-door numbers and deliver very different weeks. The variable that predicts your experience isn't company size, it's how many communities the specific manager assigned to you is carrying."]
+          "Boards comparing <a href=\"/services/hoa-management/orlando\">HOA management companies in Orlando</a> should shortlist across all three categories rather than within one. A 40-community regional firm and a 400-community national operator will quote similar per-door numbers and deliver very different weeks. The variable that predicts your experience isn't company size, it's how many communities the specific manager assigned to you is carrying.",
+          "Edison is a <a href=\"/services/hoa-management\">Florida HOA management company</a> headquartered in Orlando, so this guide is written from inside the market rather than from a directory listing."]
       },
       { id: "questions-to-ask", heading: "Questions to ask in any interview",
         list: [

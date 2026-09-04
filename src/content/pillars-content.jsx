@@ -15,7 +15,7 @@ const PILLAR_CONTENT = {
     phone: "(407) 317-5252",
     hero: {
       title: "HOA management built around the board, not the company growth chart.",
-      lede: "Full-service management for single-family and townhome HOAs across Central Florida. Dedicated managers carrying limited portfolios, well below the industry average. Back-office departments handling what isn't community-facing. Boards stop starting over.",
+      lede: "Edison is a Florida HOA management company built for single-family and townhome boards across Central Florida. Dedicated managers carrying limited portfolios, well below the industry average. Back-office departments handling what isn't community-facing. Boards stop starting over.",
       image: "/assets/img-community-aerial.webp"
     },
     stats: [
