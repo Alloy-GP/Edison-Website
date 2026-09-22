@@ -491,7 +491,7 @@ function HomePage({ latestPosts }) {
       <HomeHero
         eyebrow="Orlando, Florida · Since 2021"
         title="Central Florida HOA & Condominium Management"
-        lede="Edison Association Management is a boutique, Orlando-based firm serving community associations throughout Central Florida — supporting boards, protecting property values, and simplifying day-to-day operations."
+        lede="Edison Association Management is a boutique, Orlando-based community association management firm serving HOA and condominium boards throughout Central Florida — protecting property values, simplifying day-to-day operations, and keeping boards informed."
         primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
         audienceCards={[
           {

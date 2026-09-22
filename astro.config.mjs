@@ -41,6 +41,11 @@ export default defineConfig({
     '/locations': '/services/hoa-management',
     '/locations/florida': '/services/hoa-management',
     '/locations/florida/orlando': '/services/hoa-management/orlando',
+    // Legacy WordPress URLs that still carry backlinks (Ahrefs, 2026-09-22 sweep).
+    '/contact': '/request-a-proposal',
+    '/meet-our-president': '/about/meet-our-team',
+    '/members/edison': '/about',
+    '/feed': '/blog',
     '/blog/hoa-bylwas-vs-ccrs': '/blog/hoa-bylaws-vs-ccrs',
     '/blog/hoa-reserve-study-guide-florida': '/blog/hoa-reserve-study-guide',
     '/blog/tag/[...slug]': '/blog',
