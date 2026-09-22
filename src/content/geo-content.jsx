@@ -112,6 +112,11 @@ const GEO_CONTENT = {
     ],
     neighborhoods: ["Horizon West", "Bradford Creek", "Independence", "Stoneybrook West", "Black Lake Park", "Winter Garden Village", "Hamlin", "Hickory Hammock", "Verandahs", "Crown Point"],
     nearbyCities: ["Orlando", "Clermont", "Ocoee", "Windermere", "Apopka", "Oakland", "Mt. Dora"],
+    guides: [
+      { title: "Switching Management Companies", body: "The 60–90 day Edison Transition Experience: records, banking, vendors, and homeowner communication, supervised by the COO.", href: "/solutions/switch-hoa-management-company" },
+      { title: "How to Prepare an HOA Budget", body: "The backwards-planning method, funding reserves from the study, and the Florida notice and adoption requirements.", href: "/blog/hoa-budget-preparation" },
+      { title: "HOA Management Fees: What Boards Actually Pay", body: "Per-door pricing, what's included versus upcharged, and how renewal clauses reset the economics in year two.", href: "/blog/hoa-management-fees" }
+    ],
     faqs: [
       {
         q: "Does Edison manage new-construction HOAs in Winter Garden that are coming out of developer control?",
@@ -170,6 +175,11 @@ const GEO_CONTENT = {
     ],
     neighborhoods: ["Solivita", "Bellalago", "Poinciana", "Celebration", "ChampionsGate", "Reunion", "Buenaventura Lakes", "Kissimmee Bay", "Indian Wells", "Liberty Village"],
     nearbyCities: ["Orlando", "St. Cloud", "Davenport", "Lake Buena Vista", "Celebration", "Poinciana"],
+    guides: [
+      { title: "HOA Management Fees: What Boards Actually Pay", body: "Per-door pricing, what's included versus upcharged, and how renewal clauses reset the economics in year two.", href: "/blog/hoa-management-fees" },
+      { title: "Unenforceable HOA Rules in Florida", body: "Which restrictions hold up, which don't, and how rental and short-term-rental rules are treated under Chapter 720.", href: "/blog/unenforceable-hoa-rules-florida" },
+      { title: "Switching Management Companies", body: "The 60–90 day Edison Transition Experience: records, banking, vendors, and homeowner communication, supervised by the COO.", href: "/solutions/switch-hoa-management-company" }
+    ],
     faqs: [
       {
         q: "Does Edison manage 55+ and active-adult communities in Kissimmee?",
@@ -229,6 +239,11 @@ const GEO_CONTENT = {
     ],
     neighborhoods: ["Lost Lake Reserve", "Heritage Hills", "Sawgrass Bay", "Greater Hills", "Vistas at Sawgrass", "Indian Hills", "Magnolia Park", "Tradd's Landing", "Highland Lakes", "Kings Ridge"],
     nearbyCities: ["Winter Garden", "Minneola", "Mascotte", "Groveland", "Howey-in-the-Hills", "Mt. Dora", "Apopka"],
+    guides: [
+      { title: "HOA Management Fees: What Boards Actually Pay", body: "Per-door pricing, what's included versus upcharged, and how renewal clauses reset the economics in year two.", href: "/blog/hoa-management-fees" },
+      { title: "HOA Reserve Study: What Florida Boards Need to Know", body: "What a reserve study is, what it costs, how often to update it, and what Chapter 720 and Chapter 718 actually require.", href: "/blog/hoa-reserve-study-guide" },
+      { title: "Switching Management Companies", body: "The 60–90 day Edison Transition Experience: records, banking, vendors, and homeowner communication, supervised by the COO.", href: "/solutions/switch-hoa-management-company" }
+    ],
     faqs: [
       {
         q: "How does Clermont's terrain affect HOA management costs?",
@@ -291,6 +306,11 @@ const GEO_CONTENT = {
     ],
     neighborhoods: ["Heathrow", "Magnolia Plantation", "Greenwood Lakes", "Lake Forest", "Timacuan", "Sweetwater Oaks", "Cardinal Pointe", "Lake Mary Woods", "Sanford Farms", "Markham Woods"],
     nearbyCities: ["Sanford", "Heathrow", "Longwood", "Altamonte Springs", "Winter Springs", "Casselberry", "Oviedo"],
+    guides: [
+      { title: "HOA Reserve Study: What Florida Boards Need to Know", body: "What a reserve study is, what it costs, how often to update it, and what Chapter 720 and Chapter 718 actually require.", href: "/blog/hoa-reserve-study-guide" },
+      { title: "HOA Audit: Requirements and Checklist", body: "Florida's revenue thresholds, what auditors ask for, and how year-round bookkeeping makes the audit uneventful.", href: "/blog/hoa-audit" },
+      { title: "HOA Management Fees: What Boards Actually Pay", body: "Per-door pricing, what's included versus upcharged, and how renewal clauses reset the economics in year two.", href: "/blog/hoa-management-fees" }
+    ],
     faqs: [
       {
         q: "What does Edison do differently for established Lake Mary communities?",
@@ -349,6 +369,11 @@ const GEO_CONTENT = {
     ],
     neighborhoods: ["Sabal Point", "Spring Oaks", "Westmonte", "Sausalito", "Hidden Lakes", "Sanlando Springs", "Spring Valley", "Bear Lake", "Sweetwater Cove", "Lake Brantley"],
     nearbyCities: ["Longwood", "Casselberry", "Maitland", "Apopka", "Winter Park", "Lake Mary", "Heathrow"],
+    guides: [
+      { title: "HOA Reserve Study: What Florida Boards Need to Know", body: "What a reserve study is, what it costs, how often to update it, and what Chapter 720 and Chapter 718 actually require.", href: "/blog/hoa-reserve-study-guide" },
+      { title: "HOA Special Assessments: A Board's Guide", body: "When a special assessment is unavoidable, how to phase capital work, and how to communicate it without losing the room.", href: "/blog/hoa-special-assessment" },
+      { title: "How to Prepare an HOA Budget", body: "The backwards-planning method, funding reserves from the study, and the Florida notice and adoption requirements.", href: "/blog/hoa-budget-preparation" }
+    ],
     faqs: [
       {
         q: "Our Altamonte Springs community is facing roofs, paint, and pool deck replacement at the same time. How does Edison help?",
@@ -407,6 +432,11 @@ const GEO_CONTENT = {
     ],
     neighborhoods: ["Twin Rivers", "Live Oak Reserve", "Alafaya Woods", "Black Hammock", "Carillon", "Kingsbridge", "River Oaks", "Sanctuary", "Whispering Winds", "Kingfisher Run"],
     nearbyCities: ["Winter Springs", "Casselberry", "Geneva", "Chuluota", "Lake Mary", "Sanford", "Orlando"],
+    guides: [
+      { title: "HOA Management Fees: What Boards Actually Pay", body: "Per-door pricing, what's included versus upcharged, and how renewal clauses reset the economics in year two.", href: "/blog/hoa-management-fees" },
+      { title: "HOA Board Member Responsibilities", body: "Fiduciary duties, certification, meetings, and what a board can reasonably expect its management company to carry.", href: "/blog/hoa-board-member-responsibilities" },
+      { title: "Switching Management Companies", body: "The 60–90 day Edison Transition Experience: records, banking, vendors, and homeowner communication, supervised by the COO.", href: "/solutions/switch-hoa-management-company" }
+    ],
     faqs: [
       {
         q: "What response times can an Oviedo board expect from Edison?",
@@ -465,6 +495,11 @@ const GEO_CONTENT = {
     ],
     neighborhoods: ["Cocoa Beach", "Cape Canaveral", "Satellite Beach", "Indian Harbour Beach", "Indialantic", "Melbourne Beach", "Titusville", "Merritt Island", "Suntree", "Viera"],
     nearbyCities: ["Cocoa", "Rockledge", "Melbourne", "Palm Bay", "Sebastian Inlet", "Vero Beach", "Titusville"],
+    guides: [
+      { title: "Florida Milestone Inspection Guide", body: "Who must inspect, when, what Phase 1 and Phase 2 involve, and how the inspection sequences with the SIRS.", href: "/blog/florida-milestone-inspection-guide" },
+      { title: "Condo Association vs HOA: Which Are You?", body: "Chapter 718 versus Chapter 720, and why the answer changes the reserve, inspection, and insurance workload.", href: "/blog/condo-association-vs-hoa" },
+      { title: "HOA Reserve Study: What Florida Boards Need to Know", body: "What a reserve study is, what it costs, how often to update it, and what Chapter 720 and Chapter 718 actually require.", href: "/blog/hoa-reserve-study-guide" }
+    ],
     faqs: [
       {
         q: "Does Edison manage condominium associations in Brevard County, or only HOAs?",
