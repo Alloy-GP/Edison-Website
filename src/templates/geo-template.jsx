@@ -145,6 +145,19 @@ function GeoPageB({ content }) {
         mapImg="/assets/img-neighborhood-aerial.webp"
       />
 
+      {/* Decision-stage guides — optional per city. Gives the comparison
+          content a link surface on the page that ranks for "<city> hoa
+          management companies". */}
+      {content.guides?.length > 0 && (
+        <DetailLinkCards
+          eyebrow="Before you decide"
+          title={`Comparing HOA management companies in ${content.city}?`}
+          sub="Read these first. They're written for boards at the shortlist stage, not for search engines."
+          columns={3}
+          items={content.guides}
+        />
+      )}
+
       {/* Local FAQ — only cities that ship one get the section. Answers are
           mirrored into FAQPage JSON-LD by the route. */}
       {content.faqs?.length > 0 && (

@@ -85,7 +85,9 @@ function PillarPageA({ content }) {
                   fontFamily: "var(--font-display)", fontWeight: 700,
                   fontSize: 18, lineHeight: 1.3,
                   color: "var(--edison-navy)", margin: 0
-                }}>{it.title}</h3>
+                }}>{it.href ? (
+                  <a href={it.href} style={{ color: "inherit", textDecoration: "none", borderBottom: "2px solid var(--edison-teal)" }}>{it.title}</a>
+                ) : it.title}</h3>
                 <p style={{
                   fontFamily: "var(--font-body)", fontSize: 14.5, lineHeight: 1.6,
                   color: "var(--edison-text-body)", margin: 0

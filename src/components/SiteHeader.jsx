@@ -60,9 +60,10 @@ const DEFAULT_NAV = [
     mega: true,
     columns: [
       {
-        title: "Board governance",
+        title: "For boards",
         items: [
-          { label: "HOA Bylaws vs CC&Rs", href: "/blog/hoa-bylaws-vs-ccrs", desc: "Governing document hierarchy" }
+          { label: "HOA Bylaws vs CC&Rs", href: "/blog/hoa-bylaws-vs-ccrs", desc: "Governing document hierarchy" },
+          { label: "Best HOA Management Companies in Orlando", href: "/blog/best-hoa-management-companies-orlando", desc: "How boards compare firms" }
         ]
       },
       {

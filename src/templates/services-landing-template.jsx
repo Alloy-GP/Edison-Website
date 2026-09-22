@@ -66,6 +66,30 @@ function ServicesLandingPage({ content = SERVICES_LANDING_CONTENT }) {
           }}>
             {content.pillars.items.map((p, i) => <PillarCard key={i} pillar={p}/>)}
           </div>
+          {/* Sub-service links. The pillar cards are single anchors, so the
+              specialised pages get their own links here — this is also what
+              keeps the SIRS and reserve-study rankings on their dedicated
+              pages instead of this landing page. */}
+          <p style={{
+            fontFamily: "var(--font-body)", fontSize: 15, lineHeight: 1.7,
+            color: "var(--edison-text-body)", textAlign: "center",
+            margin: "28px auto 0", maxWidth: 820
+          }}>
+            {[
+              { label: "Structural Integrity Reserve Study (SIRS) in Florida", href: "/services/condo-management/structural-integrity-reserve-study" },
+              { label: "Milestone inspections", href: "/services/condo-management/milestone-inspections" },
+              { label: "HOA reserve study support", href: "/services/hoa-accounting/reserve-study-support" },
+              { label: "HOA budget preparation", href: "/services/hoa-accounting/budget-preparation" }
+            ].map((l, i) => (
+              <React.Fragment key={i}>
+                {i === 0 ? null : <span aria-hidden="true" style={{ margin: "0 10px", color: "var(--edison-teal-dark)" }}>·</span>}
+                <a href={l.href} style={{
+                  color: "var(--edison-teal-dark)", fontWeight: 700,
+                  textDecoration: "none", borderBottom: "1px solid currentColor"
+                }}>{l.label}</a>
+              </React.Fragment>
+            ))}
+          </p>
         </div>
       </section>
 

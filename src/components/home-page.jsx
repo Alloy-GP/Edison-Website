@@ -557,7 +557,8 @@ function HomePage({ latestPosts }) {
         links={[
           { label: "Structural Integrity Reserve Study (SIRS) coordination", href: "/services/condo-management/structural-integrity-reserve-study" },
           { label: "Milestone inspections", href: "/services/condo-management/milestone-inspections" },
-          { label: "HOA management in Orlando", href: "/services/hoa-management/orlando" }
+          { label: "HOA management in Orlando", href: "/services/hoa-management/orlando" },
+          { label: "Comparing Orlando HOA management companies?", href: "/blog/best-hoa-management-companies-orlando" }
         ]}
       />
 
