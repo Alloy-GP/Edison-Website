@@ -178,7 +178,7 @@ const BLOG_CONTENT = {
       },
       { id: "key-differences", heading: "Where HOAs and condos diverge",
         list: [
-          "Reserve studies, Ch. 718 mandates SIRS for 3+ story buildings; Ch. 720 does not",
+          "<a href=\"/blog/hoa-reserve-study-guide\">Reserve studies</a>, Ch. 718 mandates SIRS for 3+ story buildings; Ch. 720 does not",
           "Milestone inspections, Ch. 718 requires them; Ch. 720 does not",
           "Governing documents, HOAs are declared under CC&Rs; condos under a Declaration of Condominium",
           "Common elements, Different conventions on what's association vs unit responsibility",
@@ -526,7 +526,7 @@ const BLOG_CONTENT = {
         body: ["Condo boards spend more time on building maintenance, insurance, and statutory compliance, the building itself is association property. HOA boards spend more time on amenities, common-area landscaping, and homeowner-property enforcement. Edison runs both as distinct practices because the operating profile genuinely differs."]
       },
       { id: "which-edison-page", heading: "Which Edison page applies to you?",
-        body: ["Single-family and townhome HOAs, see <a href=\"/services/hoa-management\">HOA management</a>, or <a href=\"/services/hoa-management/orlando\">HOA management in Orlando</a> if your community is in the metro. Condominium associations, see <a href=\"/services/condo-management\">condo management</a>, along with <a href=\"/services/condo-management/structural-integrity-reserve-study\">Structural Integrity Reserve Study coordination</a> and <a href=\"/services/condo-management/milestone-inspections\">milestone inspections</a> if your building is three stories or more. <a href=\"/services/hoa-management/brevard-county\">Brevard County</a> coastal communities are predominantly condo, with SB-4D compliance as the defining workload."]
+        body: ["Single-family and townhome HOAs, see <a href=\"/services/hoa-management\">HOA management</a>, or <a href=\"/services/hoa-management/orlando\">HOA management in Orlando</a> if your community is in the metro. Condominium associations, see <a href=\"/services/condo-management\">condo management</a>, along with <a href=\"/services/condo-management/structural-integrity-reserve-study\">Structural Integrity Reserve Study coordination</a> and <a href=\"/services/condo-management/milestone-inspections\">milestone inspections</a> if your building is three stories or more. <a href=\"/services/hoa-management/brevard-county\">Brevard County</a> coastal communities are predominantly condo, with SB-4D compliance as the defining workload. For what each association type must actually fund, our <a href=\"/blog/hoa-reserve-study-guide\">HOA reserve study guide</a> walks through the Chapter 720 and Chapter 718 rules side by side."]
       }
     ],
     related: [
@@ -627,15 +627,25 @@ const BLOG_CONTENT = {
 
   "hoa-reserve-study-guide": {
     category: "Financial Management",
-    title: "HOA Reserve Study Florida: What Boards Need to Know",
-    titleTag: "Florida HOA Reserve Study Guide: Requirements & Best Practices",
+    title: "HOA Reserve Study: What Florida Boards Need to Know",
+    titleTag: "HOA Reserve Study: What It Is, Cost & Florida Rules | Edison",
     dek: "What is an HOA reserve study and why does Florida law require one? Learn what boards need to know about reserve studies, costs, and funding requirements.",
+    metaDescription: "What an HOA reserve study is, what it includes, what it costs ($3,000–$10,000+), how often to update it, and the Florida HOA reserve study requirements for boards.",
+    keywords: ["hoa reserve study", "reserve study", "what is a reserve study", "hoa reserve study cost", "florida hoa reserve study requirements", "florida reserve study requirements", "reserve study florida"],
+    about: ["HOA reserve study", "Reserve funding", "Florida homeowners association", "Florida condominium association"],
     ...TRACY_BYLINE,
     date: "May 20, 2026",
     datePublished: "2026-05-20",
-    dateModified: "2026-09-04",
+    dateModified: "2026-09-22",
     readTime: "10 min",
     heroImage: "/assets/blog/reserve-study-specialist.webp",
+    keyTakeaways: [
+      "An <strong>HOA reserve study</strong> inventories a community's major shared components, estimates when each needs repair or replacement, and sets the annual contribution needed to pay for it without a special assessment.",
+      "Every reserve study has two parts: a <strong>physical analysis</strong> (on-site inspection of roofs, paving, pool, HVAC, and other common elements) and a <strong>financial analysis</strong> (a 20- to 30-year funding plan and a percent-funded figure).",
+      "A full study typically costs <strong>$3,000 to $10,000 or more</strong>, driven by unit count, building types, and infrastructure complexity.",
+      "Update it <strong>every three to five years</strong>, sooner after a hurricane, a major replacement, or a sharp jump in construction costs.",
+      "<strong>Florida requirements differ by association type.</strong> Chapter 720 does not mandate a formal HOA reserve study, though most governing documents do. Condominiums three stories or higher must complete a Structural Integrity Reserve Study under Chapter 718, and those reserves cannot be waived."
+    ],
     intro: [
       "You're staring at a line item in the budget labeled \"reserves,\" and you're not entirely sure the number is right. Maybe it was carried over from last year. Maybe it was set by a previous board. Maybe no one has looked at the actual condition of the roof, the pool deck, or the parking lot in years. If any of this sounds familiar, your community probably needs an HOA reserve study.",
       "A reserve study is the financial planning tool that tells your board exactly where your community stands: what's aging, when it will need replacement, and whether the money is there to pay for it. In Florida, where hurricane exposure, humidity, and rapid development put constant pressure on shared infrastructure, reserve planning is not optional. It's how boards avoid the surprise special assessments that frustrate homeowners and erode trust.",
@@ -746,9 +756,9 @@ const BLOG_CONTENT = {
   "best-hoa-management-companies-orlando": {
     category: "Local Authority",
     title: "Best HOA Management Companies in Orlando: An Honest Field Guide",
-    titleTag: "Best HOA Management Companies in Orlando: 2026 Guide | Edison",
+    titleTag: "Best HOA Management Companies in Orlando, FL: 2026 Board Guide",
     dek: "Written for boards comparing options. What to look for, what to watch out for, and how Edison stacks up, without disparaging competitors.",
-    metaDescription: "Looking for the best HOA management company in Orlando? Compare top Central Florida management firms, ratings, credentials, and what sets Edison apart.",
+    metaDescription: "Comparing HOA management companies in Orlando, FL? The 7 questions boards should ask, the pricing trap to avoid, and how boutique and national firms differ.",
     keywords: ["HOA management companies Orlando", "HOA management company Orlando", "Orlando HOA management"],
     author: "Edison Editorial", date: "December 2025", readTime: "2 min",
     heroImage: "/assets/img-community-aerial.webp",
@@ -881,7 +891,7 @@ const BLOG_CONTENT = {
           {
             name: "Fund reserves from the reserve study",
             text: "Reserve contributions should come from the association's reserve study, not a guess. A reserve study identifies the community's major components, projects when each will need to be replaced, and recommends a funding schedule to get there. It is a plan, not just a price list. Edison walks the property alongside the reserve provider and supplies component ages and maintenance history, so the study reflects the community's real condition rather than a generic table.",
-            html: "Reserve contributions should come from the association's reserve study, not a guess. A reserve study identifies the community's major components, projects when each will need to be replaced, and recommends a funding schedule to get there. It is a plan, not just a price list. Edison walks the property alongside the reserve provider and supplies component ages and maintenance history, so the study reflects the community's real condition rather than a generic table. For a deeper look at how the study works, see our <a href=\"/blog/hoa-reserve-study-guide\">Florida HOA reserve study guide</a>, or how Edison handles <a href=\"/services/hoa-accounting/reserve-study-support\">reserve study support</a> end to end."
+            html: "Reserve contributions should come from the association's reserve study, not a guess. A reserve study identifies the community's major components, projects when each will need to be replaced, and recommends a funding schedule to get there. It is a plan, not just a price list. Edison walks the property alongside the reserve provider and supplies component ages and maintenance history, so the study reflects the community's real condition rather than a generic table. For a deeper look at how the study works, see our <a href=\"/blog/hoa-reserve-study-guide\">Florida HOA reserve study requirements guide</a>, or how Edison handles <a href=\"/services/hoa-accounting/reserve-study-support\">reserve study support</a> end to end."
           },
           {
             name: "Total the budget and set dues",

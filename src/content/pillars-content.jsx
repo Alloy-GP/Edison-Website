@@ -41,7 +41,7 @@ const PILLAR_CONTENT = {
         { title: "Vendor Sourcing & Management", body: "Three competing bids on capital projects above board-set thresholds. Insurance certificates on file. Updated contracts." },
         { title: "Action Item List", body: "Edison's live project tracker. Every active community item, its owner, status, target date, visible to the board in real time." },
         { title: "ARC & Compliance Coordination", body: "Architectural Review Committee support, governing document interpretation, and FL Chapter 720 compliance, handled by Edison's dedicated departments." },
-        { title: "Reserve Study Guidance", body: "Coordination with reserve study engineers, funding plan support, and capital project sequencing." }
+        { title: "Reserve Study Guidance", body: "Coordination with reserve study engineers, funding plan support, and capital project sequencing.", href: "/services/hoa-accounting/reserve-study-support" }
       ],
       bullets: [
         "Dedicated manager carrying only a limited portfolio, well below the industry average",

@@ -45,6 +45,11 @@ const GEO_CONTENT = {
       "Vista Park", "Eola Heights", "Thornton Park"
     ],
     nearbyCities: ["Winter Garden", "Kissimmee", "Clermont", "Lake Mary", "Altamonte Springs", "Oviedo", "Apopka", "Sanford", "Maitland", "Winter Park", "St. Cloud", "Brevard County"],
+    guides: [
+      { title: "Best HOA Management Companies in Orlando", body: "How boards compare Orlando management firms: portfolio size per manager, back-office depth, turnover, and the 7 questions to ask in every interview.", href: "/blog/best-hoa-management-companies-orlando" },
+      { title: "HOA Management Fees: What Boards Actually Pay", body: "Per-door pricing, what's included versus upcharged, and how renewal clauses reset the economics in year two.", href: "/blog/hoa-management-fees" },
+      { title: "Switching Management Companies", body: "The 60–90 day Edison Transition Experience: records, banking, vendors, and homeowner communication, supervised by the COO.", href: "/solutions/switch-hoa-management-company" }
+    ],
     faqs: [
       {
         q: "What should a board compare when evaluating HOA management companies in Orlando?",
