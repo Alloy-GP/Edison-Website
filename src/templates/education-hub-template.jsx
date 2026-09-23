@@ -376,7 +376,7 @@ const EDUCATION_CONTENT = {
       color: "#F2F7F6",
       // Titles match each post's H1 exactly; readTime reflects actual length.
       articles: [
-        { title: "Florida HOA Laws Guide: Ch. 720 and Ch. 718 Explained", readTime: "2 min", href: "/blog/florida-hoa-laws-guide" },
+        { title: "Florida HOA Laws: What Every Board Member Needs to Know in 2026", readTime: "14 min", href: "/blog/florida-hoa-laws-guide" },
         { title: "Florida Milestone Inspection Guide (SB-4D)", readTime: "2 min", href: "/blog/florida-milestone-inspection-guide" },
         { title: "Condo Association vs HOA: Which Are You?", readTime: "2 min", href: "/blog/condo-association-vs-hoa" }
       ]

@@ -139,43 +139,261 @@ const BLOG_CONTENT = {
   },
 
   "florida-hoa-laws-guide": {
+    // Rewritten W39 2026. Hidden from the archive until published to prod — on
+    // go-live, drop `pendingPublish` and set date/datePublished to that day.
+    pendingPublish: true,
     category: "Florida Compliance",
-    title: "Florida HOA Laws Guide: Ch. 720 and Ch. 718 Explained",
-    titleTag: "Florida HOA Laws: 2026 Board Member Guide | Edison",
-    dek: "A plain-language overview of the two Florida statutes that govern community associations, what they cover, where they differ, and what every board member should know.",
-    metaDescription: "A plain-language guide to Florida HOA and condo law. What Chapter 720 and Chapter 718 each require, where they diverge, and what boards must do under both.",
-    author: "Edison Editorial", date: "March 2026", readTime: "2 min",
-    heroImage: "/assets/img-13.webp",
-    summary: "Florida governs homeowner associations under Chapter 720 and condominium associations under Chapter 718. They look similar from a distance but differ in reserve study mandates, milestone inspection requirements, governing-document conventions, and homeowner rights. Boards that confuse them make expensive mistakes.",
+    title: "Florida HOA Laws: What Every Board Member Needs to Know in 2026",
+    titleTag: "Florida HOA Laws: 2026 Board Member Guide to Chapter 720 | Edison",
+    dek: "A board-first map of Florida's Chapter 720: director certification, meeting and voting rules, fines, records, and the few things that actually changed in 2026, each tied to its statute section.",
+    metaDescription: "Florida HOA laws explained for board members: Chapter 720 director education, meeting and voting rules, fines, official records, and what changed in 2026.",
+    author: "Edison Editorial", date: "September 2026", readTime: "14 min",
+    datePublished: "2026-09-23",
+    dateModified: "2026-09-23",
+    heroImage: "/assets/blog/florida-hoa-laws-chapter-720-binder.webp",
+    imageAlt: "Florida HOA board member marking a passage in a navy binder of the 2026 Florida Statutes, Chapter 720, with a colored flag",
+    keywords: ["florida hoa laws", "florida statute 720", "florida hoa laws 2026", "new hoa laws in florida", "florida hoa board member certification", "florida hoa voting rules", "florida hoa board meeting rules", "chapter 720"],
+    summary: "Florida HOA laws under Chapter 720 change almost every legislative session, and much of what's online is already out of date. This guide maps the statute around what directors actually do, from certification and meetings to fines, records, and the few 2026 changes, with every requirement tied to its statute section.",
+    intro: [
+      "You joined the board to get the pool resurfaced, keep dues reasonable, and make sure the landscaping contract actually gets done. Nobody mentioned that the seat comes with a state statute that changes nearly every legislative session, or that much of what you'll read online about Florida HOA laws is already out of date. If a homeowner has quoted a \"new law\" at you lately, you're in good company.",
+      "This guide is a plain-language map of Florida HOA laws under Chapter 720, organized around what directors actually do: get certified, run meetings, count votes, handle money and records, and enforce rules. Every requirement is tied to its statute section so your board can verify it. One note: this article is educational and is not legal advice. Confirm how any rule applies to your community with your association counsel."
+    ],
     sections: [
-      { id: "chapter-720", heading: "Chapter 720, The HOA statute",
+      { id: "which-laws-govern", heading: "Which Florida HOA Laws Govern Your Community?",
         body: [
-          "Florida Chapter 720 governs homeowner associations, typically single-family neighborhoods, townhome communities, and master associations. It covers governing-document hierarchy (CC&Rs above bylaws above rules), board powers and duties, meeting and notice requirements, financial reporting thresholds, and homeowner rights including the right to inspect records.",
-          "Recent legislative sessions added significant requirements around board member certification (required within 90 days of election or by completing an approved course), reserve disclosure, and homeowner communication. The statute changes nearly every year."
+          "Florida homeowners' associations are governed by Chapter 720 of the Florida Statutes, known as the Homeowners' Association Act, together with the association's own governing documents. You can read the current text of <a href=\"https://www.leg.state.fl.us/statutes/index.cfm?App_mode=display_statute&amp;URL=0700-0799/0720/0720.html\" target=\"_blank\" rel=\"noopener\">Chapter 720 on the Florida Legislature's Online Sunshine site</a>, which is the version every figure in this guide was checked against.",
+          "Think of Florida HOA laws as the top of a stack. Below it are the recorded declaration of covenants, the articles of incorporation, and the bylaws, which are exactly what the statute defines as \"governing documents\" (§720.301(8)). Rules adopted by the board sit at the bottom. Our guide to <a href=\"/blog/hoa-bylaws-vs-ccrs\">HOA bylaws vs. CC&amp;Rs</a> covers each one in depth.",
+          "<strong>Many Florida HOA laws are defaults your documents can change, while others apply no matter what your documents say, so boards need to read the statute and the governing documents side by side.</strong> Quorum and member-meeting notice apply \"unless the bylaws provide otherwise.\" The $100 fine cap applies unless the governing documents provide otherwise, which means a recorded declaration can set a different amount. Other protections, such as the limits on restricting items that aren't visible from the street (§720.3045), apply regardless of any covenant or rule. When a homeowner and a director read the same rule two different ways, the answer usually lives in that phrasing.",
+          "Florida HOA laws also run in every direction. Members, tenants, guests, and the association itself must all follow Chapter 720, the governing documents, and the association's rules (§720.305(1)). The board is bound by them too."
         ]
       },
-      { id: "chapter-718", heading: "Chapter 718, The condo statute",
+      { id: "chapter-720-vs-718", heading: "Florida Statute 720 vs. Chapter 718: HOA or Condo?",
         body: [
-          "Chapter 718 governs condominium associations. It runs parallel to Ch. 720 in many respects but diverges sharply on structural requirements after Senate Bill 4D. Buildings 3+ stories face mandatory <a href=\"/services/condo-management/milestone-inspections\">milestone inspections</a> and <a href=\"/services/condo-management/structural-integrity-reserve-study\">Structural Integrity Reserve Studies (SIRS)</a> under timelines tied to building age.",
-          "Ch. 718 also has different conventions on common elements vs limited common elements, master insurance, and reserve funding, boards generally cannot waive SIRS-component reserves the way they sometimes can for traditional reserves."
+          "Chapter 720 governs homeowners' associations, including single-family, townhome, and master associations, while Chapter 718 governs condominium associations. Which one applies depends on how your community was legally created, not on what it looks like from the street.",
+          "Pull your community's recorded founding document. If it's a declaration of covenants, you're almost certainly under Chapter 720. If it's a declaration of condominium, you're under Chapter 718. Townhomes can fall under either, so the paperwork matters more than the architecture.",
+          "<strong>The biggest structural difference is that condominiums carry building-safety obligations HOAs don't.</strong> Residential condo associations must complete a structural integrity reserve study (SIRS) at least every 10 years for each building three habitable stories or higher (§718.112(2)(g)), and buildings of that height are also subject to milestone inspections. Edison supports condo boards through both processes with dedicated milestone inspection and SIRS services.",
+          "From here on, this guide covers the Florida HOA laws in Chapter 720 only. Condo boards will find the rules that apply to them through our <a href=\"/services/condo-management\">condo management</a> resources, since Chapter 718 deserves its own careful treatment."
+        ]
+      },
+      { id: "board-certification", heading: "Florida HOA Board Member Certification Requirements",
+        body: [
+          "Every Florida HOA director must complete a state-approved education course within 90 days of being elected or appointed, then complete continuing education every year after that. Signing an affidavit on its own no longer satisfies the requirement.",
+          "If you've heard otherwise, it's because Florida HOA laws on director education changed and not every source caught up. Here's what §720.3033(1) requires today:"
         ],
-        callout: { label: "SB-4D", text: "Senate Bill 4D, passed in 2022 in response to the Champlain Towers collapse, reshaped condo statute. If your building is 3+ stories, milestone inspection and SIRS obligations apply." }
-      },
-      { id: "key-differences", heading: "Where HOAs and condos diverge",
         list: [
-          "Reserve studies, Ch. 718 mandates SIRS for 3+ story buildings; Ch. 720 does not",
-          "Milestone inspections, Ch. 718 requires them; Ch. 720 does not",
-          "Governing documents, HOAs are declared under CC&Rs; condos under a Declaration of Condominium",
-          "Common elements, Different conventions on what's association vs unit responsibility",
-          "Voting weight, Frequently equal in HOAs; often by unit type or percentage in condos",
-          "Insurance, Ch. 718 requires specific master policy coverages; Ch. 720 is more flexible"
+          "<strong>Approved provider.</strong> The course must come from an education provider approved by the Department of Business and Professional Regulation (DBPR). Each director submits a certificate of completion within 90 days of election or appointment.",
+          "<strong>Four-year cycle.</strong> The certificate is valid for up to 4 years, and directors must retake the new-director course at least every 4 years.",
+          "<strong>Required topics.</strong> The curriculum covers financial literacy and transparency, recordkeeping, levying of fines, and notice and meeting requirements.",
+          "<strong>Annual continuing education.</strong> Directors complete at least 4 hours each year in associations with fewer than 2,500 parcels, and 8 hours in associations with 2,500 or more.",
+          "<strong>Consequence of missing the deadline.</strong> A director who doesn't file the certificate on time is suspended from the board until they comply, and the board may temporarily fill the seat.",
+          "<strong>Recordkeeping.</strong> The association keeps each certificate available for member inspection for 5 years after the director's election."
         ]
       },
-      { id: "board-cert", heading: "Board member certification",
-        body: ["Both statutes now require new board members to complete certification within 90 days of election, either by signing an affidavit confirming they've read the governing documents and statutes, or by completing a state-approved course. The course route is generally safer. Failure to certify creates personal liability exposure and can be raised by homeowners challenging board actions."]
+      { id: "certification-deadline-condo", heading: "The 90-Day Clock and How Condo Rules Differ",
+        body: [
+          "Of all the Florida HOA laws on education, the suspension rule catches boards off guard most often. A director elected in December who misses the early-March deadline is suspended until the certificate is filed, and the board may temporarily fill the seat in the meantime. A missing certificate doesn't invalidate actions the board has already taken.",
+          "Condo directors follow a different set of rules:"
+        ],
+        table: {
+          headers: ["Requirement", "HOA Directors (Ch. 720)", "Condo Directors (Ch. 718)"],
+          rows: [
+            ["Initial requirement", "DBPR-approved course within 90 days", "Written certification plus a 4-hour course"],
+            ["Validity", "Up to 4 years, retake every 4 years", "7 years"],
+            ["Annual continuing education", "4 hours (8 hours at 2,500+ parcels)", "1 hour"],
+            ["Statute", "§720.3033(1)", "§718.112(2)(d)5.b."]
+          ]
+        },
+        body3: [
+          "Edison tracks board certification deadlines for the communities it manages and supports directors through the compliance steps, so the 90-day clock never runs out quietly. <a href=\"/edison-education\">Edison Education</a>, the board education program launching in 2027, will add monthly sessions taught by state-certified instructors."
+        ]
       },
-      { id: "staying-current", heading: "How boards stay current",
-        body: ["Florida legislative sessions reshape community association statute every year. Boards that rely on memory of how things were two years ago tend to fall behind. Edison's <a href=\"/services/hoa-management\">HOA management</a> and <a href=\"/services/condo-management\">condo management</a> teams track legislative changes the day they pass, surface what's relevant per community type, and update board operations accordingly. Boards aren't expected to be lawyers, but they are expected to govern under current law."]
+      { id: "board-meeting-rules", heading: "Florida HOA Board Meeting Rules",
+        body: [
+          "A board meeting happens any time a quorum of directors gathers to conduct association business (§720.303(2)(a)). With a few narrow exceptions, those meetings must be open to members and properly noticed.",
+          "Florida HOA laws on board meetings live mostly in §720.303(2). Here's what that section requires:"
+        ],
+        list: [
+          "<strong>Closed-session exceptions.</strong> Meetings with the association's attorney about proposed or pending litigation, and meetings to discuss personnel matters, may be closed.",
+          "<strong>Default notice.</strong> If your bylaws don't specify otherwise, notice must identify the agenda items and be posted conspicuously in the community at least 48 hours in advance. The alternative is mailing or delivering it at least 7 days before the meeting. Emergencies are excepted.",
+          "<strong>Assessment language.</strong> The board can't levy an assessment unless the meeting notice says assessments will be considered and describes their nature.",
+          "<strong>Longer notice for bigger decisions.</strong> Meetings that will consider special assessments or changes to rules on parcel use require 14 days' notice to members, plus posting.",
+          "<strong>How directors vote.</strong> Directors may use email to communicate but may not vote by email. They may not vote by proxy or by secret ballot, except that secret ballots may be used to elect officers.",
+          "<strong>Member participation.</strong> Members may attend and speak on designated agenda items, subject to reasonable written rules the board adopts. Members may also record board and membership meetings (§720.306(10))."
+        ]
+      },
+      { id: "before-every-board-meeting", heading: "Before Every Board Meeting",
+        body: [
+          "<strong>Under Florida HOA laws, the most common meeting mistake isn't a closed door; it's a vote that happened over email.</strong> A quick \"reply all to approve\" isn't a valid board action, so bring the decision to a properly noticed meeting. A short pre-meeting check keeps most problems from ever reaching the agenda:"
+        ],
+        list: [
+          "Notice is posted (or mailed) on time, with the agenda items listed.",
+          "If assessments are on the agenda, the notice says so and describes their nature.",
+          "No motions have been decided by email ahead of time.",
+          "Member speaking rules are adopted in writing and available."
+        ]
+      },
+      { id: "voting-rules", heading: "Florida HOA Voting Rules: Quorum, Elections, and Member Meetings",
+        body: [
+          "Unless your bylaws set a lower number, a quorum for a member meeting is 30 percent of the total voting interests. Once a quorum is reached, member decisions pass by a majority of the voting interests present (§720.306(1)(a)).",
+          "The rest of the Florida HOA voting rules in §720.306 cover meetings, votes, and eligibility:"
+        ],
+        list: [
+          "<strong>Annual meeting.</strong> The association must hold one each year. Director elections take place at or in conjunction with it, or as the governing documents provide.",
+          "<strong>Special meetings.</strong> The board or at least 10 percent of the voting interests can call one, unless the documents say otherwise.",
+          "<strong>Member meeting notice.</strong> If the bylaws are silent, notice goes out at least 14 days ahead, and an affidavit of compliance is filed in the official records.",
+          "<strong>Speaking time.</strong> Members have the right to speak for at least 3 minutes on any item.",
+          "<strong>Proxies.</strong> A proxy must be dated and is valid only for the specific meeting it names. It expires 90 days after that meeting.",
+          "<strong>Director elections.</strong> Directors are elected by plurality unless the documents provide otherwise. No election is needed if the number of candidates doesn't exceed the vacancies. Election challenges must begin within 60 days of the results.",
+          "<strong>Eligibility.</strong> A person who is delinquent to the association can't run for the board. A sitting director more than 90 days delinquent is deemed to have abandoned the seat.",
+          "<strong>Amendments.</strong> Governing documents may be amended by two-thirds of the voting interests of the association, unless the documents or the law provide otherwise."
+        ]
+      },
+      { id: "online-voting", heading: "Online Voting and When Voting Rules Get Tested",
+        body: [
+          "An association may adopt internet-based voting by board resolution, following the statute's authentication and notice requirements, and members who vote online count toward quorum (§720.317). <strong>For communities that struggle to reach 30 percent in person, online voting is often the most practical fix available.</strong>",
+          "Annual meetings and board transitions cluster in November and December, so fall is when Florida HOA laws on voting get tested most. Reviewing notice deadlines and proxy forms in early fall gives the board room to get it right."
+        ]
+      },
+      { id: "money-records-transparency", heading: "Money, Records, and Transparency Under Chapter 720",
+        body: [
+          "Florida HOA laws require associations to keep official records open to owners and to prepare annual financial reports scaled to the association's revenue. They also put specific guardrails on contracts, conflicts of interest, and anyone who handles association money."
+        ]
+      },
+      { id: "financial-reporting", heading: "Financial Reporting Requirements",
+        body: [
+          "Under Florida HOA laws, the level of financial reporting your association owes its members depends on annual revenue, with one exception based on size (§720.303(7)):"
+        ],
+        table: {
+          headers: ["Annual Revenue", "Required Report"],
+          rows: [
+            ["Under $150,000", "Report of cash receipts and expenditures"],
+            ["$150,000 to under $300,000", "Compiled financial statements"],
+            ["$300,000 to under $500,000", "Reviewed financial statements"],
+            ["$500,000 or more", "Audited financial statements"],
+            ["1,000 or more parcels (any revenue)", "Audited financial statements"]
+          ]
+        },
+        body3: [
+          "<strong>Your reporting tier is set by revenue, so a dues increase or special assessment can move your association into a more demanding category without anyone deciding it should.</strong> The tiers aren't fixed in every case: members can vote at a properly called meeting to prepare a lower level of report, and 20 percent of owners can petition for a higher level (§720.303(7)(c)–(d)). Edison assigns a dedicated accounting specialist to each community, requires documentation on every invoice, and delivers CINC-powered monthly financials, so the numbers are ready when the year-end report is due."
+        ]
+      },
+      { id: "official-records", heading: "Official Records and the Website Requirement",
+        body: [
+          "Official records are the paper trail of your fiduciary duty. Making them available electronically is the simplest way to meet the 10-business-day access window every time, which is why Edison's CINC Connect resident portal and app, included at every service level, give owners direct access to the documents they're entitled to see. Florida HOA laws set clear expectations in §720.303(4)–(5) for how records are kept and shared:"
+        ],
+        list: [
+          "Official records must be kept for at least 7 years.",
+          "Records must be made available within 10 business days of a written request, within 45 miles of the community or in the same county. Electronic access satisfies this requirement.",
+          "Willful failure to provide access carries minimum damages of $50 per calendar day, up to 10 days. If a request sent by certified mail goes unanswered for 10 business days, the law presumes the failure was willful.",
+          "Associations with 100 or more parcels had to post a specific list of documents (including governing documents, rules, contracts, bids, and budgets) on a website or mobile app by January 1, 2025. Those documents belong in a section limited to owners, and any owner who asks in writing must receive login credentials."
+        ]
+      },
+      { id: "contracts-conflicts", heading: "Contracts, Conflicts, and Fiduciary Guardrails",
+        body: [
+          "<strong>A documented process protects honest directors far more often than it catches dishonest ones</strong>, and Edison provides vendor comparison spreadsheets with three or more bids so every major decision has a paper trail and less of the risk rests on volunteers. These Florida HOA laws exist to protect the volunteers who sign contracts and approve payments on behalf of their neighbors:"
+        ],
+        list: [
+          "Contracts exceeding 10 percent of the total annual budget, including reserves, require competitive bids. The board isn't required to take the lowest bid (§720.3055).",
+          "Directors and officers must disclose potential conflicts of interest at least 14 days before a related vote or contract (§720.3033(6)(b)).",
+          "Knowingly soliciting or accepting a kickback is a third-degree felony (§720.3033(3)).",
+          "The association must carry insurance or a fidelity bond covering everyone who controls or disburses funds, unless the members waive it annually (§720.3033(5))."
+        ]
+      },
+      { id: "fines-and-hearings", heading: "Fines, Enforcement, and What Florida HOAs Can't Restrict",
+        body: [
+          "Florida HOAs can levy reasonable fines, but only after written notice and a hearing before an independent committee. State law also places a growing list of items off-limits to restriction.",
+          "Florida HOA laws spell out the fining process in §720.305(2):"
+        ],
+        list: [
+          "Fines may be up to $100 per violation, and up to $1,000 in the aggregate for a continuing violation, unless the governing documents provide otherwise.",
+          "Fines under $1,000 can't become a lien against the property.",
+          "The owner receives at least 14 days' written notice of the right to a hearing.",
+          "The hearing is held within 90 days, before a committee of at least three members who aren't officers, directors, employees, or their close relatives.",
+          "Written findings are due within 7 days, and any payment date is at least 30 days out.",
+          "A violation cured before the hearing can't be fined."
+        ]
+      },
+      { id: "what-hoas-cant-restrict", heading: "What Florida HOAs Can't Restrict",
+        body: [
+          "<strong>Because a cured violation can't be fined, the goal of enforcement under Florida HOA laws is correction, not collection.</strong> Two exemptions are written into §720.305(7). Boards can't fine for garbage receptacles left at the curb or end of the driveway within 24 hours before or after the designated collection day or time. For holiday decorations left up longer than the governing documents allow, a fine is available only if they stay up more than one week after the association sends written notice of the violation.",
+          "Florida HOA laws also take some items off the table entirely:"
+        ],
+        list: [
+          "<strong>Items not visible</strong> from the frontage, an adjacent parcel, an adjacent common area, or a community golf course, including artificial turf, boats, flags, vegetable gardens, clotheslines, and RVs (§720.3045). Once an item is visible from any of those vantage points, the association's rules can apply to it.",
+          "<strong>Driveway parking</strong> of a personal vehicle, or a work vehicle that isn't a commercial motor vehicle under §320.01(25); <strong>hiring contractors</strong>, who can't be kept out solely because they aren't on a preferred vendor list; and <strong>Florida-friendly landscaping</strong> (§720.3075)."
+        ]
+      },
+      { id: "architectural-review-enforcement", heading: "Architectural Review and How Edison Handles Enforcement",
+        body: [
+          "Florida HOA laws treat architectural review separately, under §720.3035. A denial must cite the specific rule and the specific part of the request that doesn't conform. Boards must adopt hurricane protection specifications. As of July 1, 2026, the association can't require a building permit before architectural review. Owners still need whatever permit their city or county requires.",
+          "Edison handles enforcement through a dedicated department separate from the community manager, with correction-first policies. The enforcement platform shows property addresses rather than owner names, keeping decisions focused on the violation, not the neighbor. Rules that have become unenforceable under current Florida HOA laws deserve a closer look of their own in a future guide."
+        ]
+      },
+      { id: "new-hoa-laws-2026", heading: "New HOA Laws in Florida: What Changed in 2026 (and What Didn't)",
+        body: [
+          "The 2026 legislative session produced very few changes to Florida HOA laws. The operating rules boards follow today come mostly from the 2024 reforms in HB 1203 and from the 2025 session.",
+          "Here's a sourced summary of Florida HOA laws 2026 changes:"
+        ],
+        list: [
+          "<strong>What passed.</strong> HB 803 amended §720.3035, effective July 1, 2026, so associations can't require a building permit before architectural review. That change is reflected in the current statute text.",
+          "<strong>What didn't pass.</strong> HB 657, which would have created an HOA dissolution process and community association court programs, passed the House but died in Senate Rules on March 13, 2026 (see the <a href=\"https://www.flsenate.gov/Session/Bill/2026/657\" target=\"_blank\" rel=\"noopener\">Florida Senate bill page for HB 657</a>).",
+          "<strong>The baseline.</strong> HB 1203 (2024) created director education, the website requirement, and the current fining process. These aren't \"new\" rules anymore. They're the standard every board is held to."
+        ]
+      },
+      { id: "a-rule-that-passed", heading: "A Rule You Read About Isn't Always a Rule That Passed",
+        body: [
+          "<strong>When a homeowner cites a new HOA law, the first question is whether it actually passed, and the second is whether it applies to your type of association.</strong> Those two questions settle most debates before they start."
+        ],
+        callout: { label: "Didn't pass: HB 657 (2026)", text: "Some online summaries reported a new HOA dissolution process as law effective July 1, 2026. It isn't. A rule you read about is not the same as a rule that passed." }
+      },
+      { id: "how-boards-stay-current", heading: "How Florida HOA Boards Stay Current",
+        body: [
+          "Florida's legislative session runs in the winter, and new laws typically take effect July 1. Boards that plan around that cycle don't get caught off guard.",
+          "A simple annual rhythm keeps changes to Florida HOA laws manageable:"
+        ],
+        list: [
+          "<strong>February–March:</strong> Watch the session for bills affecting Chapter 720.",
+          "<strong>April–June:</strong> Review what passed before the July 1 effective date.",
+          "<strong>August–October:</strong> Build any changes into budget planning and annual meeting preparation.",
+          "<strong>January:</strong> Onboard new directors so the 90-day education clock doesn't sneak up on anyone."
+        ]
+      },
+      { id: "how-edison-keeps-boards-ahead", heading: "How Edison Keeps Client Boards Ahead",
+        body: [
+          "<strong>Boards aren't expected to be lawyers, but they are expected to govern under current Florida HOA laws, which is why having someone watching on the board's behalf matters.</strong> Edison participates in CEOMC legislative advocacy, and Edison leadership meets with legislators and senators in Tallahassee as bills take shape. That gives client boards early awareness of law changes rather than surprises after the fact.",
+          "Edison's PCAM-led leadership team held a 2025 term as President of the <a href=\"https://www.caicf.org/\" target=\"_blank\" rel=\"noopener\">Community Associations Institute (CAI) Central Florida Chapter</a>. Every Edison association manager holds a Florida LCAM license, with continuing education funded by Edison. Edison Education, launching in 2027, will add a dedicated place for boards to build their own knowledge. Self-managed boards weighing outside support can see how that partnership works through our <a href=\"/services/hoa-management\">HOA management</a> services."
+        ]
+      },
+      { id: "faq", heading: "Frequently Asked Questions",
+        faq: [
+          {
+            q: "What are the new HOA laws in Florida for 2026?",
+            a: "Very little changed in 2026. The main HOA change was HB 803, which, as of July 1, 2026, bars associations from requiring a building permit before architectural review. HB 657's proposed dissolution process did not become law. The 2024 HB 1203 reforms, including director education and the current fining process, remain the baseline for Florida HOA laws."
+          },
+          {
+            q: "Do Florida HOA board members have to be certified?",
+            a: "Yes. Florida HOA laws require new directors to complete a DBPR-approved course within 90 days of election or appointment, retake it at least every 4 years, and complete 4 hours of continuing education annually (8 hours for associations with 2,500 or more parcels). Directors who don't file their certificate on time are suspended until they comply (§720.3033)."
+          },
+          {
+            q: "What is the quorum for a Florida HOA meeting?",
+            a: "Under Florida HOA laws, quorum for a member meeting is 30 percent of the total voting interests, unless the bylaws set a lower number (§720.306(1)(a)). Members who vote online under §720.317 count toward quorum, so check your bylaws before assuming the default."
+          },
+          {
+            q: "How much can a Florida HOA fine a homeowner?",
+            a: "Florida HOA laws allow fines of up to $100 per violation and $1,000 in the aggregate for a continuing violation, unless the governing documents provide otherwise. Every fine requires at least 14 days' notice and a hearing before an independent committee, and fines under $1,000 can't become a lien (§720.305(2))."
+          },
+          {
+            q: "Does Florida Statute 720 apply to condominiums?",
+            a: "No. Condominium associations are governed by Chapter 718, while the Florida HOA laws in Chapter 720 govern homeowners' associations. The two sets of rules differ in meaningful ways, including director education and structural safety requirements, so condo boards should rely on condo-specific guidance."
+          }
+        ]
+      },
+      { id: "compliance-is-a-rhythm", heading: "Compliance Is a Rhythm, Not a Scramble",
+        body: [
+          "Florida HOA laws give boards real authority and real obligations, and those obligations shift almost every year. The boards that do well don't try to memorize every statute. They build a rhythm: certify on time, notice every meeting correctly, keep records open, and check what actually passed before acting on what they heard. We help boards lead with confidence while we handle the details.",
+          "<strong>Ready to make compliance a rhythm instead of a scramble?</strong> <a href=\"/request-a-proposal\">Schedule a consultation to talk through your community's compliance with Edison.</a>",
+          "<em>This article is educational and is not legal advice. Confirm how Florida HOA laws apply to your community with your association counsel.</em>"
+        ]
       }
     ],
     related: [
