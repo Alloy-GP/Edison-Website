@@ -787,36 +787,176 @@ const BLOG_CONTENT = {
   },
 
   "hoa-special-assessment": {
+    // Rewritten W39 2026. Hidden from the archive until published to prod — on
+    // go-live, drop `pendingPublish` and set date/datePublished to that day.
+    pendingPublish: true,
     category: "Financial Management",
-    title: "HOA Special Assessment Guide",
-    titleTag: "HOA Special Assessments: A Board's Guide (Florida 2026)",
-    dek: "When special assessments make sense, how they're approved, what they look like in Florida, and the alternatives most boards skip past.",
-    metaDescription: "What Florida HOA boards need to know about special assessments, when they're allowed, how to levy them, and how to communicate with homeowners.",
-    author: "Edison Editorial", date: "February 2026", readTime: "2 min",
-    heroImage: "/assets/img-accounting.webp",
-    summary: "A special assessment is a one-time charge to homeowners outside the regular assessment cycle, usually to fund a capital project that reserves can't cover. They work, but they damage homeowner trust, drive owner attrition, and are usually preventable with disciplined reserve banking.",
+    title: "HOA Special Assessments in Florida: What the Law Allows and What to Try First",
+    titleTag: "HOA Special Assessments in Florida: Rules & Alternatives | Edison",
+    dek: "Sometimes a special assessment is the responsible call, but Florida law and your governing documents set the terms. The Chapter 720 notice and approval rules, the alternatives to weigh first, and how to explain the charge before it reaches a statement.",
+    metaDescription: "What Florida boards need to know about an HOA special assessment: Chapter 720 notice rules, alternatives to weigh first, and how to explain it to owners.",
+    author: "Edison Editorial", date: "September 2026", readTime: "11 min",
+    datePublished: "2026-09-24",
+    dateModified: "2026-09-24",
+    heroImage: "/assets/blog/hoa-special-assessment-clubhouse-roof.webp",
+    imageAlt: "Central Florida HOA clubhouse mid-roof-replacement beside the community pool, a common reason for a special assessment",
+    keywords: ["hoa special assessment", "special assessment hoa", "hoa special assessment rules", "florida hoa special assessment rules", "hoa special assessment limit", "hoa loan vs special assessment", "chapter 720", "reserves"],
+    summary: "An HOA special assessment is sometimes the responsible call, but Florida law and your governing documents set the terms. This guide covers Chapter 720 notice and approval rules, the alternatives to weigh first, and how to explain the charge before it reaches a statement.",
+    intro: [
+      "An HOA special assessment is one of the few board decisions that lands in owners' mailboxes all at once. Florida law gives boards a clear process for levying one, but it leaves the biggest questions, including who has to approve it and whether there's a cap, to each community's governing documents. Getting both halves right is what makes an assessment something owners understand rather than something they dispute.",
+      "Sometimes a special assessment is the most responsible choice a board can make, and how the board handles it matters as much as whether it levies one. This guide covers the Florida rules, the alternatives worth weighing first, and how to explain the decision before a statement arrives. It's educational and isn't legal advice; your governing documents and association counsel control the specifics for your community."
+    ],
     sections: [
-      { id: "what-it-is", heading: "What a special assessment is",
-        body: ["A special assessment is a non-recurring charge levied on every owner to fund a specific need, typically a capital project (new roof, repaving, structural repair) that the reserve fund can't cover, or an emergency expense (hurricane damage, insurance shortfall) that wasn't in the budget."]
+      { id: "what-is-a-special-assessment", heading: "What Is an HOA Special Assessment?",
+        body: [
+          "An HOA special assessment is a charge the association levies on owners outside the regular annual budget assessment, usually to fund a specific capital project or an unexpected expense. It funds a defined need rather than ongoing operations, though the governing documents may allow it to be billed in installments.",
+          "The most common triggers for an HOA special assessment are major component replacements (roofs on common structures, private roads, pools and pool decks), storm damage, and budget shortfalls. Many Central Florida communities are 5 to 15 years old, which means original components are reaching the end of their useful life for the first time.",
+          "<strong>An HOA special assessment isn't necessarily split evenly: Florida law ties it to each owner's proportional share as the governing documents describe it.</strong> For communities created after October 1, 1995, both regular and special assessments must follow each member's proportional share of expenses, and those shares may differ among classes of parcels (§720.308(1)(a) of <a href=\"https://www.leg.state.fl.us/statutes/index.cfm?App_mode=display_statute&amp;URL=0700-0799/0720/0720.html\" target=\"_blank\" rel=\"noopener\">Chapter 720 of the Florida Statutes</a>). When the governing documents authorize it, unpaid assessments are also secured by a lien on the parcel (§720.3085(1))."
+        ]
       },
-      { id: "approval-process", heading: "How special assessments get approved",
-        body: ["The approval process is governed by the association's bylaws and FL statute. HOAs typically require a board vote with proper notice and an opportunity for homeowner input. Condos under Ch. 718 have specific notice and meeting requirements. A few governing documents require a homeowner vote above certain thresholds, check yours carefully."]
-      },
-      { id: "alternatives", heading: "Alternatives boards often skip past",
-        list: [
-          "Phasing the project, sequence work over 2–4 years to match reserve cash flow",
-          "Bank financing, community-level loans against reserves can spread the impact",
-          "Reserve banking optimization, sometimes the funds exist but aren't yielding",
-          "Insurance claims, for damage events, the master policy may cover more than assumed",
-          "Vendor renegotiation, competitive re-bidding sometimes drops project cost meaningfully"
+      { id: "why-special-assessments-happen", heading: "Why Special Assessments Happen: The Reserve Connection",
+        body: [
+          "Most HOA special assessments trace back to reserves that weren't sized to the community's real replacement schedule. Under Chapter 720, reserves are largely a choice the owners make rather than a mandate the state imposes, and that choice has consequences years later.",
+          "Here's how the reserve rules in §720.303(6) work:"
         ],
-        callout: { label: "Why this matters", text: "Special assessments are the loudest signal of reserve underfunding. Boards that go to special assessment once tend to do it again, until the underlying reserve discipline gets fixed. Edison's accounting team flags reserve gaps years before they become special-assessment territory." }
+        list: [
+          "<strong>Statutory reserves require an owner vote.</strong> A budget may include voluntary reserve accounts, limited by any caps the governing documents place on assessment increases. Statutory reserve accounts, which carry the funding and waiver rules below, exist only when a majority of the total voting interests approves them ((6)(b), (6)(d)).",
+          "<strong>The law already warns owners.</strong> When reserves aren't provided or fully funded and the association maintains capital improvements, the annual financial report must include a conspicuous statement that this may result in special assessments ((6)(c)).",
+          "<strong>Waivers are one year at a time.</strong> Once statutory reserves exist, owners can waive or reduce funding only by majority vote at a meeting with a quorum, and the waiver applies to one budget year only ((6)(f)).",
+          "<strong>Reserve money stays put.</strong> Reserve funds may be used only for authorized reserve expenditures unless owners approve another use in advance by majority vote at a meeting with a quorum ((6)(h))."
+        ]
       },
-      { id: "homeowner-impact", heading: "What homeowners feel",
-        body: ["A $5,000 special assessment is a lot to ask of a homeowner who didn't see it coming. Owners on fixed incomes or recent buyers tend to feel it hardest. Communities that special-assess frequently see slower unit sales, lower resale values, and more contentious annual meetings. The financial damage to community standing often outweighs the cost being assessed."]
+      { id: "reserve-study-prevention", heading: "How a Reserve Study Prevents the Next Assessment",
+        body: [
+          "<strong>If your annual financial report carries that statutory warning, your community has already been told an HOA special assessment is possible.</strong> Thin reserves are a structural risk built into many Florida communities, not a sign of board neglect.",
+          "That plan starts with a reserve study, which identifies each major component, when it will need to be replaced, and a recommended funding schedule to pay for it. Edison adds boots-on-the-ground input: the Edison team walks the property with the reserve provider and supplies maintenance history and component ages so the study reflects how the community has actually been cared for, including any deferred maintenance. Our <a href=\"/blog/hoa-reserve-study-guide\">HOA reserve study guide</a> covers the process in depth, and the <a href=\"https://www.caicf.org/\" target=\"_blank\" rel=\"noopener\">Community Associations Institute (CAI) Central Florida Chapter</a> is a strong resource for reserve planning best practices."
+        ]
       },
-      { id: "communicating-it", heading: "Communicating a special assessment well",
-        body: ["When a special assessment is genuinely necessary, communication is everything. Edison's playbook: name the specific project, show the reserve study calculation, explain the alternatives considered, and provide payment-plan options. Homeowners can accept hard news; they can't accept being surprised."]
+      { id: "special-assessment-rules", heading: "Florida HOA Special Assessment Rules: Notice and Approval",
+        body: [
+          "In Florida, a meeting where a special assessment will be considered requires at least 14 days' written notice, and the notice must state that assessments will be considered and describe their nature. Whether owners also vote depends on your governing documents.",
+          "These are the HOA special assessment rules Chapter 720 sets:"
+        ],
+        list: [
+          "<strong>Notice.</strong> Written notice must be mailed, delivered, or electronically transmitted to members and posted conspicuously on the property (or broadcast on closed-circuit television) at least 14 days before the meeting. Electronic notice goes only to owners who have consented to it in writing. An assessment can't be levied unless the notice states that assessments will be considered and their nature (§720.303(2)(c)2.).",
+          "<strong>Open meeting.</strong> The meeting is open to members, who may speak on designated agenda items. Directors can't vote by email or by proxy (§720.303(2)).",
+          "<strong>Who approves after turnover.</strong> Chapter 720 doesn't impose a statewide owner-vote requirement for an HOA special assessment once owners control the board. The declaration and bylaws decide, and some require an owner vote above a set threshold. If yours do, that owner vote happens at a membership meeting with its own notice under §720.306; if the bylaws are silent, that means at least 14 days' notice and an affidavit of compliance filed in the official records. The 14-day board meeting notice doesn't cover both.",
+          "<strong>Who approves before turnover.</strong> A developer-controlled board can't levy a special assessment unless a majority of non-developer owners approves it at a duly called special meeting with a quorum (§720.315)."
+        ]
+      },
+      { id: "before-you-vote", heading: "Before You Vote on a Special Assessment",
+        body: [
+          "<strong>The Florida HOA special assessment rules set the process, but your governing documents usually decide who has to approve the charge.</strong> A short pre-vote check keeps the two halves from getting out of sync:"
+        ],
+        list: [
+          "Governing documents reviewed for owner-approval thresholds and any cap.",
+          "Board meeting notice mailed or delivered and posted at least 14 days ahead, stating that assessments will be considered and their nature.",
+          "If the documents require an owner vote, a separate membership meeting noticed under §720.306.",
+          "Cost basis documented with bids and the reserve study.",
+          "Each owner's proportional share calculated under the governing documents."
+        ]
+      },
+      { id: "emergency-special-assessments", heading: "Emergency Special Assessments After a Declared Emergency",
+        body: [
+          "When a state of emergency is declared for the association's area, Chapter 720 gives boards temporary emergency powers to respond to damage caused by, or anticipated from, that emergency. Unless the recorded governing documents specifically prohibit it, the board may levy HOA special assessments without an owner vote (§720.316(1)(j)) and may borrow and pledge association assets to fund emergency repairs if operating funds are insufficient (§720.316(1)(k))."
+        ],
+        callout: { label: "Emergency powers have a time limit", text: "These powers last only as long as reasonably necessary to protect health and safety, mitigate further damage, and make emergency repairs (§720.316(2)). They're a hurricane-season tool, not a shortcut for planned projects." }
+      },
+      { id: "special-assessment-limit", heading: "Is There an HOA Special Assessment Limit in Florida?",
+        body: [
+          "Chapter 720 doesn't set a statewide dollar cap on HOA special assessments. Any limit in Florida, whether a dollar cap or an owner-approval threshold, comes from the association's declaration and bylaws. <strong>Read the governing documents for a cap before the meeting is noticed, not after.</strong>"
+        ]
+      },
+      { id: "alternatives", heading: "Alternatives to Weigh Before a Special Assessment",
+        body: [
+          "Before levying an HOA special assessment, boards should test whether phasing the work, re-bidding it, insurance, financing, or reallocating existing funds could close the gap at lower cost to owners. Sometimes none of them will, and an HOA special assessment is the honest answer."
+        ],
+        list: [
+          "<strong>Phase the project.</strong> Where the component's condition allows, spread the work across budget years.",
+          "<strong>Re-bid the work.</strong> Contracts exceeding 10 percent of the total annual budget, including reserves, already require competitive bids, and the board isn't required to accept the lowest one (§720.3055). Edison sources three or more competing bids and builds comparison spreadsheets so boards compare scope against scope, not just price against price.",
+          "<strong>Check insurance first.</strong> For storm or damage events, review what the association's policies cover before assessing owners for the repair.",
+          "<strong>Consider association financing.</strong> A loan spreads the cost over time, but it adds interest, and owners still repay it through assessments. Outside the emergency powers above, authority to borrow depends on the governing documents.",
+          "<strong>Reallocate reserves carefully.</strong> If statutory reserves exist, using them for another purpose requires advance majority owner approval (§720.303(6)(h)). Pulling from one component's reserve can create the next shortfall."
+        ]
+      },
+      { id: "hoa-loan-vs-special-assessment", heading: "HOA Loan vs. Special Assessment",
+        table: {
+          headers: ["", "Special Assessment", "Association Loan"],
+          rows: [
+            ["Who pays", "Owners, by proportional share", "Owners, through assessments that repay the loan"],
+            ["Timing", "Due dates the documents allow", "Spread over the loan term"],
+            ["Interest", "No loan interest; past-due amounts accrue interest under the documents or §720.3085(3)", "Adds loan interest to the total cost"],
+            ["Authority", "Set by governing documents (and §720.316 in emergencies)", "Set by governing documents (and §720.316 in emergencies)"]
+          ]
+        },
+        body3: [
+          "<strong>When comparing an HOA loan vs. special assessment, compare the total cost to owners, not just the monthly impact.</strong> Over the long term, Edison's partnership with One Florida Bank supports structured reserve investment planning, including CDs, sweep accounts, and FDIC coverage optimization, which helps the reserve fund grow for the next capital project. Our <a href=\"/services/hoa-accounting\">HOA accounting</a> services explain how that planning fits into day-to-day financial management."
+        ]
+      },
+      { id: "structure-fairly", heading: "How to Structure an HOA Special Assessment Fairly",
+        body: [
+          "A fair HOA special assessment starts from a documented project cost, applies each owner's proportional share as the governing documents define it, and sets due dates the documents allow. Every step should be traceable on paper.",
+          "In practice, the math is simple: the documented project cost, divided according to each parcel's share under the declaration. <strong>Owners accept a number far more readily when they can see exactly how it was built.</strong> Edison assigns a dedicated accounting specialist to each community and requires documentation behind every invoice, so the cost basis is traceable from bid to statement. The steps that get you there:"
+        ],
+        list: [
+          "<strong>Base the total on real bids</strong> rather than estimates wherever possible.",
+          "<strong>Define exactly what the HOA special assessment covers</strong>, since the meeting notice must describe its nature.",
+          "<strong>Apply proportional shares</strong> under §720.308(1)(a) and the declaration.",
+          "<strong>Decide timing</strong>, a lump sum or installments, within what the governing documents permit.",
+          "<strong>Record the vote and the cost basis</strong> in the meeting minutes."
+        ]
+      },
+      { id: "communicate-to-homeowners", heading: "How to Communicate a Special Assessment to Homeowners",
+        body: [
+          "When the board is weighing an HOA special assessment, tell owners early, explain why, show what was considered, and make the numbers easy to follow. Owners can accept hard news far more readily than a surprise.",
+          "Edison puts it this way: <strong>an assessment explained in advance is a policy; an assessment discovered on a statement is a grievance.</strong> A special assessment HOA owners hear about weeks before the vote lands very differently from one that first appears on a bill."
+        ],
+        list: [
+          "<strong>Before the meeting:</strong> Alongside the required 14-day notice, explain the project, why it's needed now, the alternatives the board considered, each owner's share, and the timeline.",
+          "<strong>At the meeting:</strong> Walk through the cost basis and answer questions. Owners have the right to speak on agenda items, so plan time for it.",
+          "<strong>After the vote:</strong> Send a written summary with each owner's share, the due dates, and a contact person for questions. The meeting notice isn't the bill."
+        ]
+      },
+      { id: "communicate-every-channel", heading: "Why Edison Communicates Across Every Channel",
+        body: [
+          "Edison communicates across the CINC Connect portal, email, phone, and bulletin board flyers, because not every owner reads the portal. Edison often points to a 93-year-old grandmother in one community: she isn't going to log in to a website, but she will pick up the phone. Bilingual support reaches Spanish-speaking owners. And when owners call with questions about the assessment, a person answers."
+        ]
+      },
+      { id: "condo-boards-note", heading: "A Note for Florida Condo Boards",
+        body: [
+          "Condominium associations follow Chapter 718, not Chapter 720, and their special assessment rules and reserve obligations differ. One major driver: residential condo associations must complete a structural integrity reserve study at least every 10 years for each building three habitable stories or higher (§718.112(2)(g)), which shapes reserve funding and, in turn, special assessment exposure. Condo boards will find guidance specific to their communities through our <a href=\"/services/condo-management\">condo management</a> resources."
+        ]
+      },
+      { id: "faq", heading: "Frequently Asked Questions",
+        faq: [
+          {
+            q: "Can a Florida HOA levy a special assessment without an owner vote?",
+            a: "Often yes, if the governing documents allow the board to. Chapter 720 doesn't impose a statewide owner-vote requirement for an HOA special assessment after turnover. Two exceptions matter: before turnover, non-developer owners must approve (§720.315), and during a declared state of emergency the board may levy without an owner vote unless the recorded documents specifically prohibit it (§720.316(1)(j))."
+          },
+          {
+            q: "How much notice does a Florida HOA have to give before a special assessment?",
+            a: "At least 14 days' written notice, mailed, delivered, or electronically transmitted to owners and posted on the property. The notice must state that assessments will be considered and their nature (§720.303(2)(c)2.). If your governing documents require an owner vote, the membership meeting needs its own notice under §720.306, and the documents may require more."
+          },
+          {
+            q: "Is there a limit on how much an HOA can special assess in Florida?",
+            a: "Chapter 720 sets no statewide dollar cap on an HOA special assessment. Any limit or approval threshold comes from the declaration and bylaws, so read the documents before noticing the meeting."
+          },
+          {
+            q: "Is an HOA loan better than a special assessment?",
+            a: "It depends. A loan spreads the cost over time but adds interest, and owners still repay it through assessments. Borrowing authority depends on the governing documents, and boards should compare the total cost to owners, not just the monthly impact."
+          },
+          {
+            q: "How can an HOA avoid special assessments?",
+            a: "The most reliable way to avoid an HOA special assessment is to fund reserves against a current reserve study and build the budget early enough to act on it. Edison uses backwards budget planning, setting the budget adoption date first and targeting October completion, and walks the property with the reserve provider so the study reflects real component ages. Our guide on <a href=\"/blog/hoa-budget-preparation\">how to prepare an HOA budget</a> walks through that timeline."
+          }
+        ]
+      },
+      { id: "explained-before-billed", heading: "Explained Before It's Billed",
+        body: [
+          "An HOA special assessment done right is lawful, fair, and explained before it's billed. Done repeatedly, it's a signal that reserves and budgeting need attention. For smaller communities, Edison's Accounting Only service level brings professional financial oversight without full-service management.",
+          "<strong>Ready to plan ahead for your community's next capital project?</strong> <a href=\"/request-a-proposal\">Talk through your community's reserves and budget with Edison.</a>",
+          "<em>This article is educational and is not legal advice. Confirm how Florida law and your governing documents apply to your community with your association counsel.</em>"
+        ]
       }
     ],
     related: [

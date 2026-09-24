@@ -403,7 +403,7 @@ const EDUCATION_CONTENT = {
         { title: "How to Prepare an HOA Budget: A Board's Step-by-Step Guide", readTime: "8 min", href: "/blog/hoa-budget-preparation" },
         { title: "HOA Audit: What It Is, When It's Required, and How to Prepare", readTime: "9 min", href: "/blog/hoa-audit" },
         { title: "HOA Reserve Study Florida: What Boards Need to Know", readTime: "10 min", href: "/blog/hoa-reserve-study-guide" },
-        { title: "HOA Special Assessment Guide", readTime: "2 min", href: "/blog/hoa-special-assessment" },
+        { title: "HOA Special Assessments in Florida: What the Law Allows and What to Try First", readTime: "11 min", href: "/blog/hoa-special-assessment" },
         { title: "HOA Management Fees: What Boards Actually Pay", readTime: "2 min", href: "/blog/hoa-management-fees" }
       ]
     }
