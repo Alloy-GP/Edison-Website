@@ -8,8 +8,8 @@ export interface ReviewItem {
 }
 
 export const REVIEW_ITEMS: ReviewItem[] = [
-  { label: 'Florida HOA Laws (updated post)', path: '/blog/florida-hoa-laws-guide/', review: true },
-  { label: 'HOA Special Assessments (updated post)', path: '/blog/hoa-special-assessment/', review: true },
+  { label: 'Florida HOA Laws', path: '/blog/florida-hoa-laws-guide/', review: true },
+  { label: 'HOA Special Assessments', path: '/blog/hoa-special-assessment/', review: true },
   { label: 'How to Prepare an HOA Budget', path: '/blog/hoa-budget-preparation/', review: false },
   { label: 'Homepage', path: '/', review: false },
   { label: 'Services', path: '/services/', review: false },
