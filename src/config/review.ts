@@ -8,7 +8,9 @@ export interface ReviewItem {
 }
 
 export const REVIEW_ITEMS: ReviewItem[] = [
-  { label: 'How to Prepare an HOA Budget (new blog post)', path: '/blog/hoa-budget-preparation/', review: true },
+  { label: 'Florida HOA Laws (updated post)', path: '/blog/florida-hoa-laws-guide/', review: true },
+  { label: 'HOA Special Assessments (updated post)', path: '/blog/hoa-special-assessment/', review: true },
+  { label: 'How to Prepare an HOA Budget', path: '/blog/hoa-budget-preparation/', review: false },
   { label: 'Homepage', path: '/', review: false },
   { label: 'Services', path: '/services/', review: false },
   { label: 'Solutions', path: '/solutions/', review: false },
@@ -44,7 +46,7 @@ export const REVIEW_ITEMS: ReviewItem[] = [
   { label: 'HOA Audit', path: '/blog/hoa-audit/', review: false },
   { label: 'HOA Bylaws vs CCRs', path: '/blog/hoa-bylaws-vs-ccrs/', review: false },
   { label: 'Best HOA Management Companies Orlando', path: '/blog/best-hoa-management-companies-orlando/', review: false },
-  { label: 'Edison Education (updated hub)', path: '/edison-education/', review: true },
+  { label: 'Edison Education (updated hub)', path: '/edison-education/', review: false },
   { label: 'Privacy Policy', path: '/privacy-policy/', review: false },
   { label: 'Terms of Service', path: '/terms-of-service/', review: false },
 ];
