@@ -110,6 +110,14 @@ const FAQ_CONTENT = {
         { q: "Do you offer board certification training?", a: "Edison reimburses our managers for industry designations and partners with Strength in Partnerships (SIP) to deliver free education content to boards. FL statutory board certification is supported and tracked centrally for client communities." },
         { q: "How often is content published?", a: "New articles every month, prioritized by what boards are asking us about in real time. FL legislative changes get covered the day they pass." }
       ]
+    },
+    {
+      eyebrow: "Getting in touch", title: "Reaching Edison",
+      items: [
+        { q: "What are Edison's office hours?", a: "Our office is open for in-person visits Monday through Thursday, 9am to 5pm. On Fridays we're available by phone and email only — there are no in-person office hours. A real person still answers when you call during business hours." },
+        { q: "How quickly will calls get returned?", a: "Same-day for board members, 24-hour for homeowners, non-negotiable. When you call the office during business hours, a real person answers — Monday through Thursday in person and by phone, Fridays by phone and email." },
+        { q: "How do I reach Edison on a Friday?", a: "By phone at (407) 317-5252 or by email. Fridays are phone- and email-only — there are no in-person office hours, but the team is working: board members still get a same-day response and homeowners a 24-hour one." }
+      ]
     }
   ]
 };

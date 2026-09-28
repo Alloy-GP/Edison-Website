@@ -101,7 +101,7 @@ function GeoPageB({ content }) {
         locationStrip={[
           { label: "Based in", value: "Orlando, FL" },
           { label: "Serving", value: `${content.city} & nearby` },
-          { label: "Office hours", value: "M–F 9am–5pm" },
+          { label: "Office hours", value: "Mon–Thu 9am–5pm · Fri phone & email only" },
           { label: "Same-day", value: "board response" }
         ]}
       />
@@ -195,7 +195,7 @@ const ORLANDO_CONTENT = {
     { value: "Orlando", caption: "Headquartered here. Tracy and the team live and work in the metro." },
     { value: "Limited", caption: "Portfolios sized to your community, well below the industry average." },
     { value: "4.9★", caption: "Google rating, the highest of any named competitor in the Orlando market." },
-    { value: "M–F", caption: "9am–5pm office hours. Same-day response for board members." }
+    { value: "Mon–Thu", caption: "9am–5pm in-person office hours; Fridays by phone and email only. Same-day response for board members." }
   ],
   context: {
     title: "Orlando's HOA market is unique, and so are its boards",

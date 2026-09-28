@@ -108,7 +108,7 @@ const DEFAULT_NAV = [
 
 const DEFAULT_UTILITY = {
   phone: { label: "(407) 317-5252", href: "tel:4073175252" },
-  hours: "M-F 9am-5pm",
+  hours: "Mon–Thu 9am–5pm · Fri phone & email only",
   portals: [
     { label: "Estoppel Request", href: "https://www.homewisedocs.com" },
     { label: "VIVE Login", href: "https://app.getvived.com" },

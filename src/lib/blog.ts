@@ -66,6 +66,11 @@ export interface LatestPost {
 export function getAllPostsByDate(): LatestPost[] {
   return Object.entries(CONTENT)
     .filter(([slug]) => LIVE_SLUGS.has(slug))
+    // Posts mid-rework carry `pendingPublish: true` — their route stays live so
+    // the URL can be reviewed, but they're pulled from every list (archive,
+    // homepage latest, education) until published. On go-live we drop the flag
+    // and set `datePublished` to that day, so the post returns at the top.
+    .filter(([, post]) => !post.pendingPublish)
     .sort(([, a], [, b]) => publishedAt(b) - publishedAt(a))
     .map(([slug, post]) => ({
       slug,
