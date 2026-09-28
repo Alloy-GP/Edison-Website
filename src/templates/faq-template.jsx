@@ -116,7 +116,7 @@ const FAQ_CONTENT = {
       items: [
         { q: "What are Edison's office hours?", a: "Our office is open for in-person visits Monday through Thursday, 9am to 5pm. On Fridays we're available by phone and email only — there are no in-person office hours. A real person still answers when you call during business hours." },
         { q: "How quickly will calls get returned?", a: "Same-day for board members, 24-hour for homeowners, non-negotiable. When you call the office during business hours, a real person answers — Monday through Thursday in person and by phone, Fridays by phone and email." },
-        { q: "How do I reach Edison on a Friday?", a: "By phone at (407) 317-5252 or by email. Fridays are phone- and email-only — the office is closed to in-person visits, but board members still get a same-day response and homeowners a 24-hour one." }
+        { q: "How do I reach Edison on a Friday?", a: "By phone at (407) 317-5252 or by email. Fridays are phone- and email-only — there are no in-person office hours, but the team is working: board members still get a same-day response and homeowners a 24-hour one." }
       ]
     }
   ]
