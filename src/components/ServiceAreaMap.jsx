@@ -19,7 +19,7 @@ export function ServiceAreaMap({ highlightedCounty = null }) {
   const layersRef    = useRef({});   // { "Orange County": LeafletLayer, ... }
 
   /* ── Build map once, only when it nears the viewport ──────
-     Leaflet JS/CSS + CARTO basemap tiles are heavy third-party
+     Leaflet JS/CSS + basemap tiles are heavy third-party
      requests. Deferring them until the map scrolls into view
      keeps them off the critical path (better LCP/Speed Index). */
   useEffect(() => {
@@ -48,11 +48,30 @@ export function ServiceAreaMap({ highlightedCounty = null }) {
         attributionControl: true
       });
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 20
-      }).addTo(map);
+      // CARTO retired its keyless basemap in 2026-09 — basemaps.cartocdn.com
+      // now returns an "API KEY REQUIRED" placeholder for every tile. Use
+      // MapTiler Positron (same pale style) when a key is set, else keyless OSM.
+      const maptilerKey = import.meta.env.PUBLIC_MAPTILER_KEY;
+      if (maptilerKey) {
+        // MapTiler serves 512px tiles, so tileSize 512 / zoomOffset -1 are
+        // required or the basemap renders one zoom level off / misaligned.
+        L.tileLayer(`https://api.maptiler.com/maps/positron/{z}/{x}/{y}.png?key=${maptilerKey}`, {
+          attribution: '&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          tileSize: 512,
+          zoomOffset: -1,
+          minZoom: 1,
+          maxZoom: 20,
+          crossOrigin: true
+        }).addTo(map);
+      } else {
+        // No key: keyless OSM so the map still renders (muted via CSS below).
+        containerRef.current.classList.add('edison-map--osm');
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          subdomains: 'abc',
+          maxZoom: 19
+        }).addTo(map);
+      }
 
       fetch('/assets/service-area.geojson')
         .then(r => r.json())
@@ -191,6 +210,11 @@ export function ServiceAreaMap({ highlightedCounty = null }) {
         .leaflet-control-attribution {
           font-size: 10px !important;
           background: rgba(255,255,255,.75) !important;
+        }
+        /* Keyless-OSM fallback only: OSM tiles are full-colour, so desaturate
+           them to approximate Positron until a MapTiler key is set. */
+        .edison-map--osm .leaflet-tile-pane {
+          filter: grayscale(0.9) sepia(0.15) saturate(0.85) brightness(1.05) contrast(0.95);
         }
       `}</style>
       <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
