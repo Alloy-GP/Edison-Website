@@ -69,7 +69,7 @@ const BLOG_CONTENT = {
         id: "florida-hoa-audit-requirements",
         heading: "Florida HOA Audit Requirements Under Section 720.303(7)",
         body: [
-          "Florida law does not require every HOA to conduct a full audit. The required level of financial reporting depends on the association's total annual revenue, as defined in the <a href=\"https://www.flsenate.gov/laws/statutes/2023/720.303\" target=\"_blank\" rel=\"noopener\">Florida Homeowners' Association Act, Section 720.303(7)</a>."
+          "<a href=\"/blog/florida-hoa-laws-guide\">Florida law</a> does not require every HOA to conduct a full audit. The required level of financial reporting depends on the association's total annual revenue, as defined in the <a href=\"https://www.flsenate.gov/laws/statutes/2023/720.303\" target=\"_blank\" rel=\"noopener\">Florida Homeowners' Association Act, Section 720.303(7)</a>."
         ],
         table: {
           headers: ["Annual Revenue Tier", "Required Financial Report"],
@@ -228,7 +228,7 @@ const BLOG_CONTENT = {
           "<strong>Closed-session exceptions.</strong> Meetings with the association's attorney about proposed or pending litigation, and meetings to discuss personnel matters, may be closed.",
           "<strong>Default notice.</strong> If your bylaws don't specify otherwise, notice must identify the agenda items and be posted conspicuously in the community at least 48 hours in advance. The alternative is mailing or delivering it at least 7 days before the meeting. Emergencies are excepted.",
           "<strong>Assessment language.</strong> The board can't levy an assessment unless the meeting notice says assessments will be considered and describes their nature.",
-          "<strong>Longer notice for bigger decisions.</strong> Meetings that will consider special assessments or changes to rules on parcel use require 14 days' notice to members, plus posting.",
+          "<strong>Longer notice for bigger decisions.</strong> Meetings that will consider <a href=\"/blog/hoa-special-assessment\">special assessments</a> or changes to rules on parcel use require 14 days' notice to members, plus posting.",
           "<strong>How directors vote.</strong> Directors may use email to communicate but may not vote by email. They may not vote by proxy or by secret ballot, except that secret ballots may be used to elect officers.",
           "<strong>Member participation.</strong> Members may attend and speak on designated agenda items, subject to reasonable written rules the board adopts. Members may also record board and membership meetings (§720.306(10))."
         ]
@@ -591,7 +591,7 @@ const BLOG_CONTENT = {
         heading: "What Are HOA Bylaws?",
         body: [
           "Bylaws govern <a href=\"/services/hoa-management\">how the HOA operates</a> as an organization — not what homeowners can do with their property, but how the board makes decisions, runs meetings, and fulfills the duties and responsibilities of board members. If the CC&Rs are the \"what,\" the bylaws are the \"how.\"",
-          "Unlike CC&Rs, bylaws do not need to be recorded with the county under Florida law, though amendments typically require a homeowner vote, with the exact process depending on the amendment provisions written in the bylaws themselves. The bylaws are also where Florida's board certification requirement lives in practice: boards must be certified within 90 days of election under state law, and understanding the governing documents is a core part of that process.",
+          "Unlike CC&Rs, bylaws do not need to be recorded with the county under Florida law, though amendments typically require a homeowner vote, with the exact process depending on the amendment provisions written in the bylaws themselves. The bylaws are also where Florida's board certification requirement lives in practice: boards must be <a href=\"/blog/florida-hoa-laws-guide\">certified within 90 days of election</a> under state law, and understanding the governing documents is a core part of that process.",
           "When a question comes up about whether something requires a vote or about the responsibilities of officers, the bylaws are almost always the right document to open first."
         ],
         subheading: "What Bylaws Typically Cover",
@@ -789,7 +789,7 @@ const BLOG_CONTENT = {
         body: ["Most management agreements include an annual renewal with a CPI-pegged or fixed percentage increase. Read the renewal clause carefully, some companies front-load the first-year discount knowing the increase resets the economics in year two. Edison's agreements are 12-month terms with transparent renewal mechanics; if a board chooses not to renew, they walk free with all records intact."]
       },
       { id: "how-to-evaluate", heading: "How to evaluate a management proposal",
-        body: ["The base per-door fee is the starting point, not the conclusion. Compare what's included, what's an upcharge, what the renewal terms look like, and what the company's portfolio sizes per manager actually are. A cheap proposal from a 20-communities-per-manager firm is often more expensive in 18 months than a slightly higher proposal from a boutique firm, because the cost of poor service shows up as legal bills, special assessments, and homeowner attrition.",
+        body: ["The base per-door fee is the starting point, not the conclusion. Compare what's included, what's an upcharge, what the renewal terms look like, and what the company's portfolio sizes per manager actually are. A cheap proposal from a 20-communities-per-manager firm is often more expensive in 18 months than a slightly higher proposal from a boutique firm, because the cost of poor service shows up as legal bills, <a href=\"/blog/hoa-special-assessment\">special assessments</a>, and homeowner attrition.",
           "Boards weighing <a href=\"/services/hoa-management/orlando\">HOA management companies in Orlando</a> can see Edison's full scope on the <a href=\"/services/hoa-management\">HOA management</a> page, or <a href=\"/request-a-proposal\">request a proposal</a> and compare a fixed-scope quote against whatever else is on the table."]
       }
     ],
@@ -827,7 +827,7 @@ const BLOG_CONTENT = {
       },
       { id: "why-special-assessments-happen", heading: "Why Special Assessments Happen: The Reserve Connection",
         body: [
-          "Most HOA special assessments trace back to reserves that weren't sized to the community's real replacement schedule. Under Chapter 720, reserves are largely a choice the owners make rather than a mandate the state imposes, and that choice has consequences years later.",
+          "Most HOA special assessments trace back to reserves that weren't sized to the community's real replacement schedule. Under <a href=\"/blog/florida-hoa-laws-guide\">Chapter 720</a>, reserves are largely a choice the owners make rather than a mandate the state imposes, and that choice has consequences years later.",
           "Here's how the reserve rules in §720.303(6) work:"
         ],
         list: [
@@ -1000,7 +1000,7 @@ const BLOG_CONTENT = {
     ],
     intro: [
       "You're staring at a line item in the budget labeled \"reserves,\" and you're not entirely sure the number is right. Maybe it was carried over from last year. Maybe it was set by a previous board. Maybe no one has looked at the actual condition of the roof, the pool deck, or the parking lot in years. If any of this sounds familiar, your community probably needs an HOA reserve study.",
-      "A reserve study is the financial planning tool that tells your board exactly where your community stands: what's aging, when it will need replacement, and whether the money is there to pay for it. In Florida, where hurricane exposure, humidity, and rapid development put constant pressure on shared infrastructure, reserve planning is not optional. It's how boards avoid the surprise special assessments that frustrate homeowners and erode trust.",
+      "A reserve study is the financial planning tool that tells your board exactly where your community stands: what's aging, when it will need replacement, and whether the money is there to pay for it. In Florida, where hurricane exposure, humidity, and rapid development put constant pressure on shared infrastructure, reserve planning is not optional. It's how boards avoid the surprise <a href=\"/blog/hoa-special-assessment\">special assessments</a> that frustrate homeowners and erode trust.",
       "This guide covers what a reserve study is, whether Florida law requires one for your community, what it costs, how often to update it, and how a professional management company supports the process from start to finish."
     ],
     sections: [
