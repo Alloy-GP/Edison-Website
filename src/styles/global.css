@@ -788,3 +788,87 @@ p { text-align: justify; }
     font-size: 12px !important;
   }
 }
+
+/* ==========================================================================
+   SERVICE LEVELS (/service-levels)
+   Five-column layouts need more breakpoints than the rest of the site: a
+   tier card stops being readable well before 768px, and the matrix has to
+   scroll sideways rather than reflow (a 5-tier ladder loses its meaning
+   when the columns stack).
+   ========================================================================== */
+
+/* Chooser card hover — matches the DetailLinkCards lift */
+.sl-chooser-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--edison-teal);
+  transform: translateY(-2px);
+}
+
+/* ---- Tier cards: 5 → 3 → 2 → 1 ---- */
+@media (max-width: 1240px) {
+  .sl-tier-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 900px) {
+  .sl-tier-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 600px) {
+  .sl-tier-cards { padding: 56px 20px !important; }
+  .sl-tier-grid { grid-template-columns: 1fr !important; }
+  .sl-tier-note { margin-top: 24px !important; }
+}
+
+/* ---- Hero stack ---- */
+@media (max-width: 900px) {
+  .sl-hero { padding: 48px 20px 40px !important; }
+  .sl-hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .sl-hero h1 { font-size: 34px !important; }
+}
+
+/* ---- Chooser ---- */
+@media (max-width: 768px) {
+  .sl-chooser { padding: 56px 20px !important; }
+  .sl-chooser-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ---- Matrix: horizontal scroll below the point where 6 columns fit.
+        position:sticky cannot survive an overflow container, so the
+        header reverts to static at the same breakpoint. ---- */
+@media (max-width: 1040px) {
+  .sl-matrix { padding: 56px 20px !important; }
+  .sl-matrix-wrap {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 14px;
+  }
+  .sl-matrix-head { position: static !important; }
+  .sl-matrix-hint { display: block !important; }
+
+  /* Pin the row-label column so a check mark five columns across is still
+     attributable to a row. Needs an opaque background — the cells are
+     transparent by default and would scroll content underneath. */
+  .sl-matrix-row > div:first-child {
+    position: sticky; left: 0; z-index: 1;
+    background: #fff;
+    box-shadow: 1px 0 0 var(--border-hairline);
+  }
+  .sl-matrix-head > div:first-child {
+    position: sticky; left: 0; z-index: 3;
+    background: var(--edison-navy);
+  }
+  .sl-matrix-group-label {
+    position: sticky; left: 20px;
+  }
+}
+
+/* ---- Every-level band: 4 → 2 → 1 ---- */
+@media (max-width: 1000px) {
+  .sl-every-level-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 600px) {
+  .sl-every-level { padding: 56px 20px !important; }
+  .sl-every-level-grid { grid-template-columns: 1fr !important; }
+  .sl-every-level h2 { font-size: 26px !important; }
+}

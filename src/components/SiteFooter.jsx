@@ -21,7 +21,8 @@ const DEFAULT_FOOTER_COLUMNS = [
       { label: "Townhome Associations", href: "/services/hoa-management/townhome" },
       { label: "HOA Accounting", href: "/services/hoa-accounting" },
       { label: "Covenant Enforcement", href: "/services/covenant-enforcement" },
-      { label: "HOA Collections", href: "/services/hoa-collections" }
+      { label: "HOA Collections", href: "/services/hoa-collections" },
+      { label: "Service Levels", href: "/service-levels" }
     ]
   },
   {

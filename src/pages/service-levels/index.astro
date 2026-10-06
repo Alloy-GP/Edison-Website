@@ -1,0 +1,42 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { ServiceLevelsPage, SERVICE_LEVELS_CONTENT } from '../../templates/service-levels-template.jsx';
+import { SITE } from '../../config/site.ts';
+import { breadcrumbSchema, collectionPageSchema, faqSchema } from '../../lib/schema.ts';
+
+// Service levels cut across the HOA and Condo pillars rather than sitting
+// beside them, so this lives at the root, not under /services.
+const url = `${SITE.url}/service-levels`;
+const description =
+  'Compare Edison’s five HOA and condo management service levels — Accounting Only, Accounting Plus, Portfolio, Portfolio Plus, and On-Site — and find the right fit for your community.';
+
+// CollectionPage over the five levels (each anchors on this page rather than
+// getting its own route) + FAQPage, matching the sitemap v3.2 hub spec.
+const pageSchema = [
+  collectionPageSchema({
+    name: 'HOA & Condo Management Service Levels',
+    description,
+    url,
+    items: [
+      { name: 'Accounting Only', url: `${url}#accounting-only` },
+      { name: 'Accounting Plus', url: `${url}#accounting-plus` },
+      { name: 'Portfolio',       url: `${url}#portfolio` },
+      { name: 'Portfolio Plus',  url: `${url}#portfolio-plus` },
+      { name: 'On-Site',         url: `${url}#on-site` },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home',           url: `${SITE.url}/` },
+    { name: 'Service Levels', url },
+  ]),
+  faqSchema(SERVICE_LEVELS_CONTENT.faqs),
+];
+---
+
+<SiteLayout
+  title="HOA Management Service Levels & Pricing | Edison Association Management"
+  description={description}
+  pageSchema={pageSchema}
+>
+  <ServiceLevelsPage client:load />
+</SiteLayout>
