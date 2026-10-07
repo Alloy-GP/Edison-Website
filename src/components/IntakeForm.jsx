@@ -132,14 +132,31 @@ export default function IntakeForm() {
   const intent = intentId ? intentById(intentId) : null;
 
   // Deep-link: ?intent=proposal opens straight to that intent's fields.
+  // Any further param matching one of that intent's field keys prefills it,
+  // and ?message= seeds the free-text box. The service-levels wizard uses
+  // this to hand over what the board already told it, so nobody is asked
+  // the same question twice.
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const want = new URLSearchParams(window.location.search).get('intent');
+    const params = new URLSearchParams(window.location.search);
+    const want = params.get('intent');
     const w = want && intentById(want);
-    if (w) {
-      if (w.redirect) { window.location.href = w.redirect; return; }
-      setIntentId(want); setFields({}); setErrors({}); setStep('form');
-    }
+    if (!w) return;
+    if (w.redirect) { window.location.href = w.redirect; return; }
+
+    const seed = {};
+    (w.fields || []).forEach((f) => {
+      const v = params.get(f.key);
+      if (!v) return;
+      // A select or radio can only be prefilled with a value it actually
+      // offers — anything else would render as a blank, broken-looking field.
+      if (f.options && !f.options.includes(v)) return;
+      seed[f.key] = v;
+    });
+
+    const msg = params.get('message');
+    if (msg) setMessage(msg);
+    setIntentId(want); setFields(seed); setErrors({}); setStep('form');
   }, []);
 
   // Intents with a `redirect` send the visitor straight there (e.g. vendor portal).

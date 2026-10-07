@@ -797,25 +797,17 @@ p { text-align: justify; }
    when the columns stack).
    ========================================================================== */
 
-/* Chooser card hover — matches the DetailLinkCards lift */
-.sl-chooser-card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--edison-teal);
-  transform: translateY(-2px);
+/* Wizard option hover/focus — large tap targets, obvious affordance */
+.sl-wizard-option:hover {
+  border-color: var(--edison-teal) !important;
+  transform: translateY(-1px);
 }
-
-/* ---- Tier cards: 5 → 3 → 2 → 1 ---- */
-@media (max-width: 1240px) {
-  .sl-tier-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.sl-wizard-option:focus-visible,
+.sl-matrix-group:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
 }
-@media (max-width: 900px) {
-  .sl-tier-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-}
-@media (max-width: 600px) {
-  .sl-tier-cards { padding: 56px 20px !important; }
-  .sl-tier-grid { grid-template-columns: 1fr !important; }
-  .sl-tier-note { margin-top: 24px !important; }
-}
+.sl-matrix-group:hover { filter: brightness(0.98); }
 
 /* ---- Hero stack ---- */
 @media (max-width: 900px) {
@@ -827,10 +819,14 @@ p { text-align: justify; }
   .sl-hero h1 { font-size: 34px !important; }
 }
 
-/* ---- Chooser ---- */
+/* ---- Wizard ---- */
 @media (max-width: 768px) {
-  .sl-chooser { padding: 56px 20px !important; }
-  .sl-chooser-grid { grid-template-columns: 1fr !important; }
+  .sl-wizard { padding: 56px 20px !important; }
+  .sl-wizard-card { padding: 26px 22px 28px !important; }
+  /* Two-column answer grids stack — an option label needs the full width
+     to stay one or two lines on a phone. */
+  .sl-wizard-options { grid-template-columns: 1fr !important; }
+  .sl-result-grid { grid-template-columns: 1fr !important; }
 }
 
 /* ---- Matrix: horizontal scroll below the point where 6 columns fit.

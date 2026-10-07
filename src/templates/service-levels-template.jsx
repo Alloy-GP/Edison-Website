@@ -2,7 +2,7 @@ import React from 'react';
 import { Breadcrumb, FAQ, FinalCTA, InteriorButton, InteriorEyebrow,
          MidCTA } from '../components/interior-components';
 import { AntiPatterns, BulletsWithImage, PullQuote } from '../components/template-sections';
-import { LevelChooser, FeatureMatrix,
+import { LevelWizard, FeatureMatrix,
          EveryLevelBand } from '../components/service-level-sections';
 
 /* ============================================================
@@ -22,8 +22,8 @@ import { LevelChooser, FeatureMatrix,
                         the option the client is actively weighing)
      'none'             no dollar figures anywhere on the page
 
-   Nothing else needs to change. The tier cards, the matrix header
-   and the matrix pricing row all read from this.
+   Nothing else needs to change. The matrix header and the matrix
+   pricing row both read from this.
    ============================================================ */
 const PRICING_MODE = 'accounting-only';
 
@@ -69,8 +69,8 @@ function ServiceLevelsPage({ content = SERVICE_LEVELS_CONTENT }) {
               color: "var(--edison-text-body)", margin: "0 0 28px", maxWidth: 620
             }}>{content.hero.lede}</p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <InteriorButton variant="primary" size="lg" href="#compare">Compare all five levels</InteriorButton>
-              <InteriorButton variant="ghost" size="lg" href="/request-a-proposal">Request a Proposal</InteriorButton>
+              <InteriorButton variant="primary" size="lg" href="#find-your-level">Find your level in 30 seconds</InteriorButton>
+              <InteriorButton variant="ghost" size="lg" href="#compare">Compare all five</InteriorButton>
             </div>
           </div>
           <div style={{
@@ -83,17 +83,18 @@ function ServiceLevelsPage({ content = SERVICE_LEVELS_CONTENT }) {
         </div>
       </section>
 
-      <LevelChooser
-        eyebrow="Start with the problem"
-        title={content.chooser.title}
-        sub={content.chooser.sub}
-        paths={content.chooser.paths}
+      {/* The scenario grid that used to sit here asked a volunteer board
+          to read five options and diagnose itself. Same questions, asked
+          one at a time, ending in an answer instead of a menu. */}
+      <LevelWizard
+        eyebrow="Find your level"
+        title={content.wizard.title}
+        sub={content.wizard.sub}
+        questions={content.wizard.questions}
+        recommend={content.wizard.recommend}
+        tiers={tiers}
       />
 
-      {/* The tier cards that used to sit here restated the matrix row for
-          row — same information, denser presentation, shown first. The
-          matrix now carries what only the cards had: the one-line
-          definition, best fit, price and a per-level CTA. */}
       <div id="compare" style={{ scrollMarginTop: "var(--site-header-height)" }}>
         <FeatureMatrix
           eyebrow="The five levels"
@@ -136,7 +137,7 @@ function ServiceLevelsPage({ content = SERVICE_LEVELS_CONTENT }) {
         variant="teal"
         title={content.midCta.title}
         lede={content.midCta.lede}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal?intent=proposal" }}
         secondary={{ label: `Call ${content.phone}`, href: `tel:${content.phone.replace(/\D/g, "")}` }}
       />
 
@@ -159,11 +160,82 @@ function ServiceLevelsPage({ content = SERVICE_LEVELS_CONTENT }) {
         eyebrow="Lighting the way"
         title={content.cta.title}
         body={content.cta.body}
-        primary={{ label: "Request a Proposal", href: "/request-a-proposal" }}
+        primary={{ label: "Request a Proposal", href: "/request-a-proposal?intent=proposal" }}
         secondary={{ label: `Call ${content.phone}`, href: `tel:${content.phone.replace(/\D/g, "")}` }}
       />
     </main>
   );
+}
+
+/* ============================================================
+   WIZARD LOGIC
+   Mirrors how Edison actually places a community: what the board wants
+   off its plate, the size, and how much on-site presence it genuinely
+   needs. Size never drives the answer on its own — the brief is explicit
+   that placement is scope + size + volunteer capacity + access need.
+   ============================================================ */
+
+/* The proposal form deep-links on ?intent=proposal and prefills any
+   param matching a field key (see IntakeForm). Handing it the wizard's
+   answers means the board lands on a form that already knows its size
+   and what it asked for, and sales gets a qualified lead. */
+function proposalHref({ units, summary }) {
+  const q = new URLSearchParams({ intent: 'proposal' });
+  if (units) q.set('units', units);
+  if (summary) q.set('message', summary);
+  return `/request-a-proposal?${q.toString()}`;
+}
+
+function recommendLevel(answers, tiers) {
+  const byId = Object.fromEntries(tiers.map((t) => [t.id, t]));
+  const scope = answers.scope;
+  const size  = answers.size;
+  const site  = answers.onsite;
+
+  let id;
+  if (scope?.value === 'books')         id = 'accounting-only';
+  else if (scope?.value === 'asneeded') id = 'accounting-plus';
+  else if (site?.value === 'daily')     id = 'on-site';
+  else if (site?.value === 'days')      id = 'portfolio-plus';
+  else                                  id = 'portfolio';
+
+  const tier  = byId[id];
+  const doors = size?.label?.toLowerCase() ?? 'your size';
+  const big   = size?.value === 'u500' || size?.value === 'o500';
+  const small = size?.value === 'u100';
+
+  const WHY = {
+    'accounting-only': `You have volunteers who show up and vendors you trust. What you do not have is anyone who should be signing checks or chasing delinquent assessments on a Saturday. Accounting Only takes the financial risk off your board at ${doors} homes, without putting a manager between you and your community.`,
+    'accounting-plus': `Most months you will not need a manager. The months you do — a contentious annual meeting, a roof project that needs bids, an enforcement letter that has to be right — you book one. At ${doors} homes that usually costs less across a year than full management, and your board stays in control of which year it is having.`,
+    'portfolio': `This is standard full management and where most communities belong. A dedicated licensed manager and a community specialist who learn your documents, your history and your vendors — and stay. At ${doors} homes, quarterly board meetings and monthly site inspections are typically the right cadence.`,
+    'portfolio-plus': `You want a face in the community, not just a phone number, but a full-time salary is more than ${doors} homes should carry. A dedicated manager is physically on site one to three days a week with the full Edison back office behind them. It is the fastest-growing level in Edison's portfolio, mostly because former on-site communities convert to it.`,
+    'on-site': `At ${doors} homes with enough activity to fill a week, a manager dedicated to one community — yours — is the right call. Optional admin and maintenance staff work alongside them, and Edison's accounting, enforcement and collections departments stand behind them.`
+  };
+
+  /* Edison vets fit before placing anyone and says so when a level will
+     not serve a board. Saying it here is that promise, made before the
+     sales call rather than during it. */
+  let caution = null;
+  if (big && (id === 'accounting-only' || id === 'accounting-plus')) {
+    caution = `A community at ${doors} homes is larger than most boards can carry on volunteer time alone. We will quote what you asked for, and show you Portfolio beside it so you can see the difference in writing.`;
+  } else if (small && id === 'portfolio') {
+    caution = `Portfolio carries a monthly minimum that does not scale down below a certain size. At ${doors} homes it is worth seeing Accounting Plus quoted beside it — we will put both in the proposal.`;
+  }
+
+  const summary = [
+    'Sent from the service levels tool.',
+    `Community size: ${size?.label ?? 'not given'} homes.`,
+    `Wants to hand over: ${scope?.label ?? 'not given'}.`,
+    site ? `On-site presence needed: ${site.label}.` : null,
+    `Suggested level: ${tier.name}.`
+  ].filter(Boolean).join(' ');
+
+  return {
+    tier,
+    why: WHY[id],
+    caution,
+    href: proposalHref({ units: size?.units, summary })
+  };
 }
 
 /* ============================================================
@@ -184,49 +256,76 @@ const SERVICE_LEVELS_CONTENT = {
 
   hero: {
     title: "Pay for the management your community actually needs.",
-    lede: "Most management companies sell one package and ask every board to fit inside it. Edison offers five levels, from behind-the-scenes accounting to a manager dedicated to your community full time. A quiet year costs less. A year with a repaving project and a contentious annual meeting costs more. Your board decides which year it is having.",
+    lede: "Most management companies sell one package and ask every board to fit inside it. Edison offers five levels, from behind-the-scenes accounting to a manager dedicated to your community full time. Answer three questions and we will tell you which one fits.",
     image: "/assets/img-community-aerial.webp"
   },
 
-  chooser: {
-    title: "Which level fits your community?",
-    sub: "Boards rarely arrive knowing what to call the thing they need. Find the sentence that sounds like your last board meeting.",
-    paths: [
+  wizard: {
+    title: "Three questions. One answer.",
+    sub: "No email required, nothing to download. Most boards are done in under a minute.",
+    recommend: recommendLevel,
+    questions: [
       {
-        scenario: "We are small, we handle ourselves fine, we just need the money handled right.",
-        why: "You have volunteers who show up and vendors you trust. What you do not have is anyone who should be signing checks or chasing delinquent assessments on a Saturday. Accounting Only takes the financial risk off your board without putting a manager between you and your community.",
-        tierId: "accounting-only",
-        tierName: "Accounting Only"
+        id: "scope",
+        question: "What would your board most like to hand over?",
+        hint: "There is no wrong answer. This is the starting point, not the commitment.",
+        options: [
+          {
+            value: "books",
+            label: "Just the finances",
+            detail: "We handle meetings, vendors and the community ourselves."
+          },
+          {
+            value: "asneeded",
+            label: "The finances, plus help when something comes up",
+            detail: "Most months are quiet. Some months need a professional."
+          },
+          {
+            value: "full",
+            label: "The day-to-day management",
+            detail: "We want a manager who runs the community alongside us."
+          }
+        ]
       },
       {
-        scenario: "We can run most of it ourselves — we just want a professional available when it matters.",
-        why: "Most months you do not need a manager. But the annual meeting is contentious, the roof project needs bids, or an enforcement letter has to be right. Accounting Plus keeps the books covered and lets you buy the operational help only in the months you need it.",
-        tierId: "accounting-plus",
-        tierName: "Accounting Plus"
+        id: "size",
+        question: "How many homes are in your community?",
+        options: [
+          { value: "u100", label: "Under 100",   units: "Under 100" },
+          { value: "u250", label: "100 to 249",  units: "100-249" },
+          { value: "u500", label: "250 to 499",  units: "250-499" },
+          { value: "o500", label: "500 or more", units: "500+" }
+        ]
       },
       {
-        scenario: "We want a manager who knows our community, not whoever picks up the phone.",
-        why: "This is standard full management and the level most communities belong at. A dedicated LCAM and a community specialist who know your documents, your history, and your vendors. Quarterly board meetings, monthly site inspections, project and vendor work handled.",
-        tierId: "portfolio",
-        tierName: "Portfolio"
-      },
-      {
-        scenario: "We want someone on site — but not five days a week, and not on our payroll.",
-        why: "Plenty of communities were paying for a full-time on-site manager when they genuinely needed one to three days. Portfolio Plus puts a dedicated manager physically in your community on a set schedule, with the full back office behind them.",
-        tierId: "portfolio-plus",
-        tierName: "Portfolio Plus"
-      },
-      {
-        scenario: "Our community is large enough that someone needs to be here every day.",
-        why: "Significant amenities, active construction, a clubhouse that runs events, or enough doors that homeowner traffic alone fills a week. On-Site gives you a manager dedicated to one community full time — yours — with optional admin and maintenance staff alongside.",
-        tierId: "on-site",
-        tierName: "On-Site"
-      },
-      {
-        scenario: "Honestly, we have no idea which of these we are.",
-        why: "Then let us look at it with you. Edison reviews size, amenity load, volunteer capacity, and how much manager access a community genuinely needs before placing anyone. If a level is wrong for you — including if full management is the better value — we will tell you.",
-        tierId: "compare",
-        tierName: "Compare all five"
+        id: "onsite",
+        /* Only full management has an on-site dimension. Boards that
+           picked the books skip this and answer two questions total. */
+        showIf: (a) => a.scope?.value === "full",
+        question: "How much on-site presence does your community need?",
+        hint: "Someone physically in the community, not just reachable by phone.",
+        options: [
+          {
+            value: "none",
+            label: "Not much",
+            detail: "Reachable by phone and email is fine."
+          },
+          {
+            value: "occasional",
+            label: "Occasional visits",
+            detail: "Monthly inspections and scheduled board meetings."
+          },
+          {
+            value: "days",
+            label: "A few days a week",
+            detail: "Enough going on that someone should be here regularly."
+          },
+          {
+            value: "daily",
+            label: "Every day",
+            detail: "Amenities, staff or volume that fills a full week."
+          }
+        ]
       }
     ]
   },
@@ -334,78 +433,70 @@ const SERVICE_LEVELS_CONTENT = {
 
   matrix: {
     title: "Five levels, one standard of service.",
-    sub: "The level changes how much manager access you get and what you pay for it. It never changes who is doing the work or how carefully it gets done. Everything financial is covered at every level.",
-    note: "Not sure where you land? Edison reviews fit before placing any community. If a level is wrong for you, we will say so \u2014 including when full management is the better value.",
+    sub: "The level changes how much manager access you get and what you pay for it. It never changes who is doing the work or how carefully it gets done.",
+    note: "Not sure where you land? Edison reviews fit before placing any community. If a level is wrong for you, we will say so — including when full management is the better value.",
     footnotes: [
       "Pricing shown is starting pricing and may vary based on community size, scope and service requirements.",
       "Per use means the service is available at Accounting Plus and billed when you book it, rather than included in the monthly fee.",
       "On-Site and Portfolio Plus staffing is billed separately from the monthly management fee."
     ],
+    /* "Your manager" opens by default because it is the group that
+       actually separates the five levels. The rest is detail a board
+       opens when it has a specific question. */
     groups: [
       {
-        group: "Financial management",
-        rows: [
-          {
-            label: "Assessment processing",
-            values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }
-          },
-          {
-            label: "Monthly financial reporting",
-            values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }
-          },
-          {
-            label: "AR / AP processing",
-            values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }
-          },
-          {
-            label: "Collections processing",
-            values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }
-          },
-          {
-            label: "Homeowner payment support",
-            values: { "accounting-only": true, "accounting-plus": "Remote", "portfolio": true, "portfolio-plus": "On site", "on-site": "On site" }
-          }
-        ]
-      },
-      {
         group: "Your manager",
+        defaultOpen: true,
         rows: [
           {
             label: "Dedicated LCAM",
+            tip: "Licensed Community Association Manager — Florida requires a state license to manage an association professionally. Dedicated means the same person every time, not whoever happens to be free that week.",
             values: { "accounting-only": false, "accounting-plus": false, "portfolio": "Assigned", "portfolio-plus": "1–3 days on site", "on-site": "Full time, on site" }
           },
           {
             label: "Assigned community specialist",
+            tip: "Your manager's back-office counterpart. Handles day-to-day requests and keeps work moving between board meetings, so the manager is not the only route into Edison.",
             values: { "accounting-only": false, "accounting-plus": false, "portfolio": true, "portfolio-plus": true, "on-site": true }
           },
           {
             label: "Board meetings",
+            tip: "Preparation, attendance and follow-up — not just showing up. At Accounting Plus a meeting is booked and billed when you need one.",
             values: { "accounting-only": false, "accounting-plus": "Per use", "portfolio": "Quarterly", "portfolio-plus": "Monthly", "on-site": "Monthly" }
           },
           {
             label: "Admin & maintenance staff",
+            tip: "Community-employed support working alongside your manager. Billed separately from the management fee.",
             values: { "accounting-only": false, "accounting-plus": false, "portfolio": false, "portfolio-plus": "Optional", "on-site": "Optional" }
           }
         ]
       },
       {
         group: "Day-to-day operations",
+        closedNote: "8 rows",
         rows: [
           {
             label: "Site inspections",
+            tip: "A walk of the community looking for maintenance issues and covenant violations, with a written report back to the board.",
             values: { "accounting-only": false, "accounting-plus": "Per use", "portfolio": "Monthly", "portfolio-plus": "Board sets cadence", "on-site": "Board sets cadence" }
           },
           {
             label: "Vendor sourcing & oversight",
+            tip: "Finding and vetting contractors, collecting competing bids, and holding them to the scope once work starts.",
             values: { "accounting-only": false, "accounting-plus": "Per use", "portfolio": true, "portfolio-plus": true, "on-site": true }
           },
           {
             label: "Covenant enforcement",
+            tip: "Handled by a dedicated department: violation notices, tracking, and the escalation path your governing documents require.",
             values: { "accounting-only": false, "accounting-plus": "Per use", "portfolio": true, "portfolio-plus": true, "on-site": true }
           },
           {
             label: "Project management",
+            tip: "Scoping capital work, collecting three or more competing bids with a comparison, and overseeing the vendor through completion.",
             values: { "accounting-only": false, "accounting-plus": "Per use", "portfolio": true, "portfolio-plus": true, "on-site": true }
+          },
+          {
+            label: "Homeowner payment support",
+            values: { "accounting-only": true, "accounting-plus": "Remote", "portfolio": true, "portfolio-plus": "On site", "on-site": "On site" }
           },
           {
             label: "On-site homeowner support",
@@ -422,8 +513,28 @@ const SERVICE_LEVELS_CONTENT = {
         ]
       },
       {
-        group: "Technology & education",
+        group: "Included at every level",
+        closedNote: "6 rows · identical at all five",
         rows: [
+          {
+            label: "Assessment processing",
+            tip: "Billing homeowners for their dues and recording what comes in.",
+            values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }
+          },
+          {
+            label: "Monthly financial reporting",
+            values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }
+          },
+          {
+            label: "AR / AP processing",
+            tip: "Accounts receivable and payable — collecting what homeowners owe and paying your vendors on time.",
+            values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }
+          },
+          {
+            label: "Collections processing",
+            tip: "Pursuing delinquent accounts: notices, payment plans, and the lien process when it goes that far.",
+            values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }
+          },
           {
             label: "Resident portal, website & mobile app",
             values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }

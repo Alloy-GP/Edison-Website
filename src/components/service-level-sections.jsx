@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { InteriorButton, InteriorEyebrow, SectionHeading } from './interior-components';
 
 /* ============================================================
    SERVICE LEVEL SECTIONS  ·  /service-levels
-   Five-tier comparison patterns. The existing ComparisonTable in
-   template-sections.jsx is hard-wired to two columns ("Typical vs
-   Edison"), so the ladder needed its own primitives:
 
-     LevelChooser  — scenario-first routing, the "help me pick" job
-     FeatureMatrix — the comparison, and the only place the five levels
-                     are laid out against each other
-     TierCards     — pricing-card presentation of the same five levels.
-                     Built first, then cut from the page: it restated the
-                     matrix row for row. Kept because it is the drop-in if
-                     a card layout is ever wanted over the grid.
+     LevelWizard   — three questions (often two), one recommendation.
+                     Replaced a static scenario grid: that grid asked a
+                     volunteer board to read five options and diagnose
+                     itself, which is the work it came here to avoid.
+     FeatureMatrix — the comparison. Groups collapse, because eighteen
+                     rows open at once is a reference document rather
+                     than a decision aid.
+     InfoTip       — inline jargon disclosure. "LCAM" and "AR/AP" mean
+                     nothing to a volunteer treasurer.
+     EveryLevelBand— what holds constant across the ladder.
 
    Pricing visibility is controlled by the caller (see PRICING_MODE in
    templates/service-levels-template.jsx), never hard-coded here.
@@ -46,10 +46,6 @@ function NotIncluded() {
   );
 }
 
-/* "Custom quote" set at numeral size shouts louder than the figures it sits
-   beside. Words get stepped down so the row still scans as one rank. */
-const isFigure = (price) => typeof price === 'string' && price.trim().startsWith('$');
-
 function Cell({ value, onTint }) {
   if (value === true)  return <Included onTint={onTint}/>;
   if (value === false || value == null) return <NotIncluded/>;
@@ -61,221 +57,298 @@ function Cell({ value, onTint }) {
   );
 }
 
+/* "Custom quote" set at numeral size shouts louder than the figures it
+   sits beside. Words get stepped down so the row still scans as one rank. */
+const isFigure = (price) => typeof price === 'string' && price.trim().startsWith('$');
+
 /* ============================================================
-   TIER CARDS — the five levels, left to right, lowest to highest
+   INFO TIP — expands in place rather than floating.
+   A popover would be clipped by the matrix's overflow-x container on
+   narrow screens, and a hover tip is unreachable on touch. This is a
+   plain disclosure button: mouse, finger and keyboard all work.
    ============================================================ */
-function TierCards({ eyebrow, title, sub, tiers, showPricing = true,
-                     background = "#fff" }) {
+function InfoTip({ term, children }) {
+  const [open, setOpen] = useState(false);
   return (
-    <section className="sl-tier-cards" style={{ background, padding: "88px 40px" }}>
-      <div style={{ maxWidth: 1340, margin: "0 auto" }}>
-        <div style={{ textAlign: "center" }}>
-          <SectionHeading align="center" eyebrow={eyebrow} title={title} sub={sub}/>
-        </div>
-
-        <div className="sl-tier-grid" style={{
-          marginTop: 56,
-          display: "grid", gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
-          gap: 16, alignItems: "stretch"
-        }}>
-          {tiers.map((t) => <TierCard key={t.id} tier={t} showPricing={showPricing}/>)}
-        </div>
-
-        <p className="sl-tier-note" style={{
-          fontFamily: "var(--font-body)", fontSize: 13.5, lineHeight: 1.6,
-          color: "var(--edison-gray-mid)", textAlign: "center",
-          margin: "32px auto 0", maxWidth: 780
-        }}>
-          Not sure where you land? Edison reviews fit before placing any community.
-          If a level is wrong for you, we will say so — including when full management
-          is the better value.
-        </p>
-      </div>
-    </section>
-  );
-}
-
-function TierCard({ tier, showPricing }) {
-  const featured = !!tier.badge;
-  return (
-    <article id={tier.id} style={{
-      display: "flex", flexDirection: "column",
-      background: "#fff",
-      border: featured ? "2px solid var(--edison-teal)" : "1px solid var(--border-hairline)",
-      borderRadius: 14,
-      boxShadow: featured ? "var(--shadow-md)" : "var(--shadow-xs)",
-      overflow: "hidden",
-      scrollMarginTop: "calc(var(--site-header-height) + 20px)"
-    }}>
-      {/* Badge rail keeps every card's body aligned whether or not it has one */}
-      <div style={{
-        height: 28, flexShrink: 0,
-        background: featured ? "var(--edison-teal)" : "transparent",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 10.5,
-        letterSpacing: "0.12em", textTransform: "uppercase",
-        color: "var(--edison-navy)"
-      }}>{tier.badge || ""}</div>
-
-      <div style={{ padding: "22px 20px 24px", display: "flex", flexDirection: "column",
-                    gap: 14, flex: 1 }}>
-        <div>
-          <h3 style={{
-            fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 19,
-            lineHeight: 1.2, letterSpacing: "-0.01em",
-            color: "var(--edison-navy)", margin: "0 0 8px"
-          }}>{tier.name}</h3>
-          <p style={{
-            fontFamily: "var(--font-body)", fontSize: 13.5, lineHeight: 1.55,
-            color: "var(--edison-text-body)", margin: 0
-          }}>{tier.summary}</p>
-        </div>
-
-        {showPricing && (
-          <div style={{
-            paddingTop: 14, borderTop: "1px solid var(--border-hairline)"
-          }}>
-            <div style={{
-              fontFamily: "var(--font-display)", fontWeight: 800,
-              fontSize: isFigure(tier.price) ? 26 : 19,
-              lineHeight: 1.1, letterSpacing: "-0.02em",
-              color: "var(--edison-navy)"
-            }}>{tier.price}</div>
-            {tier.priceNote && <div style={{
-              fontFamily: "var(--font-body)", fontSize: 12, lineHeight: 1.45,
-              color: "var(--edison-gray-mid)", marginTop: 5
-            }}>{tier.priceNote}</div>}
-          </div>
-        )}
-
-        <div style={{
-          paddingTop: 14, borderTop: "1px solid var(--border-hairline)"
-        }}>
-          <div style={{
-            fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 10.5,
-            letterSpacing: "0.12em", textTransform: "uppercase",
-            color: "var(--edison-teal-dark)", marginBottom: 6
-          }}>Manager access</div>
-          <div style={{
-            fontFamily: "var(--font-body)", fontSize: 13.5, lineHeight: 1.5,
-            color: "var(--edison-text-body)", fontWeight: 600
-          }}>{tier.managerAccess}</div>
-        </div>
-
-        <div>
-          <div style={{
-            fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 10.5,
-            letterSpacing: "0.12em", textTransform: "uppercase",
-            color: "var(--edison-teal-dark)", marginBottom: 8
-          }}>Includes</div>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0,
-                       display: "flex", flexDirection: "column", gap: 7 }}>
-            {tier.highlights.map((h, i) => (
-              <li key={i} style={{
-                display: "flex", gap: 8, alignItems: "flex-start",
-                fontFamily: "var(--font-body)", fontSize: 13, lineHeight: 1.45,
-                color: "var(--edison-text-body)"
-              }}>
-                <span aria-hidden="true" style={{
-                  color: "var(--edison-teal-dark)", fontWeight: 800,
-                  fontSize: 12, lineHeight: 1.5, flexShrink: 0
-                }}>✓</span>
-                {h}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div style={{
-          marginTop: "auto", paddingTop: 16,
-          borderTop: "1px solid var(--border-hairline)"
-        }}>
-          <div style={{
-            fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 10.5,
-            letterSpacing: "0.12em", textTransform: "uppercase",
-            color: "var(--edison-teal-dark)", marginBottom: 6
-          }}>Best fit</div>
-          <p style={{
-            fontFamily: "var(--font-body)", fontSize: 13, lineHeight: 1.5,
-            color: "var(--edison-text-body)", margin: "0 0 16px"
-          }}>{tier.bestFit}</p>
-          <InteriorButton
-            variant={featured ? "primary" : "ghost"}
-            size="sm"
-            href="/request-a-proposal"
-          >Request a proposal</InteriorButton>
-        </div>
-      </div>
-    </article>
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        aria-label={open ? `Hide definition of ${term}` : `What is ${term}?`}
+        style={{
+          appearance: "none", border: 0, padding: 0, marginLeft: 7,
+          width: 17, height: 17, borderRadius: 999, verticalAlign: "middle",
+          background: open ? "var(--edison-teal-dark)" : "var(--edison-teal-pale)",
+          color: open ? "#fff" : "var(--edison-teal-dark)",
+          fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 10.5,
+          lineHeight: 1, cursor: "pointer",
+          display: "inline-flex", alignItems: "center", justifyContent: "center",
+          transition: "background 160ms var(--ease-standard), color 160ms var(--ease-standard)"
+        }}
+      >i</button>
+      {open && (
+        <span style={{
+          display: "block", marginTop: 9,
+          fontFamily: "var(--font-body)", fontWeight: 400,
+          fontSize: 12.5, lineHeight: 1.55,
+          color: "var(--edison-text-body)",
+          borderLeft: "2px solid var(--edison-teal)",
+          paddingLeft: 11
+        }}>{children}</span>
+      )}
+    </>
   );
 }
 
 /* ============================================================
-   LEVEL CHOOSER — scenario first, level second.
-   Boards do not arrive knowing what "Portfolio Plus" means; they
-   arrive knowing what their community is struggling with.
+   LEVEL WIZARD — the "help me pick" job, done properly.
+
+   Answers auto-advance; a Next button on a three-question form is a
+   click that buys nothing. The on-site question only appears for boards
+   that want full management, so most people answer two and are done.
    ============================================================ */
-function LevelChooser({ eyebrow, title, sub, paths,
-                        background = "var(--edison-teal-pale)" }) {
+function LevelWizard({ eyebrow, title, sub, questions, tiers, recommend,
+                       background = "var(--edison-teal-pale)" }) {
+  const [answers, setAnswers] = useState({});
+  const [stepIndex, setStepIndex] = useState(0);
+
+  /* One question is conditional, so the live list — and the step count
+     the progress bar reports — has to derive from the answers so far. */
+  const active = useMemo(
+    () => questions.filter((q) => !q.showIf || q.showIf(answers)),
+    [questions, answers]
+  );
+
+  const done = stepIndex >= active.length;
+  const result = done ? recommend(answers, tiers) : null;
+
+  /* Before anything is answered, quote the longest path. A count that
+     shrinks from 3 to 2 once someone picks the accounting route reads as
+     good news; one that grows from 2 to 3 reads as a bait and switch. */
+  const total = Object.keys(answers).length === 0 ? questions.length : active.length;
+
+  const choose = (qid, option) => {
+    const next = { ...answers, [qid]: option };
+    /* Drop answers to questions that no longer apply, so a stale on-site
+       answer cannot leak into a recommendation after someone backs up
+       and says they only want the books done. */
+    const live = questions.filter((q) => !q.showIf || q.showIf(next)).map((q) => q.id);
+    Object.keys(next).forEach((k) => { if (!live.includes(k)) delete next[k]; });
+    setAnswers(next);
+    setStepIndex(live.indexOf(qid) + 1);
+  };
+
+  const reset = () => { setAnswers({}); setStepIndex(0); };
+  const back  = () => setStepIndex((i) => Math.max(0, i - 1));
+
+  const current = active[stepIndex];
+
   return (
-    <section className="sl-chooser" style={{ background, padding: "88px 48px" }}>
-      <div style={{ maxWidth: 1120, margin: "0 auto" }}>
+    <section className="sl-wizard" style={{ background, padding: "88px 48px" }}>
+      <div style={{ maxWidth: 880, margin: "0 auto" }}>
         <div style={{ textAlign: "center" }}>
           <SectionHeading align="center" eyebrow={eyebrow} title={title} sub={sub}/>
         </div>
-        <div className="sl-chooser-grid" style={{
-          marginTop: 48,
-          display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18
+
+        <div className="sl-wizard-card" id="find-your-level" style={{
+          marginTop: 44,
+          background: "#fff",
+          border: "1px solid var(--border-hairline)",
+          borderRadius: 16,
+          boxShadow: "var(--shadow-md)",
+          padding: "34px 36px 36px",
+          scrollMarginTop: "calc(var(--site-header-height) + 20px)"
         }}>
-          {paths.map((p, i) => (
-            <a key={i} href={`#${p.tierId}`} className="sl-chooser-card" style={{
-              textDecoration: "none", borderBottom: 0,
-              background: "#fff",
-              border: "1px solid var(--border-hairline)",
-              borderRadius: 14,
-              padding: "26px 28px",
-              display: "flex", flexDirection: "column", gap: 12,
-              boxShadow: "var(--shadow-xs)",
-              transition: "box-shadow 220ms var(--ease-standard), border-color 220ms var(--ease-standard), transform 220ms var(--ease-standard)"
-            }}>
-              <p style={{
-                fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 18,
-                lineHeight: 1.35, color: "var(--edison-navy)", margin: 0
-              }}>&ldquo;{p.scenario}&rdquo;</p>
-              <p style={{
-                fontFamily: "var(--font-body)", fontSize: 14.5, lineHeight: 1.6,
-                color: "var(--edison-text-body)", margin: 0, flex: 1
-              }}>{p.why}</p>
+          {!done ? (
+            <>
               <div style={{
-                display: "flex", alignItems: "center", gap: 10,
-                paddingTop: 14, borderTop: "1px solid var(--border-hairline)"
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+                gap: 16, marginBottom: 18
               }}>
                 <span style={{
-                  fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 10.5,
+                  fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11,
                   letterSpacing: "0.12em", textTransform: "uppercase",
-                  color: "var(--edison-gray-mid)"
-                }}>Start with</span>
-                <span style={{
-                  fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15,
-                  color: "var(--edison-teal-dark)",
-                  display: "inline-flex", alignItems: "center", gap: 6
-                }}>{p.tierName} <span aria-hidden="true">→</span></span>
+                  color: "var(--edison-teal-dark)"
+                }}>Question {stepIndex + 1} of {total}</span>
+                {stepIndex > 0 && (
+                  <button type="button" onClick={back} style={{
+                    appearance: "none", background: "none", border: 0, cursor: "pointer",
+                    fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
+                    color: "var(--edison-gray-mid)", padding: 0
+                  }}>← Back</button>
+                )}
               </div>
-            </a>
-          ))}
+
+              <div style={{
+                height: 4, borderRadius: 999, background: "var(--edison-navy-10)",
+                marginBottom: 28, overflow: "hidden"
+              }}>
+                <div style={{
+                  height: "100%", borderRadius: 999, background: "var(--edison-teal)",
+                  /* A zero-width bar reads as a rendering fault, so step one
+                     keeps a visible nub. */
+                  width: `${Math.max(7, (stepIndex / total) * 100)}%`,
+                  transition: "width 280ms var(--ease-emphasized)"
+                }}/>
+              </div>
+
+              <h3 style={{
+                fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 24,
+                lineHeight: 1.25, letterSpacing: "-0.01em",
+                color: "var(--edison-navy)", margin: "0 0 8px"
+              }}>{current.question}</h3>
+              {current.hint && <p style={{
+                fontFamily: "var(--font-body)", fontSize: 14.5, lineHeight: 1.6,
+                color: "var(--edison-gray-mid)", margin: 0
+              }}>{current.hint}</p>}
+
+              <div className="sl-wizard-options" style={{
+                marginTop: 24,
+                display: "grid",
+                gridTemplateColumns: current.options.length > 3 ? "1fr 1fr" : "1fr",
+                gap: 10
+              }}>
+                {current.options.map((o) => {
+                  const picked = answers[current.id]?.value === o.value;
+                  return (
+                    <button
+                      key={o.value}
+                      type="button"
+                      onClick={() => choose(current.id, o)}
+                      className="sl-wizard-option"
+                      style={{
+                        appearance: "none", cursor: "pointer", textAlign: "left",
+                        background: picked ? "var(--edison-teal-pale)" : "#fff",
+                        border: picked ? "1.5px solid var(--edison-teal)"
+                                      : "1.5px solid var(--border-hairline)",
+                        borderRadius: 12,
+                        padding: "18px 20px",
+                        display: "flex", flexDirection: "column", gap: 5,
+                        transition: "border-color 160ms var(--ease-standard), background 160ms var(--ease-standard), transform 160ms var(--ease-standard)"
+                      }}
+                    >
+                      <span style={{
+                        fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15.5,
+                        lineHeight: 1.35, color: "var(--edison-navy)"
+                      }}>{o.label}</span>
+                      {o.detail && <span style={{
+                        fontFamily: "var(--font-body)", fontSize: 13.5, lineHeight: 1.5,
+                        color: "var(--edison-text-body)"
+                      }}>{o.detail}</span>}
+                    </button>
+                  );
+                })}
+              </div>
+            </>
+          ) : (
+            <WizardResult result={result} onReset={reset}/>
+          )}
         </div>
       </div>
     </section>
   );
 }
-/* ============================================================
-   FEATURE MATRIX — the one place the five levels are compared.
 
-   This absorbed the tier cards that used to sit above it. Those cards
-   repeated the "Includes" bullets row for row, so the page said the
-   same thing twice and the denser version came first. Everything the
-   cards carried that the grid could not — the one-line definition,
-   best fit, price, a per-level CTA — is now a band of this table.
+/* ============================================================
+   WIZARD RESULT — the recommendation, the honest caveat, the handoff.
+   The proposal link carries the answers, so a board lands on a form
+   that already knows its size and what it asked for.
+   ============================================================ */
+function WizardResult({ result, onReset }) {
+  const { tier, why, caution, href } = result;
+
+  return (
+    <div>
+      <div style={{
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        gap: 16, marginBottom: 20
+      }}>
+        <span style={{
+          fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11,
+          letterSpacing: "0.12em", textTransform: "uppercase",
+          color: "var(--edison-teal-dark)"
+        }}>Based on your answers</span>
+        <button type="button" onClick={onReset} style={{
+          appearance: "none", background: "none", border: 0, cursor: "pointer",
+          fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
+          color: "var(--edison-gray-mid)", padding: 0
+        }}>Start over</button>
+      </div>
+
+      <h3 style={{
+        fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 32,
+        lineHeight: 1.15, letterSpacing: "-0.02em",
+        color: "var(--edison-navy)", margin: "0 0 14px"
+      }}>{tier.name}</h3>
+
+      <p style={{
+        fontFamily: "var(--font-body)", fontSize: 16.5, lineHeight: 1.65,
+        color: "var(--edison-text-body)", margin: "0 0 22px"
+      }}>{why}</p>
+
+      <div className="sl-result-grid" style={{
+        display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 24px",
+        padding: "20px 0",
+        borderTop: "1px solid var(--border-hairline)",
+        borderBottom: "1px solid var(--border-hairline)",
+        marginBottom: 22
+      }}>
+        {tier.highlights.slice(0, 6).map((h, i) => (
+          <div key={i} style={{
+            display: "flex", gap: 10, alignItems: "flex-start",
+            fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.5,
+            color: "var(--edison-text-body)"
+          }}>
+            <span aria-hidden="true" style={{
+              color: "var(--edison-teal-dark)", fontWeight: 800, fontSize: 13,
+              lineHeight: 1.5, flexShrink: 0
+            }}>✓</span>
+            {h}
+          </div>
+        ))}
+      </div>
+
+      {/* Edison vets fit before placing anyone and says so when a level
+          will not serve a board. Publishing that judgement here is the
+          same promise, made before the sales call rather than during it. */}
+      {caution && (
+        <div style={{
+          background: "var(--edison-teal-pale)",
+          borderRadius: 10, padding: "16px 18px", marginBottom: 24,
+          display: "flex", gap: 12, alignItems: "flex-start"
+        }}>
+          <span aria-hidden="true" style={{
+            fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15,
+            color: "var(--edison-teal-dark)", flexShrink: 0, lineHeight: 1.6
+          }}>!</span>
+          <p style={{
+            fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.6,
+            color: "var(--edison-text-body)", margin: 0
+          }}>{caution}</p>
+        </div>
+      )}
+
+      <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+        <InteriorButton variant="primary" size="lg" href={href}>
+          Request a proposal
+        </InteriorButton>
+        <InteriorButton variant="ghost" size="lg" href={`#${tier.id}`}>
+          See it in the comparison
+        </InteriorButton>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   FEATURE MATRIX — the comparison, and the only place the five levels
+   are laid out against each other.
+
+   Groups collapse. The six rows that are identical at every level were
+   the bulk of the noise: they now sit in one group a board can open if
+   it doubts the claim, instead of taking a third of the table to say
+   "yes" five times in a row.
 
    Header sticks on desktop; on narrow screens global.css swaps the
    wrapper to horizontal scroll and drops the sticky, since an overflow
@@ -283,11 +356,18 @@ function LevelChooser({ eyebrow, title, sub, paths,
    ============================================================ */
 function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
                          note, showPricing = true, background = "#fff" }) {
-  const cols = `minmax(190px, 1.5fr) repeat(${tiers.length}, minmax(140px, 1fr))`;
+  const cols = `minmax(215px, 1.5fr) repeat(${tiers.length}, minmax(140px, 1fr))`;
 
-  /* The chooser links to #accounting-plus and friends. Without this the
-     link just scrolls to the table and the board loses the thread of
-     which column it was sent to look at. */
+  const [open, setOpen] = useState(() =>
+    groups.reduce((acc, g, i) => ({ ...acc, [i]: !!g.defaultOpen }), {})
+  );
+  const allOpen = groups.every((_, i) => open[i]);
+  const toggleAll = () =>
+    setOpen(groups.reduce((acc, _, i) => ({ ...acc, [i]: !allOpen }), {}));
+
+  /* The wizard and the per-level CTAs both land on #accounting-plus and
+     friends. Without the tint the link just scrolls to a table and the
+     board loses the thread of which column it was sent to look at. */
   const [active, setActive] = useState(null);
   useEffect(() => {
     const read = () => {
@@ -313,14 +393,25 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
           <SectionHeading align="center" eyebrow={eyebrow} title={title} sub={sub}/>
         </div>
 
-        <p className="sl-matrix-hint" style={{
-          display: "none",
-          fontFamily: "var(--font-body)", fontSize: 13,
-          color: "var(--edison-gray-mid)", textAlign: "center",
-          margin: "24px 0 0"
-        }}>Swipe the table sideways to compare all five levels.</p>
+        <div style={{
+          display: "flex", justifyContent: "center", alignItems: "center",
+          gap: 14, flexWrap: "wrap", marginTop: 26
+        }}>
+          <button type="button" onClick={toggleAll} style={{
+            appearance: "none", cursor: "pointer",
+            background: "#fff", border: "1.5px solid var(--border-hairline)",
+            borderRadius: 999, padding: "9px 18px",
+            fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
+            color: "var(--edison-navy)"
+          }}>{allOpen ? "Collapse all details" : "Expand all details"}</button>
+          <span className="sl-matrix-hint" style={{
+            display: "none",
+            fontFamily: "var(--font-body)", fontSize: 13,
+            color: "var(--edison-gray-mid)"
+          }}>Swipe the table sideways.</span>
+        </div>
 
-        <div className="sl-matrix-wrap" style={{ marginTop: 48 }}>
+        <div className="sl-matrix-wrap" style={{ marginTop: 28 }}>
           {/* No overflow:hidden here — it would become the containing block
               for the sticky header and pin it to the table instead of the
               viewport. Corners are rounded on the edge cells instead. */}
@@ -396,21 +487,44 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
               ))}
             </div>
 
-            {/* ---- Grouped rows ---- */}
+            {/* ---- Collapsible groups ---- */}
             {groups.map((g, gi) => (
               <React.Fragment key={gi}>
-                {/* Label is its own sticky span so the group stays readable
-                    once the table is scrolled sideways on narrow screens. */}
-                <div className="sl-matrix-group" style={{
-                  padding: "14px 20px",
-                  background: "var(--edison-teal-pale)",
-                  borderTop: "1px solid var(--border-hairline)",
-                  fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 11,
-                  letterSpacing: "0.12em", textTransform: "uppercase",
-                  color: "var(--edison-navy)"
-                }}><span className="sl-matrix-group-label">{g.group}</span></div>
+                <button
+                  type="button"
+                  className="sl-matrix-group"
+                  onClick={() => setOpen((o) => ({ ...o, [gi]: !o[gi] }))}
+                  aria-expanded={!!open[gi]}
+                  style={{
+                    appearance: "none", width: "100%", textAlign: "left", cursor: "pointer",
+                    padding: "15px 20px",
+                    background: "var(--edison-teal-pale)",
+                    border: 0, borderTop: "1px solid var(--border-hairline)",
+                    display: "block"
+                  }}
+                >
+                  <span className="sl-matrix-group-label" style={{
+                    display: "inline-flex", alignItems: "center", gap: 10
+                  }}>
+                    <span aria-hidden="true" style={{
+                      fontSize: 9, color: "var(--edison-teal-dark)",
+                      transform: open[gi] ? "rotate(90deg)" : "rotate(0deg)",
+                      transition: "transform 200ms var(--ease-standard)",
+                      display: "inline-block"
+                    }}>▶</span>
+                    <span style={{
+                      fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 11,
+                      letterSpacing: "0.12em", textTransform: "uppercase",
+                      color: "var(--edison-navy)"
+                    }}>{g.group}</span>
+                    <span style={{
+                      fontFamily: "var(--font-body)", fontSize: 12,
+                      color: "var(--edison-gray-mid)"
+                    }}>{open[gi] ? "Hide" : g.closedNote || `${g.rows.length} rows`}</span>
+                  </span>
+                </button>
 
-                {g.rows.map((row, ri) => (
+                {open[gi] && g.rows.map((row, ri) => (
                   <div key={ri} className="sl-matrix-row" style={{
                     display: "grid", gridTemplateColumns: cols,
                     borderTop: "1px solid var(--border-hairline)"
@@ -419,7 +533,10 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
                       padding: "14px 20px",
                       fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14,
                       lineHeight: 1.4, color: "var(--edison-navy)"
-                    }}>{row.label}</div>
+                    }}>
+                      {row.label}
+                      {row.tip && <InfoTip term={row.label}>{row.tip}</InfoTip>}
+                    </div>
                     {tiers.map((t) => (
                       <div key={t.id} style={{
                         padding: "14px",
@@ -503,7 +620,7 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
                   <InteriorButton
                     variant={t.id === active || t.badge ? "primary" : "ghost"}
                     size="sm"
-                    href="/request-a-proposal"
+                    href={`/request-a-proposal?intent=proposal&level=${encodeURIComponent(t.name)}`}
                   >Get a quote</InteriorButton>
                 </div>
               ))}
@@ -591,4 +708,4 @@ function EveryLevelBand({ eyebrow, title, sub, items }) {
   );
 }
 
-export { TierCards, LevelChooser, FeatureMatrix, EveryLevelBand };
+export { LevelWizard, FeatureMatrix, EveryLevelBand, InfoTip };
