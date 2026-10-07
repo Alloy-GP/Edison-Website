@@ -34,9 +34,9 @@ const QUOTE_ONLY   = PRICING_MODE === 'accounting-only';
    "free" or "broken", "Custom quote" reads as a deliberate policy. */
 function priceFor(tier) {
   if (QUOTE_ONLY && tier.quoted) {
-    return { price: 'Custom quote', priceNote: 'Scoped to your community', priceShort: 'Custom quote' };
+    return { price: 'Custom quote', priceNote: 'Scoped to your community' };
   }
-  return { price: tier.price, priceNote: tier.priceNote, priceShort: tier.priceShort };
+  return { price: tier.price, priceNote: tier.priceNote };
 }
 
 function ServiceLevelsPage({ content = SERVICE_LEVELS_CONTENT }) {
@@ -363,7 +363,6 @@ const SERVICE_LEVELS_CONTENT = {
       summary: "Everything financial, nothing operational. The books, the billing, and the collections, handled by professionals.",
       price: "$500",
       priceNote: "per month",
-      priceShort: "Starts at $500/mo",
       quoted: false,
       managerAccess: "No manager assigned",
       highlights: [
@@ -395,7 +394,6 @@ const SERVICE_LEVELS_CONTENT = {
       summary: "Accounting Only, plus any operational service you buy as you need it. Meetings, inspections, projects, enforcement — priced per use.",
       price: "$500",
       priceNote: "per month, plus services as needed",
-      priceShort: "Starts at $500/mo + services",
       quoted: false,
       managerAccess: "No manager assigned",
       highlights: [
@@ -427,7 +425,6 @@ const SERVICE_LEVELS_CONTENT = {
       summary: "Standard full management. A dedicated LCAM and community specialist who know your community, your documents, and your vendors.",
       price: "$2,000",
       priceNote: "per month, and scales with community size",
-      priceShort: "Starts at $2,000/mo",
       quoted: true,
       managerAccess: "Dedicated manager",
       highlights: [
@@ -459,7 +456,6 @@ const SERVICE_LEVELS_CONTENT = {
       summary: "The hybrid. A dedicated manager physically on site one to three days a week, with the full Edison back office behind them.",
       price: "$2,000",
       priceNote: "per month, plus salary/burden costs",
-      priceShort: "Starts at $2,000/mo + staffing",
       quoted: true,
       badge: "Growing fastest",
       managerAccess: "Dedicated manager, scheduled on-site days",
@@ -492,7 +488,6 @@ const SERVICE_LEVELS_CONTENT = {
       summary: "A manager dedicated to one community full time. Yours. Optional admin and maintenance staff alongside them.",
       price: "$2,000",
       priceNote: "per month, plus salary/burden costs",
-      priceShort: "Starts at $2,000/mo + staffing",
       quoted: true,
       managerAccess: "Dedicated, full time",
       highlights: [

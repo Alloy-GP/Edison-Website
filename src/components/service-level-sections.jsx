@@ -467,6 +467,11 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
             boxShadow: "var(--shadow-sm)"
           }}>
             {/* ---- Sticky header ----
+                Names only. Pricing used to repeat here and again in the
+                Starting at row; one figure per level, at the bottom where
+                a board has already seen what it buys, is the honest place
+                for it.
+
                 top:0 rather than the site header height: the site header is
                 fixed but auto-hides on scroll down, which is exactly when the
                 table is being read. Offsetting by 122px would leave the header
@@ -500,12 +505,6 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
                       lineHeight: 1.25,
                       color: (on || t.badge) ? "var(--edison-teal)" : "#fff"
                     }}>{t.name}</div>
-                    {showPricing && (
-                      <div style={{
-                        fontFamily: "var(--font-body)", fontSize: 11.5, lineHeight: 1.4,
-                        color: "rgba(255,255,255,.62)", marginTop: 4
-                      }}>{t.priceShort}</div>
-                    )}
                   </div>
                 );
               })}
