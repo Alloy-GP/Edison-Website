@@ -46,6 +46,12 @@ const DEFAULT_NAV = [
     ]
   },
   {
+    // Service levels are a second axis, not a third pillar — they cut across
+    // HOA and Condo rather than sitting beside them, so this is a flat link.
+    label: "Service Levels",
+    href: "/service-levels"
+  },
+  {
     label: "Solutions",
     href: "/solutions",
     children: [

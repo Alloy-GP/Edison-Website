@@ -23,6 +23,15 @@ export const INTENTS = [
       { key: 'units', label: 'Number of units', type: 'text', required: false, placeholder: 'e.g. 120', inputMode: 'numeric', maxLength: 6 },
       { key: 'propertyType', label: 'Property type', type: 'select', required: true, options: ['HOA', 'Condominium', 'Townhome', 'Master-planned', 'Commercial / mixed-use', 'Rental property'] },
       { key: 'situation', label: 'Current situation', type: 'select', required: true, options: ['Self-managed today', 'Unhappy with current manager', 'Contract ending soon', 'Just exploring'], col: 2 },
+      // Optional on purpose. A board that has not read /service-levels should
+      // not have to guess, and "Not sure yet" is a real answer rather than a
+      // dead end — it routes the same as any other and tells the team to lead
+      // with a recommendation. Prefilled from the service levels page via
+      // ?serviceLevel=, so anyone arriving from there sees their own answer.
+      { key: 'serviceLevel', label: 'Service level of interest', type: 'select', required: false,
+        options: ['Not sure yet — recommend one for us', 'Accounting Only', 'Accounting Plus', 'Portfolio', 'Portfolio Plus', 'On-Site'],
+        help: 'Five levels, from accounting-only through a full-time on-site manager. Not sure? Leave it on “recommend one for us.”',
+        col: 2 },
       { key: 'timeline', label: 'Decision timeline', type: 'radio', required: false, options: ['ASAP', '1–3 months', 'Just researching'], col: 2 },
     ],
   },

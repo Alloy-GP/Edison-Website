@@ -788,3 +788,124 @@ p { text-align: justify; }
     font-size: 12px !important;
   }
 }
+
+/* ==========================================================================
+   SERVICE LEVELS (/service-levels)
+   Five-column layouts need more breakpoints than the rest of the site: a
+   tier card stops being readable well before 768px, and the matrix has to
+   scroll sideways rather than reflow (a 5-tier ladder loses its meaning
+   when the columns stack).
+   ========================================================================== */
+
+/* Wizard option hover/focus — large tap targets, obvious affordance */
+.sl-wizard-option:hover {
+  border-color: var(--edison-teal) !important;
+  transform: translateY(-1px);
+}
+.sl-wizard-option:focus-visible,
+.sl-matrix-group:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+.sl-matrix-group:hover { filter: brightness(0.98); }
+
+/* ---- Hero stack ---- */
+@media (max-width: 900px) {
+  .sl-hero { padding: 48px 20px 40px !important; }
+  .sl-hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .sl-hero h1 { font-size: 34px !important; }
+}
+
+/* ---- Wizard ---- */
+@media (max-width: 768px) {
+  .sl-wizard { padding: 56px 20px !important; }
+  .sl-wizard-card { padding: 26px 22px 28px !important; }
+  /* Two-column answer grids stack — an option label needs the full width
+     to stay one or two lines on a phone. */
+  .sl-wizard-options { grid-template-columns: 1fr !important; }
+  /* Hand-off and keep stack, with a rule between them so the second list
+     does not read as a continuation of the first. */
+  .sl-result-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .sl-result-grid > div + div {
+    padding-top: 18px;
+    border-top: 1px solid var(--border-hairline);
+  }
+  /* Price drops under the level name rather than squeezing beside it. */
+  .sl-result-head { gap: 6px !important; }
+  .sl-result-head > div { text-align: left !important; }
+  .sl-result-head h3 { font-size: 26px !important; }
+}
+
+/* ---- Matrix: horizontal scroll below the point where 6 columns fit.
+        position:sticky cannot survive an overflow container, so the
+        header reverts to static at the same breakpoint. ---- */
+@media (max-width: 1040px) {
+  .sl-matrix { padding: 56px 20px !important; }
+  .sl-matrix-wrap {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 14px;
+  }
+  .sl-matrix-head { position: static !important; }
+  .sl-matrix-hint { display: block !important; }
+
+  /* Pin the row-label column so a check mark five columns across is still
+     attributable to a row. Needs an opaque background — the cells are
+     transparent by default and would scroll content underneath. */
+  .sl-matrix-row > div:first-child {
+    position: sticky; left: 0; z-index: 1;
+    background: #fff;
+    /* Hairline plus a soft cast — cells scroll underneath this column, and
+       without the depth cue a half-covered check mark reads as clipped. */
+    box-shadow: 1px 0 0 var(--border-hairline), 4px 0 8px rgba(15, 29, 51, 0.07);
+  }
+  .sl-matrix-head > div:first-child {
+    position: sticky; left: 0; z-index: 3;
+    background: var(--edison-navy);
+    box-shadow: 4px 0 8px rgba(15, 29, 51, 0.18);
+  }
+  .sl-matrix-group-label {
+    position: sticky; left: 20px;
+  }
+}
+
+/* ---- Closer-look panels: image stacks above copy; the tab rail becomes
+        a swipeable strip rather than wrapping to three ragged lines ---- */
+@media (max-width: 900px) {
+  .sl-deep { padding: 56px 20px !important; }
+  .sl-deep-panel {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .sl-deep-rail {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start !important;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .sl-deep-rail::-webkit-scrollbar { display: none; }
+  .sl-deep-panel h3 { font-size: 26px !important; }
+  /* Stacked, the stretched image has no copy to match — give it back a
+     fixed shape so it does not run the length of the panel. */
+  .sl-deep-img { min-height: 0 !important; aspect-ratio: 5 / 4; }
+}
+.sl-deep-tab:hover { border-color: var(--edison-teal) !important; }
+.sl-deep-tab:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+/* ---- Every-level band: 4 → 2 → 1 ---- */
+@media (max-width: 1000px) {
+  .sl-every-level-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 600px) {
+  .sl-every-level { padding: 56px 20px !important; }
+  .sl-every-level-grid { grid-template-columns: 1fr !important; }
+  .sl-every-level h2 { font-size: 26px !important; }
+}
