@@ -99,6 +99,9 @@
 .if-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 24px; flex-wrap: wrap; }
 .if-trust { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--if-muted); }
 .if-trust .if-ic { width: 13px; height: 13px; }
+.if-help { margin-top: 6px; font-family: var(--if-font-body); font-size: 12.5px; line-height: 1.5; color: var(--if-muted); }
+.if-help a { color: var(--if-accent); border-bottom: 1px solid currentColor; text-decoration: none; }
+
 .if-submit { display: inline-flex; align-items: center; gap: 9px; font-family: var(--if-font-heading); font-weight: 700; font-size: 13px; letter-spacing: .06em; color: #fff; background: var(--edison-navy); border: 0; cursor: pointer; padding: 14px 24px; border-radius: var(--if-radius-sm); box-shadow: 0 8px 22px rgba(27,42,74,.28); transition: transform .12s ease, background .18s ease; }
 .if-submit .if-ic { width: 16px; height: 16px; }
 .if-submit:hover { background: var(--edison-navy-dark); }

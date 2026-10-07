@@ -85,6 +85,10 @@ function Field({ def, value, error, onChange }) {
         )}
         <label className="if-flabel" htmlFor={fid}>{def.label}{def.required && <span className="if-req">*</span>}</label>
       </div>
+      {/* Optional one-line hint. Cheaper than sending someone off to a
+          different page to find out what a field means — they would lose
+          everything already typed. */}
+      {def.help && <div className="if-help">{def.help}</div>}
       {error && <div className="if-err-msg">{error}</div>}
     </div>
   );

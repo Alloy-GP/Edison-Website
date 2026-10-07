@@ -25,7 +25,7 @@ import { LevelWizard, FeatureMatrix, LevelDeepDive,
    Nothing else needs to change. The matrix header and the matrix
    pricing row both read from this.
    ============================================================ */
-const PRICING_MODE = 'accounting-only';
+const PRICING_MODE = 'full';
 
 const SHOW_PRICING = PRICING_MODE !== 'none';
 const QUOTE_ONLY   = PRICING_MODE === 'accounting-only';
@@ -200,9 +200,12 @@ function ServiceLevelsPage({ content = SERVICE_LEVELS_CONTENT }) {
    param matching a field key (see IntakeForm). Handing it the wizard's
    answers means the board lands on a form that already knows its size
    and what it asked for, and sales gets a qualified lead. */
-function proposalHref({ units, summary }) {
+function proposalHref({ units, summary, level }) {
   const q = new URLSearchParams({ intent: 'proposal' });
   if (units) q.set('units', units);
+  /* Matches an option on the form's Service level select exactly, or the
+     prefill drops it rather than rendering a blank field. */
+  if (level) q.set('serviceLevel', level);
   if (summary) q.set('message', summary);
   return `/request-a-proposal?${q.toString()}`;
 }
@@ -255,7 +258,7 @@ function recommendLevel(answers, tiers) {
     tier,
     why: WHY[id],
     caution,
-    href: proposalHref({ units: size?.units, summary })
+    href: proposalHref({ units: size?.units, summary, level: tier.name })
   };
 }
 
@@ -454,9 +457,9 @@ const SERVICE_LEVELS_CONTENT = {
       id: "portfolio-plus",
       name: "Portfolio Plus",
       summary: "The hybrid. A dedicated manager physically on site one to three days a week, with the full Edison back office behind them.",
-      price: "$600",
-      priceNote: "per on-site day, starting",
-      priceShort: "From $600/day",
+      price: "$2,000",
+      priceNote: "per month, plus manager salary & burden",
+      priceShort: "From $2,000/mo + staffing",
       quoted: true,
       badge: "Growing fastest",
       managerAccess: "Dedicated manager, scheduled on-site days",
@@ -488,7 +491,7 @@ const SERVICE_LEVELS_CONTENT = {
       name: "On-Site",
       summary: "A manager dedicated to one community full time. Yours. Optional admin and maintenance staff alongside them.",
       price: "$2,000",
-      priceNote: "per month, plus manager salary, burden & markup",
+      priceNote: "per month, plus manager salary & burden",
       priceShort: "From $2,000/mo + staffing",
       quoted: true,
       managerAccess: "Dedicated, full time",
@@ -523,8 +526,8 @@ const SERVICE_LEVELS_CONTENT = {
     note: "Not sure where you land? Edison reviews fit before placing any community. If a level is wrong for you, we will say so — including when full management is the better value.",
     footnotes: [
       "Pricing shown is starting pricing and may vary based on community size, scope and service requirements.",
-      "Per use means the service is available at Accounting Plus and billed when you book it, rather than included in the monthly fee.",
-      "On-Site and Portfolio Plus staffing is billed separately from the monthly management fee."
+      "At Accounting Plus, site inspections are billed per visit and board meetings hourly, rather than included in the monthly fee.",
+      "On-Site and Portfolio Plus manager salary and burden are billed on top of the monthly management fee."
     ],
     /* "Your manager" opens by default because it is the group that
        actually separates the five levels. The rest is detail a board
@@ -545,8 +548,8 @@ const SERVICE_LEVELS_CONTENT = {
           },
           {
             label: "Board meetings",
-            tip: "Preparation, attendance and follow-up — not just showing up. At Accounting Plus a meeting is booked and billed when you need one.",
-            values: { "accounting-only": false, "accounting-plus": "Per use", "portfolio": "Quarterly", "portfolio-plus": "Monthly", "on-site": "Monthly" }
+            tip: "Preparation, attendance and follow-up — not just showing up. At Accounting Plus a meeting is booked and billed hourly when you need one.",
+            values: { "accounting-only": false, "accounting-plus": "Hourly", "portfolio": "Quarterly", "portfolio-plus": "Monthly", "on-site": "Monthly" }
           },
           {
             label: "Admin & maintenance staff",
@@ -561,7 +564,7 @@ const SERVICE_LEVELS_CONTENT = {
           {
             label: "Site inspections",
             tip: "A walk of the community looking for maintenance issues and covenant violations, with a written report back to the board.",
-            values: { "accounting-only": false, "accounting-plus": "Per use", "portfolio": "Monthly", "portfolio-plus": "Board sets cadence", "on-site": "Board sets cadence" }
+            values: { "accounting-only": false, "accounting-plus": "Per visit", "portfolio": "Monthly", "portfolio-plus": "Board sets cadence", "on-site": "Board sets cadence" }
           },
           {
             label: "Vendor sourcing & oversight",
@@ -667,7 +670,7 @@ const SERVICE_LEVELS_CONTENT = {
           "The full Edison back office stands behind that manager: accounting, covenant enforcement and collections departments, not one person doing everything."
         ],
         know: [
-          "You and the board set the number of on-site days, and that is what you get. Pricing is per on-site day rather than a flat monthly fee.",
+          "You and the board set the number of on-site days, and that is what you get.",
           "Admin and maintenance staff are available if you want them, billed separately from the management fee.",
           "It is the fastest-growing level in Edison's portfolio, largely because former on-site communities are converting to it."
         ]
@@ -683,7 +686,7 @@ const SERVICE_LEVELS_CONTENT = {
           "Edison's accounting, covenant enforcement and collections departments stand behind that manager, so they are not doing everything alone."
         ],
         know: [
-          "Manager salary, burden and markup are billed on top of the monthly management fee.",
+          "Manager salary and burden are billed on top of the monthly management fee.",
           "This is the largest commitment of the five and needs the scale to justify it. Plenty of communities that once ran on-site have converted to Portfolio Plus instead."
         ]
       }
