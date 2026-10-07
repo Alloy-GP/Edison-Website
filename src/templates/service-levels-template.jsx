@@ -130,7 +130,7 @@ function ServiceLevelsPage({ content = SERVICE_LEVELS_CONTENT }) {
       </div>
 
       <EveryLevelBand
-        eyebrow="Constant across the ladder"
+        eyebrow="At every level"
         title={content.everyLevel.title}
         sub={content.everyLevel.sub}
         items={content.everyLevel.items}
@@ -277,7 +277,7 @@ const SERVICE_LEVELS_CONTENT = {
 
   hero: {
     title: "Pay for the management your community actually needs.",
-    lede: "Most management companies sell one package and ask every board to fit inside it. Edison offers five levels, from behind-the-scenes accounting to a manager dedicated to your community full time. Answer three questions and we will tell you which one fits.",
+    lede: "Most management companies have one way of working and ask every board to fit inside it. Edison offers five levels, from behind-the-scenes accounting to a manager dedicated to your community full time. Answer three questions and we will tell you which one fits.",
     image: "/assets/img-community-aerial.webp"
   },
 
@@ -684,7 +684,7 @@ const SERVICE_LEVELS_CONTENT = {
         ],
         know: [
           "Manager salary, burden and markup are billed on top of the monthly management fee.",
-          "This is the largest commitment on the ladder and needs the scale to justify it. Plenty of communities that once ran on-site have converted to Portfolio Plus instead."
+          "This is the largest commitment of the five and needs the scale to justify it. Plenty of communities that once ran on-site have converted to Portfolio Plus instead."
         ]
       }
     }
@@ -692,7 +692,7 @@ const SERVICE_LEVELS_CONTENT = {
 
   everyLevel: {
     title: "And here is what never changes.",
-    sub: "Every row above differs by level. These do not. Moving down the ladder reduces how much manager access you buy — it does not move you to a lesser version of Edison, and it is the question boards ask first about a lighter package.",
+    sub: "Every row above differs by level. These do not. Choosing a lighter level reduces how much manager access you buy — it does not move you to a lesser version of Edison, and it is the first thing boards ask when they look at one of the smaller levels.",
     items: [
       {
         title: "Resident portal and mobile app",
@@ -728,7 +728,7 @@ const SERVICE_LEVELS_CONTENT = {
   faqs: [
     {
       q: "Can we change levels later?",
-      a: "Yes. Communities move up and down the ladder as their needs change — a board that starts at Accounting Only and takes on a major capital project often moves to Portfolio for the duration. Changes are handled at renewal or by amendment, and Edison will flag it proactively when your usage suggests a different level would serve you better."
+      a: "Yes. Communities move between levels as their needs change — a board that starts at Accounting Only and takes on a major capital project often moves to Portfolio for the duration. Changes are handled at renewal or by amendment, and Edison will flag it proactively when your usage suggests a different level would serve you better."
     },
     {
       q: "What does 'no dedicated manager' actually mean day to day?",
@@ -754,7 +754,7 @@ const SERVICE_LEVELS_CONTENT = {
 
   cta: {
     title: "Tell us what your board is tired of doing.",
-    body: "Fifteen minutes is usually enough to know which of the five levels fits your community. Request a proposal and we will scope it against your actual documents, not a generic package."
+    body: "Fifteen minutes is usually enough to know which of the five levels fits your community. Request a proposal and we will scope it against your actual documents, not a template."
   }
 };
 

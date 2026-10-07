@@ -13,7 +13,7 @@ import { InteriorButton, InteriorEyebrow, SectionHeading } from './interior-comp
                      than a decision aid.
      InfoTip       — inline jargon disclosure. "LCAM" and "AR/AP" mean
                      nothing to a volunteer treasurer.
-     EveryLevelBand— what holds constant across the ladder.
+     EveryLevelBand— what holds true at all five levels.
 
    Pricing visibility is controlled by the caller (see PRICING_MODE in
    templates/service-levels-template.jsx), never hard-coded here.
@@ -697,14 +697,22 @@ function LevelDeepDive({ eyebrow, title, sub, tiers, panels,
   const activeId = selected && panels[selected] ? selected : fallback;
   const railRef = React.useRef(null);
 
-  /* When the wizard moves the selection, bring the matching tab into
-     view on narrow screens. block:'nearest' so the page itself does
-     not jump — the board may still be reading something else. */
+  /* Bring the active tab into view inside the rail on narrow screens.
+     This drives rail.scrollLeft directly rather than calling
+     scrollIntoView: block:'nearest' does not mean "never scroll the
+     page", it means "scroll the least needed", so on load — with the
+     rail below the fold — it dragged the whole page down to the
+     constants band. The rail is the only thing that should move.
+     The mount run is skipped outright; nothing has been chosen yet. */
+  const mounted = React.useRef(false);
   useEffect(() => {
+    if (!mounted.current) { mounted.current = true; return; }
     const rail = railRef.current;
     if (!rail) return;
     const tab = rail.querySelector(`[data-tab="${activeId}"]`);
-    if (tab) tab.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+    if (!tab) return;
+    const left = tab.offsetLeft - (rail.clientWidth - tab.offsetWidth) / 2;
+    rail.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
   }, [activeId]);
 
   return (
@@ -871,7 +879,7 @@ function LevelDeepDive({ eyebrow, title, sub, tiers, panels,
 }
 
 /* ============================================================
-   EVERY LEVEL BAND — what does not change as you move up or down
+   EVERY LEVEL BAND — what does not change between levels
    ============================================================ */
 function EveryLevelBand({ eyebrow, title, sub, items }) {
   return (
