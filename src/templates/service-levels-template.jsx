@@ -467,7 +467,7 @@ const SERVICE_LEVELS_CONTENT = {
         "LCAM on site 1–3 days a week",
         "Monthly board meetings",
         "On-site homeowner support",
-        "Site inspections at board's cadence",
+        "Monthly site inspections with a written report",
         "Community event planning",
         "Newsletter publication"
       ],
@@ -477,7 +477,7 @@ const SERVICE_LEVELS_CONTENT = {
       handOff: [
         "Everything in Portfolio, plus a manager on site on set days",
         "On-site homeowner support, events and the newsletter",
-        "Inspection cadence set by your board, not a template"
+        "Monthly site inspections, with a manager who is already on site to act on them"
       ],
       keep: [
         "Governance and the decisions that are legally yours",
@@ -564,7 +564,7 @@ const SERVICE_LEVELS_CONTENT = {
           {
             label: "Site inspections",
             tip: "A walk of the community looking for maintenance issues and covenant violations, with a written report back to the board.",
-            values: { "accounting-only": false, "accounting-plus": "Per visit", "portfolio": "Monthly", "portfolio-plus": "Board sets cadence", "on-site": "Board sets cadence" }
+            values: { "accounting-only": false, "accounting-plus": "Per visit", "portfolio": "Monthly", "portfolio-plus": "Monthly", "on-site": "Monthly" }
           },
           {
             label: "Vendor sourcing & oversight",
