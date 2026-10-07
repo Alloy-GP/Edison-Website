@@ -493,13 +493,16 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
                                : t.badge ? "rgba(60,200,200,.10)" : "transparent",
                     scrollMarginTop: "calc(var(--site-header-height) + 20px)"
                   }}>
-                    {t.badge && (
-                      <div style={{
-                        fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 9.5,
-                        letterSpacing: "0.12em", textTransform: "uppercase",
-                        color: "var(--edison-teal)", marginBottom: 5
-                      }}>{t.badge}</div>
-                    )}
+                    {/* Always rendered, empty when there is no badge: it
+                        reserves the line so every level name shares a
+                        baseline rather than Portfolio Plus sitting lower
+                        than the other four. */}
+                    <div style={{
+                      fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 9.5,
+                      letterSpacing: "0.12em", textTransform: "uppercase",
+                      color: "var(--edison-teal)", marginBottom: 5,
+                      minHeight: 12, lineHeight: 1.25
+                    }}>{t.badge || ""}</div>
                     <div style={{
                       fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 14.5,
                       lineHeight: 1.25,
@@ -611,13 +614,20 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
                   padding: "18px 20px",
                   fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 14,
                   color: "var(--edison-navy)"
-                }}>Starting at</div>
+                }}>Pricing</div>
                 {tiers.map((t) => (
                   <div key={t.id} style={{
                     padding: "18px 14px",
                     borderLeft: "1px solid var(--border-hairline)",
                     background: tintFor(t)
                   }}>
+                    {isFigure(t.price) && (
+                      <div style={{
+                        fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 10,
+                        letterSpacing: "0.12em", textTransform: "uppercase",
+                        color: "var(--edison-gray-mid)", marginBottom: 3
+                      }}>Starting at</div>
+                    )}
                     <div style={{
                       fontFamily: "var(--font-display)", fontWeight: 800,
                       fontSize: isFigure(t.price) ? 20 : 14.5,
