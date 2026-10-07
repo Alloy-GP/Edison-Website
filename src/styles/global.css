@@ -862,6 +862,31 @@ p { text-align: justify; }
   }
 }
 
+/* ---- Closer-look panels: image stacks above copy; the tab rail becomes
+        a swipeable strip rather than wrapping to three ragged lines ---- */
+@media (max-width: 900px) {
+  .sl-deep { padding: 56px 20px !important; }
+  .sl-deep-panel {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .sl-deep-rail {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start !important;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .sl-deep-rail::-webkit-scrollbar { display: none; }
+  .sl-deep-panel h3 { font-size: 26px !important; }
+  /* Stacked, the stretched image has no copy to match — give it back a
+     fixed shape so it does not run the length of the panel. */
+  .sl-deep-img { min-height: 0 !important; aspect-ratio: 5 / 4; }
+}
+.sl-deep-tab:hover { border-color: var(--edison-teal) !important; }
+.sl-deep-tab:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
 /* ---- Every-level band: 4 → 2 → 1 ---- */
 @media (max-width: 1000px) {
   .sl-every-level-grid { grid-template-columns: repeat(2, 1fr) !important; }

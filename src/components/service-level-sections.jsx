@@ -109,7 +109,7 @@ function InfoTip({ term, children }) {
    that want full management, so most people answer two and are done.
    ============================================================ */
 function LevelWizard({ eyebrow, title, sub, questions, tiers, recommend,
-                       background = "var(--edison-teal-pale)" }) {
+                       onResult, background = "var(--edison-teal-pale)" }) {
   const [answers, setAnswers] = useState({});
   const [stepIndex, setStepIndex] = useState(0);
 
@@ -127,6 +127,12 @@ function LevelWizard({ eyebrow, title, sub, questions, tiers, recommend,
      shrinks from 3 to 2 once someone picks the accounting route reads as
      good news; one that grows from 2 to 3 reads as a bait and switch. */
   const total = Object.keys(answers).length === 0 ? questions.length : active.length;
+
+  /* Hand the recommendation to the page so the table and the closer-look
+     panels follow it. In an effect, not in render — onResult sets state
+     in the parent. */
+  const resultId = result?.tier?.id ?? null;
+  useEffect(() => { if (resultId) onResult?.(resultId); }, [resultId, onResult]);
 
   const choose = (qid, option) => {
     const next = { ...answers, [qid]: option };
@@ -355,7 +361,11 @@ function WizardResult({ result, onReset }) {
    container breaks position:sticky.
    ============================================================ */
 function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
-                         note, showPricing = true, background = "#fff" }) {
+                         note, showPricing = true, background = "#fff",
+                         /* Selection is owned by the page, so the wizard, this
+                            table and the closer-look panels all agree on which
+                            level the board is currently looking at. */
+                         active = null }) {
   const cols = `minmax(215px, 1.5fr) repeat(${tiers.length}, minmax(140px, 1fr))`;
 
   const [open, setOpen] = useState(() =>
@@ -364,20 +374,6 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
   const allOpen = groups.every((_, i) => open[i]);
   const toggleAll = () =>
     setOpen(groups.reduce((acc, _, i) => ({ ...acc, [i]: !allOpen }), {}));
-
-  /* The wizard and the per-level CTAs both land on #accounting-plus and
-     friends. Without the tint the link just scrolls to a table and the
-     board loses the thread of which column it was sent to look at. */
-  const [active, setActive] = useState(null);
-  useEffect(() => {
-    const read = () => {
-      const id = window.location.hash.slice(1);
-      setActive(tiers.some((t) => t.id === id) ? id : null);
-    };
-    read();
-    window.addEventListener('hashchange', read);
-    return () => window.removeEventListener('hashchange', read);
-  }, [tiers]);
 
   /* Column tint: an explicitly chosen column outranks the badged one. */
   const tintFor = (t) => {
@@ -655,6 +651,203 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
 }
 
 /* ============================================================
+   LEVEL DEEP DIVE — the closer look, matched to the level in play.
+
+   This replaced two fixed sections: a Portfolio Plus spotlight and an
+   "Accounting Plus does not include" band. Both ran no matter what the
+   wizard had just said, so the page personalised and then immediately
+   reverted to a pitch for a level the board might not be considering.
+   Worse, only one level carried published limitations, which read as
+   Accounting Plus being singled out as the budget option.
+
+   Every level now gets both halves — what makes it work, and what you
+   give up — and the panel follows the current selection.
+
+   All five panels stay in the DOM and are hidden with display, not
+   unmounted. Switching is instant, nothing reflows, and the copy for
+   every level is in the server-rendered HTML rather than appearing
+   only after someone clicks.
+   ============================================================ */
+function LevelDeepDive({ eyebrow, title, sub, tiers, panels,
+                         selected, onSelect, fallback,
+                         background = "#fff" }) {
+  const activeId = selected && panels[selected] ? selected : fallback;
+  const railRef = React.useRef(null);
+
+  /* When the wizard moves the selection, bring the matching tab into
+     view on narrow screens. block:'nearest' so the page itself does
+     not jump — the board may still be reading something else. */
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const tab = rail.querySelector(`[data-tab="${activeId}"]`);
+    if (tab) tab.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+  }, [activeId]);
+
+  return (
+    <section className="sl-deep" id="closer-look" style={{
+      background, padding: "88px 48px",
+      scrollMarginTop: "calc(var(--site-header-height) + 10px)"
+    }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div style={{ textAlign: "center" }}>
+          <SectionHeading align="center" eyebrow={eyebrow} title={title} sub={sub}/>
+        </div>
+
+        <div className="sl-deep-rail" ref={railRef} role="tablist"
+             aria-label="Service levels"
+             style={{
+               marginTop: 36, display: "flex", gap: 8,
+               justifyContent: "center", flexWrap: "wrap"
+             }}>
+          {tiers.map((t) => {
+            const on = t.id === activeId;
+            return (
+              <button
+                key={t.id}
+                type="button"
+                role="tab"
+                data-tab={t.id}
+                aria-selected={on}
+                aria-controls={`panel-${t.id}`}
+                onClick={() => onSelect(t.id)}
+                className="sl-deep-tab"
+                style={{
+                  appearance: "none", cursor: "pointer", whiteSpace: "nowrap",
+                  background: on ? "var(--edison-navy)" : "#fff",
+                  color: on ? "#fff" : "var(--edison-navy)",
+                  border: on ? "1.5px solid var(--edison-navy)"
+                             : "1.5px solid var(--border-hairline)",
+                  borderRadius: 999, padding: "10px 20px",
+                  fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13.5,
+                  transition: "background 160ms var(--ease-standard), color 160ms var(--ease-standard), border-color 160ms var(--ease-standard)"
+                }}
+              >{t.name}</button>
+            );
+          })}
+        </div>
+
+        {tiers.map((t) => {
+          const panel = panels[t.id];
+          if (!panel) return null;
+          const on = t.id === activeId;
+          return (
+            <div
+              key={t.id}
+              id={`panel-${t.id}`}
+              role="tabpanel"
+              aria-labelledby={`tab-${t.id}`}
+              className="sl-deep-panel"
+              style={{
+                display: on ? "grid" : "none",
+                gridTemplateColumns: "1fr 1.1fr", gap: 56,
+                /* Stretch, not centre: panel copy runs longer than a 5:4
+                   image, and a centred image floats away from the heading
+                   it belongs to. */
+                alignItems: "stretch", marginTop: 48
+              }}
+            >
+              <div className="sl-deep-img" style={{
+                width: "100%", minHeight: 420,
+                borderRadius: 18, overflow: "hidden",
+                boxShadow: "var(--shadow-md)",
+                backgroundImage: `url(${panel.image})`,
+                backgroundSize: "cover", backgroundPosition: "center"
+              }}/>
+
+              <div>
+                <div style={{
+                  fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12.5,
+                  letterSpacing: "0.16em", textTransform: "uppercase",
+                  color: "var(--edison-teal-dark)", marginBottom: 14
+                }}>{panel.eyebrow}</div>
+
+                <h3 style={{
+                  fontFamily: "var(--font-display)", fontWeight: 700,
+                  fontSize: 32, lineHeight: 1.2, letterSpacing: "-0.01em",
+                  color: "var(--edison-navy)", margin: "0 0 24px",
+                  position: "relative", paddingBottom: 16, display: "inline-block"
+                }}>
+                  {panel.title}
+                  <span style={{
+                    position: "absolute", left: 0, bottom: 0, width: 60, height: 3,
+                    background: "var(--edison-teal)", borderRadius: 2
+                  }}/>
+                </h3>
+
+                <ul style={{
+                  listStyle: "none", padding: 0, margin: "0 0 26px",
+                  display: "flex", flexDirection: "column", gap: 13
+                }}>
+                  {panel.works.map((b, i) => (
+                    <li key={i} style={{
+                      display: "flex", gap: 13, alignItems: "flex-start",
+                      fontFamily: "var(--font-body)", fontSize: 15.5, lineHeight: 1.55,
+                      color: "var(--edison-text-body)"
+                    }}>
+                      <span aria-hidden="true" style={{
+                        flexShrink: 0, width: 24, height: 24, borderRadius: 999,
+                        background: "var(--edison-teal-pale)",
+                        color: "var(--edison-teal-dark)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontWeight: 800, fontSize: 13, marginTop: 1
+                      }}>✓</span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* The honest half. Every level has one — a page where only
+                    the cheapest tier carries caveats reads as a warning
+                    label rather than as candour. */}
+                <div style={{
+                  background: "var(--edison-teal-pale)",
+                  borderRadius: 12, padding: "20px 22px", marginBottom: 26
+                }}>
+                  <div style={{
+                    fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11,
+                    letterSpacing: "0.12em", textTransform: "uppercase",
+                    color: "var(--edison-navy)", marginBottom: 12
+                  }}>What to know before you pick it</div>
+                  <ul style={{
+                    listStyle: "none", padding: 0, margin: 0,
+                    display: "flex", flexDirection: "column", gap: 10
+                  }}>
+                    {panel.know.map((k, i) => (
+                      <li key={i} style={{
+                        display: "flex", gap: 11, alignItems: "flex-start",
+                        fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.55,
+                        color: "var(--edison-text-body)"
+                      }}>
+                        <span aria-hidden="true" style={{
+                          color: "var(--edison-teal-dark)", fontWeight: 800,
+                          fontSize: 14, lineHeight: 1.55, flexShrink: 0
+                        }}>→</span>
+                        {k}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                  <InteriorButton
+                    variant="primary" size="md"
+                    href={`/request-a-proposal?intent=proposal&message=${encodeURIComponent(`Interested in ${t.name}.`)}`}
+                  >Get a quote for {t.name}</InteriorButton>
+                  <InteriorButton variant="ghost" size="md" href="#compare">
+                    Compare in the table
+                  </InteriorButton>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================
    EVERY LEVEL BAND — what does not change as you move up or down
    ============================================================ */
 function EveryLevelBand({ eyebrow, title, sub, items }) {
@@ -708,4 +901,4 @@ function EveryLevelBand({ eyebrow, title, sub, items }) {
   );
 }
 
-export { LevelWizard, FeatureMatrix, EveryLevelBand, InfoTip };
+export { LevelWizard, FeatureMatrix, LevelDeepDive, EveryLevelBand, InfoTip };

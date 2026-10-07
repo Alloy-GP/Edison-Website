@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Breadcrumb, FAQ, FinalCTA, InteriorButton, InteriorEyebrow,
          MidCTA } from '../components/interior-components';
-import { AntiPatterns, BulletsWithImage, PullQuote } from '../components/template-sections';
-import { LevelWizard, FeatureMatrix,
+import { PullQuote } from '../components/template-sections';
+import { LevelWizard, FeatureMatrix, LevelDeepDive,
          EveryLevelBand } from '../components/service-level-sections';
 
 /* ============================================================
@@ -41,6 +41,23 @@ function priceFor(tier) {
 
 function ServiceLevelsPage({ content = SERVICE_LEVELS_CONTENT }) {
   const tiers = content.tiers.map((t) => ({ ...t, ...priceFor(t) }));
+
+  /* One selected level for the whole page. The wizard sets it, the
+     closer-look tabs set it, a #portfolio-plus link sets it — and the
+     table highlights whichever it is. Before anything is chosen it stays
+     null, so the server-rendered page is the neutral one. */
+  const [selected, setSelected] = useState(null);
+  const select = useCallback((id) => setSelected(id), []);
+
+  useEffect(() => {
+    const read = () => {
+      const id = window.location.hash.slice(1);
+      if (content.tiers.some((t) => t.id === id)) setSelected(id);
+    };
+    read();
+    window.addEventListener('hashchange', read);
+    return () => window.removeEventListener('hashchange', read);
+  }, [content.tiers]);
 
   return (
     <main data-screen-label="Service Levels">
@@ -92,6 +109,7 @@ function ServiceLevelsPage({ content = SERVICE_LEVELS_CONTENT }) {
         sub={content.wizard.sub}
         questions={content.wizard.questions}
         recommend={content.wizard.recommend}
+        onResult={select}
         tiers={tiers}
       />
 
@@ -105,25 +123,25 @@ function ServiceLevelsPage({ content = SERVICE_LEVELS_CONTENT }) {
           footnotes={content.matrix.footnotes}
           note={content.matrix.note}
           showPricing={SHOW_PRICING}
+          active={selected}
           background="var(--bg-3, #F5F7FA)"
         />
       </div>
 
-      <BulletsWithImage
-        eyebrow="The level nobody else offers"
-        title={content.spotlight.title}
-        bullets={content.spotlight.bullets}
-        image={content.spotlight.image}
-      />
-
-      {/* Light variant on purpose — the band below it is navy, and two dark
-          sections back to back read as one undifferentiated block. */}
-      <AntiPatterns
-        eyebrow="Before you choose Accounting Plus"
-        title={content.limits.title}
-        items={content.limits.items}
-        variant="light"
-        background="var(--edison-teal-pale)"
+      {/* Was a fixed Portfolio Plus spotlight plus a fixed "Accounting Plus
+          does not include" band. Both ran regardless of what the wizard had
+          just recommended, and only one level carried published limitations.
+          Now every level has both halves and the panel follows the selection,
+          falling back to Portfolio Plus for anyone who has not chosen. */}
+      <LevelDeepDive
+        eyebrow="A closer look"
+        title={content.deepDive.title}
+        sub={content.deepDive.sub}
+        tiers={tiers}
+        panels={content.deepDive.panels}
+        selected={selected}
+        onSelect={select}
+        fallback={content.deepDive.fallback}
       />
 
       <EveryLevelBand
@@ -548,38 +566,95 @@ const SERVICE_LEVELS_CONTENT = {
     ]
   },
 
-  spotlight: {
-    title: "Portfolio Plus solves a problem nobody was addressing.",
-    image: "/assets/central-florida-hoa-management-board-walkthrough.webp",
-    bullets: [
-      "For years the choice was binary: a manager who visits, or a manager on your payroll five days a week. Communities that needed two days were paying for five.",
-      "A dedicated Edison LCAM is physically in your community on a set schedule — one, two, or three days a week — and carries a small portfolio alongside it.",
-      "Homeowners get a face and a desk. Boards get on-site presence without funding a full-time salary, benefits, and coverage for vacation weeks.",
-      "The full Edison back office stands behind that manager: accounting, covenant enforcement, and collections departments, not one person doing everything.",
-      "It is the fastest-growing level in Edison's portfolio, largely because former on-site communities are converting to it."
-    ]
-  },
-
-  limits: {
-    title: "What Accounting Plus does not include.",
-    items: [
-      {
-        title: "No dedicated manager",
-        body: "This is the defining limitation and the one Edison leads with. A booked meeting is covered by whoever is available. A board can request a specific person but cannot be promised one."
+  /* Sources: brief §6.8 "What Accounting Plus Does Not Include" (verbatim
+     in substance for that panel), §6.1 and §6.8 for the rest, and the
+     client exhibit for billing mechanics. Nothing here is a limitation
+     Edison has not already put in writing. */
+  deepDive: {
+    title: "What each level actually looks like.",
+    sub: "Pick a level to see what it gets you and what it does not. Answer the questions above and this jumps to the one we would put you at.",
+    fallback: "portfolio-plus",
+    panels: {
+      "accounting-only": {
+        eyebrow: "Accounting Only",
+        image: "/assets/img-accounting.webp",
+        title: "Financial oversight, without a manager in between.",
+        works: [
+          "Assessments billed and recorded, vendors paid, and financials delivered monthly — on the same schedule and through the same department every other level gets.",
+          "Delinquent accounts pursued by Edison's collections department: notices, payment plans, and the lien process when it goes that far.",
+          "Your board stops signing checks. Financial controls and statutory recordkeeping sit with licensed professionals instead of a volunteer treasurer.",
+          "Homeowners get the full resident portal, website and mobile app, plus payment support."
+        ],
+        know: [
+          "No manager is assigned. Meetings, inspections, enforcement and vendor work all stay with your board.",
+          "If you want to buy any of that occasionally rather than never, that is Accounting Plus — same base, services added as you need them."
+        ]
       },
-      {
-        title: "No deep community knowledge",
-        body: "A covering manager knows the law and will read your documents before the meeting. They will not know that the north fence has been a fight since 2019."
+      "accounting-plus": {
+        eyebrow: "Accounting Plus",
+        image: "/assets/img-resident-portal.webp",
+        title: "Use as much or as little as you need.",
+        works: [
+          "Everything in Accounting Only, plus board meetings, site inspections, project management and covenant enforcement — each booked and billed when you need it.",
+          "A quiet year costs very little. A year with a repaving project and a contentious annual meeting costs more. Your board decides which year it is having.",
+          "Remote homeowner support, and the same resident portal and mobile app every other level gets.",
+          "Full Edison Education access for your board, exactly as at On-Site."
+        ],
+        know: [
+          "No dedicated manager. This is the defining limitation. A booked meeting is covered by whoever is available — you can request a specific person but cannot be promised one.",
+          "No deep community knowledge. A covering manager knows the law and will read your documents before the meeting. They will not know the north fence has been a fight since 2019.",
+          "No depositions or expert witness work on work Edison did not perform. Documentation required by law is still provided.",
+          "Self-performed enforcement shifts labor to your board: Edison provides portal access, your board enters violations and covers the mailing cost."
+        ]
       },
-      {
-        title: "No depositions or expert witness work",
-        body: "Edison provides the documentation required by law, but will not serve as an expert witness on work it did not perform."
+      "portfolio": {
+        eyebrow: "Portfolio",
+        image: "/assets/hoa-covenant-enforcement-inspection.webp",
+        title: "A manager who knows your community — and stays.",
+        works: [
+          "A dedicated licensed manager plus an assigned community specialist, so two people know your documents, your vendors and your history.",
+          "Quarterly board meetings with real preparation and follow-up, and monthly site inspections with a written report back to the board.",
+          "Vendor sourcing with three or more competing bids and a written comparison, then oversight of that vendor through completion.",
+          "Covenant enforcement handled by a dedicated department rather than squeezed into one manager's week."
+        ],
+        know: [
+          "Board meetings are quarterly at this level. Communities that want them monthly are usually looking at Portfolio Plus.",
+          "There is no scheduled on-site presence. Your manager comes for inspections, meetings and project work, not on set days.",
+          "Portfolio carries a monthly minimum that scales up with community size, so the starting figure should never be read as a typical price."
+        ]
       },
-      {
-        title: "Self-performed enforcement shifts labor to your board",
-        body: "Where a board handles its own inspections, Edison provides portal access so the board enters violations directly, and the board covers mailing costs. Edison charges for any inspection it performs."
+      "portfolio-plus": {
+        eyebrow: "The level nobody else offers",
+        image: "/assets/central-florida-hoa-management-board-walkthrough.webp",
+        title: "Portfolio Plus solves a problem nobody was addressing.",
+        works: [
+          "For years the choice was binary: a manager who visits, or a manager on your payroll five days a week. Communities that needed two days were paying for five.",
+          "A dedicated Edison LCAM is physically in your community on a set schedule — one, two or three days a week — and carries a small portfolio alongside it.",
+          "Homeowners get a face and a desk. Boards get on-site presence without funding a full-time salary, benefits and vacation cover.",
+          "The full Edison back office stands behind that manager: accounting, covenant enforcement and collections departments, not one person doing everything."
+        ],
+        know: [
+          "You and the board set the number of on-site days, and that is what you get. Pricing is per on-site day rather than a flat monthly fee.",
+          "Admin and maintenance staff are available if you want them, billed separately from the management fee.",
+          "It is the fastest-growing level in Edison's portfolio, largely because former on-site communities are converting to it."
+        ]
+      },
+      "on-site": {
+        eyebrow: "On-Site",
+        image: "/assets/img-neighborhood-aerial.webp",
+        title: "A manager who works for one community. Yours.",
+        works: [
+          "A dedicated licensed manager, full time, in your community — with monthly board meetings and on-site homeowner support.",
+          "Optional admin and maintenance staff working alongside them, scaled to what the community actually runs.",
+          "Community event planning and newsletter publication included rather than quoted.",
+          "Edison's accounting, covenant enforcement and collections departments stand behind that manager, so they are not doing everything alone."
+        ],
+        know: [
+          "Manager salary, burden and markup are billed on top of the monthly management fee.",
+          "This is the largest commitment on the ladder and needs the scale to justify it. Plenty of communities that once ran on-site have converted to Portfolio Plus instead."
+        ]
       }
-    ]
+    }
   },
 
   everyLevel: {
