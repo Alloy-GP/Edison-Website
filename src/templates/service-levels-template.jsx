@@ -458,7 +458,7 @@ const SERVICE_LEVELS_CONTENT = {
       name: "Portfolio Plus",
       summary: "The hybrid. A dedicated manager physically on site one to three days a week, with the full Edison back office behind them.",
       price: "$2,000",
-      priceNote: "per month, plus manager salary & burden",
+      priceNote: "per month, plus the manager's salary and employment costs",
       priceShort: "From $2,000/mo + staffing",
       quoted: true,
       badge: "Growing fastest",
@@ -491,7 +491,7 @@ const SERVICE_LEVELS_CONTENT = {
       name: "On-Site",
       summary: "A manager dedicated to one community full time. Yours. Optional admin and maintenance staff alongside them.",
       price: "$2,000",
-      priceNote: "per month, plus manager salary & burden",
+      priceNote: "per month, plus the manager's salary and employment costs",
       priceShort: "From $2,000/mo + staffing",
       quoted: true,
       managerAccess: "Dedicated, full time",
@@ -527,7 +527,7 @@ const SERVICE_LEVELS_CONTENT = {
     footnotes: [
       "Pricing shown is starting pricing and may vary based on community size, scope and service requirements.",
       "At Accounting Plus, site inspections are billed per visit and board meetings hourly, rather than included in the monthly fee.",
-      "On-Site and Portfolio Plus manager salary and burden are billed on top of the monthly management fee."
+      "At On-Site and Portfolio Plus, the manager's salary and employment costs are billed on top of the monthly management fee."
     ],
     /* "Your manager" opens by default because it is the group that
        actually separates the five levels. The rest is detail a board
@@ -686,7 +686,7 @@ const SERVICE_LEVELS_CONTENT = {
           "Edison's accounting, covenant enforcement and collections departments stand behind that manager, so they are not doing everything alone."
         ],
         know: [
-          "Manager salary and burden are billed on top of the monthly management fee.",
+          "The manager's salary and employment costs are billed on top of the monthly management fee.",
           "This is the largest commitment of the five and needs the scale to justify it. Plenty of communities that once ran on-site have converted to Portfolio Plus instead."
         ]
       }
