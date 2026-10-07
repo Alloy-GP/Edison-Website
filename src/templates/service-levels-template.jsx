@@ -2,7 +2,7 @@ import React from 'react';
 import { Breadcrumb, FAQ, FinalCTA, InteriorButton, InteriorEyebrow,
          MidCTA } from '../components/interior-components';
 import { AntiPatterns, BulletsWithImage, PullQuote } from '../components/template-sections';
-import { TierCards, LevelChooser, FeatureMatrix,
+import { LevelChooser, FeatureMatrix,
          EveryLevelBand } from '../components/service-level-sections';
 
 /* ============================================================
@@ -90,22 +90,19 @@ function ServiceLevelsPage({ content = SERVICE_LEVELS_CONTENT }) {
         paths={content.chooser.paths}
       />
 
-      <TierCards
-        eyebrow="The five levels"
-        title={content.tierCards.title}
-        sub={content.tierCards.sub}
-        tiers={tiers}
-        showPricing={SHOW_PRICING}
-      />
-
+      {/* The tier cards that used to sit here restated the matrix row for
+          row — same information, denser presentation, shown first. The
+          matrix now carries what only the cards had: the one-line
+          definition, best fit, price and a per-level CTA. */}
       <div id="compare" style={{ scrollMarginTop: "var(--site-header-height)" }}>
         <FeatureMatrix
-          eyebrow="Side by side"
+          eyebrow="The five levels"
           title={content.matrix.title}
           sub={content.matrix.sub}
           tiers={tiers}
           groups={content.matrix.groups}
           footnotes={content.matrix.footnotes}
+          note={content.matrix.note}
           showPricing={SHOW_PRICING}
           background="var(--bg-3, #F5F7FA)"
         />
@@ -234,11 +231,6 @@ const SERVICE_LEVELS_CONTENT = {
     ]
   },
 
-  tierCards: {
-    title: "Five levels, one standard of service.",
-    sub: "The level changes how much manager access you get and what you pay for it. It never changes who is doing the work or how carefully it gets done."
-  },
-
   /* quoted:true routes a tier to "Custom quote" when PRICING_MODE is
      'accounting-only'. Figures are starting points, not typical prices. */
   tiers: [
@@ -341,8 +333,9 @@ const SERVICE_LEVELS_CONTENT = {
   ],
 
   matrix: {
-    title: "What you get at each level",
-    sub: "Everything financial is covered at every level. What changes as you move up is manager access, on-site presence, and how much of the operational work sits with your board.",
+    title: "Five levels, one standard of service.",
+    sub: "The level changes how much manager access you get and what you pay for it. It never changes who is doing the work or how carefully it gets done. Everything financial is covered at every level.",
+    note: "Not sure where you land? Edison reviews fit before placing any community. If a level is wrong for you, we will say so \u2014 including when full management is the better value.",
     footnotes: [
       "Pricing shown is starting pricing and may vary based on community size, scope and service requirements.",
       "Per use means the service is available at Accounting Plus and billed when you book it, rather than included in the monthly fee.",

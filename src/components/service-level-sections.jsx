@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { InteriorButton, InteriorEyebrow, SectionHeading } from './interior-components';
 
 /* ============================================================
@@ -7,16 +7,20 @@ import { InteriorButton, InteriorEyebrow, SectionHeading } from './interior-comp
    template-sections.jsx is hard-wired to two columns ("Typical vs
    Edison"), so the ladder needed its own primitives:
 
-     TierCards     — the five levels side by side, scannable
      LevelChooser  — scenario-first routing, the "help me pick" job
-     FeatureMatrix — full row-by-row grid with a sticky header
+     FeatureMatrix — the comparison, and the only place the five levels
+                     are laid out against each other
+     TierCards     — pricing-card presentation of the same five levels.
+                     Built first, then cut from the page: it restated the
+                     matrix row for row. Kept because it is the drop-in if
+                     a card layout is ever wanted over the grid.
 
    Pricing visibility is controlled by the caller (see PRICING_MODE in
    templates/service-levels-template.jsx), never hard-coded here.
    ============================================================ */
 
-/* Shared cell vocabulary for FeatureMatrix + TierCards:
-   true → included, false → not included, string → qualified answer. */
+/* Cell vocabulary: true → included, false → not included,
+   string → qualified answer ("Per use", "Monthly", "1–3 days on site"). */
 function Included({ onTint = false }) {
   return (
     <span aria-label="Included" title="Included" style={{
@@ -264,16 +268,43 @@ function LevelChooser({ eyebrow, title, sub, paths,
     </section>
   );
 }
-
 /* ============================================================
-   FEATURE MATRIX — the actual comparison tool.
-   Header row sticks under the site header on desktop; on narrow
-   screens global.css swaps the wrapper to horizontal scroll and
-   drops the sticky (an overflow container breaks position:sticky).
+   FEATURE MATRIX — the one place the five levels are compared.
+
+   This absorbed the tier cards that used to sit above it. Those cards
+   repeated the "Includes" bullets row for row, so the page said the
+   same thing twice and the denser version came first. Everything the
+   cards carried that the grid could not — the one-line definition,
+   best fit, price, a per-level CTA — is now a band of this table.
+
+   Header sticks on desktop; on narrow screens global.css swaps the
+   wrapper to horizontal scroll and drops the sticky, since an overflow
+   container breaks position:sticky.
    ============================================================ */
 function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
-                         showPricing = true, background = "#fff" }) {
-  const cols = `minmax(190px, 1.5fr) repeat(${tiers.length}, minmax(130px, 1fr))`;
+                         note, showPricing = true, background = "#fff" }) {
+  const cols = `minmax(190px, 1.5fr) repeat(${tiers.length}, minmax(140px, 1fr))`;
+
+  /* The chooser links to #accounting-plus and friends. Without this the
+     link just scrolls to the table and the board loses the thread of
+     which column it was sent to look at. */
+  const [active, setActive] = useState(null);
+  useEffect(() => {
+    const read = () => {
+      const id = window.location.hash.slice(1);
+      setActive(tiers.some((t) => t.id === id) ? id : null);
+    };
+    read();
+    window.addEventListener('hashchange', read);
+    return () => window.removeEventListener('hashchange', read);
+  }, [tiers]);
+
+  /* Column tint: an explicitly chosen column outranks the badged one. */
+  const tintFor = (t) => {
+    if (t.id === active) return "rgba(60,200,200,.16)";
+    if (t.badge) return "rgba(60,200,200,.05)";
+    return "transparent";
+  };
 
   return (
     <section className="sl-matrix" style={{ background, padding: "88px 40px" }}>
@@ -294,7 +325,7 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
               for the sticky header and pin it to the table instead of the
               viewport. Corners are rounded on the edge cells instead. */}
           <div className="sl-matrix-grid" style={{
-            minWidth: 880,
+            minWidth: 940,
             border: "1px solid var(--border-hairline)",
             borderRadius: 14,
             background: "#fff",
@@ -310,26 +341,58 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
               background: "var(--edison-navy)", color: "#fff",
               position: "sticky", top: 0, zIndex: 2
             }}>
-              <div style={{ padding: "16px 20px", borderTopLeftRadius: 13 }}/>
-              {tiers.map((t, ti) => (
-                <div key={t.id} style={{
-                  padding: "16px 14px",
-                  borderLeft: "1px solid rgba(255,255,255,.12)",
-                  borderTopRightRadius: ti === tiers.length - 1 ? 13 : 0,
-                  background: t.badge ? "rgba(60,200,200,.12)" : "transparent"
-                }}>
-                  <div style={{
-                    fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 13.5,
-                    lineHeight: 1.25,
-                    color: t.badge ? "var(--edison-teal)" : "#fff"
-                  }}>{t.name}</div>
-                  {showPricing && (
+              <div style={{ padding: "18px 20px", borderTopLeftRadius: 13 }}/>
+              {tiers.map((t, ti) => {
+                const on = t.id === active;
+                return (
+                  <div key={t.id} id={t.id} style={{
+                    padding: "18px 14px",
+                    borderLeft: "1px solid rgba(255,255,255,.12)",
+                    borderTopRightRadius: ti === tiers.length - 1 ? 13 : 0,
+                    background: on ? "rgba(60,200,200,.18)"
+                               : t.badge ? "rgba(60,200,200,.10)" : "transparent",
+                    scrollMarginTop: "calc(var(--site-header-height) + 20px)"
+                  }}>
+                    {t.badge && (
+                      <div style={{
+                        fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 9.5,
+                        letterSpacing: "0.12em", textTransform: "uppercase",
+                        color: "var(--edison-teal)", marginBottom: 5
+                      }}>{t.badge}</div>
+                    )}
                     <div style={{
-                      fontFamily: "var(--font-body)", fontSize: 11.5, lineHeight: 1.4,
-                      color: "rgba(255,255,255,.62)", marginTop: 4
-                    }}>{t.priceShort}</div>
-                  )}
-                </div>
+                      fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 14.5,
+                      lineHeight: 1.25,
+                      color: (on || t.badge) ? "var(--edison-teal)" : "#fff"
+                    }}>{t.name}</div>
+                    {showPricing && (
+                      <div style={{
+                        fontFamily: "var(--font-body)", fontSize: 11.5, lineHeight: 1.4,
+                        color: "rgba(255,255,255,.62)", marginTop: 4
+                      }}>{t.priceShort}</div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* ---- What each level is, in one line ---- */}
+            <div className="sl-matrix-row" style={{
+              display: "grid", gridTemplateColumns: cols
+            }}>
+              <div style={{
+                padding: "18px 20px",
+                fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14,
+                color: "var(--edison-navy)"
+              }}>What it is</div>
+              {tiers.map((t) => (
+                <div key={t.id} style={{
+                  padding: "18px 14px",
+                  borderLeft: "1px solid var(--border-hairline)",
+                  background: tintFor(t),
+                  fontFamily: "var(--font-body)", fontSize: 13, lineHeight: 1.5,
+                  color: "var(--edison-text-body)"
+                }}>{t.summary}</div>
               ))}
             </div>
 
@@ -362,7 +425,7 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
                         padding: "14px",
                         display: "flex", alignItems: "center",
                         borderLeft: "1px solid var(--border-hairline)",
-                        background: t.badge ? "rgba(60,200,200,.05)" : "transparent"
+                        background: tintFor(t)
                       }}>
                         <Cell value={row.values[t.id]}/>
                       </div>
@@ -372,7 +435,28 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
               </React.Fragment>
             ))}
 
-            {/* ---- Pricing footer row ---- */}
+            {/* ---- Best fit ---- */}
+            <div className="sl-matrix-row" style={{
+              display: "grid", gridTemplateColumns: cols,
+              borderTop: "1px solid var(--border-hairline)"
+            }}>
+              <div style={{
+                padding: "18px 20px",
+                fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14,
+                color: "var(--edison-navy)"
+              }}>Best fit</div>
+              {tiers.map((t) => (
+                <div key={t.id} style={{
+                  padding: "18px 14px",
+                  borderLeft: "1px solid var(--border-hairline)",
+                  background: tintFor(t),
+                  fontFamily: "var(--font-body)", fontSize: 12.5, lineHeight: 1.5,
+                  color: "var(--edison-text-body)"
+                }}>{t.bestFit}</div>
+              ))}
+            </div>
+
+            {/* ---- Pricing ---- */}
             {showPricing && (
               <div className="sl-matrix-row" style={{
                 display: "grid", gridTemplateColumns: cols,
@@ -381,18 +465,17 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
                 <div style={{
                   padding: "18px 20px",
                   fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 14,
-                  color: "var(--edison-navy)", borderBottomLeftRadius: 13
+                  color: "var(--edison-navy)"
                 }}>Starting at</div>
-                {tiers.map((t, ti) => (
+                {tiers.map((t) => (
                   <div key={t.id} style={{
                     padding: "18px 14px",
                     borderLeft: "1px solid var(--border-hairline)",
-                    borderBottomRightRadius: ti === tiers.length - 1 ? 13 : 0,
-                    background: t.badge ? "rgba(60,200,200,.05)" : "transparent"
+                    background: tintFor(t)
                   }}>
                     <div style={{
                       fontFamily: "var(--font-display)", fontWeight: 800,
-                      fontSize: isFigure(t.price) ? 17 : 14.5,
+                      fontSize: isFigure(t.price) ? 20 : 14.5,
                       lineHeight: 1.2, color: "var(--edison-navy)"
                     }}>{t.price}</div>
                     {t.priceNote && <div style={{
@@ -403,12 +486,42 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
                 ))}
               </div>
             )}
+
+            {/* ---- Per-level CTA ---- */}
+            <div className="sl-matrix-row" style={{
+              display: "grid", gridTemplateColumns: cols,
+              borderTop: "1px solid var(--border-hairline)"
+            }}>
+              <div style={{ padding: "18px 20px", borderBottomLeftRadius: 13 }}/>
+              {tiers.map((t, ti) => (
+                <div key={t.id} style={{
+                  padding: "18px 14px",
+                  borderLeft: "1px solid var(--border-hairline)",
+                  borderBottomRightRadius: ti === tiers.length - 1 ? 13 : 0,
+                  background: tintFor(t)
+                }}>
+                  <InteriorButton
+                    variant={t.id === active || t.badge ? "primary" : "ghost"}
+                    size="sm"
+                    href="/request-a-proposal"
+                  >Get a quote</InteriorButton>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
+        {note && (
+          <p style={{
+            fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.6,
+            color: "var(--edison-text-body)", textAlign: "center",
+            margin: "32px auto 0", maxWidth: 820
+          }}>{note}</p>
+        )}
+
         {footnotes.length > 0 && (
           <ul style={{
-            listStyle: "none", padding: 0, margin: "24px 0 0",
+            listStyle: "none", padding: 0, margin: "20px 0 0",
             display: "flex", flexDirection: "column", gap: 6
           }}>
             {footnotes.map((f, i) => (

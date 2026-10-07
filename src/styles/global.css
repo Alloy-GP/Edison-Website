@@ -852,11 +852,14 @@ p { text-align: justify; }
   .sl-matrix-row > div:first-child {
     position: sticky; left: 0; z-index: 1;
     background: #fff;
-    box-shadow: 1px 0 0 var(--border-hairline);
+    /* Hairline plus a soft cast — cells scroll underneath this column, and
+       without the depth cue a half-covered check mark reads as clipped. */
+    box-shadow: 1px 0 0 var(--border-hairline), 4px 0 8px rgba(15, 29, 51, 0.07);
   }
   .sl-matrix-head > div:first-child {
     position: sticky; left: 0; z-index: 3;
     background: var(--edison-navy);
+    box-shadow: 4px 0 8px rgba(15, 29, 51, 0.18);
   }
   .sl-matrix-group-label {
     position: sticky; left: 20px;
