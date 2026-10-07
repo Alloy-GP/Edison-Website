@@ -327,6 +327,16 @@ function WizardResult({ result, onReset, showPricing }) {
         }}>{tier.name}</h3>
         {showPricing && (
           <div style={{ textAlign: "right" }}>
+            {/* The table qualifies its figures with a "Starting at" row
+                label. Here the number stands alone, so it has to say so
+                itself — $2,000 is a floor, not a quote. */}
+            {isFigure(tier.price) && (
+              <div style={{
+                fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 10.5,
+                letterSpacing: "0.12em", textTransform: "uppercase",
+                color: "var(--edison-gray-mid)", marginBottom: 2
+              }}>Starting at</div>
+            )}
             <div style={{
               fontFamily: "var(--font-display)", fontWeight: 800,
               fontSize: isFigure(tier.price) ? 26 : 18,

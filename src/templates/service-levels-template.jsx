@@ -362,8 +362,8 @@ const SERVICE_LEVELS_CONTENT = {
       name: "Accounting Only",
       summary: "Everything financial, nothing operational. The books, the billing, and the collections, handled by professionals.",
       price: "$500",
-      priceNote: "per month, starting",
-      priceShort: "From $500/mo",
+      priceNote: "per month",
+      priceShort: "Starts at $500/mo",
       quoted: false,
       managerAccess: "No manager assigned",
       highlights: [
@@ -395,7 +395,7 @@ const SERVICE_LEVELS_CONTENT = {
       summary: "Accounting Only, plus any operational service you buy as you need it. Meetings, inspections, projects, enforcement — priced per use.",
       price: "$500",
       priceNote: "per month, plus services as needed",
-      priceShort: "From $500/mo + services",
+      priceShort: "Starts at $500/mo + services",
       quoted: false,
       managerAccess: "No manager assigned",
       highlights: [
@@ -426,8 +426,8 @@ const SERVICE_LEVELS_CONTENT = {
       name: "Portfolio",
       summary: "Standard full management. A dedicated LCAM and community specialist who know your community, your documents, and your vendors.",
       price: "$2,000",
-      priceNote: "per month, starting — scales with community size",
-      priceShort: "From $2,000/mo",
+      priceNote: "per month, and scales with community size",
+      priceShort: "Starts at $2,000/mo",
       quoted: true,
       managerAccess: "Dedicated manager",
       highlights: [
@@ -458,8 +458,8 @@ const SERVICE_LEVELS_CONTENT = {
       name: "Portfolio Plus",
       summary: "The hybrid. A dedicated manager physically on site one to three days a week, with the full Edison back office behind them.",
       price: "$2,000",
-      priceNote: "per month, plus the manager's salary and employment costs",
-      priceShort: "From $2,000/mo + staffing",
+      priceNote: "per month, plus salary/burden costs",
+      priceShort: "Starts at $2,000/mo + staffing",
       quoted: true,
       badge: "Growing fastest",
       managerAccess: "Dedicated manager, scheduled on-site days",
@@ -491,8 +491,8 @@ const SERVICE_LEVELS_CONTENT = {
       name: "On-Site",
       summary: "A manager dedicated to one community full time. Yours. Optional admin and maintenance staff alongside them.",
       price: "$2,000",
-      priceNote: "per month, plus the manager's salary and employment costs",
-      priceShort: "From $2,000/mo + staffing",
+      priceNote: "per month, plus salary/burden costs",
+      priceShort: "Starts at $2,000/mo + staffing",
       quoted: true,
       managerAccess: "Dedicated, full time",
       highlights: [
@@ -527,7 +527,7 @@ const SERVICE_LEVELS_CONTENT = {
     footnotes: [
       "Pricing shown is starting pricing and may vary based on community size, scope and service requirements.",
       "At Accounting Plus, site inspections are billed per visit and board meetings hourly, rather than included in the monthly fee.",
-      "At On-Site and Portfolio Plus, the manager's salary and employment costs are billed on top of the monthly management fee."
+      "At On-Site and Portfolio Plus, salary/burden costs for the on-site manager are billed on top of the monthly management fee."
     ],
     /* "Your manager" opens by default because it is the group that
        actually separates the five levels. The rest is detail a board
@@ -686,7 +686,7 @@ const SERVICE_LEVELS_CONTENT = {
           "Edison's accounting, covenant enforcement and collections departments stand behind that manager, so they are not doing everything alone."
         ],
         know: [
-          "The manager's salary and employment costs are billed on top of the monthly management fee.",
+          "Salary/burden costs for the manager are billed on top of the monthly management fee.",
           "This is the largest commitment of the five and needs the scale to justify it. Plenty of communities that once ran on-site have converted to Portfolio Plus instead."
         ]
       }
