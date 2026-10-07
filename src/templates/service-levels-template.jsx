@@ -110,6 +110,7 @@ function ServiceLevelsPage({ content = SERVICE_LEVELS_CONTENT }) {
         questions={content.wizard.questions}
         recommend={content.wizard.recommend}
         onResult={select}
+        showPricing={SHOW_PRICING}
         tiers={tiers}
       />
 
@@ -128,11 +129,20 @@ function ServiceLevelsPage({ content = SERVICE_LEVELS_CONTENT }) {
         />
       </div>
 
+      <EveryLevelBand
+        eyebrow="Constant across the ladder"
+        title={content.everyLevel.title}
+        sub={content.everyLevel.sub}
+        items={content.everyLevel.items}
+      />
+
       {/* Was a fixed Portfolio Plus spotlight plus a fixed "Accounting Plus
           does not include" band. Both ran regardless of what the wizard had
           just recommended, and only one level carried published limitations.
-          Now every level has both halves and the panel follows the selection,
-          falling back to Portfolio Plus for anyone who has not chosen. */}
+          Now every level has both halves and the panel follows the selection.
+          Demoted below the constants band: it is the third place these five
+          levels get explained, so it should read as the drill-down it is
+          rather than compete with the table for the same job. */}
       <LevelDeepDive
         eyebrow="A closer look"
         title={content.deepDive.title}
@@ -142,13 +152,6 @@ function ServiceLevelsPage({ content = SERVICE_LEVELS_CONTENT }) {
         selected={selected}
         onSelect={select}
         fallback={content.deepDive.fallback}
-      />
-
-      <EveryLevelBand
-        eyebrow="Constant across the ladder"
-        title={content.everyLevel.title}
-        sub={content.everyLevel.sub}
-        items={content.everyLevel.items}
       />
 
       <MidCTA
@@ -368,6 +371,19 @@ const SERVICE_LEVELS_CONTENT = {
         "Homeowner payment support",
         "Resident portal, website & app"
       ],
+      /* Hand off / keep is the shape of the decision for a volunteer
+         board: how much work leaves the volunteers, not which boxes
+         get ticked. Surfaced in the wizard result. */
+      handOff: [
+        "Billing, collecting and recording every assessment",
+        "Paying your vendors and closing the books each month",
+        "Chasing delinquent accounts through to lien if needed"
+      ],
+      keep: [
+        "Board meetings and the decisions in them",
+        "Site inspections and covenant enforcement",
+        "Finding and managing your own vendors"
+      ],
       bestFit: "Small communities, often self-managed or with their own on-staff help, that need financial oversight and risk off the volunteers."
     },
     {
@@ -387,6 +403,19 @@ const SERVICE_LEVELS_CONTENT = {
         "Covenant enforcement, per use",
         "Remote homeowner support"
       ],
+      /* Hand off / keep is the shape of the decision for a volunteer
+         board: how much work leaves the volunteers, not which boxes
+         get ticked. Surfaced in the wizard result. */
+      handOff: [
+        "Everything financial, every month",
+        "Any meeting, inspection, project or enforcement you book",
+        "Remote homeowner support through the portal"
+      ],
+      keep: [
+        "Deciding which months are worth buying help for",
+        "Day-to-day community matters between those bookings",
+        "Continuity — no one manager carries your history"
+      ],
       bestFit: "Small communities with capable volunteers or strong vendor relationships that want a professional available for specific needs."
     },
     {
@@ -405,6 +434,19 @@ const SERVICE_LEVELS_CONTENT = {
         "Monthly site inspections",
         "Vendor sourcing & oversight",
         "Full financial management"
+      ],
+      /* Hand off / keep is the shape of the decision for a volunteer
+         board: how much work leaves the volunteers, not which boxes
+         get ticked. Surfaced in the wizard result. */
+      handOff: [
+        "Day-to-day management, with a manager who knows you",
+        "Monthly inspections, vendor bidding and project oversight",
+        "Covenant enforcement and the full financial operation"
+      ],
+      keep: [
+        "Governance and the decisions that are legally yours",
+        "Setting direction at quarterly board meetings",
+        "Any on-site presence beyond scheduled visits"
       ],
       bestFit: "Communities that want a manager who knows them and stays. The most common fit by a wide margin."
     },
@@ -426,6 +468,19 @@ const SERVICE_LEVELS_CONTENT = {
         "Community event planning",
         "Newsletter publication"
       ],
+      /* Hand off / keep is the shape of the decision for a volunteer
+         board: how much work leaves the volunteers, not which boxes
+         get ticked. Surfaced in the wizard result. */
+      handOff: [
+        "Everything in Portfolio, plus a manager on site on set days",
+        "On-site homeowner support, events and the newsletter",
+        "Inspection cadence set by your board, not a template"
+      ],
+      keep: [
+        "Governance and the decisions that are legally yours",
+        "Choosing how many on-site days you fund",
+        "Whether to add admin or maintenance staff"
+      ],
       bestFit: "Larger communities that want regular on-site presence without funding a full-time manager."
     },
     {
@@ -445,13 +500,26 @@ const SERVICE_LEVELS_CONTENT = {
         "Community event planning",
         "Newsletter publication"
       ],
+      /* Hand off / keep is the shape of the decision for a volunteer
+         board: how much work leaves the volunteers, not which boxes
+         get ticked. Surfaced in the wizard result. */
+      handOff: [
+        "A full-time manager working only for your community",
+        "On-site homeowner support five days a week",
+        "Events, newsletter, vendor and project work end to end"
+      ],
+      keep: [
+        "Governance and the decisions that are legally yours",
+        "Approving the staffing you fund alongside the manager",
+        "Setting priorities at monthly board meetings"
+      ],
       bestFit: "Large communities with the scale and budget to support a full-time manager of their own."
     }
   ],
 
   matrix: {
-    title: "Five levels, one standard of service.",
-    sub: "The level changes how much manager access you get and what you pay for it. It never changes who is doing the work or how carefully it gets done.",
+    title: "Only what actually differs.",
+    sub: "Assessments, financials, AR/AP, collections, the resident portal and board education are identical at all five levels, so they are not in this table — they are the band directly below it. Everything here changes as you move up.",
     note: "Not sure where you land? Edison reviews fit before placing any community. If a level is wrong for you, we will say so — including when full management is the better value.",
     footnotes: [
       "Pricing shown is starting pricing and may vary based on community size, scope and service requirements.",
@@ -464,7 +532,6 @@ const SERVICE_LEVELS_CONTENT = {
     groups: [
       {
         group: "Your manager",
-        defaultOpen: true,
         rows: [
           {
             label: "Dedicated LCAM",
@@ -490,7 +557,6 @@ const SERVICE_LEVELS_CONTENT = {
       },
       {
         group: "Day-to-day operations",
-        closedNote: "8 rows",
         rows: [
           {
             label: "Site inspections",
@@ -530,39 +596,6 @@ const SERVICE_LEVELS_CONTENT = {
           }
         ]
       },
-      {
-        group: "Included at every level",
-        closedNote: "6 rows · identical at all five",
-        rows: [
-          {
-            label: "Assessment processing",
-            tip: "Billing homeowners for their dues and recording what comes in.",
-            values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }
-          },
-          {
-            label: "Monthly financial reporting",
-            values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }
-          },
-          {
-            label: "AR / AP processing",
-            tip: "Accounts receivable and payable — collecting what homeowners owe and paying your vendors on time.",
-            values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }
-          },
-          {
-            label: "Collections processing",
-            tip: "Pursuing delinquent accounts: notices, payment plans, and the lien process when it goes that far.",
-            values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }
-          },
-          {
-            label: "Resident portal, website & mobile app",
-            values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }
-          },
-          {
-            label: "Edison Education access",
-            values: { "accounting-only": true, "accounting-plus": true, "portfolio": true, "portfolio-plus": true, "on-site": true }
-          }
-        ]
-      }
     ]
   },
 
@@ -658,8 +691,8 @@ const SERVICE_LEVELS_CONTENT = {
   },
 
   everyLevel: {
-    title: "Four things do not change, whichever level you pick.",
-    sub: "Moving down the ladder reduces how much manager access you buy. It does not move you to a lesser version of Edison.",
+    title: "And here is what never changes.",
+    sub: "Every row above differs by level. These do not. Moving down the ladder reduces how much manager access you buy — it does not move you to a lesser version of Edison, and it is the question boards ask first about a lighter package.",
     items: [
       {
         title: "Resident portal and mobile app",

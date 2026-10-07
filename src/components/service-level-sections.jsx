@@ -109,7 +109,8 @@ function InfoTip({ term, children }) {
    that want full management, so most people answer two and are done.
    ============================================================ */
 function LevelWizard({ eyebrow, title, sub, questions, tiers, recommend,
-                       onResult, background = "var(--edison-teal-pale)" }) {
+                       onResult, showPricing = true,
+                       background = "var(--edison-teal-pale)" }) {
   const [answers, setAnswers] = useState({});
   const [stepIndex, setStepIndex] = useState(0);
 
@@ -248,7 +249,7 @@ function LevelWizard({ eyebrow, title, sub, questions, tiers, recommend,
               </div>
             </>
           ) : (
-            <WizardResult result={result} onReset={reset}/>
+            <WizardResult result={result} onReset={reset} showPricing={showPricing}/>
           )}
         </div>
       </div>
@@ -261,7 +262,40 @@ function LevelWizard({ eyebrow, title, sub, questions, tiers, recommend,
    The proposal link carries the answers, so a board lands on a form
    that already knows its size and what it asked for.
    ============================================================ */
-function WizardResult({ result, onReset }) {
+/* "a Accounting Only proposal" — every level name here starts with a
+   vowel letter or a consonant, no tricky cases like "an hour". */
+const article = (name) => (/^[aeiou]/i.test(name) ? 'an' : 'a');
+
+/* Two short lists beat one long one here: the split is the decision. */
+function ResultColumn({ heading, items, marker, markerColor }) {
+  return (
+    <div>
+      <div style={{
+        fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11,
+        letterSpacing: "0.12em", textTransform: "uppercase",
+        color: "var(--edison-navy)", marginBottom: 11
+      }}>{heading}</div>
+      <ul style={{ listStyle: "none", padding: 0, margin: 0,
+                   display: "flex", flexDirection: "column", gap: 8 }}>
+        {(items || []).map((it, i) => (
+          <li key={i} style={{
+            display: "flex", gap: 9, alignItems: "flex-start",
+            fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.5,
+            color: "var(--edison-text-body)"
+          }}>
+            <span aria-hidden="true" style={{
+              color: markerColor, fontWeight: 800, fontSize: 13,
+              lineHeight: 1.5, flexShrink: 0
+            }}>{marker}</span>
+            {it}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function WizardResult({ result, onReset, showPricing }) {
   const { tier, why, caution, href } = result;
 
   return (
@@ -282,11 +316,29 @@ function WizardResult({ result, onReset }) {
         }}>Start over</button>
       </div>
 
-      <h3 style={{
-        fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 32,
-        lineHeight: 1.15, letterSpacing: "-0.02em",
-        color: "var(--edison-navy)", margin: "0 0 14px"
-      }}>{tier.name}</h3>
+      <div className="sl-result-head" style={{
+        display: "flex", alignItems: "baseline", justifyContent: "space-between",
+        gap: 20, flexWrap: "wrap", margin: "0 0 14px"
+      }}>
+        <h3 style={{
+          fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 32,
+          lineHeight: 1.15, letterSpacing: "-0.02em",
+          color: "var(--edison-navy)", margin: 0
+        }}>{tier.name}</h3>
+        {showPricing && (
+          <div style={{ textAlign: "right" }}>
+            <div style={{
+              fontFamily: "var(--font-display)", fontWeight: 800,
+              fontSize: isFigure(tier.price) ? 26 : 18,
+              lineHeight: 1.1, color: "var(--edison-navy)"
+            }}>{tier.price}</div>
+            {tier.priceNote && <div style={{
+              fontFamily: "var(--font-body)", fontSize: 12,
+              color: "var(--edison-gray-mid)", marginTop: 3
+            }}>{tier.priceNote}</div>}
+          </div>
+        )}
+      </div>
 
       <p style={{
         fontFamily: "var(--font-body)", fontSize: 16.5, lineHeight: 1.65,
@@ -294,25 +346,24 @@ function WizardResult({ result, onReset }) {
       }}>{why}</p>
 
       <div className="sl-result-grid" style={{
-        display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 24px",
+        display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 32px",
         padding: "20px 0",
         borderTop: "1px solid var(--border-hairline)",
         borderBottom: "1px solid var(--border-hairline)",
         marginBottom: 22
       }}>
-        {tier.highlights.slice(0, 6).map((h, i) => (
-          <div key={i} style={{
-            display: "flex", gap: 10, alignItems: "flex-start",
-            fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.5,
-            color: "var(--edison-text-body)"
-          }}>
-            <span aria-hidden="true" style={{
-              color: "var(--edison-teal-dark)", fontWeight: 800, fontSize: 13,
-              lineHeight: 1.5, flexShrink: 0
-            }}>✓</span>
-            {h}
-          </div>
-        ))}
+        <ResultColumn
+          heading="You hand over"
+          marker="✓"
+          markerColor="var(--edison-teal-dark)"
+          items={tier.handOff}
+        />
+        <ResultColumn
+          heading="Stays with your board"
+          marker="•"
+          markerColor="var(--edison-navy-50)"
+          items={tier.keep}
+        />
       </div>
 
       {/* Edison vets fit before placing anyone and says so when a level
@@ -335,13 +386,15 @@ function WizardResult({ result, onReset }) {
         </div>
       )}
 
-      <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 20, flexWrap: "wrap", alignItems: "center" }}>
         <InteriorButton variant="primary" size="lg" href={href}>
-          Request a proposal
+          Request {article(tier.name)} {tier.name} proposal
         </InteriorButton>
-        <InteriorButton variant="ghost" size="lg" href={`#${tier.id}`}>
-          See it in the comparison
-        </InteriorButton>
+        <a href={`#${tier.id}`} style={{
+          fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14,
+          color: "var(--edison-teal-dark)", borderBottom: "1px solid currentColor",
+          textDecoration: "none"
+        }}>See how the other four differ</a>
       </div>
     </div>
   );
@@ -368,19 +421,11 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
                          active = null }) {
   const cols = `minmax(215px, 1.5fr) repeat(${tiers.length}, minmax(140px, 1fr))`;
 
-  const [open, setOpen] = useState(() =>
-    groups.reduce((acc, g, i) => ({ ...acc, [i]: !!g.defaultOpen }), {})
-  );
-  const allOpen = groups.every((_, i) => open[i]);
-  const toggleAll = () =>
-    setOpen(groups.reduce((acc, _, i) => ({ ...acc, [i]: !allOpen }), {}));
-
-  /* Column tint: an explicitly chosen column outranks the badged one. */
-  const tintFor = (t) => {
-    if (t.id === active) return "rgba(60,200,200,.16)";
-    if (t.badge) return "rgba(60,200,200,.05)";
-    return "transparent";
-  };
+  /* Tint marks the level the board is currently considering, and nothing
+     else. The badged column used to carry a permanent wash too, which gave
+     the eye two competing highlights to resolve on every pass — the badge
+     label alone is enough to mark it. */
+  const tintFor = (t) => (t.id === active ? "rgba(60,200,200,.14)" : "transparent");
 
   return (
     <section className="sl-matrix" style={{ background, padding: "88px 40px" }}>
@@ -393,13 +438,6 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
           display: "flex", justifyContent: "center", alignItems: "center",
           gap: 14, flexWrap: "wrap", marginTop: 26
         }}>
-          <button type="button" onClick={toggleAll} style={{
-            appearance: "none", cursor: "pointer",
-            background: "#fff", border: "1.5px solid var(--border-hairline)",
-            borderRadius: 999, padding: "9px 18px",
-            fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
-            color: "var(--edison-navy)"
-          }}>{allOpen ? "Collapse all details" : "Expand all details"}</button>
           <span className="sl-matrix-hint" style={{
             display: "none",
             fontFamily: "var(--font-body)", fontSize: 13,
@@ -483,44 +521,29 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
               ))}
             </div>
 
-            {/* ---- Collapsible groups ---- */}
+            {/* ---- Groups: labels, not controls ----
+                These were collapsible. Hiding rows behind a click fixed the
+                density and broke the scan: a comparison table earns its keep
+                by being readable in one pass, and every collapsed group was a
+                click standing between a board and its decision. The rows that
+                are identical at all five levels are gone from the table
+                entirely — they are the band directly below it. What is left
+                differs, so all of it stays open. */}
             {groups.map((g, gi) => (
               <React.Fragment key={gi}>
-                <button
-                  type="button"
-                  className="sl-matrix-group"
-                  onClick={() => setOpen((o) => ({ ...o, [gi]: !o[gi] }))}
-                  aria-expanded={!!open[gi]}
-                  style={{
-                    appearance: "none", width: "100%", textAlign: "left", cursor: "pointer",
-                    padding: "15px 20px",
-                    background: "var(--edison-teal-pale)",
-                    border: 0, borderTop: "1px solid var(--border-hairline)",
-                    display: "block"
-                  }}
-                >
+                <div className="sl-matrix-group" style={{
+                  padding: "13px 20px",
+                  background: "var(--edison-teal-pale)",
+                  borderTop: "1px solid var(--border-hairline)"
+                }}>
                   <span className="sl-matrix-group-label" style={{
-                    display: "inline-flex", alignItems: "center", gap: 10
-                  }}>
-                    <span aria-hidden="true" style={{
-                      fontSize: 9, color: "var(--edison-teal-dark)",
-                      transform: open[gi] ? "rotate(90deg)" : "rotate(0deg)",
-                      transition: "transform 200ms var(--ease-standard)",
-                      display: "inline-block"
-                    }}>▶</span>
-                    <span style={{
-                      fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 11,
-                      letterSpacing: "0.12em", textTransform: "uppercase",
-                      color: "var(--edison-navy)"
-                    }}>{g.group}</span>
-                    <span style={{
-                      fontFamily: "var(--font-body)", fontSize: 12,
-                      color: "var(--edison-gray-mid)"
-                    }}>{open[gi] ? "Hide" : g.closedNote || `${g.rows.length} rows`}</span>
-                  </span>
-                </button>
+                    fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 11,
+                    letterSpacing: "0.12em", textTransform: "uppercase",
+                    color: "var(--edison-navy)"
+                  }}>{g.group}</span>
+                </div>
 
-                {open[gi] && g.rows.map((row, ri) => (
+                {g.rows.map((row, ri) => (
                   <div key={ri} className="sl-matrix-row" style={{
                     display: "grid", gridTemplateColumns: cols,
                     borderTop: "1px solid var(--border-hairline)"

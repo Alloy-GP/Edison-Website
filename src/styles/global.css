@@ -826,7 +826,20 @@ p { text-align: justify; }
   /* Two-column answer grids stack — an option label needs the full width
      to stay one or two lines on a phone. */
   .sl-wizard-options { grid-template-columns: 1fr !important; }
-  .sl-result-grid { grid-template-columns: 1fr !important; }
+  /* Hand-off and keep stack, with a rule between them so the second list
+     does not read as a continuation of the first. */
+  .sl-result-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .sl-result-grid > div + div {
+    padding-top: 18px;
+    border-top: 1px solid var(--border-hairline);
+  }
+  /* Price drops under the level name rather than squeezing beside it. */
+  .sl-result-head { gap: 6px !important; }
+  .sl-result-head > div { text-align: left !important; }
+  .sl-result-head h3 { font-size: 26px !important; }
 }
 
 /* ---- Matrix: horizontal scroll below the point where 6 columns fit.
