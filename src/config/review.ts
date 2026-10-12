@@ -8,7 +8,7 @@ export interface ReviewItem {
 }
 
 export const REVIEW_ITEMS: ReviewItem[] = [
-  { label: 'Service Levels (new page)', path: '/service-levels/', review: true },
+  { label: 'Service Levels (new page)', path: '/service-levels/', review: false },
   { label: 'How to Prepare an HOA Budget (new blog post)', path: '/blog/hoa-budget-preparation/', review: false },
   { label: 'Homepage', path: '/', review: false },
   { label: 'Services', path: '/services/', review: false },
