@@ -291,7 +291,7 @@ const BLOG_CONTENT = {
       },
       { id: "official-records", heading: "Official Records and the Website Requirement",
         body: [
-          "Official records are the paper trail of your fiduciary duty. Making them available electronically is the simplest way to meet the 10-business-day access window every time, which is why Edison's CINC Connect resident portal and app, included at every service level, give owners direct access to the documents they're entitled to see. Florida HOA laws set clear expectations in §720.303(4)–(5) for how records are kept and shared:"
+          "Official records are the paper trail of your fiduciary duty. Making them available electronically is the simplest way to meet the 10-business-day access window every time, which is why Edison's CINC Connect resident portal and app, included at <a href=\"/service-levels\">every service level</a>, give owners direct access to the documents they're entitled to see. Florida HOA laws set clear expectations in §720.303(4)–(5) for how records are kept and shared:"
         ],
         list: [
           "Official records must be kept for at least 7 years.",
@@ -790,7 +790,8 @@ const BLOG_CONTENT = {
       },
       { id: "how-to-evaluate", heading: "How to evaluate a management proposal",
         body: ["The base per-door fee is the starting point, not the conclusion. Compare what's included, what's an upcharge, what the renewal terms look like, and what the company's portfolio sizes per manager actually are. A cheap proposal from a 20-communities-per-manager firm is often more expensive in 18 months than a slightly higher proposal from a boutique firm, because the cost of poor service shows up as legal bills, <a href=\"/blog/hoa-special-assessment\">special assessments</a>, and homeowner attrition.",
-          "Boards weighing <a href=\"/services/hoa-management/orlando\">HOA management companies in Orlando</a> can see Edison's full scope on the <a href=\"/services/hoa-management\">HOA management</a> page, or <a href=\"/request-a-proposal\">request a proposal</a> and compare a fixed-scope quote against whatever else is on the table."]
+          "Boards weighing <a href=\"/services/hoa-management/orlando\">HOA management companies in Orlando</a> can see Edison's full scope on the <a href=\"/services/hoa-management\">HOA management</a> page, or <a href=\"/request-a-proposal\">request a proposal</a> and compare a fixed-scope quote against whatever else is on the table.",
+          "Edison also publishes starting prices for <a href=\"/service-levels\">all five service levels</a>, from accounting-only through a full-time on-site manager, so a board can see where it would land before anyone picks up the phone."]
       }
     ],
     related: [
@@ -964,7 +965,7 @@ const BLOG_CONTENT = {
       },
       { id: "explained-before-billed", heading: "Explained Before It's Billed",
         body: [
-          "An HOA special assessment done right is lawful, fair, and explained before it's billed. Done repeatedly, it's a signal that reserves and budgeting need attention. For smaller communities, Edison's Accounting Only service level brings professional financial oversight without full-service management.",
+          "An HOA special assessment done right is lawful, fair, and explained before it's billed. Done repeatedly, it's a signal that reserves and budgeting need attention. For smaller communities, Edison's <a href=\"/service-levels\">Accounting Only service level</a> brings professional financial oversight without full-service management.",
           "<strong>Ready to plan ahead for your community's next capital project?</strong> <a href=\"/request-a-proposal\">Talk through your community's reserves and budget with Edison.</a>",
           "<em>This article is educational and is not legal advice. Confirm how Florida law and your governing documents apply to your community with your association counsel.</em>"
         ]

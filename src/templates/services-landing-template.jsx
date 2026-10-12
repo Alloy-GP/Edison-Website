@@ -76,6 +76,7 @@ function ServicesLandingPage({ content = SERVICES_LANDING_CONTENT }) {
             margin: "28px auto 0", maxWidth: 820
           }}>
             {[
+              { label: "Service levels and pricing", href: "/service-levels" },
               { label: "Structural Integrity Reserve Study (SIRS) in Florida", href: "/services/condo-management/structural-integrity-reserve-study" },
               { label: "Milestone inspections", href: "/services/condo-management/milestone-inspections" },
               { label: "HOA reserve study support", href: "/services/hoa-accounting/reserve-study-support" },

@@ -666,12 +666,16 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
           </div>
         </div>
 
+        {/* Authored copy, not user input — rendered as markup so the note
+            can carry contextual links out to the pillars. Service levels
+            cut across HOA and condo, and nothing else on this page links
+            to either from the body. */}
         {note && (
           <p style={{
             fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.6,
             color: "var(--edison-text-body)", textAlign: "center",
             margin: "32px auto 0", maxWidth: 820
-          }}>{note}</p>
+          }} dangerouslySetInnerHTML={{ __html: note }}/>
         )}
 
         {footnotes.length > 0 && (
