@@ -900,8 +900,11 @@ p { text-align: justify; }
 .sl-deep-tab:hover { border-color: var(--edison-teal) !important; }
 .sl-deep-tab:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
 
-/* ---- Every-level band: 4 → 2 → 1 ---- */
-@media (max-width: 1000px) {
+/* ---- Every-level band: 5 → 3 → 2 → 1 (auto-fit handles the top end) ---- */
+@media (max-width: 1100px) {
+  .sl-every-level-grid { grid-template-columns: repeat(3, 1fr) !important; }
+}
+@media (max-width: 860px) {
   .sl-every-level-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 @media (max-width: 600px) {

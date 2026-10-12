@@ -364,15 +364,6 @@ const SERVICE_LEVELS_CONTENT = {
       price: "$500",
       priceNote: "per month",
       quoted: false,
-      managerAccess: "No manager assigned",
-      highlights: [
-        "Assessment processing",
-        "Monthly financial reporting",
-        "Vendor payments (AR/AP)",
-        "Collections processing",
-        "Homeowner payment support",
-        "Resident portal, website & app"
-      ],
       /* Hand off / keep is the shape of the decision for a volunteer
          board: how much work leaves the volunteers, not which boxes
          get ticked. Surfaced in the wizard result. */
@@ -395,15 +386,6 @@ const SERVICE_LEVELS_CONTENT = {
       price: "$500",
       priceNote: "per month, plus services as needed",
       quoted: false,
-      managerAccess: "No manager assigned",
-      highlights: [
-        "Everything in Accounting Only",
-        "Board meetings, booked per use",
-        "Site inspections, per use",
-        "Project management, per use",
-        "Covenant enforcement, per use",
-        "Remote homeowner support"
-      ],
       /* Hand off / keep is the shape of the decision for a volunteer
          board: how much work leaves the volunteers, not which boxes
          get ticked. Surfaced in the wizard result. */
@@ -426,15 +408,6 @@ const SERVICE_LEVELS_CONTENT = {
       price: "$2,000",
       priceNote: "per month, and scales with community size",
       quoted: true,
-      managerAccess: "Dedicated manager",
-      highlights: [
-        "Assigned LCAM",
-        "Assigned community specialist",
-        "Quarterly board meetings",
-        "Monthly site inspections",
-        "Vendor sourcing & oversight",
-        "Full financial management"
-      ],
       /* Hand off / keep is the shape of the decision for a volunteer
          board: how much work leaves the volunteers, not which boxes
          get ticked. Surfaced in the wizard result. */
@@ -458,15 +431,6 @@ const SERVICE_LEVELS_CONTENT = {
       priceNote: "per month, plus salary/burden costs",
       quoted: true,
       badge: "Growing fastest",
-      managerAccess: "Dedicated manager, scheduled on-site days",
-      highlights: [
-        "LCAM on site 1–3 days a week",
-        "Monthly board meetings",
-        "On-site homeowner support",
-        "Monthly site inspections with a written report",
-        "Community event planning",
-        "Newsletter publication"
-      ],
       /* Hand off / keep is the shape of the decision for a volunteer
          board: how much work leaves the volunteers, not which boxes
          get ticked. Surfaced in the wizard result. */
@@ -489,15 +453,6 @@ const SERVICE_LEVELS_CONTENT = {
       price: "$2,000",
       priceNote: "per month, plus salary/burden costs",
       quoted: true,
-      managerAccess: "Dedicated, full time",
-      highlights: [
-        "Dedicated full-time on-site LCAM",
-        "Optional admin & maintenance staff",
-        "Monthly board meetings",
-        "On-site homeowner support",
-        "Community event planning",
-        "Newsletter publication"
-      ],
       /* Hand off / keep is the shape of the decision for a volunteer
          board: how much work leaves the volunteers, not which boxes
          get ticked. Surfaced in the wizard result. */
@@ -517,7 +472,7 @@ const SERVICE_LEVELS_CONTENT = {
 
   matrix: {
     title: "Only what actually differs.",
-    sub: "Assessments, financials, AR/AP, collections, the resident portal and board education are identical at all five levels, so they are not in this table — they are the band directly below it. Everything here changes as you move up.",
+    sub: "Assessments, financials, AR/AP, collections, homeowner support, the resident portal and board education are identical at all five levels, so they are not in this table — they are the band directly below it. Everything here changes as you move up.",
     note: "Not sure where you land? Edison reviews fit before placing any community. If a level is wrong for you, we will say so — including when full management is the better value.",
     footnotes: [
       "Pricing shown is starting pricing and may vary based on community size, scope and service requirements.",
@@ -577,10 +532,6 @@ const SERVICE_LEVELS_CONTENT = {
             values: { "accounting-only": false, "accounting-plus": "Per use", "portfolio": true, "portfolio-plus": true, "on-site": true }
           },
           {
-            label: "Homeowner payment support",
-            values: { "accounting-only": true, "accounting-plus": "Remote", "portfolio": true, "portfolio-plus": "On site", "on-site": "On site" }
-          },
-          {
             label: "On-site homeowner support",
             values: { "accounting-only": false, "accounting-plus": false, "portfolio": false, "portfolio-plus": true, "on-site": true }
           },
@@ -628,7 +579,7 @@ const SERVICE_LEVELS_CONTENT = {
         works: [
           "Everything in Accounting Only, plus board meetings, site inspections, project management and covenant enforcement — each booked and billed when you need it.",
           "A quiet year costs very little. A year with a repaving project and a contentious annual meeting costs more. Your board decides which year it is having.",
-          "Remote homeowner support, and the same resident portal and mobile app every other level gets.",
+          "Homeowner support with payments and account questions, and the same resident portal and mobile app every other level gets.",
           "Full Edison Education access for your board, exactly as at On-Site."
         ],
         know: [
@@ -678,7 +629,7 @@ const SERVICE_LEVELS_CONTENT = {
           "A dedicated licensed manager, full time, in your community — with monthly board meetings and on-site homeowner support.",
           "Optional admin and maintenance staff working alongside them, scaled to what the community actually runs.",
           "Community event planning and newsletter publication included rather than quoted.",
-          "Edison's accounting, covenant enforcement and collections departments stand behind that manager, so they are not doing everything alone."
+          "Edison's corporate team stands behind the staff on the ground — accounting, covenant enforcement and collections departments, so nobody on site is doing everything alone."
         ],
         know: [
           "Salary/burden costs for the manager are billed on top of the monthly management fee.",
@@ -695,6 +646,10 @@ const SERVICE_LEVELS_CONTENT = {
       {
         title: "Resident portal and mobile app",
         body: "Homeowners get the same portal, website, and app at Accounting Only that they get at On-Site. Payments, documents, and requests in one place."
+      },
+      {
+        title: "Homeowner support",
+        body: "Support with payments and account questions is the same at every level — it is not something a lighter level buys less of. On-Site communities also have Edison's corporate team behind the staff on the ground."
       },
       {
         title: "Full Edison Education access",

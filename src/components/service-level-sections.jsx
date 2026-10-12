@@ -905,7 +905,7 @@ function EveryLevelBand({ eyebrow, title, sub, items }) {
     <section className="sl-every-level" style={{
       background: "var(--edison-navy)", padding: "88px 48px", color: "#fff"
     }}>
-      <div style={{ maxWidth: 1120, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1240, margin: "0 auto" }}>
         <div style={{ maxWidth: 760 }}>
           {eyebrow && <InteriorEyebrow color="var(--edison-teal)">{eyebrow}</InteriorEyebrow>}
           <h2 style={{
@@ -918,9 +918,14 @@ function EveryLevelBand({ eyebrow, title, sub, items }) {
             color: "rgba(255,255,255,.78)", margin: 0
           }}>{sub}</p>}
         </div>
+        {/* auto-fit rather than a fixed count: this band went from four
+            cards to five when homeowner support moved out of the table,
+            and a hard repeat(4) left the fifth stranded on its own row. */}
         <div className="sl-every-level-grid" style={{
           marginTop: 48,
-          display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
+          gap: 20
         }}>
           {items.map((it, i) => (
             <div key={i} style={{
