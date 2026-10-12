@@ -135,6 +135,15 @@ export default function IntakeForm() {
 
   const intent = intentId ? intentById(intentId) : null;
 
+  // Call-tracking id for the rendered <form>, and the same value reported to
+  // GA4 on submit. The GA4 call used to reference a bare `formId` that was
+  // never declared — a ReferenceError thrown straight after a successful
+  // POST, which the catch below swallowed. The lead still landed, but the
+  // generate_lead conversion never fired.
+  const formId = intent && TRACKING.intents.includes(intent.id)
+    ? TRACKING.formId
+    : 'intake-form';
+
   // Deep-link: ?intent=proposal opens straight to that intent's fields.
   // Any further param matching one of that intent's field keys prefills it,
   // and ?message= seeds the free-text box. The service-levels wizard uses
@@ -267,8 +276,8 @@ export default function IntakeForm() {
           // forces a clean remount per intent for the tracker's form detection.
           <form
             key={intent.id}
-            id={TRACKING.intents.includes(intent.id) ? TRACKING.formId : 'intake-form'}
-            name={TRACKING.intents.includes(intent.id) ? TRACKING.formId : 'intake-form'}
+            id={formId}
+            name={formId}
             className="if-stage" onSubmit={submit} noValidate>
             {/* Honeypot — hidden from humans; bots that fill it get rejected by /api/lead */}
             <div className="if-hp" aria-hidden="true">

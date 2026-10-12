@@ -473,7 +473,7 @@ const SERVICE_LEVELS_CONTENT = {
   matrix: {
     title: "Only what actually differs.",
     sub: "Assessments, financials, AR/AP, collections, homeowner support, the resident portal and board education are identical at all five levels, so they are not in this table — they are the band directly below it. Everything here changes as you move up.",
-    note: "Not sure where you land? Edison reviews fit before placing any community. If a level is wrong for you, we will say so — including when full management is the better value.",
+    note: "Not sure where you land? Edison reviews fit before placing any community. If a level is wrong for you, we will say so — including when full management is the better value. Every level applies to <a href=\"/services/hoa-management\">HOA management</a> and <a href=\"/services/condo-management\">condo management</a> alike, and the financial work at each is run by the same <a href=\"/services/hoa-accounting\">accounting department</a>.",
     footnotes: [
       "Pricing shown is starting pricing and may vary based on community size, scope and service requirements.",
       "At Accounting Plus, site inspections are billed per visit and board meetings hourly, rather than included in the monthly fee.",
