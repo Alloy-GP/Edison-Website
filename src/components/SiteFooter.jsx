@@ -127,8 +127,8 @@ function SiteFooter({
   partner = {
     href: "https://alloygp.co/",
     iconSrc: "/assets/alloy-mark-outline-white.svg",
-    name: "Alloy Growth Partner",
-    note: "Exclusive Partner in Orlando"   // plain muted text after the name; "" to drop it
+    name: "Official Alloy Growth Partner",
+    note: "Orlando"   // plain muted text after the name; "" to drop it
   }
 }) {
   return (
