@@ -124,7 +124,13 @@ function SiteFooter({
     { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61588615083028", Icon: IconFacebook },
     { label: "LinkedIn", href: "https://www.linkedin.com/company/edison-association-management/", Icon: IconLinkedIn }
   ],
-  copyright = `${new Date().getFullYear()} Edison Association Management, LLC. All rights reserved.`
+  copyright = `${new Date().getFullYear()} Edison Association Management, LLC. All rights reserved.`,
+  partner = {
+    label: "Alloy Growth Partner",
+    metro: "Orlando metro",
+    href: "https://alloygp.co/",
+    markSrc: "/assets/alloy-growth-partner-mark.svg"
+  }
 }) {
   return (
     <footer style={{
@@ -212,7 +218,23 @@ function SiteFooter({
           color: "rgba(255,255,255,.55)"
         }}>
           <div>© {copyright}</div>
-          <div style={{ display: "flex", gap: 18, alignItems: "center" }}>
+          <div style={{ display: "flex", gap: 22, alignItems: "center", flexWrap: "wrap" }}>
+            {/* Alloy Growth Partner credit: a designation the firm holds, branded anchor to alloygp.co */}
+            <a href={partner.href} target="_blank" rel="noopener"
+               className="edison-partner-credit"
+               style={{
+                 display: "inline-flex", alignItems: "center", gap: 8,
+                 color: "rgba(255,255,255,.88)", textDecoration: "none", borderBottom: 0,
+                 fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13,
+                 letterSpacing: "0.01em", whiteSpace: "nowrap"
+               }}>
+              <img src={partner.markSrc} alt="" width={18} height={18} loading="lazy" decoding="async"
+                   style={{ width: 18, height: 18, display: "block" }}/>
+              <span className="edison-partner-credit-name">{partner.label}</span>
+              {partner.metro && (
+                <span style={{ color: "rgba(255,255,255,.55)", fontWeight: 400 }}>· {partner.metro}</span>
+              )}
+            </a>
             <a href={contact.cta.href} style={{
               color: "var(--edison-teal)", textDecoration: "none", borderBottom: 0,
               fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13
@@ -222,6 +244,8 @@ function SiteFooter({
       </div>
 
       <style>{`
+        .edison-partner-credit .edison-partner-credit-name { transition: color 140ms; }
+        .edison-partner-credit:hover .edison-partner-credit-name { color: var(--edison-teal); }
         @media (max-width: 1100px) {
           .edison-footer-grid {
             grid-template-columns: 1fr 1fr 1fr !important;
