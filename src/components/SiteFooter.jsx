@@ -124,7 +124,13 @@ function SiteFooter({
     { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61588615083028", Icon: IconFacebook },
     { label: "LinkedIn", href: "https://www.linkedin.com/company/edison-association-management/", Icon: IconLinkedIn }
   ],
-  copyright = `${new Date().getFullYear()} Edison Association Management, LLC. All rights reserved.`
+  copyright = `${new Date().getFullYear()} Edison Association Management, LLC. All rights reserved.`,
+  partner = {
+    href: "https://alloygp.co/",
+    iconSrc: "/assets/alloy-mark-outline-white.svg",
+    name: "Alloy Growth Partners",
+    note: "Exclusive Orlando metro partner"   // plain muted text after the name; "" to drop it
+  }
 }) {
   return (
     <footer style={{
@@ -212,7 +218,20 @@ function SiteFooter({
           color: "rgba(255,255,255,.55)"
         }}>
           <div>© {copyright}</div>
-          <div style={{ display: "flex", gap: 18, alignItems: "center" }}>
+          <div style={{ display: "flex", gap: 22, alignItems: "center", flexWrap: "wrap" }}>
+            {/* Alloy Growth Partners credit: outline icon + plain text, same tone as the copyright line */}
+            <a href={partner.href} target="_blank" rel="noopener"
+               className="edison-partner-credit"
+               style={{
+                 display: "inline-flex", alignItems: "center", flexWrap: "wrap", gap: "4px 8px",
+                 color: "inherit", textDecoration: "none", borderBottom: 0,
+                 fontFamily: "var(--font-body)", fontSize: 13
+               }}>
+              <img src={partner.iconSrc} alt="" width={18} height={18} loading="lazy" decoding="async"
+                   style={{ width: 18, height: 18, display: "block" }}/>
+              <span style={{ whiteSpace: "nowrap" }}>{partner.name}{partner.note ? " ·" : ""}</span>
+              {partner.note && <span style={{ whiteSpace: "nowrap" }}>{partner.note}</span>}
+            </a>
             <a href={contact.cta.href} style={{
               color: "var(--edison-teal)", textDecoration: "none", borderBottom: 0,
               fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13
@@ -222,6 +241,10 @@ function SiteFooter({
       </div>
 
       <style>{`
+        .edison-partner-credit { transition: color 140ms; }
+        .edison-partner-credit img { opacity: .55; transition: opacity 140ms; }
+        .edison-partner-credit:hover { color: rgba(255,255,255,.85); }
+        .edison-partner-credit:hover img { opacity: .9; }
         @media (max-width: 1100px) {
           .edison-footer-grid {
             grid-template-columns: 1fr 1fr 1fr !important;
