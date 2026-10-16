@@ -126,10 +126,11 @@ function SiteFooter({
   ],
   copyright = `${new Date().getFullYear()} Edison Association Management, LLC. All rights reserved.`,
   partner = {
-    label: "Alloy Growth Partner",
-    metro: "Orlando metro",
     href: "https://alloygp.co/",
-    markSrc: "/assets/alloy-growth-partner-mark.svg"
+    logoSrc: "/assets/alloy-growth-partners-outline-white.svg",
+    alt: "Alloy Growth Partners",
+    title: "Alloy Growth Partner · Orlando metro",
+    label: ""   // optional plain text after the logo, e.g. "Growth Partner · Orlando metro"
   }
 }) {
   return (
@@ -219,21 +220,18 @@ function SiteFooter({
         }}>
           <div>© {copyright}</div>
           <div style={{ display: "flex", gap: 22, alignItems: "center", flexWrap: "wrap" }}>
-            {/* Alloy Growth Partner credit: a designation the firm holds, branded anchor to alloygp.co */}
+            {/* Alloy Growth Partners credit: muted outline logo, same tone as the copyright line */}
             <a href={partner.href} target="_blank" rel="noopener"
+               title={partner.title} aria-label={partner.title}
                className="edison-partner-credit"
                style={{
                  display: "inline-flex", alignItems: "center", gap: 8,
-                 color: "rgba(255,255,255,.88)", textDecoration: "none", borderBottom: 0,
-                 fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13,
-                 letterSpacing: "0.01em", whiteSpace: "nowrap"
+                 color: "inherit", textDecoration: "none", borderBottom: 0,
+                 fontFamily: "var(--font-body)", fontSize: 13, whiteSpace: "nowrap"
                }}>
-              <img src={partner.markSrc} alt="" width={18} height={18} loading="lazy" decoding="async"
-                   style={{ width: 18, height: 18, display: "block" }}/>
-              <span className="edison-partner-credit-name">{partner.label}</span>
-              {partner.metro && (
-                <span style={{ color: "rgba(255,255,255,.55)", fontWeight: 400 }}>· {partner.metro}</span>
-              )}
+              <img src={partner.logoSrc} alt={partner.alt} width={57} height={18} loading="lazy" decoding="async"
+                   style={{ height: 18, width: "auto", display: "block" }}/>
+              {partner.label && <span>{partner.label}</span>}
             </a>
             <a href={contact.cta.href} style={{
               color: "var(--edison-teal)", textDecoration: "none", borderBottom: 0,
@@ -244,8 +242,8 @@ function SiteFooter({
       </div>
 
       <style>{`
-        .edison-partner-credit .edison-partner-credit-name { transition: color 140ms; }
-        .edison-partner-credit:hover .edison-partner-credit-name { color: var(--edison-teal); }
+        .edison-partner-credit { opacity: .5; transition: opacity 140ms; }
+        .edison-partner-credit:hover { opacity: .85; }
         @media (max-width: 1100px) {
           .edison-footer-grid {
             grid-template-columns: 1fr 1fr 1fr !important;
