@@ -117,8 +117,7 @@ function SiteFooter({
   columns = DEFAULT_FOOTER_COLUMNS,
   contact = {
     phone: { label: "(407) 317-5252", href: "tel:4073175252" },
-    address: "Orlando, Florida",
-    cta: { label: "Contact Us", href: "/request-a-proposal" }
+    address: "Orlando, Florida"
   },
   social = [
     { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61588615083028", Icon: IconFacebook },
@@ -128,8 +127,8 @@ function SiteFooter({
   partner = {
     href: "https://alloygp.co/",
     iconSrc: "/assets/alloy-mark-outline-white.svg",
-    name: "Alloy Growth Partners",
-    note: "Exclusive Orlando metro partner"   // plain muted text after the name; "" to drop it
+    name: "Alloy Growth Partner",
+    note: "Exclusive Partner in Orlando"   // plain muted text after the name; "" to drop it
   }
 }) {
   return (
@@ -232,10 +231,6 @@ function SiteFooter({
               <span style={{ whiteSpace: "nowrap" }}>{partner.name}{partner.note ? " ·" : ""}</span>
               {partner.note && <span style={{ whiteSpace: "nowrap" }}>{partner.note}</span>}
             </a>
-            <a href={contact.cta.href} style={{
-              color: "var(--edison-teal)", textDecoration: "none", borderBottom: 0,
-              fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13
-            }}>{contact.cta.label} →</a>
           </div>
         </div>
       </div>
