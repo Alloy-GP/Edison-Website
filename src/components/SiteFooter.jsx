@@ -127,10 +127,9 @@ function SiteFooter({
   copyright = `${new Date().getFullYear()} Edison Association Management, LLC. All rights reserved.`,
   partner = {
     href: "https://alloygp.co/",
-    logoSrc: "/assets/alloy-growth-partners-outline-white.svg",
-    alt: "Alloy Growth Partners",
-    title: "Alloy Growth Partner · Orlando metro",
-    label: ""   // optional plain text after the logo, e.g. "Growth Partner · Orlando metro"
+    iconSrc: "/assets/alloy-mark-outline-white.svg",
+    name: "Alloy Growth Partners",
+    note: "Exclusive Orlando metro partner"   // plain muted text after the name; "" to drop it
   }
 }) {
   return (
@@ -220,18 +219,18 @@ function SiteFooter({
         }}>
           <div>© {copyright}</div>
           <div style={{ display: "flex", gap: 22, alignItems: "center", flexWrap: "wrap" }}>
-            {/* Alloy Growth Partners credit: muted outline logo, same tone as the copyright line */}
+            {/* Alloy Growth Partners credit: outline icon + plain text, same tone as the copyright line */}
             <a href={partner.href} target="_blank" rel="noopener"
-               title={partner.title} aria-label={partner.title}
                className="edison-partner-credit"
                style={{
-                 display: "inline-flex", alignItems: "center", gap: 8,
+                 display: "inline-flex", alignItems: "center", flexWrap: "wrap", gap: "4px 8px",
                  color: "inherit", textDecoration: "none", borderBottom: 0,
-                 fontFamily: "var(--font-body)", fontSize: 13, whiteSpace: "nowrap"
+                 fontFamily: "var(--font-body)", fontSize: 13
                }}>
-              <img src={partner.logoSrc} alt={partner.alt} width={57} height={18} loading="lazy" decoding="async"
-                   style={{ height: 18, width: "auto", display: "block" }}/>
-              {partner.label && <span>{partner.label}</span>}
+              <img src={partner.iconSrc} alt="" width={18} height={18} loading="lazy" decoding="async"
+                   style={{ width: 18, height: 18, display: "block" }}/>
+              <span style={{ whiteSpace: "nowrap" }}>{partner.name}{partner.note ? " ·" : ""}</span>
+              {partner.note && <span style={{ whiteSpace: "nowrap" }}>{partner.note}</span>}
             </a>
             <a href={contact.cta.href} style={{
               color: "var(--edison-teal)", textDecoration: "none", borderBottom: 0,
@@ -242,8 +241,10 @@ function SiteFooter({
       </div>
 
       <style>{`
-        .edison-partner-credit { opacity: .5; transition: opacity 140ms; }
-        .edison-partner-credit:hover { opacity: .85; }
+        .edison-partner-credit { transition: color 140ms; }
+        .edison-partner-credit img { opacity: .55; transition: opacity 140ms; }
+        .edison-partner-credit:hover { color: rgba(255,255,255,.85); }
+        .edison-partner-credit:hover img { opacity: .9; }
         @media (max-width: 1100px) {
           .edison-footer-grid {
             grid-template-columns: 1fr 1fr 1fr !important;
