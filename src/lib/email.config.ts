@@ -11,6 +11,13 @@ const SLACK_CHANNEL_CONFIGURED = Boolean(
   import.meta.env.FORM_SLACK_WEBHOOK || import.meta.env.FORM_ALERT_SLACK_URL
 );
 
+// ── Non-production safety ────────────────────────────────────────────────
+// On stg/dev/preview, route EVERY form notification to a test inbox and skip
+// Mailchimp, so testing never pings the real client inboxes or pollutes the
+// audience. Production (PUBLIC_ENV=production) uses the real routing below.
+const IS_PROD = import.meta.env.PUBLIC_ENV === 'production';
+const NON_PROD_NOTIFY = ['skyler@alloygp.co']; // where stg/dev test leads go
+
 export const EMAIL_CONFIG = {
 
   // ── Client brand identity. Used in headings, signatures, and links. ──
@@ -30,15 +37,15 @@ export const EMAIL_CONFIG = {
   replyTo: 'admin@edison-mgmt.com',
 
   // ── Default inbox — used by unknown/unrouted intents (fallback). ──
-  notify: [
+  notify: IS_PROD ? [
     'admin@edison-mgmt.com',
-  ],
+  ] : NON_PROD_NOTIFY,
 
   // ── Failure-alert inbox. Handlers send the email-fallback alert here
   // when a notification send fails (see form-alert.ts). ──
-  alertsTo: [
+  alertsTo: IS_PROD ? [
     'admin@edison-mgmt.com',
-  ],
+  ] : NON_PROD_NOTIFY,
 
   // ── Alloy's copy of every lead notification.
   //
@@ -52,7 +59,7 @@ export const EMAIL_CONFIG = {
   // ── Per-intent routing. The intake form sends an `intent`; /api/lead routes
   // the staff notification to the matching list (falls back to `notify`).
   // Proposals → Tracy; everything else → the admin inbox. ──
-  routes: {
+  routes: (IS_PROD ? {
     proposal:  ['tdurham@edison-mgmt.com'],
     vendor:    ['admin@edison-mgmt.com'],
     homeowner: ['admin@edison-mgmt.com'],
@@ -60,10 +67,21 @@ export const EMAIL_CONFIG = {
     // Newsletter "Ask Edison" questions (/api/newsletter-ask).
     // TODO(Edison): confirm the inbox that owns the 1-business-day reply promise.
     newsletter: ['admin@edison-mgmt.com'],
-  } as Record<string, string[]>,
+  } : {}) as Record<string, string[]>,
+
+  // ── Started, not finished. The proposal wizard's contact step is HELD for
+  // PARTIAL_HOLD_MINUTES (src/lib/partials.ts, default 10); a form still
+  // unfinished when the hold ends is emailed HERE — customer support, not sales —
+  // because in practice most of these are current homeowners who picked the wrong
+  // form (every one of them, in CMGT's count). A form finished inside the hold
+  // replaces its partial silently. Intents not listed route like a complete
+  // submission. ──
+  partialRoutes: (IS_PROD ? {
+    proposal: ['admin@edison-mgmt.com'],
+  } : {}) as Record<string, string[]>,
 
   mailchimp: {
-    enabled:     true,      // set false if client has no Mailchimp
+    enabled:     IS_PROD,      // set false if client has no Mailchimp
     defaultTags: ['website-lead'],
   },
 

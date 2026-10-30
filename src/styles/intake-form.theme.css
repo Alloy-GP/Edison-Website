@@ -1,0 +1,29 @@
+/* ===========================================================
+   Intake form THEME — Edison brand values (EDIT this file)
+   -----------------------------------------------------------
+   This is the ONLY form stylesheet with client-specific values.
+   "Adopt the latest starter form" copies intake-form.css (structure)
+   and IntakeForm.jsx — it NEVER touches this file. Colors + fonts
+   set here survive every form sync. Moved out of intake-form.css on
+   2026-10-30 (the migration step in CLAUDE.md → Syncing the proposal form).
+   =========================================================== */
+.if-widget {
+  /* Edison brand tokens (src/styles/tokens.css) */
+  --if-font-heading: var(--font-display);
+  --if-font-body:    var(--font-body);
+  /* Easing */
+  --if-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* Brand / accent palette mapped to Edison */
+  --if-brand: var(--edison-navy); --if-brand-tint: var(--edison-teal-pale);
+  --if-accent: var(--edison-teal-dark); --if-accent-deep: var(--edison-navy); --if-accent-tint: rgba(60,200,200,.18);
+  --if-ink: var(--edison-navy); --if-body: var(--edison-text-body); --if-muted: var(--edison-gray-mid); --if-placeholder: #9aa3b2;
+  --if-border: #E3E5EC; --if-border-strong: #C7CCD8; --if-input-bg: #FBFCFD; --if-green: var(--edison-teal-dark);
+  --if-radius: 14px; --if-radius-sm: 9px;
+}
+
+/* Intent-card tones */
+.if-widget .tone-teal { --it: var(--edison-teal-dark); --it-tint: var(--edison-teal-pale); }
+.if-widget .tone-navy { --it: var(--edison-navy); --it-tint: #E3E5EC; }
+.if-widget .tone-ocean { --it: #2A6B7C; --it-tint: #E0EEF1; }
+.if-widget .tone-sage { --it: #5E7E62; --it-tint: #E8EFE7; }
+.if-widget .tone-gold { --it: #B07D2B; --it-tint: #FBF1DC; }
