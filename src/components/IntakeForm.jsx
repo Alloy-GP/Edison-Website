@@ -1,9 +1,16 @@
-// Adaptive multi-intent intake form.
-// Config-driven: all brand/client content lives in ./intake-form.config.js.
+// Adaptive multi-intent intake form. CANONICAL — the source of truth is
+// alloygp/agp-astro-starter; client sites copy this file verbatim (see "Syncing
+// the proposal form" in CLAUDE.md) and customise only intake-form.config.js.
+// Config-driven: brand/options/extra-intents live in ./intake-form.config.js.
+// The PROPOSAL intent's field SET is CANONICAL and defined here — it must stay
+// identical on every AGP site. Per site, only options/copy/theme change.
+// Floating labels, `if-` CSS prefix, full WhatConverts field capture.
 // Multi-step intent picker → fields → submit → animated receipt. Posts to /api/lead.
-// Lucide-style icons, `if-` CSS class prefix (see the matching CSS file).
-import { useState, useEffect } from 'react';
-import { BRAND, TRACKING, INTENTS } from './intake-form.config.js';
+// Funnel events (GA4) are sent via src/lib/track.ts — see that file for the list.
+import { useState, useEffect, useRef, useMemo } from 'react';
+import { BRAND, TRACKING, PROPOSAL_OPTIONS, PROPOSAL_COPY, EXTRA_INTENTS, PROPOSAL_FORM_VERSION, PROPOSAL_V2 } from './intake-form.config.js';
+import { track } from '../lib/track';
+import { HONEYPOT_FIELD } from '../lib/honeypot';
 
 // ── Icons (Lucide-style) ─────────────────────────────────────────
 const I = {
@@ -24,6 +31,25 @@ const I = {
 };
 function Ic({ name }) { return <span className="if-ic">{I[name]}</span>; }
 
+// ── CANONICAL PROPOSAL INTENT — DO NOT EDIT THE FIELD SET ────────────────
+// Identical on every AGP site. Options come from PROPOSAL_OPTIONS, copy from
+// PROPOSAL_COPY, colors/fonts from the --if-* theme vars. To add a request
+// type, use EXTRA_INTENTS in the config — never fork these fields.
+const PROPOSAL_INTENT = {
+  id: 'proposal', label: 'Request a proposal', icon: 'building', tone: 'teal',
+  blurb: PROPOSAL_COPY.blurb, forWho: PROPOSAL_COPY.forWho, routeTo: PROPOSAL_COPY.routeTo,
+  fields: [
+    { key: 'association', label: 'Association / community name', type: 'text', required: true, placeholder: 'e.g. Wynbrook HOA', col: 2 },
+    { key: 'city', label: 'City', type: 'text', required: true, placeholder: 'e.g. Annapolis' },
+    { key: 'zip', label: 'ZIP code', type: 'text', required: true, placeholder: 'e.g. 21401', inputMode: 'numeric', maxLength: 10 },
+    { key: 'units', label: 'Number of units', type: 'text', required: true, placeholder: 'e.g. 120', inputMode: 'numeric', maxLength: 6 },
+    { key: 'propertyType', label: 'Property type', type: 'select', required: true, options: PROPOSAL_OPTIONS.propertyType },
+    { key: 'situation', label: 'Current situation', type: 'select', required: true, options: PROPOSAL_OPTIONS.situation, col: 2 },
+    { key: 'timeline', label: 'Decision timeline', type: 'radio', required: true, options: PROPOSAL_OPTIONS.timeline, col: 2 },
+  ],
+};
+
+const INTENTS = [PROPOSAL_INTENT, ...EXTRA_INTENTS];
 const intentById = (id) => INTENTS.find((i) => i.id === id);
 
 function genId() {
@@ -32,23 +58,91 @@ function genId() {
   return 'REQ-' + s + '-' + Math.floor(1000 + Math.random() * 9000);
 }
 
-// WhatConverts reads the DOM form on submit and only captures controls that have
-// a `name` attribute. Map the standard contact fields to the canonical names WC
-// maps to its built-in lead fields (Name/Email/Phone/Company); every other field
-// uses its human label as the name so WC shows it verbatim as a custom field.
-// (The POST builds its own FormData, so these names don't change what the handler
-// receives — they exist purely for WC capture.)
+// POST a form body. One retry when the request never got a response at all (a
+// dropped mobile connection, a flaky network). HTTP errors are NOT retried: the
+// server has already alerted Slack, and a second attempt would double the staff
+// email. `err.reason` feeds the form_submit_failed analytics event.
+async function postForm(url, body) {
+  try {
+    return await fetch(url, { method: 'POST', body });
+  } catch {
+    await new Promise((r) => setTimeout(r, 1200));
+    try {
+      return await fetch(url, { method: 'POST', body });
+    } catch (err) {
+      err.reason = 'network';
+      throw err;
+    }
+  }
+}
+function httpError(res, json) {
+  const err = new Error(json.error || 'Something went wrong.');
+  err.reason = `http_${res.status}`;
+  return err;
+}
+// What the visitor sees when a POST fails. A network failure gets a message
+// that says so (the raw "Failed to fetch" helps nobody); a server error shows
+// the server's own message.
+const sendFailureText = (err) =>
+  err.reason === 'network'
+    ? `We couldn’t reach our server — please check your connection and try again, or call ${BRAND.phone}.`
+    : err.message || `Something went wrong. Please try again or call ${BRAND.phone}.`;
+
+// True once React has hydrated. The proposal CTAs deep-link to ?intent=proposal,
+// so the wizard is in the server HTML and visible before hydration; anything
+// typed in that window would be wiped when React took over. Both forms wrap
+// their controls in <fieldset disabled={!hydrated}> so nothing can be typed
+// until it can be kept. The window is well under a second on a normal connection.
+function useHydrated() {
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => { setHydrated(true); }, []);
+  return hydrated;
+}
+
+// Honeypot: visually hidden, skipped by the tab order, and read-only until
+// focused — browser and password-manager autofill never focus a field, so they
+// cannot fill it, while a bot that writes .value directly (or focuses it to
+// type) still trips it. /api/lead discards a submission where it is non-empty
+// and logs the discard to Slack. The name is deliberately not "website" (see
+// src/lib/honeypot.ts).
+function Honeypot({ value, onChange }) {
+  const [locked, setLocked] = useState(true);
+  return (
+    <div className="if-hp" aria-hidden="true">
+      <label>Leave this field empty
+        <input type="text" name={HONEYPOT_FIELD} tabIndex={-1} autoComplete="off"
+          readOnly={locked} onFocus={() => setLocked(false)}
+          value={value} onChange={(e) => onChange(e.target.value)} />
+      </label>
+    </div>
+  );
+}
+
+// Call-tracking (e.g. WhatConverts) reads the DOM form on submit and only
+// captures controls with a `name`. Map standard contact fields to the names
+// the tracker maps to its built-in lead fields; everything else uses its
+// label as the name so it shows verbatim. (The POST builds its own FormData,
+// so these names don't change what the handler/email receive.)
 const WC_STD = { name: 'name', email: 'email', phone: 'phone', association: 'company', company: 'company' };
 const wcName = (def) => WC_STD[def.key] || def.label;
+
+// Intents whose free-text message is required (and labeled "How can we help?"
+// rather than "Anything else?") — the message is the whole point of the request.
+const MSG_REQUIRED = new Set(['service', 'resident']);
 
 function Field({ def, value, error, onChange }) {
   const span = def.col === 2 ? '1 / -1' : 'auto';
   const fid = 'if-' + def.key;
-  const name = wcName(def);
+  // noName: skip the DOM name (the v2 wizard captures via hidden mirror inputs
+  // instead, to avoid duplicate-named controls across unmounted steps).
+  const name = def.noName ? undefined : wcName(def);
   const filled = value != null && String(value) !== '';
+  // locked: rendered read-only (greyed) — the wizard locks the contact fields
+  // once a resident role is picked, so the only way forward is Continue → the
+  // resident form (or changing the role back).
+  const locked = !!def.locked;
 
-  // Radio (segmented) keeps a static label; a hidden input carries the value into
-  // the DOM form so WhatConverts captures it.
+  // Radio (segmented) has no placeholder slot — keep a static label.
   if (def.type === 'radio') {
     return (
       <div className="if-field" style={{ gridColumn: span }}>
@@ -58,6 +152,7 @@ function Field({ def, value, error, onChange }) {
             <button type="button" key={o} className={'if-seg' + (value === o ? ' on' : '')}
               onClick={() => onChange(def.key, o)}>{o}</button>
           ))}
+          {/* Carries the segmented value into the DOM form so call-tracking captures it. */}
           <input type="hidden" id={fid} name={name} value={value || ''} readOnly />
         </div>
         {error && <div className="if-err-msg">{error}</div>}
@@ -68,15 +163,15 @@ function Field({ def, value, error, onChange }) {
   // Floating label: sits inside the field, shrinks to the top border on focus/fill.
   return (
     <div className="if-field" style={{ gridColumn: span }}>
-      <div className={'if-float' + (filled ? ' has-value' : '') + (error ? ' is-err' : '')}>
+      <div className={'if-float' + (filled ? ' has-value' : '') + (error ? ' is-err' : '') + (locked ? ' is-locked' : '')}>
         {def.type === 'text' && (
           <input id={fid} name={name} aria-label={def.label} className="if-control" type="text" placeholder=" "
-            inputMode={def.inputMode} maxLength={def.maxLength}
+            inputMode={def.inputMode} maxLength={def.maxLength} disabled={locked}
             value={value || ''} onChange={(e) => onChange(def.key, e.target.value)} />
         )}
         {def.type === 'select' && (
           <>
-            <select id={fid} name={name} aria-label={def.label} className="if-control if-select" value={value || ''} onChange={(e) => onChange(def.key, e.target.value)}>
+            <select id={fid} name={name} aria-label={def.label} className="if-control if-select" value={value || ''} disabled={locked} onChange={(e) => onChange(def.key, e.target.value)}>
               <option value="" disabled></option>
               {def.options.map((o) => <option key={o} value={o}>{o}</option>)}
             </select>
@@ -85,10 +180,157 @@ function Field({ def, value, error, onChange }) {
         )}
         <label className="if-flabel" htmlFor={fid}>{def.label}{def.required && <span className="if-req">*</span>}</label>
       </div>
-      {/* Optional one-line hint. Cheaper than sending someone off to a
-          different page to find out what a field means — they would lose
-          everything already typed. */}
-      {def.help && <div className="if-help">{def.help}</div>}
+      {error && <div className="if-err-msg">{error}</div>}
+    </div>
+  );
+}
+
+// ── Google Places Autocomplete (optional) ───────────────────────────────
+// Enhances the proposal "Location" field with address suggestions. Enabled
+// only when PUBLIC_GOOGLE_MAPS_API_KEY is set (per-site opt-in) — otherwise the
+// field is a plain text input, so sites without a key are unaffected. Uses the
+// modern Places Data API (fetchAutocompleteSuggestions) with a custom dropdown
+// so the site's own floating-label styling is preserved.
+const MAPS_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
+
+// Is a suggestion inside this CAM's markets? Matches the STATE segment, which
+// arrives either mid-string ("Houma, LA, USA") or at the end ("Houma, LA"),
+// depending on whether the API appended the country. No markets configured (a
+// national client, or a site that hasn't set them) = no state filter.
+function inMarket(text) {
+  const states = PROPOSAL_V2?.markets;
+  if (!states || !states.length) return true;
+  const t = String(text || '');
+  return states.some((st) => t.includes(`, ${st},`) || t.endsWith(`, ${st}`));
+}
+
+function debounce(fn, ms) {
+  let t;
+  const d = (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
+  d.cancel = () => clearTimeout(t);
+  return d;
+}
+
+// Lazy-load the Maps JS API once, then the 'places' library. Resolves to the
+// places library namespace. Guarded for SSR.
+let _placesPromise;
+function loadPlaces() {
+  if (typeof window === 'undefined' || !MAPS_KEY) return Promise.reject(new Error('no maps key'));
+  if (window.google?.maps?.importLibrary) return window.google.maps.importLibrary('places');
+  if (!_placesPromise) {
+    _placesPromise = new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(MAPS_KEY)}&v=weekly&loading=async&libraries=places`;
+      s.async = true;
+      s.onerror = () => { _placesPromise = null; reject(new Error('maps failed to load')); };
+      s.onload = resolve;
+      document.head.appendChild(s);
+    });
+  }
+  return _placesPromise.then(() => window.google.maps.importLibrary('places'));
+}
+
+// Location field with Places suggestions. Same markup/classes as <Field> text
+// inputs, plus a suggestion dropdown. Falls back to a plain <Field> when no key.
+function LocationField({ value, error, onChange }) {
+  const [preds, setPreds] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(-1);
+  const tokenRef = useRef(null);
+  const libRef = useRef(null);
+  const seqRef = useRef(0);
+  const boxRef = useRef(null);
+  const fid = 'if-location';
+
+  const fetchPreds = useMemo(() => debounce(async (input) => {
+    if (!input || input.trim().length < 3) { setPreds([]); setOpen(false); return; }
+    try {
+      const lib = libRef.current || (libRef.current = await loadPlaces());
+      const { AutocompleteSuggestion, AutocompleteSessionToken } = lib;
+      if (!tokenRef.current) tokenRef.current = new AutocompleteSessionToken();
+      const seq = ++seqRef.current;
+      const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions({
+        input, sessionToken: tokenRef.current, region: 'us',
+        // `region` only BIASES formatting — it is not a filter, which is why the
+        // whole world was on offer ("Bátonyterenye, Hungary" for "baton"). These
+        // three are the ones that actually restrict:
+        //   includedRegionCodes  hard country filter
+        //   includedPrimaryTypes cities, not businesses or street addresses
+        //                        (was suggesting "Barton Malow, Sterling, VA" and
+        //                        "Baton Rouge Metropolitan Airport")
+        //   locationRestriction  a hard box over this CAM's states, so the five
+        //                        suggestions returned are mostly in-market before
+        //                        `markets` filters them exactly
+        includedRegionCodes: ['us'],
+        includedPrimaryTypes: ['(cities)'],
+        ...(PROPOSAL_V2.placesBounds ? { locationRestriction: PROPOSAL_V2.placesBounds } : {}),
+      });
+      if (seq !== seqRef.current) return; // a newer keystroke superseded this one
+      const list = (suggestions || [])
+        .map((s) => s.placePrediction).filter(Boolean)
+        .map((p) => p.text.toString())
+        // The box is coarser than the states (it catches GA, NC, AR, OK…), so the
+        // market list does the precision. Nothing outside it can be selected.
+        .filter(inMarket)
+        // "Baton Rouge, LA, USA" -> "Baton Rouge, LA". includedRegionCodes adds the
+        // country; every lead already in the pipeline carries the short form, and
+        // the portal prints this string back to the board ("Local Louisiana /
+        // Baton Rouge presence"), so keep the shape it has always had.
+        .map((t) => t.replace(/,\s*USA$/, ''));
+      setPreds(list); setActive(-1); setOpen(list.length > 0);
+    } catch (err) {
+      // An unknown request property throws ("unknown property x"), which would
+      // otherwise present as "autocomplete just stopped working" with nothing in
+      // the console to say why.
+      if (import.meta.env.DEV) console.warn('places autocomplete failed:', err);
+      setPreds([]); setOpen(false);
+    }
+  }, 220), []);
+
+  useEffect(() => () => fetchPreds.cancel(), [fetchPreds]);
+
+  // Close the dropdown on an outside click.
+  useEffect(() => {
+    const h = (e) => { if (boxRef.current && !boxRef.current.contains(e.target)) setOpen(false); };
+    document.addEventListener('mousedown', h);
+    return () => document.removeEventListener('mousedown', h);
+  }, []);
+
+  const onInput = (v) => { onChange('location', v); fetchPreds(v); };
+  const choose = (text) => {
+    onChange('location', text);
+    setPreds([]); setOpen(false); setActive(-1);
+    tokenRef.current = null; // end the billing session after a selection
+  };
+
+  const filled = value != null && String(value) !== '';
+  return (
+    <div className="if-field if-acwrap" ref={boxRef}>
+      <div className={'if-float' + (filled ? ' has-value' : '') + (error ? ' is-err' : '')}>
+        <input id={fid} aria-label="Location" className="if-control" type="text" placeholder=" "
+          autoComplete="off" role="combobox" aria-expanded={open} aria-autocomplete="list"
+          value={value || ''}
+          onChange={(e) => onInput(e.target.value)}
+          onFocus={() => { if (preds.length) setOpen(true); }}
+          onKeyDown={(e) => {
+            if (!open || !preds.length) return;
+            if (e.key === 'ArrowDown') { e.preventDefault(); setActive((a) => Math.min(preds.length - 1, a + 1)); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); setActive((a) => Math.max(0, a - 1)); }
+            else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); choose(preds[active]); }
+            else if (e.key === 'Escape') { setOpen(false); }
+          }} />
+        <label className="if-flabel" htmlFor={fid}>Location<span className="if-req">*</span></label>
+      </div>
+      {open && (
+        <ul className="if-ac" role="listbox" aria-label="Location suggestions">
+          {preds.map((p, i) => (
+            <li key={p + i} role="option" aria-selected={i === active}
+              className={'if-ac-opt' + (i === active ? ' on' : '')}
+              onMouseEnter={() => setActive(i)}
+              onMouseDown={(e) => { e.preventDefault(); choose(p); }}>{p}</li>
+          ))}
+        </ul>
+      )}
       {error && <div className="if-err-msg">{error}</div>}
     </div>
   );
@@ -121,9 +363,443 @@ function Receipt({ intent }) {
   );
 }
 
-export default function IntakeForm() {
-  const [step, setStep] = useState('intent');
-  const [intentId, setIntentId] = useState(null);
+// ── v2 multi-select: chips (amenities, services) ────────────────────────
+function PillMulti({ options, value, onChange }) {
+  return (
+    <div className="if-pillgrid" role="group">
+      {options.map((o) => {
+        const on = value.includes(o);
+        return (
+          <button type="button" key={o} aria-pressed={on}
+            className={'if-pill' + (on ? ' on' : '')}
+            onClick={() => onChange(on ? value.filter((v) => v !== o) : [...value, o])}>
+            {o}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// ── v2 multi-select: checkbox cards (pain points) ───────────────────────
+function CheckMulti({ options, value, onChange }) {
+  return (
+    <div className="if-checkgrid" role="group">
+      {options.map((o) => {
+        const on = value.includes(o);
+        return (
+          <button type="button" key={o} aria-pressed={on}
+            className={'if-checkcard' + (on ? ' on' : '')}
+            onClick={() => onChange(on ? value.filter((v) => v !== o) : [...value, o])}>
+            <span className="if-checkbox">{on && <Ic name="check" />}</span>
+            <span className="if-checktxt">{o}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// ── v2 step progress bar (1 · You → 2 · Your community → 3 · What you need) ──
+function Steps({ step }) {
+  const labels = ['You', 'Your community', 'What you need'];
+  return (
+    <ol className="if-steps">
+      {labels.map((l, i) => {
+        const n = i + 1;
+        const state = n < step ? ' done' : n === step ? ' on' : '';
+        return (
+          <li key={l} className={'if-step-pip' + state}>
+            <span className="if-step-bar" />
+            <span className="if-step-label">{n} · {l}</span>
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
+// The "Dues per unit" answer as it is reported (email, Slack, Pipedrive note,
+// confirmation). The box takes numbers OR words — "450", "$450", "1,200",
+// "varies by lot type", "about $300 for lots, $450 for villas" — so a dollar
+// sign is only added when the whole answer is one plain amount. Anything else
+// is passed through as typed; the cadence lives in the "Collection cycle"
+// answer next to it. (It used to be "Monthly dues / unit", digits only, always
+// prefixed with "$".)
+function duesText(raw) {
+  const t = String(raw || '').trim();
+  if (!t) return '';
+  return /^\$?\s*\d[\d,]*(\.\d+)?$/.test(t) ? '$' + t.replace(/^\$\s*/, '') : t;
+}
+
+// ── CANONICAL PROPOSAL v2 — guided 3-step wizard with partial-lead capture ──
+// Field SET + step order are fixed here (identical on every AGP site running v2).
+// Options come from PROPOSAL_V2, copy from PROPOSAL_COPY. Step 1 opens with the
+// visitor's ROLE: a resident role locks the contact fields and Continue leads to
+// the resident form, so a homeowner who picked the wrong form never types a
+// thing here. Any other role → name/email/phone, and Continue fires a
+// `stage=partial` lead (the server HOLDS it — see src/lib/partials.ts — so a form
+// finished a minute later produces one notification, not two); the final submit
+// sends `stage=complete` with the same `ref`.
+function ProposalWizard({ onBack, onSwitchIntent }) {
+  const V = PROPOSAL_V2;
+  const [step, setStep] = useState(1);
+  const [refId, setRefId] = useState(genId);
+  const [vals, setVals] = useState({
+    name: '', role: '', email: '', phone: '',
+    association: '', location: '', units: '', type: '', mgmtStatus: '', cycle: '', dues: '',
+    amenities: [], services: [], pains: [], success: '', budget: '', timeline: '',
+  });
+  const [errors, setErrors] = useState({});
+  const [hp, setHp] = useState('');
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState('');
+  const [submission, setSubmission] = useState(null);
+  const partialSent = useRef(false);
+  const hydrated = useHydrated();
+  // Optional context from the link that brought the visitor here, e.g. a
+  // service-levels page linking with ?context=Service%20level%3A%20Portfolio.
+  // Shown as a note on step 1 and sent with every post as a labelled answer
+  // ("Context"), so the request says what they were looking at. Generic: any
+  // page on any site may set it; nothing shows when it is absent. Read after
+  // mount so the server HTML and the first client render agree.
+  const [context, setContext] = useState('');
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const c = new URLSearchParams(window.location.search).get('context');
+    if (c) setContext(c.trim().slice(0, 160));
+  }, []);
+
+  const set = (k, v) => { setVals((s) => ({ ...s, [k]: v })); setErrors((e) => ({ ...e, [k]: null })); };
+
+  // Broadcast the active wizard step so the page can highlight it on the roadmap.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.dispatchEvent(new CustomEvent('intake:step', { detail: submission ? 'done' : step }));
+  }, [step, submission]);
+
+  // Funnel: one event per step reached, so GA4 shows where boards stop.
+  useEffect(() => { track('proposal_step_viewed', { step }); }, [step]);
+
+  // On completion, scroll back to the top so the success screen isn't stranded at
+  // the bottom of the page after submitting from the last step.
+  useEffect(() => {
+    if (submission && typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [submission]);
+
+  function validateStep(s) {
+    const e = {};
+    if (s === 1) {
+      // Role first: it decides whether this is a proposal at all (see the
+      // resident off-ramp). Validation only runs for non-resident roles — a
+      // resident's Continue goes to the resident form without it.
+      if (!vals.role) e.role = 'Required';
+      if (!vals.name.trim()) e.name = 'Required';
+      if (!vals.email.trim()) e.email = 'Required';
+      else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(vals.email)) e.email = 'Enter a valid email';
+      // Required on the PROPOSAL wizard only: the sales process is a discovery
+      // call, and a lead with no number is the one shape a rep can't work. The
+      // other intents keep it optional — a resident asking about dues shouldn't
+      // have to hand over a number to ask a question.
+      //
+      // Presence only, deliberately no format or digit-count rule: "555" and any
+      // punctuation must pass, both so testing isn't obstructed and so a board
+      // president typing their own number never has to guess at a format.
+      //
+      // The `required: true` on the field above is ONLY the asterisk — step 1
+      // validates by hand, so this line is what actually enforces it.
+      if (!vals.phone.trim()) e.phone = 'Required';
+    } else if (s === 2) {
+      if (!vals.association.trim()) e.association = 'Required';
+      if (!vals.location.trim()) e.location = 'Required';
+      if (!vals.units.trim()) e.units = 'Required';
+      if (!vals.type) e.type = 'Required';
+      if (!vals.mgmtStatus) e.mgmtStatus = 'Required';
+      // Collection cycle + dues per unit are asked for but not required: many
+      // board members don't know the figure offhand, and a required field they
+      // can't answer is where a proposal request dies. The rep asks on the
+      // discovery call.
+    } else if (s === 3) {
+      if (!vals.services.length && !vals.pains.length) e.services = 'Pick at least one';
+      if (!vals.timeline) e.timeline = 'Required';
+    }
+    setErrors(e);
+    const blocked = Object.keys(e);
+    if (blocked.length) track('proposal_step_blocked', { step: s, fields: blocked.join(',') });
+    return blocked.length === 0;
+  }
+
+  // Labeled, ordered answers for the staff email (every answer with its real label).
+  function buildFields() {
+    const j = (a) => (Array.isArray(a) ? a.join(', ') : a);
+    return [
+      { label: 'Role', value: vals.role },
+      ...(context ? [{ label: 'Context', value: context }] : []),
+      { label: 'Association / community name', value: vals.association },
+      { label: 'Location', value: vals.location },
+      { label: 'Number of units', value: vals.units },
+      { label: 'Community type', value: vals.type },
+      { label: 'Current management status', value: vals.mgmtStatus },
+      { label: 'Collection cycle', value: vals.cycle },
+      { label: 'Dues per unit', value: duesText(vals.dues) },
+      { label: 'Amenities', value: j(vals.amenities) },
+      { label: 'Services needed', value: j(vals.services) },
+      { label: 'Frustrations', value: j(vals.pains) },
+      { label: 'Budget range', value: vals.budget },
+      { label: 'Engagement timeline', value: vals.timeline },
+    ];
+  }
+
+  async function postLead(stage) {
+    const fd = new FormData();
+    fd.set('name', vals.name.trim());
+    fd.set('email', vals.email.trim());
+    fd.set('phone', vals.phone.trim());
+    fd.set('company', vals.association.trim());
+    fd.set('intent', 'proposal');
+    fd.set('intentLabel', 'Request a proposal');
+    fd.set('ref', refId);
+    fd.set('stage', stage);
+    fd.set('source', typeof window !== 'undefined' ? window.location.pathname : '');
+    fd.set('website', hp); // honeypot
+    if (stage === 'partial') {
+      fd.set('fieldsJson', JSON.stringify([
+        { label: 'Role', value: vals.role },
+        ...(context ? [{ label: 'Context', value: context }] : []),
+      ]));
+      fd.set('message', '');
+    } else {
+      fd.set('fieldsJson', JSON.stringify(buildFields()));
+      fd.set('message', vals.success.trim());
+    }
+    const res = await postForm('/api/lead', fd);
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || json.success === false) throw httpError(res, json);
+  }
+
+  function next() {
+    if (!validateStep(step)) return;
+    // Partial-lead capture: fire once when the contact step is completed. The
+    // server holds it (src/lib/partials.ts); finishing the form replaces it.
+    // Fire-and-forget so a slow/failed network never blocks the user.
+    if (step === 1 && !partialSent.current) {
+      partialSent.current = true;
+      postLead('partial')
+        .then(() => track('proposal_partial_captured'))
+        .catch((err) => {
+          partialSent.current = false;
+          track('form_submit_failed', { form: 'proposal_partial', reason: err.reason || err.message });
+          console.error('partial lead failed:', err);
+        });
+    }
+    setSendError('');
+    setStep((s) => Math.min(3, s + 1));
+  }
+  function prev() {
+    if (step === 1) { onBack(); return; }
+    setSendError('');
+    setStep((s) => s - 1);
+  }
+
+  async function submit(ev) {
+    ev.preventDefault();
+    if (!validateStep(3) || sending) return;
+    setSending(true); setSendError('');
+    try {
+      await postLead('complete');
+      track('generate_lead', { form: 'proposal', ref: refId });
+      setSubmission({ id: refId, first: vals.name.trim().split(' ')[0] });
+    } catch (err) {
+      track('form_submit_failed', { form: 'proposal', reason: err.reason || err.message });
+      setSendError(sendFailureText(err));
+    } finally {
+      setSending(false);
+    }
+  }
+
+  function reset() {
+    setStep(1); setRefId(genId());
+    setVals({ name: '', role: '', email: '', phone: '', association: '', location: '', units: '', type: '', mgmtStatus: '', cycle: '', dues: '', amenities: [], services: [], pains: [], success: '', budget: '', timeline: '' });
+    setErrors({}); setSendError(''); setSubmission(null); partialSent.current = false;
+  }
+
+  if (submission) {
+    return (
+      <div className="if-stage if-done">
+        <div className="if-done-badge"><Ic name="check" /></div>
+        <h2 className="if-title" style={{ marginTop: 14 }}>You’re all set, {submission.first}.</h2>
+        <p className="if-sub">Your request is in — reference <strong style={{ color: 'var(--if-accent)' }}>{submission.id}</strong>. Expect a written proposal within one business day.</p>
+        <Receipt intent={{ id: 'proposal', routeTo: PROPOSAL_COPY.routeTo }} />
+        <button type="button" className="if-restart" onClick={reset}>Submit another request</button>
+      </div>
+    );
+  }
+
+  // Collected values mirrored as off-screen text inputs so call-tracking
+  // (WhatConverts) captures everything on submit — even fields from earlier
+  // (now-unmounted) steps and the chip/card multi-selects, which aren't real
+  // inputs. WhatConverts reads any named input EXCEPT type="hidden", so these are
+  // type="text" hidden via CSS (.if-wc), not type="hidden". Budget/timeline/success
+  // are omitted here because they're visible inputs on step 3 that WC already reads
+  // (keeping them would duplicate the field in the lead).
+  const mirror = [
+    ['name', vals.name], ['email', vals.email], ['phone', vals.phone], ['company', vals.association],
+    ['Role', vals.role], ['Context', context], ['Location', vals.location], ['Number of units', vals.units],
+    ['Community type', vals.type], ['Current management status', vals.mgmtStatus],
+    ['Collection cycle', vals.cycle], ['Dues per unit', vals.dues], ['Amenities', vals.amenities.join(', ')],
+    ['Services needed', vals.services.join(', ')], ['Frustrations', vals.pains.join(', ')],
+  ];
+
+  // Only expose the WhatConverts-tracked id on the FINAL step. WhatConverts
+  // captures (and freezes the lead on) the first submit-like event it sees inside
+  // a tracked form — clicking "Continue" out of step 2 was triggering a partial
+  // capture, so the lead never got step-3 fields. Keeping the form untracked until
+  // step 3 means the first (and only) capture is the complete final submit.
+  const wcTracked = step === 3 && TRACKING.intents.includes('proposal');
+  // Off-ramp: a resident who wandered into the proposal wizard. Armed only when
+  // the site configures PROPOSAL_V2.residentRoles AND a target intent exists
+  // (onSwitchIntent is passed) — otherwise the canonical wizard shows nothing.
+  const showOfframp = !!onSwitchIntent && (V.residentRoles || []).includes(vals.role);
+  // Carry what they've already typed into the resident form so they don't
+  // re-enter it after being routed out of the proposal.
+  const switchToResident = () => {
+    track('intake_offramp_resident', { role: vals.role });
+    onSwitchIntent({ name: vals.name.trim(), email: vals.email.trim(), phone: vals.phone.trim() });
+  };
+  return (
+    <form
+      id={wcTracked ? TRACKING.formId : 'proposal-wizard'}
+      name={wcTracked ? TRACKING.formId : 'proposal-wizard'}
+      className="if-stage if-wizard" onSubmit={submit} noValidate>
+      <Honeypot value={hp} onChange={setHp} />
+      <div className="if-wc" aria-hidden="true">
+        {mirror.map(([n, v]) => <input key={n} type="text" name={n} value={v} readOnly tabIndex={-1} autoComplete="off" />)}
+      </div>
+
+      {/* Change request type lives at the top — same place as the other intents. */}
+      <button type="button" className="if-back" onClick={onBack}><Ic name="arrowLeft" /> Change request type</button>
+
+      <Steps step={step} />
+
+      <fieldset className="if-fs" disabled={!hydrated}>
+      {step === 1 && (
+        <div className="if-wstep">
+          <div className="if-stephead">
+            <span className="if-eyebrow">Step 1</span>
+            <h2 className="if-title">About you</h2>
+            <p className="if-sub">Your role, and where to send the proposal.</p>
+            {context && <div className="if-context" role="note"><Ic name="zap" /><span>Noted: <strong>{context}</strong></span></div>}
+          </div>
+          <div className="if-grid">
+            {/* Role FIRST, full width: it decides whether this is a proposal at all.
+                A resident role locks the three contact fields below and turns
+                Continue into the way out — the resident form — so a homeowner on
+                the wrong form never has to type a thing here. */}
+            <Field def={{ key: 'role', label: 'Your role', type: 'select', required: true, options: V.roles, noName: true, col: 2 }} value={vals.role} error={errors.role} onChange={set} />
+            <Field def={{ key: 'name', label: 'Your name', type: 'text', required: true, noName: true, col: 2, locked: showOfframp }} value={vals.name} error={errors.name} onChange={set} />
+            <Field def={{ key: 'email', label: 'Email', type: 'text', required: true, noName: true, locked: showOfframp }} value={vals.email} error={errors.email} onChange={set} />
+            <Field def={{ key: 'phone', label: 'Phone', type: 'text', required: true, noName: true, locked: showOfframp }} value={vals.phone} error={errors.phone} onChange={set} />
+          </div>
+          {showOfframp && (
+            <div className="if-offramp" role="note">
+              <p><strong>You’re a homeowner or resident — this form is for boards</strong> choosing a new management company. Press <strong>Continue</strong> and we’ll take you to resident help instead: dues, documents, your account, or a maintenance issue. Picked the wrong role? Just change it above.</p>
+            </div>
+          )}
+        </div>
+      )}
+
+      {step === 2 && (
+        <div className="if-wstep">
+          <div className="if-stephead">
+            <span className="if-eyebrow">Step 2</span>
+            <h2 className="if-title">Your community</h2>
+            <p className="if-sub">The basics about your association.</p>
+          </div>
+          <div className="if-grid">
+            <Field def={{ key: 'association', label: 'Association name', type: 'text', required: true, noName: true }} value={vals.association} error={errors.association} onChange={set} />
+            {MAPS_KEY
+              ? <LocationField value={vals.location} error={errors.location} onChange={set} />
+              : <Field def={{ key: 'location', label: 'Location', type: 'text', required: true, placeholder: 'e.g. Baton Rouge, LA', noName: true }} value={vals.location} error={errors.location} onChange={set} />}
+            <Field def={{ key: 'units', label: 'Number of units', type: 'text', required: true, inputMode: 'numeric', maxLength: 6, noName: true }} value={vals.units} error={errors.units} onChange={set} />
+            <Field def={{ key: 'type', label: 'Community type', type: 'select', required: true, options: V.communityType, noName: true }} value={vals.type} error={errors.type} onChange={set} />
+            <Field def={{ key: 'mgmtStatus', label: 'Current management status', type: 'select', required: true, options: V.managementStatus, noName: true }} value={vals.mgmtStatus} error={errors.mgmtStatus} onChange={set} />
+            <Field def={{ key: 'cycle', label: 'Collection cycle', type: 'select', options: V.collectionCycle, noName: true }} value={vals.cycle} error={errors.cycle} onChange={set} />
+            <Field def={{ key: 'dues', label: 'Dues per unit (if known)', type: 'text', maxLength: 60, noName: true }} value={vals.dues} error={errors.dues} onChange={set} />
+            <div className="if-field" style={{ gridColumn: '1 / -1' }}>
+              <span className="if-grouplabel">Amenities <em>(select all that apply)</em></span>
+              <PillMulti options={V.amenities} value={vals.amenities} onChange={(v) => set('amenities', v)} />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {step === 3 && (
+        <div className="if-wstep">
+          <div className="if-stephead">
+            <span className="if-eyebrow">Step 3</span>
+            <h2 className="if-title">What you need</h2>
+            <p className="if-sub">Be honest — the more specific, the more useful the proposal.</p>
+          </div>
+          <div className="if-grid">
+            <div className="if-field" style={{ gridColumn: '1 / -1' }}>
+              <span className="if-grouplabel">Services you’re looking for</span>
+              <PillMulti options={V.services} value={vals.services} onChange={(v) => set('services', v)} />
+            </div>
+            <div className="if-field" style={{ gridColumn: '1 / -1' }}>
+              <span className="if-grouplabel">What’s frustrating you right now? <em>(select as many as apply — these shape the proposal)</em></span>
+              <CheckMulti options={V.painPoints} value={vals.pains} onChange={(v) => { set('pains', v); setErrors((e) => ({ ...e, services: null })); }} />
+              {errors.services && <div className="if-err-msg">{errors.services}</div>}
+            </div>
+            <div className="if-field" style={{ gridColumn: '1 / -1' }}>
+              <div className={'if-float if-float-top' + (vals.success ? ' has-value' : '')}>
+                <textarea id="if-success" aria-label="What does success look like?" className="if-control if-textarea" rows={3} placeholder=" "
+                  value={vals.success} onChange={(e) => set('success', e.target.value)} />
+                <label className="if-flabel" htmlFor="if-success">In your own words — what does success look like?</label>
+              </div>
+            </div>
+            <Field def={{ key: 'budget', label: 'Budget range', type: 'select', options: V.budget, noName: true }} value={vals.budget} error={errors.budget} onChange={set} />
+            <Field def={{ key: 'timeline', label: 'Engagement timeline', type: 'select', required: true, options: V.timeline, noName: true }} value={vals.timeline} error={errors.timeline} onChange={set} />
+          </div>
+          <div className="if-next">
+            <Ic name="zap" />
+            <p><strong>What happens next.</strong> Your responses are reviewed by CMGT’s intake team within one business day. You’ll get a written proposal — built around what your board specifically said — at the email above. No phone bombardment.</p>
+          </div>
+        </div>
+      )}
+
+      {sendError && <div className="if-senderror">{sendError}</div>}
+
+      <div className="if-wnav">
+        {step > 1
+          ? <button type="button" className="if-back" onClick={prev}><Ic name="arrowLeft" /> Back</button>
+          : <span className="if-wnav-spacer" />}
+        <span className="if-wstepcount">Step {step} of 3</span>
+        {step < 3 ? (
+          <button type="button" className="if-submit" onClick={showOfframp ? switchToResident : next}>Continue <Ic name="arrowRight" /></button>
+        ) : (
+          <button type="submit" className="if-submit" disabled={sending}>
+            {sending ? 'Sending…' : 'Submit request'}{!sending && <Ic name="arrowRight" />}
+          </button>
+        )}
+      </div>
+      </fieldset>
+    </form>
+  );
+}
+
+/**
+ * @param {{ initialIntent?: string | null }} props — `initialIntent` is the ?intent=
+ *   value the page read server-side (optional; without it the picker shows first).
+ */
+export default function IntakeForm({ initialIntent = null }) {
+  // ?intent=<id> arrives as a prop from the page (read server-side, so the right
+  // form is already in the HTML and there is no picker flash before hydration).
+  // Every "Request a proposal" CTA links with ?intent=proposal; the generic
+  // contact links land on the picker. The effect below is the fallback for any
+  // other way of arriving with the query string.
+  const initial = initialIntent && intentById(initialIntent) ? initialIntent : null;
+  const [step, setStep] = useState(initial ? 'form' : 'intent');
+  const [intentId, setIntentId] = useState(initial);
   const [contact, setContact] = useState({ name: '', email: '', phone: '' });
   const [fields, setFields] = useState({});
   const [message, setMessage] = useState('');
@@ -132,51 +808,41 @@ export default function IntakeForm() {
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState('');
   const [hp, setHp] = useState(''); // honeypot — must stay empty for humans
+  const hydrated = useHydrated();
 
   const intent = intentId ? intentById(intentId) : null;
-
-  // Call-tracking id for the rendered <form>, and the same value reported to
-  // GA4 on submit. The GA4 call used to reference a bare `formId` that was
-  // never declared — a ReferenceError thrown straight after a successful
-  // POST, which the catch below swallowed. The lead still landed, but the
-  // generate_lead conversion never fired.
-  const formId = intent && TRACKING.intents.includes(intent.id)
-    ? TRACKING.formId
-    : 'intake-form';
+  // Where the wizard's resident off-ramp sends people: the site's resident /
+  // homeowner intent (PROPOSAL_V2.residentIntent, default 'resident'), else the
+  // general one, else nowhere (the off-ramp stays hidden).
+  const residentTarget = intentById(PROPOSAL_V2?.residentIntent || 'resident') || intentById('general');
 
   // Deep-link: ?intent=proposal opens straight to that intent's fields.
-  // Any further param matching one of that intent's field keys prefills it,
-  // and ?message= seeds the free-text box. The service-levels wizard uses
-  // this to hand over what the board already told it, so nobody is asked
-  // the same question twice.
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const params = new URLSearchParams(window.location.search);
-    const want = params.get('intent');
-    const w = want && intentById(want);
-    if (!w) return;
-    if (w.redirect) { window.location.href = w.redirect; return; }
-
-    const seed = {};
-    (w.fields || []).forEach((f) => {
-      const v = params.get(f.key);
-      if (!v) return;
-      // A select or radio can only be prefilled with a value it actually
-      // offers — anything else would render as a blank, broken-looking field.
-      if (f.options && !f.options.includes(v)) return;
-      seed[f.key] = v;
-    });
-
-    const msg = params.get('message');
-    if (msg) setMessage(msg);
-    setIntentId(want); setFields(seed); setErrors({}); setStep('form');
+    const want = new URLSearchParams(window.location.search).get('intent');
+    if (!want || !intentById(want)) return;
+    if (want !== initial) { setIntentId(want); setFields({}); setErrors({}); setStep('form'); }
+    track('intake_intent_selected', { intent: want, via: 'link' });
   }, []);
 
-  // Intents with a `redirect` send the visitor straight there (e.g. vendor portal).
-  const pick = (id) => {
-    const it = intentById(id);
-    if (it?.redirect) { window.location.href = it.redirect; return; }
+  // On completion, scroll back to the top so the success screen isn't stranded at
+  // the bottom of the page after submit.
+  useEffect(() => {
+    if (step === 'done' && typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [step]);
+
+  // Broadcast the active intent so the surrounding page can adapt (e.g. swap hero
+  // copy). No-op if nothing listens — keeps the component drop-in everywhere.
+  // null while on the picker; the intent id once a form/wizard is showing.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.dispatchEvent(new CustomEvent('intake:intent', { detail: step === 'intent' ? null : intentId }));
+  }, [step, intentId]);
+
+  const pick = (id, prefill) => {
+    track('intake_intent_selected', { intent: id, via: prefill ? 'offramp' : 'picker' });
     setIntentId(id); setFields({}); setErrors({}); setStep('form');
+    if (prefill) setContact((c) => ({ ...c, ...prefill })); // carry name/email/phone across an intent switch
   };
   const back = () => { setStep('intent'); setErrors({}); setSendError(''); };
   const setField = (k, v) => { setFields((f) => ({ ...f, [k]: v })); setErrors((e) => ({ ...e, [k]: null })); };
@@ -188,9 +854,11 @@ export default function IntakeForm() {
     if (!contact.email.trim()) e.email = 'Required';
     else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(contact.email)) e.email = 'Enter a valid email';
     (intent.fields || []).forEach((f) => { if (f.required && !fields[f.key]) e[f.key] = 'Required'; });
-    if (intent.id === 'service' && !message.trim()) e.message = 'Required';
+    if (MSG_REQUIRED.has(intent.id) && !message.trim()) e.message = 'Required';
     setErrors(e);
-    return Object.keys(e).length === 0;
+    const blocked = Object.keys(e);
+    if (blocked.length) track('form_blocked', { form: intent.id, fields: blocked.join(',') });
+    return blocked.length === 0;
   }
 
   async function submit(ev) {
@@ -219,22 +887,15 @@ export default function IntakeForm() {
     fd.set('website', hp); // honeypot — handler rejects if non-empty
 
     try {
-      const res = await fetch('/api/lead', { method: 'POST', body: fd });
+      const res = await postForm('/api/lead', fd);
       const json = await res.json().catch(() => ({}));
-      if (!res.ok || json.success === false) throw new Error(json.error || 'Something went wrong.');
+      if (!res.ok || json.success === false) throw httpError(res, json);
+      track('generate_lead', { form: intent.id, ref: id });
       setSubmission({ id, first: contact.name.trim().split(' ')[0] });
       setStep('done');
-      // GA4 conversion. WhatConverts tracks the form separately; this lets the
-      // lead be tied back to landing page + query in GA4 reports.
-      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-        window.gtag('event', 'generate_lead', {
-          intent: intent.id,
-          form_id: formId,
-          page_path: window.location.pathname,
-        });
-      }
     } catch (err) {
-      setSendError(err.message || `Something went wrong. Please try again or call ${BRAND.phone}.`);
+      track('form_submit_failed', { form: intent.id, reason: err.reason || err.message });
+      setSendError(sendFailureText(err));
     } finally {
       setSending(false);
     }
@@ -254,7 +915,7 @@ export default function IntakeForm() {
             <h2 className="if-title">How can we help?</h2>
             <p className="if-sub">Pick what fits — we’ll only ask what we need, then make sure the right person sees it fast.</p>
             <div className="if-intent-grid">
-              {INTENTS.map((it) => (
+              {INTENTS.filter((it) => !it.hidden).map((it) => (
                 <button type="button" key={it.id} className={`if-intent-card tone-${it.tone}`} onClick={() => pick(it.id)}>
                   <span className="if-intent-icon"><Ic name={it.icon} /></span>
                   <span className="if-intent-body">
@@ -269,27 +930,49 @@ export default function IntakeForm() {
           </div>
         )}
 
-        {step === 'form' && intent && (
+        {/* v2: the proposal intent uses the guided 3-step wizard (with partial-lead
+            capture). All other intents — and v1 sites — use the flat form below. */}
+        {step === 'form' && intent && PROPOSAL_FORM_VERSION === 2 && intent.id === 'proposal' && (
+          <ProposalWizard
+            onBack={back}
+            onSwitchIntent={residentTarget ? (prefill) => pick(residentTarget.id, prefill) : undefined}
+          />
+        )}
+
+        {step === 'form' && intent && !(PROPOSAL_FORM_VERSION === 2 && intent.id === 'proposal') && (
           // Call-tracking (e.g. WhatConverts) tracks only the intents listed in
           // TRACKING.intents: those render the tracked id (TRACKING.formId); every
           // other intent gets id="intake-form" so the tracker ignores it. The key
           // forces a clean remount per intent for the tracker's form detection.
           <form
             key={intent.id}
-            id={formId}
-            name={formId}
+            id={TRACKING.intents.includes(intent.id) ? TRACKING.formId : 'intake-form'}
+            name={TRACKING.intents.includes(intent.id) ? TRACKING.formId : 'intake-form'}
             className="if-stage" onSubmit={submit} noValidate>
-            {/* Honeypot — hidden from humans; bots that fill it get rejected by /api/lead */}
-            <div className="if-hp" aria-hidden="true">
-              <label>Leave this field empty
-                <input type="text" name="website" tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} />
-              </label>
-            </div>
+            <Honeypot value={hp} onChange={setHp} />
             <button type="button" className="if-back" onClick={back}><Ic name="arrowLeft" /> Change request type</button>
             <div className={`if-chosen tone-${intent.tone}`}>
               <span className="if-intent-icon"><Ic name={intent.icon} /></span>
               <span className="if-chosen-txt"><strong>{intent.label}</strong><span>{intent.blurb}</span></span>
             </div>
+            {/* Self-service shortcuts (residents): most get what they need here
+                without waiting on a reply. Shown only when the intent defines them. */}
+            {intent.selfHelp?.length > 0 && (
+              <div className="if-selfhelp">
+                <div className="if-selfhelp-head">Fastest way to get what you need:</div>
+                <div className="if-selfhelp-links">
+                  {intent.selfHelp.map((l) => (
+                    <a key={l.label} className="if-selfhelp-link" href={l.href}
+                      target={l.ext ? '_blank' : undefined} rel={l.ext ? 'noopener noreferrer' : undefined}>
+                      <span className="if-selfhelp-t">{l.label} <Ic name="arrowRight" /></span>
+                      <span className="if-selfhelp-d">{l.desc}</span>
+                    </a>
+                  ))}
+                </div>
+                <div className="if-selfhelp-or">Still need a person? Send us a message below.</div>
+              </div>
+            )}
+            <fieldset className="if-fs" disabled={!hydrated}>
             <div className="if-grid">
               <Field def={{ key: 'name', label: 'Your name', type: 'text', required: true, placeholder: 'First & last', col: 2 }} value={contact.name} error={errors.name} onChange={setC} />
               <Field def={{ key: 'email', label: 'Email', type: 'text', required: true, placeholder: 'you@email.com' }} value={contact.email} error={errors.email} onChange={setC} />
@@ -299,10 +982,10 @@ export default function IntakeForm() {
               ))}
               <div className="if-field" style={{ gridColumn: '1 / -1' }}>
                 <div className={'if-float if-float-top' + (message ? ' has-value' : '') + (errors.message ? ' is-err' : '')}>
-                  <textarea id="if-message" aria-label={intent.id === 'vendor' ? 'Tell us about your services' : 'Anything else?'} name="Message" className="if-control if-textarea" rows={intent.id === 'general' || intent.id === 'vendor' ? 5 : 3}
+                  <textarea id="if-message" aria-label={MSG_REQUIRED.has(intent.id) ? 'How can we help?' : 'Anything else?'} name={MSG_REQUIRED.has(intent.id) ? 'How can we help?' : 'Message'} className="if-control if-textarea" rows={intent.id === 'general' ? 5 : 3}
                     placeholder=" "
                     value={message} onChange={(e) => { setMessage(e.target.value); setErrors((x) => ({ ...x, message: null })); }} />
-                  <label className="if-flabel" htmlFor="if-message">{intent.id === 'vendor' ? 'Tell us about your services' : 'Anything else?'}</label>
+                  <label className="if-flabel" htmlFor="if-message">{MSG_REQUIRED.has(intent.id) ? 'How can we help?' : 'Anything else?'}{MSG_REQUIRED.has(intent.id) && <span className="if-req">*</span>}</label>
                 </div>
                 {errors.message && <div className="if-err-msg">{errors.message}</div>}
               </div>
@@ -311,10 +994,11 @@ export default function IntakeForm() {
             <div className="if-actions">
               <div className="if-trust"><Ic name="lock" /> Your details stay private. No spam, ever.</div>
               <button type="submit" className="if-submit" disabled={sending}>
-                {sending ? 'Sending…' : intent.id === 'proposal' ? 'Request my proposal' : intent.id === 'vendor' ? 'Submit bid info' : 'Send message'}
+                {sending ? 'Sending…' : intent.id === 'proposal' ? 'Request my proposal' : intent.id === 'service' ? 'Send request' : 'Send message'}
                 {!sending && <Ic name="arrowRight" />}
               </button>
             </div>
+            </fieldset>
           </form>
         )}
 

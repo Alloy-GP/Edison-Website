@@ -62,6 +62,17 @@ export const EMAIL_CONFIG = {
     newsletter: ['admin@edison-mgmt.com'],
   } as Record<string, string[]>,
 
+  // ── Started, not finished. The proposal wizard's contact step is HELD for
+  // PARTIAL_HOLD_MINUTES (src/lib/partials.ts, default 10); a form still
+  // unfinished when the hold ends is emailed HERE — customer support, not sales —
+  // because in practice most of these are current homeowners who picked the wrong
+  // form (every one of them, in CMGT's count). A form finished inside the hold
+  // replaces its partial silently. Intents not listed route like a complete
+  // submission. ──
+  partialRoutes: {
+    proposal: ['admin@edison-mgmt.com'],
+  } as Record<string, string[]>,
+
   mailchimp: {
     enabled:     true,      // set false if client has no Mailchimp
     defaultTags: ['website-lead'],

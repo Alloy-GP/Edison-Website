@@ -205,7 +205,7 @@ function proposalHref({ units, summary, level }) {
   if (units) q.set('units', units);
   /* Matches an option on the form's Service level select exactly, or the
      prefill drops it rather than rendering a blank field. */
-  if (level) q.set('serviceLevel', level);
+  if (level) q.set('context', `Service level: ${level}`);
   if (summary) q.set('message', summary);
   return `/request-a-proposal?${q.toString()}`;
 }

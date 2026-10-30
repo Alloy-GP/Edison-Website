@@ -2,7 +2,7 @@
   "name": "edison-association-management",
   "type": "module",
   "version": "1.0.0",
-  "description": "AGP client site \u2014 Innovia",
+  "description": "AGP client site — Innovia",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -10,7 +10,9 @@
     "astro": "astro",
     "check": "astro check",
     "optimize:images": "node scripts/optimize-images.mjs",
-    "test:forms": "node scripts/test-form-alert.ts"
+    "test:forms": "node scripts/test-form-alert.ts",
+    "test:partials": "node --import ./scripts/lib/register-import-meta-env.mjs scripts/test-partials.ts",
+    "test": "npm run test:forms && npm run test:partials"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -18,6 +20,7 @@
     "@astrojs/sitemap": "^3.0.0",
     "@astrojs/vercel": "^8.2.11",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
+    "@vercel/blob": "^2.8.2",
     "@vercel/speed-insights": "^2.0.0",
     "astro": "^5.1.1",
     "react": "^18.3.1",

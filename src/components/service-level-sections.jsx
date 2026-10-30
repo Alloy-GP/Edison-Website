@@ -658,7 +658,7 @@ function FeatureMatrix({ eyebrow, title, sub, tiers, groups, footnotes = [],
                   <InteriorButton
                     variant={t.id === active || t.badge ? "primary" : "ghost"}
                     size="sm"
-                    href={`/request-a-proposal?intent=proposal&serviceLevel=${encodeURIComponent(t.name)}`}
+                    href={`/request-a-proposal?intent=proposal&context=${encodeURIComponent(`Service level: ${t.name}`)}`}
                   >Get a quote</InteriorButton>
                 </div>
               ))}
@@ -886,7 +886,7 @@ function LevelDeepDive({ eyebrow, title, sub, tiers, panels,
                 <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                   <InteriorButton
                     variant="primary" size="md"
-                    href={`/request-a-proposal?intent=proposal&serviceLevel=${encodeURIComponent(t.name)}`}
+                    href={`/request-a-proposal?intent=proposal&context=${encodeURIComponent(`Service level: ${t.name}`)}`}
                   >Get a quote for {t.name}</InteriorButton>
                   <InteriorButton variant="ghost" size="md" href="#compare">
                     Compare in the table
